@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">capacitor-testapp</string>
+    <string name="title_activity_main">capacitor-testapp</string>
+    <string name="package_name">com.capacitorjs.testapp</string>
+    <string name="custom_url_scheme">com.capacitorjs.testapp</string>
+</resources>

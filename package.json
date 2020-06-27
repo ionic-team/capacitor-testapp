@@ -10,7 +10,9 @@
     "eject": "react-scripts eject"
   },
   "dependencies": {
-    "@capacitor/core": "2.2.0",
+    "@capacitor/android": "file:../capacitor/android",
+    "@capacitor/core": "file:../capacitor/core",
+    "@capacitor/ios": "file:../capacitor/ios",
     "@ionic/react": "^5.0.7",
     "@ionic/react-router": "^5.0.7",
     "@testing-library/jest-dom": "^4.2.4",
@@ -31,7 +33,7 @@
     "typescript": "3.8.3"
   },
   "devDependencies": {
-    "@capacitor/cli": "2.2.0"
+    "@capacitor/cli": "file:../capacitor/cli"
   },
   "eslintConfig": {
     "extends": "react-app"
