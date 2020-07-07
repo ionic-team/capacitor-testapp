@@ -4,10 +4,16 @@
   "version": "0.0.1",
   "private": true,
   "scripts": {
+    "prettier": "prettier '{src,public}/**/*.{css,html,ts,tsx}'",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "npm run prettier -- --check"
+    }
   },
   "dependencies": {
     "@capacitor/android": "file:../capacitor/android",
@@ -33,7 +39,9 @@
     "typescript": "3.8.3"
   },
   "devDependencies": {
-    "@capacitor/cli": "file:../capacitor/cli"
+    "@capacitor/cli": "file:../capacitor/cli",
+    "husky": "^4.2.5",
+    "prettier": "^2.0.5"
   },
   "eslintConfig": {
     "extends": "react-app"
