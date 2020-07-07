@@ -42,22 +42,20 @@ const Menu: React.FC = () => {
           <IonItemDivider>
             <IonLabel>Plugins</IonLabel>
           </IonItemDivider>
-          {routes.map((route, index) => {
-            return (
-              <IonMenuToggle key={index} autoHide={false}>
-                <IonItem
-                  className={location.pathname === route.url ? 'selected' : ''}
-                  routerLink={route.url}
-                  routerDirection="none"
-                  lines="none"
-                  detail={false}>
-                  <IonLabel>
-                    {route.icon} {route.title}
-                  </IonLabel>
-                </IonItem>
-              </IonMenuToggle>
-            );
-          })}
+          {routes.map((route, i) => (
+            <IonMenuToggle key={i} autoHide={false}>
+              <IonItem
+                className={location.pathname === route.url ? 'selected' : ''}
+                routerLink={route.url}
+                routerDirection="none"
+                lines="none"
+                detail={false}>
+                <IonLabel>
+                  {route.icon} {route.title}
+                </IonLabel>
+              </IonItem>
+            </IonMenuToggle>
+          ))}
         </IonList>
       </IonContent>
     </IonMenu>

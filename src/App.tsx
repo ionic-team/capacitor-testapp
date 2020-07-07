@@ -32,8 +32,13 @@ const App: React.FC = () => (
         <Menu />
         <IonRouterOutlet id="main">
           <Route path="/home" component={Home} exact={true} />
-          {routes.map(route => (
-            <Route path={route.url} component={route.component} exact={true} />
+          {routes.map((route, i) => (
+            <Route
+              key={i}
+              path={route.url}
+              component={route.component}
+              exact={true}
+            />
           ))}
           <Route exact path="/" render={() => <Redirect to="/home" />} />
         </IonRouterOutlet>
