@@ -9,7 +9,7 @@ import {
 } from '@ionic/react';
 import React from 'react';
 
-const Home: React.FC = () => {
+const StatusBar: React.FC = () => {
   return (
     <IonPage>
       <IonHeader>
@@ -17,18 +17,12 @@ const Home: React.FC = () => {
           <IonButtons slot="start">
             <IonMenuButton />
           </IonButtons>
-          <IonTitle>Home</IonTitle>
+          <IonTitle>Status Bar</IonTitle>
         </IonToolbar>
       </IonHeader>
-      <IonContent>
-        <p>Welcome to the Capacitor Test App.</p>
-        <p>
-          This app was created to test and develop Capacitor core and plugins.
-          To test plugins, open the side menu and navigate to the plugin's page!
-        </p>
-      </IonContent>
+      <IonContent></IonContent>
     </IonPage>
   );
 };
 
-export default Home;
+export default StatusBar;
