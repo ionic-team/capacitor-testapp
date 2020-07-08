@@ -1,3 +1,4 @@
+import { Plugins, PluginListenerHandle } from '@capacitor/core';
 import {
   IonButtons,
   IonContent,
@@ -6,10 +7,46 @@ import {
   IonMenuButton,
   IonTitle,
   IonToolbar,
+  IonButton,
+  IonInput,
+  IonList,
+  IonItem,
+  IonLabel,
+  useIonViewDidEnter,
+  useIonViewDidLeave,
 } from '@ionic/react';
-import React from 'react';
+import React, { useState } from 'react';
+import { createEventTargetValueExtractor } from '../utils/dom';
 
-const Accessibility: React.FC = () => {
+const { Accessibility } = Plugins;
+
+const AccessibilityPage: React.FC = () => {
+  let handler: PluginListenerHandle;
+  const [sentence, setSentence] = useState('Hello World!');
+
+  useIonViewDidEnter(() => {
+    handler = Accessibility.addListener(
+      'accessibilityScreenReaderStateChange',
+      ({ value }) => alert(`State Change! Screen Reader on? ${value}`),
+    );
+  });
+
+  useIonViewDidLeave(() => {
+    handler.remove();
+  });
+
+  const isVoiceOverEnabled = async () => {
+    const { value: enabled } = await Accessibility.isScreenReaderEnabled();
+
+    alert(`Screen Reader on? ${enabled}`);
+  };
+
+  const speak = async () => {
+    await Accessibility.speak({ value: sentence });
+  };
+
+  const handleSpeakInputChange = createEventTargetValueExtractor(setSentence);
+
   return (
     <IonPage>
       <IonHeader>
@@ -20,9 +57,25 @@ const Accessibility: React.FC = () => {
           <IonTitle>Accessibility</IonTitle>
         </IonToolbar>
       </IonHeader>
-      <IonContent></IonContent>
+      <IonContent>
+        <IonList>
+          <IonItem>
+            <IonLabel>Screen Reader</IonLabel>
+            <IonButton expand="block" onClick={isVoiceOverEnabled}>
+              TalkBack/VoiceOver Enabled?
+            </IonButton>
+          </IonItem>
+          <IonItem>
+            <IonLabel position="stacked">Sentence</IonLabel>
+            <IonInput value={sentence} onInput={handleSpeakInputChange} />
+            <IonButton onClick={speak} slot="end">
+              Speak
+            </IonButton>
+          </IonItem>
+        </IonList>
+      </IonContent>
     </IonPage>
   );
 };
 
-export default Accessibility;
+export default AccessibilityPage;
