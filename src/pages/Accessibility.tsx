@@ -1,4 +1,5 @@
 import { Plugins, PluginListenerHandle } from '@capacitor/core';
+import { ScreenReader, ScreenReaderSpec } from '@capacitor/screen-reader';
 import {
   IonButtons,
   IonContent,
@@ -21,6 +22,7 @@ import { createEventTargetValueExtractor } from '../utils/dom';
 const { Accessibility } = Plugins;
 
 const AccessibilityPage: React.FC = () => {
+  console.log('ScreenReader', ScreenReader, ScreenReaderSpec);
   let handler: PluginListenerHandle;
   const [sentence, setSentence] = useState('Hello World!');
 
