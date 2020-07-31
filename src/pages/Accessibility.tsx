@@ -1,5 +1,5 @@
-import { Plugins, PluginListenerHandle } from '@capacitor/core';
-import { ScreenReader, ScreenReaderSpec } from '@capacitor/screen-reader';
+import { PluginListenerHandle } from '@capacitor/core';
+import { ScreenReader } from '@capacitor/screen-reader';
 import {
   IonButtons,
   IonContent,
@@ -19,17 +19,14 @@ import {
 import React, { useState } from 'react';
 import { createEventTargetValueExtractor } from '../utils/dom';
 
-const { Accessibility } = Plugins;
-
 const AccessibilityPage: React.FC = () => {
-  console.log('ScreenReader', ScreenReader, ScreenReaderSpec);
   let handler: PluginListenerHandle;
-  const [sentence, setSentence] = useState('Hello World!');
+  const [sentence, setSentence] = useState('Hello World?');
 
   useIonViewDidEnter(() => {
-    handler = Accessibility.addListener(
+    handler = ScreenReader!.addListener(
       'accessibilityScreenReaderStateChange',
-      ({ value }) => alert(`State Change! Screen Reader on? ${value}`),
+      ({ value }: any) => alert(`State Change! Screen Reader on? ${value}`),
     );
   });
 
@@ -38,13 +35,13 @@ const AccessibilityPage: React.FC = () => {
   });
 
   const isVoiceOverEnabled = async () => {
-    const { value: enabled } = await Accessibility.isScreenReaderEnabled();
+    const { value: enabled } = await ScreenReader!.isEnabled();
 
     alert(`Screen Reader on? ${enabled}`);
   };
 
   const speak = async () => {
-    await Accessibility.speak({ value: sentence });
+    await ScreenReader!.speak({ value: sentence });
   };
 
   const handleSpeakInputChange = createEventTargetValueExtractor(setSentence);
