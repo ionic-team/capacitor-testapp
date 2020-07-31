@@ -19,13 +19,13 @@ import {
 import React, { useState } from 'react';
 import { createEventTargetValueExtractor } from '../utils/dom';
 
-const AccessibilityPage: React.FC = () => {
+const ScreenReaderPage: React.FC = () => {
   let handler: PluginListenerHandle;
   const [sentence, setSentence] = useState('Hello World?');
 
   useIonViewDidEnter(() => {
     handler = ScreenReader!.addListener(
-      'accessibilityScreenReaderStateChange',
+      'screenReaderStateChange',
       ({ value }: any) => alert(`State Change! Screen Reader on? ${value}`),
     );
   });
@@ -53,7 +53,7 @@ const AccessibilityPage: React.FC = () => {
           <IonButtons slot="start">
             <IonMenuButton />
           </IonButtons>
-          <IonTitle>Accessibility</IonTitle>
+          <IonTitle>Screen Reader</IonTitle>
         </IonToolbar>
       </IonHeader>
       <IonContent>
@@ -77,4 +77,4 @@ const AccessibilityPage: React.FC = () => {
   );
 };
 
-export default AccessibilityPage;
+export default ScreenReaderPage;
