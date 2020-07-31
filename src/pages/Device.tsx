@@ -1,4 +1,3 @@
-import { Plugins } from '@capacitor/core';
 import {
   IonButtons,
   IonContent,
@@ -7,18 +6,10 @@ import {
   IonMenuButton,
   IonTitle,
   IonToolbar,
-  IonButton,
 } from '@ionic/react';
 import React from 'react';
 
-const { Device } = Plugins;
-
-const DevicePage: React.FC = () => {
-  const getDeviceInfo = async () => {
-    const info = await Device.getInfo();
-    console.log(info);
-  };
-
+const Device: React.FC = () => {
   return (
     <IonPage>
       <IonHeader>
@@ -29,11 +20,9 @@ const DevicePage: React.FC = () => {
           <IonTitle>Device</IonTitle>
         </IonToolbar>
       </IonHeader>
-      <IonContent>
-        <IonButton onClick={getDeviceInfo}>Get Device Info</IonButton>
-      </IonContent>
+      <IonContent></IonContent>
     </IonPage>
   );
 };
 
-export default DevicePage;
+export default Device;

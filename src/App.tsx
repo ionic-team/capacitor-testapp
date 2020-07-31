@@ -3,8 +3,6 @@ import { Redirect, Route } from 'react-router-dom';
 import { IonApp, IonRouterOutlet, IonSplitPane } from '@ionic/react';
 import { IonReactRouter } from '@ionic/react-router';
 
-import '@capacitor/screen-reader';
-
 import Menu from './components/Menu';
 import Home from './pages/Home';
 import routes from './routes';
