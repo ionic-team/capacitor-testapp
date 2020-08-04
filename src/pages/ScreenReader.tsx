@@ -1,4 +1,4 @@
-import { PluginListenerHandle } from '@capacitor/core';
+import { ExceptionCodes, PluginListenerHandle } from '@capacitor/core';
 import { ScreenReader } from '@capacitor/screen-reader';
 import {
   IonButtons,
@@ -24,7 +24,7 @@ const ScreenReaderPage: React.FC = () => {
   const [sentence, setSentence] = useState('Hello World?');
 
   useIonViewDidEnter(() => {
-    handler = ScreenReader!.addListener(
+    handler = ScreenReader.addListener(
       'screenReaderStateChange',
       ({ value }: any) => alert(`State Change! Screen Reader on? ${value}`),
     );
@@ -35,13 +35,22 @@ const ScreenReaderPage: React.FC = () => {
   });
 
   const isVoiceOverEnabled = async () => {
-    const { value: enabled } = await ScreenReader!.isEnabled();
-
-    alert(`Screen Reader on? ${enabled}`);
+    try {
+      const { value: enabled } = await ScreenReader.isEnabled();
+      alert(`Screen Reader on? ${enabled}`);
+    } catch (e) {
+      if (e.code === ExceptionCodes.UNSUPPORTED_BROWSER) {
+        console.warn(
+          'Unsupported in the browser! Handling this in my own way...',
+        );
+      } else {
+        throw e;
+      }
+    }
   };
 
   const speak = async () => {
-    await ScreenReader!.speak({ value: sentence });
+    await ScreenReader.speak({ value: sentence });
   };
 
   const handleSpeakInputChange = createEventTargetValueExtractor(setSentence);
