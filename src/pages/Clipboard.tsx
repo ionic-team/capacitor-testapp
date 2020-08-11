@@ -6,10 +6,22 @@ import {
   IonMenuButton,
   IonTitle,
   IonToolbar,
+  useIonViewDidEnter,
+  IonButton,
 } from '@ionic/react';
 import React from 'react';
+import { Clipboard } from '@capacitor/clipboard';
 
-const Clipboard: React.FC = () => {
+const ClipboardPage: React.FC = () => {
+  useIonViewDidEnter(() => {
+    Clipboard.write({ string: 'www.reddit.com' });
+  });
+
+  const getClipboardData = async () => {
+    const data = await Clipboard.read();
+    console.log(data);
+  };
+
   return (
     <IonPage>
       <IonHeader>
@@ -20,9 +32,13 @@ const Clipboard: React.FC = () => {
           <IonTitle>Clipboard</IonTitle>
         </IonToolbar>
       </IonHeader>
-      <IonContent></IonContent>
+      <IonContent>
+        <IonButton onClick={getClipboardData} expand="block">
+          Read Clipboard Data
+        </IonButton>
+      </IonContent>
     </IonPage>
   );
 };
 
-export default Clipboard;
+export default ClipboardPage;
