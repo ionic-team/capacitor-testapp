@@ -18,11 +18,17 @@ import { Storage } from '@capacitor/storage';
 import { createEventTargetValueExtractor } from '../utils/dom';
 
 const StoragePage: React.FC = () => {
+  const [group, setGroup] = useState('CapacitorStorage');
   const [key, setKey] = useState('key1');
   const [value, setValue] = useState('');
 
+  const handleGroupInputChange = createEventTargetValueExtractor(setGroup);
   const handleKeyInputChange = createEventTargetValueExtractor(setKey);
   const handleValueInputChange = createEventTargetValueExtractor(setValue);
+
+  const handleSetGroupClicked = async () => {
+    await Storage.configure({ group });
+  };
 
   const handleGetClicked = async () => {
     const { value } = await Storage.get({ key });
@@ -58,6 +64,13 @@ const StoragePage: React.FC = () => {
       </IonHeader>
       <IonContent>
         <IonList>
+          <IonItem>
+            <IonLabel position="stacked">Storage Group</IonLabel>
+            <IonInput value={group} onInput={handleGroupInputChange} />
+            <IonButton onClick={handleSetGroupClicked} slot="end">
+              Set
+            </IonButton>
+          </IonItem>
           <IonItem>
             <IonLabel position="stacked">Key</IonLabel>
             <IonInput value={key} onInput={handleKeyInputChange} />
