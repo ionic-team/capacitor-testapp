@@ -52,6 +52,16 @@ const StoragePage: React.FC = () => {
     alert(`all keys: ${keys.join(', ')}`);
   };
 
+  const handleMigrationTestClicked = async () => {
+    // localStorage.setItem('_cap_key1', 'data1');
+    // localStorage.setItem('_cap_key2', 'data2');
+    const { migrated, existing } = await Storage.migrate();
+
+    alert(
+      `Done!\n${migrated.length} keys migrated, ${existing.length} not migrated.`,
+    );
+  };
+
   return (
     <IonPage>
       <IonHeader>
@@ -93,6 +103,12 @@ const StoragePage: React.FC = () => {
           </IonButton>
           <IonButton onClick={handleGetAllClicked} expand="full">
             Get All Keys
+          </IonButton>
+        </IonList>
+        <hr />
+        <IonList>
+          <IonButton onClick={handleMigrationTestClicked} expand="full">
+            Migration Test
           </IonButton>
         </IonList>
       </IonContent>
