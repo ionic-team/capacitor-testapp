@@ -10,7 +10,7 @@ import Console from './pages/Console';
 import Device from './pages/Device';
 import Filesystem from './pages/Filesystem';
 import Geolocation from './pages/Geolocation';
-import Haptics from './pages/Haptics';
+import HapticsPage from './pages/Haptics';
 import Keyboard from './pages/Keyboard';
 import LocalNotifications from './pages/LocalNotifications';
 import Modals from './pages/Modals';
@@ -140,7 +140,7 @@ const routes: AppPage[] = [
         🥊
       </span>
     ),
-    component: Haptics,
+    component: HapticsPage,
   },
   {
     title: 'Keyboard',
