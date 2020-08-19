@@ -2,5 +2,7 @@
 include ':capacitor-android'
 project(':capacitor-android').projectDir = new File('../node_modules/@capacitor/android/capacitor')
 
+include ':capacitor-screen-reader'
+project(':capacitor-screen-reader').projectDir = new File('../node_modules/@capacitor/screen-reader/android')
 include ':capacitor-text-zoom'
 project(':capacitor-text-zoom').projectDir = new File('../node_modules/@capacitor/text-zoom/android')
