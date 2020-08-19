@@ -17,6 +17,7 @@
   },
   "dependencies": {
     "@capacitor/android": "file:../capacitor/android",
+    "@capacitor/browser": "file:../capacitor-plugins/browser",
     "@capacitor/core": "file:../capacitor/core",
     "@capacitor/ios": "file:../capacitor/ios",
     "@ionic/react": "^5.0.7",
