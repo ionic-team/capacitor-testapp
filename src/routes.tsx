@@ -21,6 +21,7 @@ import Share from './pages/Share';
 import SplashScreen from './pages/SplashScreen';
 import StatusBar from './pages/StatusBar';
 import Storage from './pages/Storage';
+import TextZoom from './pages/TextZoom';
 import Toast from './pages/Toast';
 import WebView from './pages/WebView';
 
@@ -251,6 +252,16 @@ const routes: AppPage[] = [
       </span>
     ),
     component: Storage,
+  },
+  {
+    title: 'Text Zoom',
+    url: '/text-zoom',
+    icon: (
+      <span role="img" aria-label="detective with magnifying glass">
+        🕵️
+      </span>
+    ),
+    component: TextZoom,
   },
   {
     title: 'Toast',
