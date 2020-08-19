@@ -3,6 +3,7 @@ package com.capacitorjs.testapp;
 import android.os.Bundle;
 
 import com.capacitorjs.plugins.screenreader.ScreenReaderPlugin;
+import com.capacitorjs.plugins.textzoom.TextZoomPlugin;
 import com.getcapacitor.BridgeActivity;
 import com.getcapacitor.Plugin;
 
@@ -18,6 +19,7 @@ public class MainActivity extends BridgeActivity {
       // Additional plugins you've installed go here
       // Ex: add(TotallyAwesomePlugin.class);
       add(ScreenReaderPlugin.class);
+      add(TextZoomPlugin.class);
     }});
   }
 }

@@ -20,6 +20,7 @@
     "@capacitor/core": "file:../capacitor/core",
     "@capacitor/ios": "file:../capacitor/ios",
     "@capacitor/screen-reader": "file:../capacitor-plugins/screen-reader",
+    "@capacitor/text-zoom": "file:../capacitor-plugins/text-zoom",
     "@ionic/react": "^5.0.7",
     "@ionic/react-router": "^5.0.7",
     "@testing-library/jest-dom": "^4.2.4",
