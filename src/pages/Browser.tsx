@@ -6,10 +6,13 @@ import {
   IonMenuButton,
   IonTitle,
   IonToolbar,
+  IonList,
+  IonItem,
+  IonButton,
 } from '@ionic/react';
 import React from 'react';
 
-const Browser: React.FC = () => {
+const BrowserPage: React.FC = () => {
   return (
     <IonPage>
       <IonHeader>
@@ -20,9 +23,15 @@ const Browser: React.FC = () => {
           <IonTitle>Browser</IonTitle>
         </IonToolbar>
       </IonHeader>
-      <IonContent></IonContent>
+      <IonContent>
+        <IonList>
+          <IonItem>
+            <IonButton expand="block">Open browser</IonButton>
+          </IonItem>
+        </IonList>
+      </IonContent>
     </IonPage>
   );
 };
 
-export default Browser;
+export default BrowserPage;
