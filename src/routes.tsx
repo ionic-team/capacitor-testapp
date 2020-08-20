@@ -1,6 +1,5 @@
 import React from 'react';
 
-import Accessibility from './pages/Accessibility';
 import App from './pages/App';
 import BackgroundTask from './pages/BackgroundTask';
 import Browser from './pages/Browser';
@@ -17,10 +16,12 @@ import Modals from './pages/Modals';
 import NetworkPage from './pages/Network';
 import Permissions from './pages/Permissions';
 import PushNotifications from './pages/PushNotifications';
+import ScreenReader from './pages/ScreenReader';
 import Share from './pages/Share';
 import SplashScreen from './pages/SplashScreen';
 import StatusBar from './pages/StatusBar';
 import Storage from './pages/Storage';
+import TextZoom from './pages/TextZoom';
 import Toast from './pages/Toast';
 import WebView from './pages/WebView';
 
@@ -32,16 +33,6 @@ interface AppPage {
 }
 
 const routes: AppPage[] = [
-  {
-    title: 'Accessibility',
-    url: '/accessibility',
-    icon: (
-      <span role="img" aria-label="smiling face with squinting eyes">
-        😊
-      </span>
-    ),
-    component: Accessibility,
-  },
   {
     title: 'App',
     url: '/app',
@@ -180,7 +171,7 @@ const routes: AppPage[] = [
         🏃
       </span>
     ),
-    component: Accessibility,
+    component: Modals,
   },
   {
     title: 'Network',
@@ -211,6 +202,16 @@ const routes: AppPage[] = [
       </span>
     ),
     component: PushNotifications,
+  },
+  {
+    title: 'Screen Reader',
+    url: '/screen-reader',
+    icon: (
+      <span role="img" aria-label="cheering megaphone">
+        📣
+      </span>
+    ),
+    component: ScreenReader,
   },
   {
     title: 'Share',
@@ -251,6 +252,16 @@ const routes: AppPage[] = [
       </span>
     ),
     component: Storage,
+  },
+  {
+    title: 'Text Zoom',
+    url: '/text-zoom',
+    icon: (
+      <span role="img" aria-label="detective with magnifying glass">
+        🕵️
+      </span>
+    ),
+    component: TextZoom,
   },
   {
     title: 'Toast',

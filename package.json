@@ -19,6 +19,8 @@
     "@capacitor/android": "file:../capacitor/android",
     "@capacitor/core": "file:../capacitor/core",
     "@capacitor/ios": "file:../capacitor/ios",
+    "@capacitor/screen-reader": "file:../capacitor-plugins/screen-reader",
+    "@capacitor/text-zoom": "file:../capacitor-plugins/text-zoom",
     "@capacitor/network": "file:../capacitor-plugins/network",
     "@ionic/react": "^5.0.7",
     "@ionic/react-router": "^5.0.7",
