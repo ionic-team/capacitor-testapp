@@ -10,7 +10,8 @@ def capacitor_pods
   # Automatic Capacitor Pod dependencies, do not delete
   pod 'Capacitor', :path => '../../../capacitor/ios'
   pod 'CapacitorCordova', :path => '../../../capacitor/ios'
-  
+  pod 'CapacitorScreenReader', :path => '../../../capacitor-plugins/screen-reader'
+  pod 'CapacitorTextZoom', :path => '../../../capacitor-plugins/text-zoom'
   # Do not delete
 end
 
