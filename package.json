@@ -20,6 +20,7 @@
     "@capacitor/core": "file:../capacitor/core",
     "@capacitor/ios": "file:../capacitor/ios",
     "@capacitor/screen-reader": "file:../capacitor-plugins/screen-reader",
+    "@capacitor/storage": "file:../capacitor-plugins/storage",
     "@capacitor/text-zoom": "file:../capacitor-plugins/text-zoom",
     "@capacitor/motion": "file:../capacitor-plugins/motion",
     "@ionic/react": "^5.0.7",
