@@ -13,6 +13,7 @@ import Haptics from './pages/Haptics';
 import Keyboard from './pages/Keyboard';
 import LocalNotifications from './pages/LocalNotifications';
 import Modals from './pages/Modals';
+import MotionPage from './pages/Motion';
 import Network from './pages/Network';
 import Permissions from './pages/Permissions';
 import PushNotifications from './pages/PushNotifications';
@@ -171,7 +172,7 @@ const routes: AppPage[] = [
         🏃
       </span>
     ),
-    component: Modals,
+    component: MotionPage,
   },
   {
     title: 'Network',
