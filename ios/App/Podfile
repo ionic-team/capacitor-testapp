@@ -11,6 +11,9 @@ def capacitor_pods
   pod 'Capacitor', :path => '../../../capacitor/ios'
   pod 'CapacitorCordova', :path => '../../../capacitor/ios'
   pod 'CapacitorHaptics', :path => '../../../capacitor-plugins/haptics'
+  pod 'CapacitorScreenReader', :path => '../../../capacitor-plugins/screen-reader'
+  pod 'CapacitorStorage', :path => '../../../capacitor-plugins/storage'
+  pod 'CapacitorTextZoom', :path => '../../../capacitor-plugins/text-zoom'
   # Do not delete
 end
 

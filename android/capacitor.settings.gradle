@@ -4,3 +4,9 @@ project(':capacitor-android').projectDir = new File('../node_modules/@capacitor/
 
 include ':capacitor-haptics'
 project(':capacitor-haptics').projectDir = new File('../node_modules/@capacitor/haptics/android')
+include ':capacitor-screen-reader'
+project(':capacitor-screen-reader').projectDir = new File('../node_modules/@capacitor/screen-reader/android')
+include ':capacitor-storage'
+project(':capacitor-storage').projectDir = new File('../node_modules/@capacitor/storage/android')
+include ':capacitor-text-zoom'
+project(':capacitor-text-zoom').projectDir = new File('../node_modules/@capacitor/text-zoom/android')
