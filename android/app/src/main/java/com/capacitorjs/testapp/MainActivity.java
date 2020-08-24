@@ -2,6 +2,7 @@ package com.capacitorjs.testapp;
 
 import android.os.Bundle;
 
+import com.capacitorjs.plugins.geolocation.GeolocationPlugin;
 import com.capacitorjs.plugins.screenreader.ScreenReaderPlugin;
 import com.capacitorjs.plugins.storage.StoragePlugin;
 import com.capacitorjs.plugins.textzoom.TextZoomPlugin;
@@ -22,6 +23,7 @@ public class MainActivity extends BridgeActivity {
       add(ScreenReaderPlugin.class);
       add(StoragePlugin.class);
       add(TextZoomPlugin.class);
+      add(GeolocationPlugin.class);
     }});
   }
 }

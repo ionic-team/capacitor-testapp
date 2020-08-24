@@ -8,7 +8,7 @@ import Clipboard from './pages/Clipboard';
 import Console from './pages/Console';
 import Device from './pages/Device';
 import Filesystem from './pages/Filesystem';
-import Geolocation from './pages/Geolocation';
+import GeolocationPage from './pages/Geolocation';
 import Haptics from './pages/Haptics';
 import Keyboard from './pages/Keyboard';
 import LocalNotifications from './pages/LocalNotifications';
@@ -122,7 +122,7 @@ const routes: AppPage[] = [
         🌎
       </span>
     ),
-    component: Geolocation,
+    component: GeolocationPage,
   },
   {
     title: 'Haptics',
