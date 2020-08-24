@@ -18,6 +18,7 @@
   "dependencies": {
     "@capacitor/android": "file:../capacitor/android",
     "@capacitor/core": "file:../capacitor/core",
+    "@capacitor/haptics": "file:../capacitor-plugins/haptics",
     "@capacitor/ios": "file:../capacitor/ios",
     "@capacitor/screen-reader": "file:../capacitor-plugins/screen-reader",
     "@capacitor/storage": "file:../capacitor-plugins/storage",
