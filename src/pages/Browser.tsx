@@ -30,7 +30,7 @@ const BrowserPage: React.FC = () => {
   const autoCloseAfterDelay = async () => {
     loadedHandler?.remove();
     loadedHandler = Browser.addListener('browserPageLoaded', async info => {
-      await timeout(2000);
+      await timeout(1000);
       Browser.close();
       await timeout(200);
       alert(`The window was closed for you`);
