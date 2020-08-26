@@ -9,10 +9,11 @@ import Console from './pages/Console';
 import Device from './pages/Device';
 import Filesystem from './pages/Filesystem';
 import Geolocation from './pages/Geolocation';
-import Haptics from './pages/Haptics';
+import HapticsPage from './pages/Haptics';
 import Keyboard from './pages/Keyboard';
 import LocalNotifications from './pages/LocalNotifications';
 import Modals from './pages/Modals';
+import MotionPage from './pages/Motion';
 import NetworkPage from './pages/Network';
 import Permissions from './pages/Permissions';
 import PushNotifications from './pages/PushNotifications';
@@ -131,7 +132,7 @@ const routes: AppPage[] = [
         🥊
       </span>
     ),
-    component: Haptics,
+    component: HapticsPage,
   },
   {
     title: 'Keyboard',
@@ -171,7 +172,7 @@ const routes: AppPage[] = [
         🏃
       </span>
     ),
-    component: Modals,
+    component: MotionPage,
   },
   {
     title: 'Network',
