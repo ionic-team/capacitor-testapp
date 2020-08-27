@@ -8,14 +8,11 @@ import {
   IonToolbar,
   withIonLifeCycle,
   IonText,
-  IonList,
-  IonItem,
 } from '@ionic/react';
 import React from 'react';
 import { Network, NetworkStatus } from '@capacitor/network';
 import { PluginListenerHandle } from '@capacitor/core';
 import './Network.css';
-import { isNullOrUndefined } from 'util';
 
 interface NetworkPageState {
   handler: PluginListenerHandle | undefined;
