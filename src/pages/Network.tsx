@@ -20,8 +20,8 @@ interface NetworkPageState {
 }
 
 class NetworkPage extends React.Component<{}, NetworkPageState> {
-  constructor() {
-    super({});
+  constructor(props: Readonly<{}>) {
+    super(props);
     this.state = {
       handler: undefined,
       networkStatus: {
