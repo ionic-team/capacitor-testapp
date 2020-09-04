@@ -24,8 +24,8 @@ interface ClipboardPageState {
 }
 
 class ClipboardPage extends React.Component<{}, ClipboardPageState> {
-  constructor() {
-    super({});
+  constructor(props: Readonly<{}>) {
+    super(props);
     this.state = {
       clipboardData: null,
     };
