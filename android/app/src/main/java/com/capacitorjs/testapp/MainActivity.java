@@ -2,9 +2,11 @@ package com.capacitorjs.testapp;
 
 import android.os.Bundle;
 
+
 import com.capacitorjs.plugins.actionsheet.ActionSheetPlugin;
 import com.capacitorjs.plugins.device.DevicePlugin;
 import com.capacitorjs.plugins.dialog.DialogPlugin;
+import com.capacitorjs.plugins.filesystem.FilesystemPlugin;
 import com.capacitorjs.plugins.haptics.HapticsPlugin;
 import com.capacitorjs.plugins.screenreader.ScreenReaderPlugin;
 import com.capacitorjs.plugins.share.SharePlugin;
@@ -30,6 +32,7 @@ public class MainActivity extends BridgeActivity {
       add(DevicePlugin.class);
       add(DialogPlugin.class);
       add(HapticsPlugin.class);
+      add(FilesystemPlugin.class);
       add(ScreenReaderPlugin.class);
       add(SharePlugin.class);
       add(StoragePlugin.class);

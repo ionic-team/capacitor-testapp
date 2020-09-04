@@ -12,6 +12,7 @@ dependencies {
     implementation project(':capacitor-action-sheet')
     implementation project(':capacitor-device')
     implementation project(':capacitor-dialog')
+    implementation project(':capacitor-filesystem')
     implementation project(':capacitor-haptics')
     implementation project(':capacitor-network')
     implementation project(':capacitor-screen-reader')

@@ -21,6 +21,7 @@
     "@capacitor/core": "file:../capacitor/core",
     "@capacitor/device": "file:../capacitor-plugins/device",
     "@capacitor/dialog": "file:../capacitor-plugins/dialog",
+    "@capacitor/filesystem": "file:../capacitor-plugins/filesystem",
     "@capacitor/haptics": "file:../capacitor-plugins/haptics",
     "@capacitor/ios": "file:../capacitor/ios",
     "@capacitor/motion": "file:../capacitor-plugins/motion",
