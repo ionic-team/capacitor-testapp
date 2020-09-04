@@ -6,7 +6,6 @@ import {
   IonMenuButton,
   IonTitle,
   IonToolbar,
-  useIonViewDidEnter,
   IonButton,
   withIonLifeCycle,
   IonItemDivider,
