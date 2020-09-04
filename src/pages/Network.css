@@ -1,0 +1,15 @@
+.container {
+  text-align: center;
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.container p {
+  padding-left: 15%;
+  padding-right: 15%;
+  font-size: 17px;
+  line-height: 22px;
+}

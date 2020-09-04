@@ -16,3 +16,6 @@ project(':capacitor-storage').projectDir = new File('../node_modules/@capacitor/
 
 include ':capacitor-text-zoom'
 project(':capacitor-text-zoom').projectDir = new File('../node_modules/@capacitor/text-zoom/android')
+
+include ':capacitor-network'
+project(':capacitor-network').projectDir = new File('../node_modules/@capacitor/network/android')
