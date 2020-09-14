@@ -6,6 +6,7 @@ import com.capacitorjs.plugins.haptics.HapticsPlugin;
 import com.capacitorjs.plugins.screenreader.ScreenReaderPlugin;
 import com.capacitorjs.plugins.storage.StoragePlugin;
 import com.capacitorjs.plugins.textzoom.TextZoomPlugin;
+import com.capacitorjs.plugins.network.NetworkPlugin;
 import com.getcapacitor.BridgeActivity;
 import com.getcapacitor.Plugin;
 
@@ -24,6 +25,7 @@ public class MainActivity extends BridgeActivity {
       add(ScreenReaderPlugin.class);
       add(StoragePlugin.class);
       add(TextZoomPlugin.class);
+      add(NetworkPlugin.class);
     }});
   }
 }
