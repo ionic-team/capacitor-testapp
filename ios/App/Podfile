@@ -14,6 +14,7 @@ def capacitor_pods
   pod 'CapacitorScreenReader', :path => '../../../capacitor-plugins/screen-reader'
   pod 'CapacitorStorage', :path => '../../../capacitor-plugins/storage'
   pod 'CapacitorTextZoom', :path => '../../../capacitor-plugins/text-zoom'
+  pod 'CapacitorCamera', :path => '../../../capacitor-plugins/camera'
   # Do not delete
 end
 

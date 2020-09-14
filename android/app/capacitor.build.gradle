@@ -13,6 +13,8 @@ dependencies {
     implementation project(':capacitor-screen-reader')
     implementation project(':capacitor-storage')
     implementation project(':capacitor-text-zoom')
+    implementation project(':capacitor-camera')
+
 }
 
 
