@@ -1,5 +1,6 @@
 import React from 'react';
 
+import ActionSheetPage from './pages/ActionSheet';
 import App from './pages/App';
 import BackgroundTask from './pages/BackgroundTask';
 import Browser from './pages/Browser';
@@ -34,6 +35,16 @@ interface AppPage {
 }
 
 const routes: AppPage[] = [
+  {
+    title: 'Action Sheet',
+    url: '/action-sheet',
+    icon: (
+      <span role="img" aria-label="bento box">
+        🍱
+      </span>
+    ),
+    component: ActionSheetPage,
+  },
   {
     title: 'App',
     url: '/app',
