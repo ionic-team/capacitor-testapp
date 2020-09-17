@@ -7,12 +7,12 @@ import Camera from './pages/Camera';
 import Clipboard from './pages/Clipboard';
 import Console from './pages/Console';
 import Device from './pages/Device';
+import DialogPage from './pages/Dialog';
 import Filesystem from './pages/Filesystem';
 import Geolocation from './pages/Geolocation';
 import HapticsPage from './pages/Haptics';
 import Keyboard from './pages/Keyboard';
 import LocalNotifications from './pages/LocalNotifications';
-import Modals from './pages/Modals';
 import MotionPage from './pages/Motion';
 import NetworkPage from './pages/Network';
 import Permissions from './pages/Permissions';
@@ -105,6 +105,16 @@ const routes: AppPage[] = [
     component: Device,
   },
   {
+    title: 'Dialog',
+    url: '/dialog',
+    icon: (
+      <span role="img" aria-label="bento box">
+        🍱
+      </span>
+    ),
+    component: DialogPage,
+  },
+  {
     title: 'Filesystem',
     url: '/filesystem',
     icon: (
@@ -153,16 +163,6 @@ const routes: AppPage[] = [
       </span>
     ),
     component: LocalNotifications,
-  },
-  {
-    title: 'Modals',
-    url: '/modals',
-    icon: (
-      <span role="img" aria-label="bento box">
-        🍱
-      </span>
-    ),
-    component: Modals,
   },
   {
     title: 'Motion',
