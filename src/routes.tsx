@@ -18,7 +18,7 @@ import NetworkPage from './pages/Network';
 import Permissions from './pages/Permissions';
 import PushNotifications from './pages/PushNotifications';
 import ScreenReader from './pages/ScreenReader';
-import Share from './pages/Share';
+import SharePage from './pages/Share';
 import SplashScreen from './pages/SplashScreen';
 import StatusBar from './pages/StatusBar';
 import Storage from './pages/Storage';
@@ -222,7 +222,7 @@ const routes: AppPage[] = [
         👀
       </span>
     ),
-    component: Share,
+    component: SharePage,
   },
   {
     title: 'Splash Screen',

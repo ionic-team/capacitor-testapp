@@ -10,10 +10,11 @@ android {
 apply from: "../capacitor-cordova-android-plugins/cordova.variables.gradle"
 dependencies {
     implementation project(':capacitor-haptics')
+    implementation project(':capacitor-network')
     implementation project(':capacitor-screen-reader')
+    implementation project(':capacitor-share')
     implementation project(':capacitor-storage')
     implementation project(':capacitor-text-zoom')
-    implementation project(':capacitor-network')
 
 }
 

@@ -4,6 +4,7 @@ import android.os.Bundle;
 
 import com.capacitorjs.plugins.haptics.HapticsPlugin;
 import com.capacitorjs.plugins.screenreader.ScreenReaderPlugin;
+import com.capacitorjs.plugins.share.SharePlugin;
 import com.capacitorjs.plugins.storage.StoragePlugin;
 import com.capacitorjs.plugins.textzoom.TextZoomPlugin;
 import com.capacitorjs.plugins.network.NetworkPlugin;
@@ -23,6 +24,7 @@ public class MainActivity extends BridgeActivity {
       // Ex: add(TotallyAwesomePlugin.class);
       add(HapticsPlugin.class);
       add(ScreenReaderPlugin.class);
+      add(SharePlugin.class);
       add(StoragePlugin.class);
       add(TextZoomPlugin.class);
       add(NetworkPlugin.class);
