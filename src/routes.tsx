@@ -3,7 +3,7 @@ import React from 'react';
 import App from './pages/App';
 import BackgroundTask from './pages/BackgroundTask';
 import Browser from './pages/Browser';
-import Camera from './pages/Camera';
+import CameraPage from './pages/Camera';
 import Clipboard from './pages/Clipboard';
 import Console from './pages/Console';
 import Device from './pages/Device';
@@ -72,7 +72,7 @@ const routes: AppPage[] = [
         📸
       </span>
     ),
-    component: Camera,
+    component: CameraPage,
   },
   {
     title: 'Clipboard',
