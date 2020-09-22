@@ -5,8 +5,14 @@ project(':capacitor-android').projectDir = new File('../node_modules/@capacitor/
 include ':capacitor-haptics'
 project(':capacitor-haptics').projectDir = new File('../node_modules/@capacitor/haptics/android')
 
+include ':capacitor-network'
+project(':capacitor-network').projectDir = new File('../node_modules/@capacitor/network/android')
+
 include ':capacitor-screen-reader'
 project(':capacitor-screen-reader').projectDir = new File('../node_modules/@capacitor/screen-reader/android')
+
+include ':capacitor-share'
+project(':capacitor-share').projectDir = new File('../node_modules/@capacitor/share/android')
 
 include ':capacitor-storage'
 project(':capacitor-storage').projectDir = new File('../node_modules/@capacitor/storage/android')
@@ -16,6 +22,3 @@ project(':capacitor-text-zoom').projectDir = new File('../node_modules/@capacito
 
 include ':capacitor-camera'
 project(':capacitor-camera').projectDir = new File('../node_modules/@capacitor/camera/android')
-
-include ':capacitor-network'
-project(':capacitor-network').projectDir = new File('../node_modules/@capacitor/network/android')
