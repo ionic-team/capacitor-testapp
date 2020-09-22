@@ -6,7 +6,7 @@ import Browser from './pages/Browser';
 import Camera from './pages/Camera';
 import Clipboard from './pages/Clipboard';
 import Console from './pages/Console';
-import Device from './pages/Device';
+import DevicePage from './pages/Device';
 import Filesystem from './pages/Filesystem';
 import Geolocation from './pages/Geolocation';
 import HapticsPage from './pages/Haptics';
@@ -102,7 +102,7 @@ const routes: AppPage[] = [
         🤖
       </span>
     ),
-    component: Device,
+    component: DevicePage,
   },
   {
     title: 'Filesystem',
