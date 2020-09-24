@@ -6,7 +6,7 @@ import Browser from './pages/Browser';
 import Camera from './pages/Camera';
 import Clipboard from './pages/Clipboard';
 import Console from './pages/Console';
-import Device from './pages/Device';
+import DevicePage from './pages/Device';
 import Filesystem from './pages/Filesystem';
 import Geolocation from './pages/Geolocation';
 import HapticsPage from './pages/Haptics';
@@ -14,11 +14,11 @@ import Keyboard from './pages/Keyboard';
 import LocalNotifications from './pages/LocalNotifications';
 import Modals from './pages/Modals';
 import MotionPage from './pages/Motion';
-import Network from './pages/Network';
+import NetworkPage from './pages/Network';
 import Permissions from './pages/Permissions';
 import PushNotifications from './pages/PushNotifications';
 import ScreenReader from './pages/ScreenReader';
-import Share from './pages/Share';
+import SharePage from './pages/Share';
 import SplashScreen from './pages/SplashScreen';
 import StatusBar from './pages/StatusBar';
 import Storage from './pages/Storage';
@@ -102,7 +102,7 @@ const routes: AppPage[] = [
         🤖
       </span>
     ),
-    component: Device,
+    component: DevicePage,
   },
   {
     title: 'Filesystem',
@@ -182,7 +182,7 @@ const routes: AppPage[] = [
         🧮
       </span>
     ),
-    component: Network,
+    component: NetworkPage,
   },
   {
     title: 'Permissions',
@@ -222,7 +222,7 @@ const routes: AppPage[] = [
         👀
       </span>
     ),
-    component: Share,
+    component: SharePage,
   },
   {
     title: 'Splash Screen',

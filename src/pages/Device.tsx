@@ -1,4 +1,5 @@
 import {
+  IonButton,
   IonButtons,
   IonContent,
   IonHeader,
@@ -7,9 +8,29 @@ import {
   IonTitle,
   IonToolbar,
 } from '@ionic/react';
-import React from 'react';
+import React, { useState } from 'react';
+import { Device } from '@capacitor/device';
 
-const Device: React.FC = () => {
+const DevicePage: React.FC = () => {
+  const [deviceInfoJson, setDeviceInfoJson] = useState('');
+
+  const getDeviceInfo = async () => {
+    const info = await Device.getInfo();
+    console.log('Got device info', info);
+    setDeviceInfoJson(JSON.stringify(info, null, 2));
+  };
+
+  const getDeviceBatteryInfo = async () => {
+    const info = await Device.getBatteryInfo();
+    console.log('Got device battery info', info);
+    setDeviceInfoJson(JSON.stringify(info, null, 2));
+  };
+
+  const getDeviceLanguageCode = async () => {
+    const code = await Device.getLanguageCode();
+    alert('Language: ' + code.value);
+  };
+
   return (
     <IonPage>
       <IonHeader>
@@ -20,9 +41,22 @@ const Device: React.FC = () => {
           <IonTitle>Device</IonTitle>
         </IonToolbar>
       </IonHeader>
-      <IonContent></IonContent>
+      <IonContent>
+        <IonButton expand="block" onClick={getDeviceInfo}>
+          Device Info
+        </IonButton>
+        <IonButton expand="block" onClick={getDeviceBatteryInfo}>
+          Device Battery Info
+        </IonButton>
+        <IonButton expand="block" onClick={getDeviceLanguageCode}>
+          Language Code
+        </IonButton>
+        <div>
+          <pre>{deviceInfoJson}</pre>
+        </div>
+      </IonContent>
     </IonPage>
   );
 };
 
-export default Device;
+export default DevicePage;
