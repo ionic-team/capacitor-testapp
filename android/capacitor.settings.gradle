@@ -2,11 +2,11 @@
 include ':capacitor-android'
 project(':capacitor-android').projectDir = new File('../../capacitor/android/capacitor')
 
-include ':capacitor-device'
-project(':capacitor-device').projectDir = new File('../../capacitor-plugins/device/android')
-
 include ':capacitor-browser'
 project(':capacitor-browser').projectDir = new File('../../capacitor-plugins/browser/android')
+
+include ':capacitor-device'
+project(':capacitor-device').projectDir = new File('../../capacitor-plugins/device/android')
 
 include ':capacitor-haptics'
 project(':capacitor-haptics').projectDir = new File('../../capacitor-plugins/haptics/android')
