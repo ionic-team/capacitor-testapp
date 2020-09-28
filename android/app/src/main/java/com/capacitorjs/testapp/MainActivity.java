@@ -2,7 +2,7 @@ package com.capacitorjs.testapp;
 
 import android.os.Bundle;
 
-import com.capacitorjs.plugins.action.sheet.ActionSheetPlugin;
+import com.capacitorjs.plugins.actionsheet.ActionSheetPlugin;
 import com.capacitorjs.plugins.device.DevicePlugin;
 import com.capacitorjs.plugins.haptics.HapticsPlugin;
 import com.capacitorjs.plugins.screenreader.ScreenReaderPlugin;
