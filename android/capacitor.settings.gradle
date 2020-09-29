@@ -25,3 +25,6 @@ project(':capacitor-storage').projectDir = new File('../../capacitor-plugins/sto
 
 include ':capacitor-text-zoom'
 project(':capacitor-text-zoom').projectDir = new File('../../capacitor-plugins/text-zoom/android')
+
+include ':capacitor-toast'
+project(':capacitor-toast').projectDir = new File('../../capacitor-plugins/toast/android')

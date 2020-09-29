@@ -10,6 +10,7 @@ import com.capacitorjs.plugins.share.SharePlugin;
 import com.capacitorjs.plugins.storage.StoragePlugin;
 import com.capacitorjs.plugins.textzoom.TextZoomPlugin;
 import com.capacitorjs.plugins.network.NetworkPlugin;
+import com.capacitorjs.plugins.toast.ToastPlugin;
 import com.getcapacitor.BridgeActivity;
 import com.getcapacitor.Plugin;
 
@@ -31,6 +32,7 @@ public class MainActivity extends BridgeActivity {
       add(SharePlugin.class);
       add(StoragePlugin.class);
       add(TextZoomPlugin.class);
+      add(ToastPlugin.class);
       add(NetworkPlugin.class);
     }});
   }
