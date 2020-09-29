@@ -9,6 +9,7 @@ install! 'cocoapods', :disable_input_output_paths => true
 def capacitor_pods
   pod 'Capacitor', :path => '../../../capacitor/ios'
   pod 'CapacitorCordova', :path => '../../../capacitor/ios'
+  pod 'CapacitorActionSheet', :path => '../../../capacitor-plugins/action-sheet'
   pod 'CapacitorDevice', :path => '../../../capacitor-plugins/device'
   pod 'CapacitorHaptics', :path => '../../../capacitor-plugins/haptics'
   pod 'CapacitorNetwork', :path => '../../../capacitor-plugins/network'
