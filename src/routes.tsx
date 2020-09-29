@@ -1,12 +1,13 @@
 import React from 'react';
 
+import ActionSheetPage from './pages/ActionSheet';
 import App from './pages/App';
 import BackgroundTask from './pages/BackgroundTask';
 import Browser from './pages/Browser';
 import Camera from './pages/Camera';
 import Clipboard from './pages/Clipboard';
 import Console from './pages/Console';
-import Device from './pages/Device';
+import DevicePage from './pages/Device';
 import DialogPage from './pages/Dialog';
 import Filesystem from './pages/Filesystem';
 import Geolocation from './pages/Geolocation';
@@ -18,7 +19,7 @@ import NetworkPage from './pages/Network';
 import Permissions from './pages/Permissions';
 import PushNotifications from './pages/PushNotifications';
 import ScreenReader from './pages/ScreenReader';
-import Share from './pages/Share';
+import SharePage from './pages/Share';
 import SplashScreen from './pages/SplashScreen';
 import StatusBar from './pages/StatusBar';
 import Storage from './pages/Storage';
@@ -34,6 +35,16 @@ interface AppPage {
 }
 
 const routes: AppPage[] = [
+  {
+    title: 'Action Sheet',
+    url: '/action-sheet',
+    icon: (
+      <span role="img" aria-label="bento box">
+        🍱
+      </span>
+    ),
+    component: ActionSheetPage,
+  },
   {
     title: 'App',
     url: '/app',
@@ -102,7 +113,7 @@ const routes: AppPage[] = [
         🤖
       </span>
     ),
-    component: Device,
+    component: DevicePage,
   },
   {
     title: 'Dialog',
@@ -222,7 +233,7 @@ const routes: AppPage[] = [
         👀
       </span>
     ),
-    component: Share,
+    component: SharePage,
   },
   {
     title: 'Splash Screen',
