@@ -9,14 +9,17 @@ install! 'cocoapods', :disable_input_output_paths => true
 def capacitor_pods
   pod 'Capacitor', :path => '../../../capacitor/ios'
   pod 'CapacitorCordova', :path => '../../../capacitor/ios'
+  pod 'CapacitorActionSheet', :path => '../../../capacitor-plugins/action-sheet'
   pod 'CapacitorBrowser', :path => '../../../capacitor-plugins/browser'
   pod 'CapacitorDevice', :path => '../../../capacitor-plugins/device'
+  pod 'CapacitorDialog', :path => '../../../capacitor-plugins/dialog'
   pod 'CapacitorHaptics', :path => '../../../capacitor-plugins/haptics'
   pod 'CapacitorNetwork', :path => '../../../capacitor-plugins/network'
   pod 'CapacitorScreenReader', :path => '../../../capacitor-plugins/screen-reader'
   pod 'CapacitorShare', :path => '../../../capacitor-plugins/share'
   pod 'CapacitorStorage', :path => '../../../capacitor-plugins/storage'
   pod 'CapacitorTextZoom', :path => '../../../capacitor-plugins/text-zoom'
+  pod 'CapacitorToast', :path => '../../../capacitor-plugins/toast'
 end
 
 target 'App' do
