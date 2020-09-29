@@ -16,8 +16,11 @@
     }
   },
   "dependencies": {
+    "@capacitor/action-sheet": "file:../capacitor-plugins/action-sheet",
     "@capacitor/android": "file:../capacitor/android",
     "@capacitor/core": "file:../capacitor/core",
+    "@capacitor/device": "file:../capacitor-plugins/device",
+    "@capacitor/dialog": "file:../capacitor-plugins/dialog",
     "@capacitor/haptics": "file:../capacitor-plugins/haptics",
     "@capacitor/ios": "file:../capacitor/ios",
     "@capacitor/motion": "file:../capacitor-plugins/motion",
@@ -26,6 +29,7 @@
     "@capacitor/share": "file:../capacitor-plugins/share",
     "@capacitor/storage": "file:../capacitor-plugins/storage",
     "@capacitor/text-zoom": "file:../capacitor-plugins/text-zoom",
+    "@capacitor/toast": "file:../capacitor-plugins/toast",
     "@capacitor/camera": "file:../capacitor-plugins/camera",
     "@ionic/react": "^5.0.7",
     "@ionic/react-router": "^5.0.7",
