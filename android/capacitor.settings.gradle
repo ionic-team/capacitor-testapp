@@ -8,6 +8,9 @@ project(':capacitor-action-sheet').projectDir = new File('../../capacitor-plugin
 include ':capacitor-device'
 project(':capacitor-device').projectDir = new File('../../capacitor-plugins/device/android')
 
+include ':capacitor-dialog'
+project(':capacitor-dialog').projectDir = new File('../../capacitor-plugins/dialog/android')
+
 include ':capacitor-haptics'
 project(':capacitor-haptics').projectDir = new File('../../capacitor-plugins/haptics/android')
 
