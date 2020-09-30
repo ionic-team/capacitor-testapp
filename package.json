@@ -27,6 +27,7 @@
     "@capacitor/network": "file:../capacitor-plugins/network",
     "@capacitor/screen-reader": "file:../capacitor-plugins/screen-reader",
     "@capacitor/share": "file:../capacitor-plugins/share",
+    "@capacitor/status-bar": "file:../capacitor-plugins/status-bar",
     "@capacitor/storage": "file:../capacitor-plugins/storage",
     "@capacitor/text-zoom": "file:../capacitor-plugins/text-zoom",
     "@capacitor/toast": "file:../capacitor-plugins/toast",

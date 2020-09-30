@@ -21,7 +21,7 @@ import PushNotifications from './pages/PushNotifications';
 import ScreenReader from './pages/ScreenReader';
 import SharePage from './pages/Share';
 import SplashScreen from './pages/SplashScreen';
-import StatusBar from './pages/StatusBar';
+import StatusBarPage from './pages/StatusBar';
 import Storage from './pages/Storage';
 import TextZoom from './pages/TextZoom';
 import ToastPage from './pages/Toast';
@@ -253,7 +253,7 @@ const routes: AppPage[] = [
         🚦
       </span>
     ),
-    component: StatusBar,
+    component: StatusBarPage,
   },
   {
     title: 'Storage',
