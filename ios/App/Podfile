@@ -13,6 +13,7 @@ def capacitor_pods
   pod 'CapacitorDevice', :path => '../../../capacitor-plugins/device'
   pod 'CapacitorDialog', :path => '../../../capacitor-plugins/dialog'
   pod 'CapacitorHaptics', :path => '../../../capacitor-plugins/haptics'
+  pod 'CapacitorKeyboard', :path => '../../../capacitor-plugins/keyboard'
   pod 'CapacitorNetwork', :path => '../../../capacitor-plugins/network'
   pod 'CapacitorScreenReader', :path => '../../../capacitor-plugins/screen-reader'
   pod 'CapacitorShare', :path => '../../../capacitor-plugins/share'

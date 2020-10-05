@@ -12,7 +12,7 @@ import DialogPage from './pages/Dialog';
 import Filesystem from './pages/Filesystem';
 import Geolocation from './pages/Geolocation';
 import HapticsPage from './pages/Haptics';
-import Keyboard from './pages/Keyboard';
+import KeyboardPage from './pages/Keyboard';
 import LocalNotifications from './pages/LocalNotifications';
 import MotionPage from './pages/Motion';
 import NetworkPage from './pages/Network';
@@ -163,7 +163,7 @@ const routes: AppPage[] = [
         🎹
       </span>
     ),
-    component: Keyboard,
+    component: KeyboardPage,
   },
   {
     title: 'Local Notifications',

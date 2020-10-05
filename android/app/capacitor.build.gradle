@@ -13,6 +13,7 @@ dependencies {
     implementation project(':capacitor-device')
     implementation project(':capacitor-dialog')
     implementation project(':capacitor-haptics')
+    implementation project(':capacitor-keyboard')
     implementation project(':capacitor-network')
     implementation project(':capacitor-screen-reader')
     implementation project(':capacitor-share')

@@ -14,6 +14,9 @@ project(':capacitor-dialog').projectDir = new File('../../capacitor-plugins/dial
 include ':capacitor-haptics'
 project(':capacitor-haptics').projectDir = new File('../../capacitor-plugins/haptics/android')
 
+include ':capacitor-keyboard'
+project(':capacitor-keyboard').projectDir = new File('../../capacitor-plugins/keyboard/android')
+
 include ':capacitor-network'
 project(':capacitor-network').projectDir = new File('../../capacitor-plugins/network/android')
 
