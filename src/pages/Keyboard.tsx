@@ -123,7 +123,7 @@ const KeyboardPage: React.FC = () => {
         <IonButton expand="block" onClick={setResizeModeIonic}>
           set Resize Mode Ionic
         </IonButton>
-        <IonInput></IonInput>
+        <IonInput placeholder="Enter Input"></IonInput>
       </IonContent>
     </IonPage>
   );
