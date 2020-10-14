@@ -10,6 +10,7 @@ def capacitor_pods
   pod 'Capacitor', :path => '../../../capacitor/ios'
   pod 'CapacitorCordova', :path => '../../../capacitor/ios'
   pod 'CapacitorActionSheet', :path => '../../../capacitor-plugins/action-sheet'
+  pod 'CapacitorApp', :path => '../../../capacitor-plugins/app'
   pod 'CapacitorBrowser', :path => '../../../capacitor-plugins/browser'
   pod 'CapacitorDevice', :path => '../../../capacitor-plugins/device'
   pod 'CapacitorDialog', :path => '../../../capacitor-plugins/dialog'
