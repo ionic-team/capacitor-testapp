@@ -29,6 +29,9 @@ project(':capacitor-screen-reader').projectDir = new File('../../capacitor-plugi
 include ':capacitor-share'
 project(':capacitor-share').projectDir = new File('../../capacitor-plugins/share/android')
 
+include ':capacitor-status-bar'
+project(':capacitor-status-bar').projectDir = new File('../../capacitor-plugins/status-bar/android')
+
 include ':capacitor-storage'
 project(':capacitor-storage').projectDir = new File('../../capacitor-plugins/storage/android')
 
