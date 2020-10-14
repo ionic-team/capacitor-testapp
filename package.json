@@ -24,6 +24,7 @@
     "@capacitor/dialog": "file:../capacitor-plugins/dialog",
     "@capacitor/haptics": "file:../capacitor-plugins/haptics",
     "@capacitor/ios": "file:../capacitor/ios",
+    "@capacitor/keyboard": "file:../capacitor-plugins/keyboard",
     "@capacitor/motion": "file:../capacitor-plugins/motion",
     "@capacitor/network": "file:../capacitor-plugins/network",
     "@capacitor/screen-reader": "file:../capacitor-plugins/screen-reader",
