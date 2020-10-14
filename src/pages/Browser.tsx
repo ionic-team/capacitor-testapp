@@ -75,9 +75,7 @@ const BrowserPage: React.FC = () => {
               </IonButton>
             </IonCol>
           </IonRow>
-          {isPlatform('android') ? (
-            <div />
-          ) : (
+          {isPlatform('ios') ? (
             <IonRow>
               <IonCol>
                 <IonButton
@@ -90,7 +88,20 @@ const BrowserPage: React.FC = () => {
                 </IonButton>
               </IonCol>
             </IonRow>
-          )}
+          ) : null}
+          {isPlatform('desktop') ? (
+            <IonRow>
+              <IonCol>
+                <IonButton
+                  expand="block"
+                  onClick={() => {
+                    Browser.close();
+                  }}>
+                  Close most recently opened
+                </IonButton>
+              </IonCol>
+            </IonRow>
+          ) : null}
         </IonGrid>
       </IonContent>
     </IonPage>
