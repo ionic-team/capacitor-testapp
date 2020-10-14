@@ -89,7 +89,7 @@ const BrowserPage: React.FC = () => {
               </IonCol>
             </IonRow>
           ) : null}
-          {isPlatform('desktop') ? (
+          {isPlatform('desktop') || isPlatform('mobileweb') ? (
             <IonRow>
               <IonCol>
                 <IonButton
