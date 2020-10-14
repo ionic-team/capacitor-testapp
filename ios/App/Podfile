@@ -7,16 +7,19 @@ use_frameworks!
 install! 'cocoapods', :disable_input_output_paths => true
 
 def capacitor_pods
-  # Automatic Capacitor Pod dependencies, do not delete
   pod 'Capacitor', :path => '../../../capacitor/ios'
+  pod 'CapacitorActionSheet', :path => '../../../capacitor-plugins/action-sheet'
   pod 'CapacitorCordova', :path => '../../../capacitor/ios'
+  pod 'CapacitorDevice', :path => '../../../capacitor-plugins/device'
+  pod 'CapacitorDialog', :path => '../../../capacitor-plugins/dialog'
   pod 'CapacitorGeolocation', :path => '../../../capacitor-plugins/geolocation'
   pod 'CapacitorHaptics', :path => '../../../capacitor-plugins/haptics'
+  pod 'CapacitorNetwork', :path => '../../../capacitor-plugins/network'
   pod 'CapacitorScreenReader', :path => '../../../capacitor-plugins/screen-reader'
+  pod 'CapacitorShare', :path => '../../../capacitor-plugins/share'
   pod 'CapacitorStorage', :path => '../../../capacitor-plugins/storage'
   pod 'CapacitorTextZoom', :path => '../../../capacitor-plugins/text-zoom'
-  pod 'CapacitorNetwork', :path => '../../../capacitor-plugins/network'
-  # Do not delete
+  pod 'CapacitorToast', :path => '../../../capacitor-plugins/toast'
 end
 
 target 'App' do
