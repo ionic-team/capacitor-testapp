@@ -18,6 +18,7 @@
   "dependencies": {
     "@capacitor/action-sheet": "file:../capacitor-plugins/action-sheet",
     "@capacitor/android": "file:../capacitor/android",
+    "@capacitor/browser": "file:../capacitor-plugins/browser",
     "@capacitor/core": "file:../capacitor/core",
     "@capacitor/device": "file:../capacitor-plugins/device",
     "@capacitor/dialog": "file:../capacitor-plugins/dialog",
