@@ -16,8 +16,7 @@ import {
 } from '@ionic/react';
 import React from 'react';
 import { PluginListenerHandle } from '@capacitor/core';
-import { Browser } from '@capacitor/Browser';
-import { platform } from 'os';
+import { Browser } from '@capacitor/browser';
 
 const BrowserPage: React.FC = () => {
   let finishedHandler: PluginListenerHandle | null = null;
@@ -29,17 +28,16 @@ const BrowserPage: React.FC = () => {
 
   const autoCloseAfterDelay = async () => {
     loadedHandler?.remove();
-    loadedHandler = Browser.addListener('browserPageLoaded', async info => {
+    loadedHandler = Browser.addListener('browserPageLoaded', async () => {
       await timeout(1000);
-      Browser.close();
+      await Browser.close();
       await timeout(200);
       alert(`The window was closed for you`);
     });
   };
 
   useIonViewDidEnter(() => {
-    Browser.prefetch({ urls: ['https://capacitorjs.com'] });
-    finishedHandler = Browser.addListener('browserFinished', async info => {
+    finishedHandler = Browser.addListener('browserFinished', async () => {
       await timeout(200);
       alert(`You closed the window`);
     });
