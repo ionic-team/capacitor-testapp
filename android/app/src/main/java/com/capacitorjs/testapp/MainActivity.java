@@ -6,6 +6,7 @@ import com.capacitorjs.plugins.actionsheet.ActionSheetPlugin;
 import com.capacitorjs.plugins.device.DevicePlugin;
 import com.capacitorjs.plugins.dialog.DialogPlugin;
 import com.capacitorjs.plugins.haptics.HapticsPlugin;
+import com.capacitorjs.plugins.keyboard.KeyboardPlugin;
 import com.capacitorjs.plugins.screenreader.ScreenReaderPlugin;
 import com.capacitorjs.plugins.share.SharePlugin;
 import com.capacitorjs.plugins.statusbar.StatusBarPlugin;
@@ -13,6 +14,7 @@ import com.capacitorjs.plugins.storage.StoragePlugin;
 import com.capacitorjs.plugins.textzoom.TextZoomPlugin;
 import com.capacitorjs.plugins.network.NetworkPlugin;
 import com.capacitorjs.plugins.toast.ToastPlugin;
+import com.capacitorjs.plugins.browser.BrowserPlugin;
 import com.getcapacitor.BridgeActivity;
 import com.getcapacitor.Plugin;
 
@@ -31,6 +33,7 @@ public class MainActivity extends BridgeActivity {
       add(DevicePlugin.class);
       add(DialogPlugin.class);
       add(HapticsPlugin.class);
+      add(KeyboardPlugin.class);
       add(ScreenReaderPlugin.class);
       add(SharePlugin.class);
       add(StatusBarPlugin.class);
@@ -38,6 +41,7 @@ public class MainActivity extends BridgeActivity {
       add(TextZoomPlugin.class);
       add(ToastPlugin.class);
       add(NetworkPlugin.class);
+      add(BrowserPlugin.class);
     }});
   }
 }

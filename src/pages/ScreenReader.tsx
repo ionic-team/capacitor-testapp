@@ -39,7 +39,7 @@ const ScreenReaderPage: React.FC = () => {
       const { value: enabled } = await ScreenReader.isEnabled();
       alert(`Screen Reader on? ${enabled}`);
     } catch (e) {
-      if (e.code === ExceptionCodes.UNSUPPORTED_BROWSER) {
+      if (e.code === ExceptionCodes.UnsupportedBrowser) {
         console.warn(
           'Unsupported in the browser! Handling this in my own way...',
         );

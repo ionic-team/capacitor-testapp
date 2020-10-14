@@ -5,6 +5,9 @@ project(':capacitor-android').projectDir = new File('../../capacitor/android/cap
 include ':capacitor-action-sheet'
 project(':capacitor-action-sheet').projectDir = new File('../../capacitor-plugins/action-sheet/android')
 
+include ':capacitor-browser'
+project(':capacitor-browser').projectDir = new File('../../capacitor-plugins/browser/android')
+
 include ':capacitor-device'
 project(':capacitor-device').projectDir = new File('../../capacitor-plugins/device/android')
 
@@ -13,6 +16,9 @@ project(':capacitor-dialog').projectDir = new File('../../capacitor-plugins/dial
 
 include ':capacitor-haptics'
 project(':capacitor-haptics').projectDir = new File('../../capacitor-plugins/haptics/android')
+
+include ':capacitor-keyboard'
+project(':capacitor-keyboard').projectDir = new File('../../capacitor-plugins/keyboard/android')
 
 include ':capacitor-network'
 project(':capacitor-network').projectDir = new File('../../capacitor-plugins/network/android')
