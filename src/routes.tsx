@@ -16,7 +16,7 @@ import Keyboard from './pages/Keyboard';
 import LocalNotifications from './pages/LocalNotifications';
 import MotionPage from './pages/Motion';
 import NetworkPage from './pages/Network';
-import Permissions from './pages/Permissions';
+import PermissionPage from './pages/Permissions';
 import PushNotifications from './pages/PushNotifications';
 import ScreenReader from './pages/ScreenReader';
 import SharePage from './pages/Share';
@@ -203,7 +203,7 @@ const routes: AppPage[] = [
         🍿
       </span>
     ),
-    component: Permissions,
+    component: PermissionPage,
   },
   {
     title: 'Push Notifications',
