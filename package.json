@@ -6,7 +6,8 @@
   "scripts": {
     "lint": "npm run prettier -- --check",
     "fmt": "npm run prettier -- --write",
-    "prettier": "prettier '{src,public}/**/*.{css,html,ts,tsx}'",
+    "prettier": "prettier '{src,scripts,public}/**/*.{css,html,ts,tsx,mjs}'",
+    "toggle-local": "node ./scripts/toggle-local.mjs",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
