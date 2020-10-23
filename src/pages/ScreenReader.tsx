@@ -1,4 +1,4 @@
-import { ExceptionCodes, PluginListenerHandle } from '@capacitor/core';
+import { ExceptionCode, PluginListenerHandle } from '@capacitor/core';
 import { ScreenReader } from '@capacitor/screen-reader';
 import {
   IonButtons,
@@ -39,7 +39,7 @@ const ScreenReaderPage: React.FC = () => {
       const { value: enabled } = await ScreenReader.isEnabled();
       alert(`Screen Reader on? ${enabled}`);
     } catch (e) {
-      if (e.code === ExceptionCodes.UnsupportedBrowser) {
+      if (e.code === ExceptionCode.Unavailable) {
         console.warn(
           'Unsupported in the browser! Handling this in my own way...',
         );
