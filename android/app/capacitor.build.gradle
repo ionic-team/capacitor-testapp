@@ -23,6 +23,7 @@ dependencies {
     implementation project(':capacitor-storage')
     implementation project(':capacitor-text-zoom')
     implementation project(':capacitor-toast')
+
 }
 
 
