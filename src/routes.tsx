@@ -12,7 +12,7 @@ import DialogPage from './pages/Dialog';
 import FilesystemPage from './pages/Filesystem';
 import Geolocation from './pages/Geolocation';
 import HapticsPage from './pages/Haptics';
-import Keyboard from './pages/Keyboard';
+import KeyboardPage from './pages/Keyboard';
 import LocalNotifications from './pages/LocalNotifications';
 import MotionPage from './pages/Motion';
 import NetworkPage from './pages/Network';
@@ -21,7 +21,7 @@ import PushNotifications from './pages/PushNotifications';
 import ScreenReader from './pages/ScreenReader';
 import SharePage from './pages/Share';
 import SplashScreen from './pages/SplashScreen';
-import StatusBar from './pages/StatusBar';
+import StatusBarPage from './pages/StatusBar';
 import Storage from './pages/Storage';
 import TextZoom from './pages/TextZoom';
 import ToastPage from './pages/Toast';
@@ -163,7 +163,7 @@ const routes: AppPage[] = [
         🎹
       </span>
     ),
-    component: Keyboard,
+    component: KeyboardPage,
   },
   {
     title: 'Local Notifications',
@@ -253,7 +253,7 @@ const routes: AppPage[] = [
         🚦
       </span>
     ),
-    component: StatusBar,
+    component: StatusBarPage,
   },
   {
     title: 'Storage',
