@@ -2,13 +2,10 @@ package com.capacitorjs.testapp;
 
 import android.os.Bundle;
 
-<<<<<<< HEAD
-import com.capacitorjs.plugins.clipboard.ClipboardPlugin;
-=======
 import com.capacitorjs.plugins.actionsheet.ActionSheetPlugin;
+import com.capacitorjs.plugins.clipboard.ClipboardPlugin;
 import com.capacitorjs.plugins.device.DevicePlugin;
 import com.capacitorjs.plugins.dialog.DialogPlugin;
->>>>>>> main
 import com.capacitorjs.plugins.haptics.HapticsPlugin;
 import com.capacitorjs.plugins.keyboard.KeyboardPlugin;
 import com.capacitorjs.plugins.screenreader.ScreenReaderPlugin;
