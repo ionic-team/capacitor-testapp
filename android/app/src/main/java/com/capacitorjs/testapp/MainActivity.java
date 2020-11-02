@@ -3,6 +3,7 @@ package com.capacitorjs.testapp;
 import android.os.Bundle;
 
 import com.capacitorjs.plugins.actionsheet.ActionSheetPlugin;
+import com.capacitorjs.plugins.clipboard.ClipboardPlugin;
 import com.capacitorjs.plugins.device.DevicePlugin;
 import com.capacitorjs.plugins.dialog.DialogPlugin;
 import com.capacitorjs.plugins.geolocation.GeolocationPlugin;
@@ -32,6 +33,7 @@ public class MainActivity extends BridgeActivity {
       // Ex: add(TotallyAwesomePlugin.class);
       add(ActionSheetPlugin.class);
       add(BrowserPlugin.class);
+      add(ClipboardPlugin.class);
       add(DevicePlugin.class);
       add(DialogPlugin.class);
       add(GeolocationPlugin.class);

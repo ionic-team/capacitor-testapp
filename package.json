@@ -22,6 +22,7 @@
     "@capacitor/action-sheet": "^0.1.1",
     "@capacitor/android": "^3.0.0-alpha.6",
     "@capacitor/browser": "^0.1.0",
+    "@capacitor/clipboard": "^0.1.1",
     "@capacitor/core": "^3.0.0-alpha.6",
     "@capacitor/device": "^0.1.1",
     "@capacitor/dialog": "^0.1.1",
