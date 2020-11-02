@@ -45,7 +45,9 @@ class PermissionPage extends React.Component<{}, PermissionPageState> {
   };
 
   requestPermissions = async () => {
-    const status = await Geolocation.requestPermissions('location');
+    const status = await Geolocation.requestPermissions({
+      permissions: ['location'],
+    });
     this.setState({
       permissions: status,
     });
