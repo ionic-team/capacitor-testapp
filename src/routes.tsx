@@ -1,29 +1,30 @@
 import React from 'react';
 
+import ActionSheetPage from './pages/ActionSheet';
 import App from './pages/App';
 import BackgroundTask from './pages/BackgroundTask';
 import Browser from './pages/Browser';
 import Camera from './pages/Camera';
 import ClipboardPage from './pages/Clipboard';
 import Console from './pages/Console';
-import Device from './pages/Device';
+import DevicePage from './pages/Device';
+import DialogPage from './pages/Dialog';
 import Filesystem from './pages/Filesystem';
 import Geolocation from './pages/Geolocation';
 import HapticsPage from './pages/Haptics';
-import Keyboard from './pages/Keyboard';
+import KeyboardPage from './pages/Keyboard';
 import LocalNotifications from './pages/LocalNotifications';
-import Modals from './pages/Modals';
 import MotionPage from './pages/Motion';
 import NetworkPage from './pages/Network';
 import Permissions from './pages/Permissions';
 import PushNotifications from './pages/PushNotifications';
 import ScreenReader from './pages/ScreenReader';
-import Share from './pages/Share';
+import SharePage from './pages/Share';
 import SplashScreen from './pages/SplashScreen';
-import StatusBar from './pages/StatusBar';
+import StatusBarPage from './pages/StatusBar';
 import Storage from './pages/Storage';
 import TextZoom from './pages/TextZoom';
-import Toast from './pages/Toast';
+import ToastPage from './pages/Toast';
 import WebView from './pages/WebView';
 
 interface AppPage {
@@ -34,6 +35,16 @@ interface AppPage {
 }
 
 const routes: AppPage[] = [
+  {
+    title: 'Action Sheet',
+    url: '/action-sheet',
+    icon: (
+      <span role="img" aria-label="bento box">
+        🍱
+      </span>
+    ),
+    component: ActionSheetPage,
+  },
   {
     title: 'App',
     url: '/app',
@@ -102,7 +113,17 @@ const routes: AppPage[] = [
         🤖
       </span>
     ),
-    component: Device,
+    component: DevicePage,
+  },
+  {
+    title: 'Dialog',
+    url: '/dialog',
+    icon: (
+      <span role="img" aria-label="bento box">
+        🍱
+      </span>
+    ),
+    component: DialogPage,
   },
   {
     title: 'Filesystem',
@@ -142,7 +163,7 @@ const routes: AppPage[] = [
         🎹
       </span>
     ),
-    component: Keyboard,
+    component: KeyboardPage,
   },
   {
     title: 'Local Notifications',
@@ -153,16 +174,6 @@ const routes: AppPage[] = [
       </span>
     ),
     component: LocalNotifications,
-  },
-  {
-    title: 'Modals',
-    url: '/modals',
-    icon: (
-      <span role="img" aria-label="bento box">
-        🍱
-      </span>
-    ),
-    component: Modals,
   },
   {
     title: 'Motion',
@@ -222,7 +233,7 @@ const routes: AppPage[] = [
         👀
       </span>
     ),
-    component: Share,
+    component: SharePage,
   },
   {
     title: 'Splash Screen',
@@ -242,7 +253,7 @@ const routes: AppPage[] = [
         🚦
       </span>
     ),
-    component: StatusBar,
+    component: StatusBarPage,
   },
   {
     title: 'Storage',
@@ -272,7 +283,7 @@ const routes: AppPage[] = [
         🍞
       </span>
     ),
-    component: Toast,
+    component: ToastPage,
   },
   {
     title: 'WebView',

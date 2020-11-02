@@ -2,12 +2,23 @@ package com.capacitorjs.testapp;
 
 import android.os.Bundle;
 
+<<<<<<< HEAD
 import com.capacitorjs.plugins.clipboard.ClipboardPlugin;
+=======
+import com.capacitorjs.plugins.actionsheet.ActionSheetPlugin;
+import com.capacitorjs.plugins.device.DevicePlugin;
+import com.capacitorjs.plugins.dialog.DialogPlugin;
+>>>>>>> main
 import com.capacitorjs.plugins.haptics.HapticsPlugin;
+import com.capacitorjs.plugins.keyboard.KeyboardPlugin;
 import com.capacitorjs.plugins.screenreader.ScreenReaderPlugin;
+import com.capacitorjs.plugins.share.SharePlugin;
+import com.capacitorjs.plugins.statusbar.StatusBarPlugin;
 import com.capacitorjs.plugins.storage.StoragePlugin;
 import com.capacitorjs.plugins.textzoom.TextZoomPlugin;
 import com.capacitorjs.plugins.network.NetworkPlugin;
+import com.capacitorjs.plugins.toast.ToastPlugin;
+import com.capacitorjs.plugins.browser.BrowserPlugin;
 import com.getcapacitor.BridgeActivity;
 import com.getcapacitor.Plugin;
 
@@ -22,12 +33,20 @@ public class MainActivity extends BridgeActivity {
     this.init(savedInstanceState, new ArrayList<Class<? extends Plugin>>() {{
       // Additional plugins you've installed go here
       // Ex: add(TotallyAwesomePlugin.class);
+      add(ActionSheetPlugin.class);
       add(ClipboardPlugin.class);
+      add(DevicePlugin.class);
+      add(DialogPlugin.class);
       add(HapticsPlugin.class);
+      add(KeyboardPlugin.class);
       add(ScreenReaderPlugin.class);
+      add(SharePlugin.class);
+      add(StatusBarPlugin.class);
       add(StoragePlugin.class);
       add(TextZoomPlugin.class);
+      add(ToastPlugin.class);
       add(NetworkPlugin.class);
+      add(BrowserPlugin.class);
     }});
   }
 }
