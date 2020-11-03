@@ -121,9 +121,9 @@ const AppPage: React.FC = () => {
         </IonButton>
         <p>
           <a href="tel:212-549-2543">Telephone Test</a>
-          <a href="mailto:max@ionic.io">Email Test</a>
+          <a href="mailto:name@email.com">Email Test</a>
           <a
-            href="http://capacitorjs.com/"
+            href="https://capacitorjs.com/"
             target="_blank"
             rel="noopener noreferrer">
             Read more
