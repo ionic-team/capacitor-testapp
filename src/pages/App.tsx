@@ -122,7 +122,7 @@ const AppPage: React.FC = () => {
         <p>
           <a href="tel:212-549-2543">Telephone Test</a>
           <a href="mailto:max@ionic.io">Email Test</a>
-          <a href="http://capacitorjs.com/" target="_blank">
+          <a href="http://capacitorjs.com/" target="_blank" rel="noopener">
             Read more
           </a>
         </p>
