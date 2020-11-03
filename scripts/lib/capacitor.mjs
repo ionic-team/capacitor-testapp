@@ -3,6 +3,7 @@ export const CORE_PACKAGES = ['android', 'core', 'ios'];
 export const PLUGIN_PACKAGES = [
   'action-sheet',
   'browser',
+  'clipboard',
   'device',
   'dialog',
   'haptics',
