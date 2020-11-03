@@ -14,6 +14,7 @@ import {
 import React, { useState } from 'react';
 import { PluginListenerHandle } from '@capacitor/core';
 import { App } from '@capacitor/app';
+import { AppLauncher } from '@capacitor/app-launcher';
 
 const AppPage: React.FC = () => {
   const [appInfoJson, setAppInfoJson] = useState('');
@@ -65,6 +66,22 @@ const AppPage: React.FC = () => {
     App.exitApp();
   };
 
+  const canOpenUrl = async () => {
+    const ret = await AppLauncher.canOpenUrl({ url: 'mailto:name@email.com' });
+    console.log('Can open url: ', ret.value);
+  };
+
+  const openUrl = async () => {
+    const ret = await AppLauncher.openUrl({
+      url: 'mailto:name@email.com',
+    });
+    console.log('Open url response: ', ret);
+  };
+
+  const failCall = async () => {
+    await AppLauncher.openUrl({ url: '' });
+  };
+
   useIonViewDidLeave(() => {
     stateChangeHandler.remove();
     urlOpenHandler.remove();
@@ -93,6 +110,15 @@ const AppPage: React.FC = () => {
             Exit app
           </IonButton>
         ) : null}
+        <IonButton expand="block" onClick={canOpenUrl}>
+          Can Open Url
+        </IonButton>
+        <IonButton expand="block" onClick={openUrl}>
+          Open Url
+        </IonButton>
+        <IonButton expand="block" onClick={failCall}>
+          Test Failing Call
+        </IonButton>
         <p>
           <a href="tel:212-549-2543">Telephone Test</a>
           <a href="mailto:max@ionic.io">Email Test</a>
