@@ -2,6 +2,8 @@ export const CORE_PACKAGES = ['android', 'core', 'ios'];
 
 export const PLUGIN_PACKAGES = [
   'action-sheet',
+  'app',
+  'app-launcher',
   'browser',
   'clipboard',
   'device',
