@@ -4,6 +4,9 @@ import android.os.Bundle;
 
 
 import com.capacitorjs.plugins.actionsheet.ActionSheetPlugin;
+import com.capacitorjs.plugins.app.AppPlugin;
+import com.capacitorjs.plugins.applauncher.AppLauncherPlugin;
+import com.capacitorjs.plugins.clipboard.ClipboardPlugin;
 import com.capacitorjs.plugins.device.DevicePlugin;
 import com.capacitorjs.plugins.dialog.DialogPlugin;
 import com.capacitorjs.plugins.filesystem.FilesystemPlugin;
@@ -32,6 +35,9 @@ public class MainActivity extends BridgeActivity {
       // Additional plugins you've installed go here
       // Ex: add(TotallyAwesomePlugin.class);
       add(ActionSheetPlugin.class);
+      add(AppPlugin.class);
+      add(AppLauncherPlugin.class);
+      add(ClipboardPlugin.class);
       add(DevicePlugin.class);
       add(DialogPlugin.class);
       add(HapticsPlugin.class);

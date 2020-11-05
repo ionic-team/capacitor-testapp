@@ -1,6 +1,10 @@
 import { resolve } from 'path';
 
-import { CORE_PACKAGES, PLUGIN_PACKAGES } from './lib/capacitor.mjs';
+import {
+  CORE_PACKAGES,
+  CORE_DEV_PACKAGES,
+  PLUGIN_PACKAGES,
+} from './lib/capacitor.mjs';
 import { execute } from './lib/cli.mjs';
 import { readJson } from './lib/fs.mjs';
 import { root } from './lib/repo.mjs';
@@ -14,7 +18,7 @@ execute(async () => {
   const path = resolve(root, 'package.json');
   const packageJson = await readJson(path);
 
-  const packages = {
+  const dependencies = {
     ...Object.fromEntries(
       await Promise.all(
         CORE_PACKAGES.map(async project => [
@@ -37,6 +41,22 @@ execute(async () => {
     ),
   };
 
-  await setPackageJsonDependencies(path, packages);
+  const devDependencies = {
+    ...Object.fromEntries(
+      await Promise.all(
+        CORE_DEV_PACKAGES.map(async project => [
+          `@capacitor/${project}`,
+          packageJson.devDependencies[`@capacitor/${project}`].startsWith(
+            'file:',
+          )
+            ? `^${await getLatestVersion(`@capacitor/${project}`, 'next')}`
+            : `file:../capacitor/${project}`,
+        ]),
+      ),
+    ),
+  };
+
+  await setPackageJsonDependencies(path, dependencies);
+  await setPackageJsonDependencies(path, devDependencies, 'devDependencies');
   await install();
 });

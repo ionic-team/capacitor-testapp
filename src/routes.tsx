@@ -1,11 +1,11 @@
 import React from 'react';
 
 import ActionSheetPage from './pages/ActionSheet';
-import App from './pages/App';
+import AppPage from './pages/App';
 import BackgroundTask from './pages/BackgroundTask';
 import Browser from './pages/Browser';
 import Camera from './pages/Camera';
-import Clipboard from './pages/Clipboard';
+import ClipboardPage from './pages/Clipboard';
 import Console from './pages/Console';
 import DevicePage from './pages/Device';
 import DialogPage from './pages/Dialog';
@@ -53,7 +53,7 @@ const routes: AppPage[] = [
         📱
       </span>
     ),
-    component: App,
+    component: AppPage,
   },
   {
     title: 'Background Task',
@@ -93,7 +93,7 @@ const routes: AppPage[] = [
         📋
       </span>
     ),
-    component: Clipboard,
+    component: ClipboardPage,
   },
   {
     title: 'Console',
