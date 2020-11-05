@@ -27,7 +27,7 @@ const FilesystemPage: React.FC = () => {
         directory: FilesystemDirectory.Documents,
         recursive: false,
       });
-      console.log('Made dir');
+      console.log('Made dir', ret);
     } catch (e) {
       console.error('Unable to make directory', e);
     }
@@ -167,17 +167,22 @@ const FilesystemPage: React.FC = () => {
     await rmdirAll('da');
   };
 
+  const requestPermissions = async () => {
+    const result = await Filesystem.requestPermissions();
+    console.log('request permissions result', result);
+  };
+
+  const checkPermissions = async () => {
+    const result = await Filesystem.checkPermissions();
+    console.log('check permissions result', result);
+  };
+
   // Helper function to run the provided promise-returning function on a single item or array of items
   const doAll = async (item: string | string[], callback: myCallback) => {
     item = Array.isArray(item) ? item : [item];
     for (let i of item) {
       await callback(i);
     }
-  };
-
-  // Run stat on many paths
-  const statAll = (paths: string | string[]) => {
-    return doAll(paths, path => Filesystem.stat({ path }));
   };
 
   // Create many files
@@ -257,6 +262,12 @@ const FilesystemPage: React.FC = () => {
         </IonButton>
         <IonButton expand="block" onClick={copyFileTest}>
           copy File Test
+        </IonButton>
+        <IonButton expand="block" onClick={requestPermissions}>
+          request read/write permission
+        </IonButton>
+        <IonButton expand="block" onClick={checkPermissions}>
+          check read/write permission
         </IonButton>
       </IonContent>
     </IonPage>
