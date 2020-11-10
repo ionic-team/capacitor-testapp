@@ -13,7 +13,7 @@ import Filesystem from './pages/Filesystem';
 import Geolocation from './pages/Geolocation';
 import HapticsPage from './pages/Haptics';
 import KeyboardPage from './pages/Keyboard';
-import LocalNotifications from './pages/LocalNotifications';
+import LocalNotificationsPage from './pages/LocalNotifications';
 import MotionPage from './pages/Motion';
 import NetworkPage from './pages/Network';
 import Permissions from './pages/Permissions';
@@ -173,7 +173,7 @@ const routes: AppPage[] = [
         📟
       </span>
     ),
-    component: LocalNotifications,
+    component: LocalNotificationsPage,
   },
   {
     title: 'Motion',

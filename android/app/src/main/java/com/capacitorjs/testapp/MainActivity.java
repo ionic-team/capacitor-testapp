@@ -10,6 +10,7 @@ import com.capacitorjs.plugins.device.DevicePlugin;
 import com.capacitorjs.plugins.dialog.DialogPlugin;
 import com.capacitorjs.plugins.haptics.HapticsPlugin;
 import com.capacitorjs.plugins.keyboard.KeyboardPlugin;
+import com.capacitorjs.plugins.localnotifications.LocalNotificationsPlugin;
 import com.capacitorjs.plugins.screenreader.ScreenReaderPlugin;
 import com.capacitorjs.plugins.share.SharePlugin;
 import com.capacitorjs.plugins.statusbar.StatusBarPlugin;
@@ -40,6 +41,7 @@ public class MainActivity extends BridgeActivity {
       add(DialogPlugin.class);
       add(HapticsPlugin.class);
       add(KeyboardPlugin.class);
+      add(LocalNotificationsPlugin.class);
       add(ScreenReaderPlugin.class);
       add(SharePlugin.class);
       add(StatusBarPlugin.class);
