@@ -1,18 +1,18 @@
 import React from 'react';
 
 import ActionSheetPage from './pages/ActionSheet';
-import App from './pages/App';
+import AppPage from './pages/App';
 import BackgroundTask from './pages/BackgroundTask';
 import Browser from './pages/Browser';
 import CameraPage from './pages/Camera';
-import Clipboard from './pages/Clipboard';
+import ClipboardPage from './pages/Clipboard';
 import Console from './pages/Console';
 import DevicePage from './pages/Device';
 import DialogPage from './pages/Dialog';
 import Filesystem from './pages/Filesystem';
 import Geolocation from './pages/Geolocation';
 import HapticsPage from './pages/Haptics';
-import Keyboard from './pages/Keyboard';
+import KeyboardPage from './pages/Keyboard';
 import LocalNotifications from './pages/LocalNotifications';
 import MotionPage from './pages/Motion';
 import NetworkPage from './pages/Network';
@@ -21,7 +21,7 @@ import PushNotifications from './pages/PushNotifications';
 import ScreenReader from './pages/ScreenReader';
 import SharePage from './pages/Share';
 import SplashScreen from './pages/SplashScreen';
-import StatusBar from './pages/StatusBar';
+import StatusBarPage from './pages/StatusBar';
 import Storage from './pages/Storage';
 import TextZoom from './pages/TextZoom';
 import ToastPage from './pages/Toast';
@@ -53,7 +53,7 @@ const routes: AppPage[] = [
         📱
       </span>
     ),
-    component: App,
+    component: AppPage,
   },
   {
     title: 'Background Task',
@@ -93,7 +93,7 @@ const routes: AppPage[] = [
         📋
       </span>
     ),
-    component: Clipboard,
+    component: ClipboardPage,
   },
   {
     title: 'Console',
@@ -163,7 +163,7 @@ const routes: AppPage[] = [
         🎹
       </span>
     ),
-    component: Keyboard,
+    component: KeyboardPage,
   },
   {
     title: 'Local Notifications',
@@ -253,7 +253,7 @@ const routes: AppPage[] = [
         🚦
       </span>
     ),
-    component: StatusBar,
+    component: StatusBarPage,
   },
   {
     title: 'Storage',

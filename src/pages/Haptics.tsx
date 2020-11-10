@@ -30,7 +30,7 @@ const HapticsPage: React.FC = () => {
     }
   };
 
-  const hapticsNotif = async (type = HapticsNotificationType.WARNING) => {
+  const hapticsNotif = async (type = HapticsNotificationType.Warning) => {
     try {
       await Haptics.notification({
         type: type,
@@ -45,11 +45,11 @@ const HapticsPage: React.FC = () => {
   };
 
   const hapticsSuccess = async () => {
-    hapticsNotif(HapticsNotificationType.SUCCESS);
+    hapticsNotif(HapticsNotificationType.Success);
   };
 
   const hapticsError = async () => {
-    hapticsNotif(HapticsNotificationType.ERROR);
+    hapticsNotif(HapticsNotificationType.Error);
   };
 
   const hapticsImpactHeavy = async () => {

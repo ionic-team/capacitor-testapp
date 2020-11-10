@@ -7,19 +7,24 @@ use_frameworks!
 install! 'cocoapods', :disable_input_output_paths => true
 
 def capacitor_pods
-  pod 'Capacitor', :path => '../../../capacitor/ios'
-  pod 'CapacitorCordova', :path => '../../../capacitor/ios'
-  pod 'CapacitorActionSheet', :path => '../../../capacitor-plugins/action-sheet'
-  pod 'CapacitorCamera', :path => '../../../capacitor-plugins/camera'
-  pod 'CapacitorDevice', :path => '../../../capacitor-plugins/device'
-  pod 'CapacitorDialog', :path => '../../../capacitor-plugins/dialog'
-  pod 'CapacitorHaptics', :path => '../../../capacitor-plugins/haptics'
-  pod 'CapacitorNetwork', :path => '../../../capacitor-plugins/network'
-  pod 'CapacitorScreenReader', :path => '../../../capacitor-plugins/screen-reader'
-  pod 'CapacitorShare', :path => '../../../capacitor-plugins/share'
-  pod 'CapacitorStorage', :path => '../../../capacitor-plugins/storage'
-  pod 'CapacitorTextZoom', :path => '../../../capacitor-plugins/text-zoom'
-  pod 'CapacitorToast', :path => '../../../capacitor-plugins/toast'
+  pod 'Capacitor', :path => '../../node_modules/@capacitor/ios'
+  pod 'CapacitorCordova', :path => '../../node_modules/@capacitor/ios'
+  pod 'CapacitorActionSheet', :path => '../../node_modules/@capacitor/action-sheet'
+  pod 'CapacitorApp', :path => '../../node_modules/@capacitor/app'
+  pod 'CapacitorAppLauncher', :path => '../../node_modules/@capacitor/app-launcher'
+  pod 'CapacitorBrowser', :path => '../../node_modules/@capacitor/browser'
+  pod 'CapacitorClipboard', :path => '../../node_modules/@capacitor/clipboard'
+  pod 'CapacitorDevice', :path => '../../node_modules/@capacitor/device'
+  pod 'CapacitorDialog', :path => '../../node_modules/@capacitor/dialog'
+  pod 'CapacitorHaptics', :path => '../../node_modules/@capacitor/haptics'
+  pod 'CapacitorKeyboard', :path => '../../node_modules/@capacitor/keyboard'
+  pod 'CapacitorNetwork', :path => '../../node_modules/@capacitor/network'
+  pod 'CapacitorScreenReader', :path => '../../node_modules/@capacitor/screen-reader'
+  pod 'CapacitorShare', :path => '../../node_modules/@capacitor/share'
+  pod 'CapacitorStatusBar', :path => '../../node_modules/@capacitor/status-bar'
+  pod 'CapacitorStorage', :path => '../../node_modules/@capacitor/storage'
+  pod 'CapacitorTextZoom', :path => '../../node_modules/@capacitor/text-zoom'
+  pod 'CapacitorToast', :path => '../../node_modules/@capacitor/toast'
 end
 
 target 'App' do
