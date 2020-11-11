@@ -39,7 +39,10 @@ async function copyLocalPackage(src, dest) {
   if (pkgJson.files) {
     await Promise.all(
       pkgJson.files.map(async f => {
-        f = f.split('/')[0];
+        if (f.includes('*')) {
+          // quick glob avoidance hack
+          f = f.split('/')[0];
+        }
         const srcFile = join(src, f);
         const destFile = join(dest, f);
         console.log(`  - ${srcFile} to ${destFile}`);
