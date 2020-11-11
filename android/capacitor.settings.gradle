@@ -17,9 +17,6 @@ project(':capacitor-browser').projectDir = new File('../node_modules/@capacitor/
 include ':capacitor-clipboard'
 project(':capacitor-clipboard').projectDir = new File('../node_modules/@capacitor/clipboard/android')
 
-include ':capacitor-camera'
-project(':capacitor-camera').projectDir = new File('../../capacitor-plugins/camera/android')
-
 include ':capacitor-device'
 project(':capacitor-device').projectDir = new File('../node_modules/@capacitor/device/android')
 
@@ -52,3 +49,6 @@ project(':capacitor-text-zoom').projectDir = new File('../node_modules/@capacito
 
 include ':capacitor-toast'
 project(':capacitor-toast').projectDir = new File('../node_modules/@capacitor/toast/android')
+
+include ':capacitor-camera'
+project(':capacitor-camera').projectDir = new File('../../capacitor-plugins/camera/android')

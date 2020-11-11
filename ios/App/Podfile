@@ -25,6 +25,7 @@ def capacitor_pods
   pod 'CapacitorStorage', :path => '../../node_modules/@capacitor/storage'
   pod 'CapacitorTextZoom', :path => '../../node_modules/@capacitor/text-zoom'
   pod 'CapacitorToast', :path => '../../node_modules/@capacitor/toast'
+  pod 'CapacitorCamera', :path => '../../../capacitor-plugins/camera'
 end
 
 target 'App' do
