@@ -13,6 +13,7 @@ dependencies {
     implementation project(':capacitor-app')
     implementation project(':capacitor-app-launcher')
     implementation project(':capacitor-browser')
+    implementation project(':capacitor-camera')
     implementation project(':capacitor-clipboard')
     implementation project(':capacitor-device')
     implementation project(':capacitor-dialog')
@@ -25,7 +26,6 @@ dependencies {
     implementation project(':capacitor-storage')
     implementation project(':capacitor-text-zoom')
     implementation project(':capacitor-toast')
-    implementation project(':capacitor-camera')
 
 }
 
