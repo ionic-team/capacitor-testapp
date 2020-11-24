@@ -1,3 +1,4 @@
+import { ExceptionCode } from '@capacitor/core';
 import {
   LocalNotifications,
   LocalNotification,
@@ -13,44 +14,66 @@ import {
   useIonViewDidEnter,
   IonButton,
 } from '@ionic/react';
-import React from 'react';
-
-LocalNotifications.registerActionTypes({
-  types: [
-    {
-      id: 'OPEN_PRODUCT',
-      actions: [
-        {
-          id: 'view',
-          title: 'Product',
-        },
-        {
-          id: 'remove',
-          title: 'Remove',
-          destructive: true,
-        },
-        {
-          id: 'response',
-          title: 'Response',
-          input: true,
-        },
-      ],
-    },
-  ],
-});
-
-LocalNotifications.addListener('localNotificationReceived', notification => {
-  console.log('Notification: ', notification);
-});
-
-LocalNotifications.addListener(
-  'localNotificationActionPerformed',
-  notification => {
-    console.log('Notification action performed', notification);
-  },
-);
+import React, { useEffect } from 'react';
 
 const LocalNotificationsPage: React.FC = () => {
+  const registerActions = async () => {
+    try {
+      await LocalNotifications.registerActionTypes({
+        types: [
+          {
+            id: 'OPEN_PRODUCT',
+            actions: [
+              {
+                id: 'view',
+                title: 'Product',
+              },
+              {
+                id: 'remove',
+                title: 'Remove',
+                destructive: true,
+              },
+              {
+                id: 'response',
+                title: 'Response',
+                input: true,
+              },
+            ],
+          },
+        ],
+      });
+    } catch (e) {
+      if (e.code === ExceptionCode.Unavailable) {
+        console.warn(
+          'Action types are unsupported in the browser! Handling this in my own way...',
+        );
+      } else {
+        throw e;
+      }
+    }
+  };
+
+  const registerListeners = () => {
+    LocalNotifications.addListener(
+      'localNotificationReceived',
+      notification => {
+        console.log('Notification: ', notification);
+      },
+    );
+
+    LocalNotifications.addListener(
+      'localNotificationActionPerformed',
+      notification => {
+        console.log('Notification action performed', notification);
+      },
+    );
+  };
+
+  useEffect(() => {
+    registerActions();
+    registerListeners();
+  }, []);
+
   const generateId = (): number => Math.floor(Math.random() * 10);
 
   const ensurePermissions = async () => {
@@ -72,6 +95,7 @@ const LocalNotificationsPage: React.FC = () => {
       title: 'Get 10% off!',
       body: 'Swipe now to learn more',
       sound: 'beep.aiff',
+      attachments: [{ id: 'face', url: 'res:///assets/ionitron.png' }],
       actionTypeId: 'OPEN_PRODUCT',
       extra: {
         productId: 'PRODUCT-1',
