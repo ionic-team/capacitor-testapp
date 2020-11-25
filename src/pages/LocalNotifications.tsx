@@ -48,25 +48,30 @@ const LocalNotificationsPage: React.FC = () => {
           'Action types are unsupported in the browser! Handling this in my own way...',
         );
       } else {
-        throw e;
+        console.error(e);
+        /* throw e; */
       }
     }
   };
 
-  const registerListeners = () => {
-    LocalNotifications.addListener(
-      'localNotificationReceived',
-      notification => {
-        console.log('Notification: ', notification);
-      },
-    );
+  const registerListeners = async () => {
+    try {
+      await LocalNotifications.addListener(
+        'localNotificationReceived',
+        notification => {
+          console.log('Notification: ', notification);
+        },
+      );
 
-    LocalNotifications.addListener(
-      'localNotificationActionPerformed',
-      notification => {
-        console.log('Notification action performed', notification);
-      },
-    );
+      await LocalNotifications.addListener(
+        'localNotificationActionPerformed',
+        notification => {
+          console.log('Notification action performed', notification);
+        },
+      );
+    } catch (e) {
+      console.error(e);
+    }
   };
 
   useEffect(() => {
@@ -77,15 +82,19 @@ const LocalNotificationsPage: React.FC = () => {
   const generateId = (): number => Math.floor(Math.random() * 10);
 
   const ensurePermissions = async () => {
-    let { display } = await LocalNotifications.checkPermissions();
-    console.log('LocalNotifications display permission:', display);
+    try {
+      let { display } = await LocalNotifications.checkPermissions();
+      console.log('LocalNotifications display permission:', display);
 
-    if (display === 'prompt') {
-      ({ display } = await LocalNotifications.requestPermissions());
-    }
+      if (display === 'prompt') {
+        ({ display } = await LocalNotifications.requestPermissions());
+      }
 
-    if (display !== 'granted') {
-      throw new Error('User denied permissions!');
+      if (display !== 'granted') {
+        throw new Error('User denied permissions!');
+      }
+    } catch (e) {
+      console.error(e);
     }
   };
 
