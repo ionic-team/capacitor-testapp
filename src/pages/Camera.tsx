@@ -16,12 +16,13 @@ import { Capacitor } from '@capacitor/core';
 
 interface CameraPageState {
   filePath: string | null;
+  metadata: string | null;
 }
 
 class CameraPage extends React.Component<{}, CameraPageState> {
   constructor(props: {}) {
     super(props);
-    this.state = { filePath: null };
+    this.state = { filePath: null, metadata: null };
   }
 
   addPhoto = async (source: CameraSource, save: boolean = false) => {
@@ -31,24 +32,26 @@ class CameraPage extends React.Component<{}, CameraPageState> {
         resultType: 'uri',
         source: source,
         saveToGallery: save,
+        allowEditing: false,
         webUseInput: source === 'photos' ? true : false
       };
       var photo = await Camera.getPhoto(options);
-      this.setState({ filePath: photo.path ?? (photo.webPath ?? null) });
+      this.setState({ filePath: photo.path ?? (photo.webPath ?? null), 
+        metadata: JSON.stringify(photo.exif, null, 2) });
     }
     catch (e) {
-      console.log("failed to get picture", e)
+      alert(`Failed to get picture with error:\n\'${e}\'`);
     }
   };
 
   checkPermissions = async () => {
     const permissions = await Camera.checkPermissions();
-    alert(`Permissions are:\ncamera = ${permissions.camera}\nwritePhotos = ${permissions.writePhotos}\nreadPhotos = ${permissions.readPhotos}`);
+    alert(`Permissions are:\ncamera = ${permissions.camera}\nphotos = ${permissions.photos}`);
   };
 
   requestPermissions = async () => {
-    const permissions = await Camera.requestPermissions({types: []});
-    alert(`Permissions are:\ncamera = ${permissions.camera}\nwritePhotos = ${permissions.writePhotos}\nreadPhotos = ${permissions.readPhotos}`);
+    const permissions = await Camera.requestPermissions({permissions: []});
+    alert(`Permissions are:\ncamera = ${permissions.camera}\nphotos = ${permissions.photos}`);
   };
 
   render() {
@@ -63,18 +66,16 @@ class CameraPage extends React.Component<{}, CameraPageState> {
           </IonToolbar>
         </IonHeader>
         <IonContent>
-          {this.state.filePath != null ? (
-            <IonCard>
-              <IonCardContent>
-                <img
-                  src={Capacitor.convertFileSrc(this.state.filePath)}
-                  alt="Last Photo"
-                />
-              </IonCardContent>
-            </IonCard>
-          ) : (
-            <div></div>
-          )}
+        <IonCard>
+            <IonCardContent>
+              <IonButton expand="block" onClick={() => this.checkPermissions()}>
+                Check Permissions
+              </IonButton>
+              <IonButton expand="block" onClick={() => this.requestPermissions()}>
+                Request All Permissions
+              </IonButton>
+            </IonCardContent>
+          </IonCard>
           <IonCard>
             <IonCardContent>
               <IonButton expand="block" onClick={() => this.addPhoto('camera')}>
@@ -91,17 +92,21 @@ class CameraPage extends React.Component<{}, CameraPageState> {
               </IonButton>
             </IonCardContent>
           </IonCard>
-
-          <IonCard>
-            <IonCardContent>
-              <IonButton expand="block" onClick={() => this.checkPermissions()}>
-                Check Permissions
-              </IonButton>
-              <IonButton expand="block" onClick={() => this.requestPermissions()}>
-                Request All Permissions
-              </IonButton>
-            </IonCardContent>
-          </IonCard>
+          {this.state.filePath != null ? (
+            <IonCard>
+              <IonCardContent>
+                <div><img
+                  src={Capacitor.convertFileSrc(this.state.filePath)}
+                  alt="Last Photo"
+                /></div>
+                <div>
+                <pre>{this.state.metadata}</pre>
+                </div>
+              </IonCardContent>
+            </IonCard>
+          ) : (
+            <div></div>
+          )}
         </IonContent>
       </IonPage>
     );
