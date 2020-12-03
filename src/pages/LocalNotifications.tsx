@@ -54,16 +54,16 @@ const LocalNotificationsPage: React.FC = () => {
     }
   };
 
-  const registerListeners = async () => {
+  const registerListeners = () => {
     try {
-      await LocalNotifications.addListener(
+      LocalNotifications.addListener(
         'localNotificationReceived',
         notification => {
           console.log('Notification: ', notification);
         },
       );
 
-      await LocalNotifications.addListener(
+      LocalNotifications.addListener(
         'localNotificationActionPerformed',
         notification => {
           console.log('Notification action performed', notification);
