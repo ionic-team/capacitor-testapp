@@ -125,6 +125,30 @@ const LocalNotificationsPage: React.FC = () => {
     console.log('schedule result:', result);
   };
 
+  const scheduleEveryMinute = async () => {
+    const notifications: LocalNotificationSchema[] = [
+      {
+        ...createNotification(),
+        schedule: { every: 'minute' },
+      },
+    ];
+
+    const result = await LocalNotifications.schedule({ notifications });
+    console.log('schedule result:', result);
+  };
+
+  const scheduleEvery90Seconds = async () => {
+    const notifications: LocalNotificationSchema[] = [
+      {
+        ...createNotification(),
+        schedule: { every: 'second', count: 90 },
+      },
+    ];
+
+    const result = await LocalNotifications.schedule({ notifications });
+    console.log('schedule result:', result);
+  };
+
   const cancelPending = async () => {
     const pending = await LocalNotifications.getPending();
     console.log('pending:', pending);
@@ -150,7 +174,13 @@ const LocalNotificationsPage: React.FC = () => {
           Schedule Now
         </IonButton>
         <IonButton expand="block" onClick={scheduleOnce}>
-          Send Notification in 10s
+          Schedule in 10s
+        </IonButton>
+        <IonButton expand="block" onClick={scheduleEveryMinute}>
+          Schedule every minute
+        </IonButton>
+        <IonButton expand="block" onClick={scheduleEvery90Seconds}>
+          Schedule every 90 seconds
         </IonButton>
         <IonButton expand="block" onClick={cancelPending}>
           Cancel Pending Notifications
