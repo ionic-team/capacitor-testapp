@@ -53,7 +53,7 @@ class CameraPage extends React.Component<{}, CameraPageState> {
   };
 
   requestPermissions = async () => {
-    const permissions = await Camera.requestPermissions({ permissions: [] });
+    const permissions = await Camera.requestPermissions();
     alert(
       `Permissions are:\ncamera = ${permissions.camera}\nphotos = ${permissions.photos}`,
     );
