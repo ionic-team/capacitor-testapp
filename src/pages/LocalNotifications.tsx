@@ -1,7 +1,7 @@
 import { ExceptionCode } from '@capacitor/core';
 import {
   LocalNotifications,
-  LocalNotification,
+  LocalNotificationSchema,
 } from '@capacitor/local-notifications';
 import {
   IonButtons,
@@ -56,19 +56,13 @@ const LocalNotificationsPage: React.FC = () => {
 
   const registerListeners = () => {
     try {
-      LocalNotifications.addListener(
-        'localNotificationReceived',
-        notification => {
-          console.log('Notification: ', notification);
-        },
-      );
+      LocalNotifications.addListener('received', notification => {
+        console.log('Notification: ', notification);
+      });
 
-      LocalNotifications.addListener(
-        'localNotificationActionPerformed',
-        notification => {
-          console.log('Notification action performed', notification);
-        },
-      );
+      LocalNotifications.addListener('actionPerformed', notification => {
+        console.log('Notification action performed', notification);
+      });
     } catch (e) {
       console.error(e);
     }
@@ -98,7 +92,7 @@ const LocalNotificationsPage: React.FC = () => {
     }
   };
 
-  const createNotification = (): LocalNotification => {
+  const createNotification = (): LocalNotificationSchema => {
     return {
       id: generateId(),
       title: 'Get 10% off!',
@@ -113,14 +107,14 @@ const LocalNotificationsPage: React.FC = () => {
   };
 
   const scheduleNow = async () => {
-    const notifications: LocalNotification[] = [createNotification()];
+    const notifications: LocalNotificationSchema[] = [createNotification()];
     const result = await LocalNotifications.schedule({ notifications });
 
     console.log('schedule result:', result);
   };
 
   const scheduleOnce = async () => {
-    const notifications: LocalNotification[] = [
+    const notifications: LocalNotificationSchema[] = [
       {
         ...createNotification(),
         schedule: { at: new Date(new Date().getTime() + 10000) },
