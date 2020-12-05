@@ -113,6 +113,19 @@ const LocalNotificationsPage: React.FC = () => {
     console.log('schedule result:', result);
   };
 
+  const scheduleNowWithIcon = async () => {
+    const notifications: LocalNotificationSchema[] = [
+      {
+        ...createNotification(),
+        smallIcon: 'ic_stat_icon_sample',
+        iconColor: '#00ff00',
+      },
+    ];
+    const result = await LocalNotifications.schedule({ notifications });
+
+    console.log('schedule result:', result);
+  };
+
   const scheduleOnce = async () => {
     const notifications: LocalNotificationSchema[] = [
       {
@@ -171,7 +184,10 @@ const LocalNotificationsPage: React.FC = () => {
       </IonHeader>
       <IonContent>
         <IonButton expand="block" onClick={scheduleNow}>
-          Schedule Now
+          Schedule now
+        </IonButton>
+        <IonButton expand="block" onClick={scheduleNowWithIcon}>
+          Schedule now (custom icon on Android)
         </IonButton>
         <IonButton expand="block" onClick={scheduleOnce}>
           Schedule in 10s
