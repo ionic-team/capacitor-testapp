@@ -1,7 +1,7 @@
 import React from 'react';
 
 import ActionSheetPage from './pages/ActionSheet';
-import App from './pages/App';
+import AppPage from './pages/App';
 import BackgroundTask from './pages/BackgroundTask';
 import Browser from './pages/Browser';
 import Camera from './pages/Camera';
@@ -53,7 +53,7 @@ const routes: AppPage[] = [
         📱
       </span>
     ),
-    component: App,
+    component: AppPage,
   },
   {
     title: 'Background Task',
