@@ -13,6 +13,7 @@ import {
 import React from 'react';
 import { Camera, CameraOptions, CameraSource } from '@capacitor/camera';
 import { Capacitor } from '@capacitor/core';
+import { CameraPluginPermissions } from '@capacitor/camera/dist/esm/definitions';
 
 interface CameraPageState {
   filePath: string | null;
@@ -46,16 +47,16 @@ class CameraPage extends React.Component<{}, CameraPageState> {
   };
 
   checkPermissions = async () => {
-    const permissions = await Camera.checkPermissions();
+    const permissionStates = await Camera.checkPermissions();
     alert(
-      `Permissions are:\ncamera = ${permissions.camera}\nphotos = ${permissions.photos}`,
+      `Permissions are:\ncamera = ${permissionStates.camera}\nphotos = ${permissionStates.photos}`,
     );
   };
 
-  requestPermissions = async () => {
-    const permissions = await Camera.requestPermissions();
+  requestPermissions = async (permissions?: CameraPluginPermissions) => {
+    const permissionStates = await Camera.requestPermissions(permissions);
     alert(
-      `Permissions are:\ncamera = ${permissions.camera}\nphotos = ${permissions.photos}`,
+      `Permissions are:\ncamera = ${permissionStates.camera}\nphotos = ${permissionStates.photos}`,
     );
   };
 
@@ -75,6 +76,20 @@ class CameraPage extends React.Component<{}, CameraPageState> {
             <IonCardContent>
               <IonButton expand="block" onClick={() => this.checkPermissions()}>
                 Check Permissions
+              </IonButton>
+              <IonButton
+                expand="block"
+                onClick={() =>
+                  this.requestPermissions({ permissions: ['camera'] })
+                }>
+                Request Camera Permissions
+              </IonButton>
+              <IonButton
+                expand="block"
+                onClick={() =>
+                  this.requestPermissions({ permissions: ['photos'] })
+                }>
+                Request Photo Permissions
               </IonButton>
               <IonButton
                 expand="block"
