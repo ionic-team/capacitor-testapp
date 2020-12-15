@@ -12,23 +12,22 @@ import React from 'react';
 import { SplashScreen } from '@capacitor/splash-screen';
 
 const SplashScreenPage: React.FC = () => {
-
   const showSplashAutoHide = async () => {
     SplashScreen.show({
-      autoHide: true
+      autoHide: true,
     });
   };
 
   const showSplashAutoHide2s = async () => {
     SplashScreen.show({
       showDuration: 2000,
-      autoHide: true
+      autoHide: true,
     });
   };
 
   const showSplash6s = async () => {
     SplashScreen.show({
-      autoHide: false
+      autoHide: false,
     });
     setTimeout(() => {
       SplashScreen.hide();
@@ -45,14 +44,14 @@ const SplashScreenPage: React.FC = () => {
         </IonToolbar>
       </IonHeader>
       <IonContent>
-      <IonButton expand="block" onClick={showSplashAutoHide}>
-      Show Splash, auto-hide, default length
+        <IonButton expand="block" onClick={showSplashAutoHide}>
+          Show Splash, auto-hide, default length
         </IonButton>
         <IonButton expand="block" onClick={showSplashAutoHide2s}>
-        Show Splash, auto-hide, 2s
+          Show Splash, auto-hide, 2s
         </IonButton>
         <IonButton expand="block" onClick={showSplash6s}>
-        Show Splash, 6s
+          Show Splash, 6s
         </IonButton>
       </IonContent>
     </IonPage>
