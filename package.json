@@ -13,23 +13,18 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
-  "husky": {
-    "hooks": {
-      "pre-commit": "npm run prettier -- --check"
-    }
-  },
   "dependencies": {
     "@capacitor/action-sheet": "^0.2.0",
-    "@capacitor/android": "^3.0.0-alpha.7",
+    "@capacitor/android": "^3.0.0-alpha.10",
     "@capacitor/app": "^0.1.0",
     "@capacitor/app-launcher": "^0.2.0",
     "@capacitor/browser": "^0.2.0",
     "@capacitor/clipboard": "^0.2.0",
-    "@capacitor/core": "^3.0.0-alpha.7",
+    "@capacitor/core": "^3.0.0-alpha.9",
     "@capacitor/device": "^0.2.0",
     "@capacitor/dialog": "^0.2.0",
     "@capacitor/haptics": "^0.1.0",
-    "@capacitor/ios": "^3.0.0-alpha.7",
+    "@capacitor/ios": "^3.0.0-alpha.9",
     "@capacitor/keyboard": "^0.2.0",
     "@capacitor/motion": "^0.1.0",
     "@capacitor/network": "^0.2.0",
@@ -60,8 +55,7 @@
     "typescript": "3.8.3"
   },
   "devDependencies": {
-    "@capacitor/cli": "^3.0.0-alpha.7",
-    "husky": "^4.2.5",
+    "@capacitor/cli": "^3.0.0-alpha.9",
     "prettier": "^2.0.5"
   },
   "eslintConfig": {
