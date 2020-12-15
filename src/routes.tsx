@@ -20,7 +20,7 @@ import Permissions from './pages/Permissions';
 import PushNotifications from './pages/PushNotifications';
 import ScreenReader from './pages/ScreenReader';
 import SharePage from './pages/Share';
-import SplashScreen from './pages/SplashScreen';
+import SplashScreenPage from './pages/SplashScreen';
 import StatusBarPage from './pages/StatusBar';
 import Storage from './pages/Storage';
 import TextZoom from './pages/TextZoom';
@@ -243,7 +243,7 @@ const routes: AppPage[] = [
         🌊
       </span>
     ),
-    component: SplashScreen,
+    component: SplashScreenPage,
   },
   {
     title: 'Status Bar',
