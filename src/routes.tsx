@@ -9,7 +9,7 @@ import ClipboardPage from './pages/Clipboard';
 import Console from './pages/Console';
 import DevicePage from './pages/Device';
 import DialogPage from './pages/Dialog';
-import Filesystem from './pages/Filesystem';
+import FilesystemPage from './pages/Filesystem';
 import Geolocation from './pages/Geolocation';
 import HapticsPage from './pages/Haptics';
 import KeyboardPage from './pages/Keyboard';
@@ -133,7 +133,7 @@ const routes: AppPage[] = [
         🗄
       </span>
     ),
-    component: Filesystem,
+    component: FilesystemPage,
   },
   {
     title: 'Geolocation',
