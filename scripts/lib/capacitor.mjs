@@ -9,6 +9,7 @@ export const PLUGIN_PACKAGES = [
   'clipboard',
   'device',
   'dialog',
+  'filesystem',
   'haptics',
   'keyboard',
   'motion',
