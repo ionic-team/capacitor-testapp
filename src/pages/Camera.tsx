@@ -42,7 +42,7 @@ class CameraPage extends React.Component<{}, CameraPageState> {
         metadata: JSON.stringify(photo.exif, null, 2),
       });
     } catch (e) {
-      alert(`Failed to get picture with error:\n\'${e}\'`);
+      alert(`Failed to get picture with error:\n'${e}'`);
     }
   };
 
@@ -122,7 +122,7 @@ class CameraPage extends React.Component<{}, CameraPageState> {
                 <div>
                   <img
                     src={Capacitor.convertFileSrc(this.state.filePath)}
-                    alt="Last Photo"
+                    alt="Most Recent"
                   />
                 </div>
                 <div>
