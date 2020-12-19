@@ -17,6 +17,7 @@ export const PLUGIN_PACKAGES = [
   'network',
   'screen-reader',
   'share',
+  'splash-screen',
   'status-bar',
   'storage',
   'text-zoom',
