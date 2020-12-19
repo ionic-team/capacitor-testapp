@@ -19,7 +19,7 @@
     "@capacitor/app": "^0.1.0",
     "@capacitor/app-launcher": "^0.2.0",
     "@capacitor/browser": "^0.2.0",
-    "@capacitor/camera": "file:../capacitor-plugins/camera",
+    "@capacitor/camera": "0.0.1",
     "@capacitor/clipboard": "^0.2.0",
     "@capacitor/core": "^3.0.0-alpha.9",
     "@capacitor/device": "^0.2.0",
