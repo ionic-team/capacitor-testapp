@@ -4,7 +4,7 @@ import ActionSheetPage from './pages/ActionSheet';
 import AppPage from './pages/App';
 import BackgroundTask from './pages/BackgroundTask';
 import Browser from './pages/Browser';
-import Camera from './pages/Camera';
+import CameraPage from './pages/Camera';
 import ClipboardPage from './pages/Clipboard';
 import Console from './pages/Console';
 import DevicePage from './pages/Device';
@@ -83,7 +83,7 @@ const routes: AppPage[] = [
         📸
       </span>
     ),
-    component: Camera,
+    component: CameraPage,
   },
   {
     title: 'Clipboard',

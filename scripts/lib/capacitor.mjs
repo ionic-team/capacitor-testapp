@@ -6,6 +6,7 @@ export const PLUGIN_PACKAGES = [
   'app',
   'app-launcher',
   'browser',
+  'camera',
   'clipboard',
   'device',
   'dialog',
