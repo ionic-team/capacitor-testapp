@@ -9,11 +9,7 @@ import {
   IonToolbar,
 } from '@ionic/react';
 import React from 'react';
-import {
-  Filesystem,
-  FilesystemDirectory,
-  FilesystemEncoding,
-} from '@capacitor/filesystem';
+import { Filesystem, Directory, Encoding } from '@capacitor/filesystem';
 
 interface myCallback {
   (path: string): void;
@@ -24,7 +20,7 @@ const FilesystemPage: React.FC = () => {
     try {
       let ret = await Filesystem.mkdir({
         path: 'secrets',
-        directory: FilesystemDirectory.Documents,
+        directory: Directory.Documents,
         recursive: false,
       });
       console.log('Made dir', ret);
@@ -37,7 +33,7 @@ const FilesystemPage: React.FC = () => {
     try {
       let ret = await Filesystem.rmdir({
         path: 'secrets',
-        directory: FilesystemDirectory.Documents,
+        directory: Directory.Documents,
       });
       console.log('Removed dir', ret);
     } catch (e) {
@@ -49,7 +45,7 @@ const FilesystemPage: React.FC = () => {
     try {
       let ret = await Filesystem.readdir({
         path: 'secrets',
-        directory: FilesystemDirectory.Documents,
+        directory: Directory.Documents,
       });
       console.log('Read dir', ret);
     } catch (e) {
@@ -62,8 +58,8 @@ const FilesystemPage: React.FC = () => {
       const result = await Filesystem.writeFile({
         path: 'secrets/text.txt',
         data: 'This is a test',
-        directory: FilesystemDirectory.Documents,
-        encoding: FilesystemEncoding.UTF8,
+        directory: Directory.Documents,
+        encoding: Encoding.UTF8,
       });
       console.log('Wrote file', result);
     } catch (e) {
@@ -74,8 +70,8 @@ const FilesystemPage: React.FC = () => {
   const fileRead = async () => {
     let contents = await Filesystem.readFile({
       path: 'secrets/text.txt',
-      directory: FilesystemDirectory.Documents,
-      encoding: FilesystemEncoding.UTF8,
+      directory: Directory.Documents,
+      encoding: Encoding.UTF8,
     });
     console.log('file contents', contents.data);
   };
@@ -84,8 +80,8 @@ const FilesystemPage: React.FC = () => {
     await Filesystem.appendFile({
       path: 'secrets/text.txt',
       data: 'MORE TESTS',
-      directory: FilesystemDirectory.Documents,
-      encoding: FilesystemEncoding.UTF8,
+      directory: Directory.Documents,
+      encoding: Encoding.UTF8,
     });
     console.log('Appended');
   };
@@ -93,7 +89,7 @@ const FilesystemPage: React.FC = () => {
   const fileDelete = async () => {
     await Filesystem.deleteFile({
       path: 'secrets/text.txt',
-      directory: FilesystemDirectory.Documents,
+      directory: Directory.Documents,
     });
     console.log('Deleted');
   };
@@ -102,7 +98,7 @@ const FilesystemPage: React.FC = () => {
     try {
       let ret = await Filesystem.stat({
         path: 'secrets/text.txt',
-        directory: FilesystemDirectory.Documents,
+        directory: Directory.Documents,
       });
       console.log('STAT', ret);
     } catch (e) {
@@ -114,7 +110,7 @@ const FilesystemPage: React.FC = () => {
     try {
       let ret = await Filesystem.getUri({
         path: 'text.txt',
-        directory: FilesystemDirectory.Data,
+        directory: Directory.Data,
       });
       alert(ret.uri);
     } catch (e) {
@@ -127,13 +123,13 @@ const FilesystemPage: React.FC = () => {
       const result = await Filesystem.writeFile({
         path: 'text.txt',
         data: 'This is a test',
-        directory: FilesystemDirectory.Data,
-        encoding: FilesystemEncoding.UTF8,
+        directory: Directory.Data,
+        encoding: Encoding.UTF8,
       });
       console.log('wrote file', result);
       let stat = await Filesystem.stat({
         path: 'text.txt',
-        directory: FilesystemDirectory.Data,
+        directory: Directory.Data,
       });
       let data = await Filesystem.readFile({
         path: stat.uri,
@@ -191,7 +187,7 @@ const FilesystemPage: React.FC = () => {
       Filesystem.writeFile({
         path,
         data: path,
-        encoding: FilesystemEncoding.UTF8,
+        encoding: Encoding.UTF8,
       }),
     );
   };

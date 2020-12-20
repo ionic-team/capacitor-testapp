@@ -10,13 +10,13 @@ import {
   IonText,
 } from '@ionic/react';
 import React from 'react';
-import { Network, NetworkStatus } from '@capacitor/network';
+import { Network, ConnectionStatus } from '@capacitor/network';
 import { PluginListenerHandle } from '@capacitor/core';
 import './Network.css';
 
 interface NetworkPageState {
   handler: PluginListenerHandle | undefined;
-  networkStatus: NetworkStatus | undefined;
+  networkStatus: ConnectionStatus | undefined;
 }
 
 class NetworkPage extends React.Component<{}, NetworkPageState> {
@@ -35,7 +35,7 @@ class NetworkPage extends React.Component<{}, NetworkPageState> {
     this.updateNetworkStatus();
     const handler = Network?.addListener(
       'networkStatusChange',
-      (status: NetworkStatus) => {
+      (status: ConnectionStatus) => {
         this.setState({
           networkStatus: status,
         });

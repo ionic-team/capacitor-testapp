@@ -11,9 +11,14 @@ import {
   IonButton,
 } from '@ionic/react';
 import React from 'react';
-import { Camera, CameraOptions, CameraSource } from '@capacitor/camera';
+import {
+  Camera,
+  PhotoOptions,
+  CameraSource,
+  CameraResultType,
+  CameraPluginPermissions,
+} from '@capacitor/camera';
 import { Capacitor } from '@capacitor/core';
-import { CameraPluginPermissions } from '@capacitor/camera/dist/esm/definitions';
 
 interface CameraPageState {
   filePath: string | null;
@@ -28,13 +33,13 @@ class CameraPage extends React.Component<{}, CameraPageState> {
 
   addPhoto = async (source: CameraSource, save: boolean = false) => {
     try {
-      const options: CameraOptions = {
+      const options: PhotoOptions = {
         quality: 100,
-        resultType: 'uri',
+        resultType: CameraResultType.Uri,
         source: source,
         saveToGallery: save,
         allowEditing: false,
-        webUseInput: source === 'photos' ? true : false,
+        webUseInput: source === CameraSource.Photos,
       };
       var photo = await Camera.getPhoto(options);
       this.setState({
@@ -100,18 +105,24 @@ class CameraPage extends React.Component<{}, CameraPageState> {
           </IonCard>
           <IonCard>
             <IonCardContent>
-              <IonButton expand="block" onClick={() => this.addPhoto('camera')}>
+              <IonButton
+                expand="block"
+                onClick={() => this.addPhoto(CameraSource.Camera)}>
                 Take Picture
               </IonButton>
               <IonButton
                 expand="block"
-                onClick={() => this.addPhoto('camera', true)}>
+                onClick={() => this.addPhoto(CameraSource.Camera, true)}>
                 Take Picture and Save
               </IonButton>
-              <IonButton expand="block" onClick={() => this.addPhoto('photos')}>
+              <IonButton
+                expand="block"
+                onClick={() => this.addPhoto(CameraSource.Photos)}>
                 Choose Picture
               </IonButton>
-              <IonButton expand="block" onClick={() => this.addPhoto('prompt')}>
+              <IonButton
+                expand="block"
+                onClick={() => this.addPhoto(CameraSource.Prompt)}>
                 Prompt
               </IonButton>
             </IonCardContent>
