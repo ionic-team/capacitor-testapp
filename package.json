@@ -13,11 +13,6 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
-  "husky": {
-    "hooks": {
-      "pre-commit": "npm run prettier -- --check"
-    }
-  },
   "dependencies": {
     "@capacitor/action-sheet": "file:../capacitor-plugins/action-sheet",
     "@capacitor/android": "file:../capacitor/android",

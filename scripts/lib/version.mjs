@@ -1,3 +1,4 @@
+import { tryfn } from './fn.mjs';
 import { readJson, writeJson } from './fs.mjs';
 import { info } from './npm.mjs';
 
@@ -16,4 +17,4 @@ export const setPackageJsonDependencies = async (
 };
 
 export const getLatestVersion = async (pkg, distTag = 'latest') =>
-  (await info(`${pkg}@${distTag}`)).version;
+  (await tryfn(() => info(`${pkg}@${distTag}`)))?.version ?? '0.0.0';

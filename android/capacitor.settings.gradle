@@ -14,6 +14,9 @@ project(':capacitor-app-launcher').projectDir = new File('../../capacitor-plugin
 include ':capacitor-browser'
 project(':capacitor-browser').projectDir = new File('../../capacitor-plugins/browser/android')
 
+include ':capacitor-camera'
+project(':capacitor-camera').projectDir = new File('../node_modules/@capacitor/camera/android')
+
 include ':capacitor-clipboard'
 project(':capacitor-clipboard').projectDir = new File('../../capacitor-plugins/clipboard/android')
 
@@ -22,6 +25,9 @@ project(':capacitor-device').projectDir = new File('../../capacitor-plugins/devi
 
 include ':capacitor-dialog'
 project(':capacitor-dialog').projectDir = new File('../../capacitor-plugins/dialog/android')
+
+include ':capacitor-filesystem'
+project(':capacitor-filesystem').projectDir = new File('../node_modules/@capacitor/filesystem/android')
 
 include ':capacitor-haptics'
 project(':capacitor-haptics').projectDir = new File('../../capacitor-plugins/haptics/android')
@@ -40,6 +46,9 @@ project(':capacitor-screen-reader').projectDir = new File('../../capacitor-plugi
 
 include ':capacitor-share'
 project(':capacitor-share').projectDir = new File('../../capacitor-plugins/share/android')
+
+include ':capacitor-splash-screen'
+project(':capacitor-splash-screen').projectDir = new File('../node_modules/@capacitor/splash-screen/android')
 
 include ':capacitor-status-bar'
 project(':capacitor-status-bar').projectDir = new File('../../capacitor-plugins/status-bar/android')
