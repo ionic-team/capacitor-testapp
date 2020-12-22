@@ -31,7 +31,7 @@
     "@capacitor/motion": "^0.1.1",
     "@capacitor/network": "^0.2.1",
     "@capacitor/screen-reader": "^0.1.1",
-    "@capacitor/share": "^0.2.1",
+    "@capacitor/share": "file:../capacitor-plugins/share",
     "@capacitor/splash-screen": "^0.1.0",
     "@capacitor/status-bar": "^0.2.1",
     "@capacitor/storage": "^0.1.1",
