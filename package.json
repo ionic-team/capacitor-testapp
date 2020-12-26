@@ -8,6 +8,7 @@
     "fmt": "npm run prettier -- --write",
     "prettier": "prettier '{src,scripts,public}/**/*.{css,html,ts,tsx,mjs}'",
     "toggle-local": "node ./scripts/toggle-local.mjs",
+    "update-all": "node ./scripts/update-all.mjs",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
