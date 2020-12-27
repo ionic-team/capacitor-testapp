@@ -27,14 +27,14 @@ import TextZoom from './pages/TextZoom';
 import ToastPage from './pages/Toast';
 import WebView from './pages/WebView';
 
-interface AppPage {
+interface Page {
   readonly url: string;
   readonly title: string;
   readonly icon: JSX.Element;
   readonly component: typeof React.Component | React.FC;
 }
 
-const routes: AppPage[] = [
+const routes: Page[] = [
   {
     title: 'Action Sheet',
     url: '/action-sheet',
