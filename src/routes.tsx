@@ -4,12 +4,12 @@ import ActionSheetPage from './pages/ActionSheet';
 import AppPage from './pages/App';
 import BackgroundTask from './pages/BackgroundTask';
 import Browser from './pages/Browser';
-import Camera from './pages/Camera';
+import CameraPage from './pages/Camera';
 import ClipboardPage from './pages/Clipboard';
 import Console from './pages/Console';
 import DevicePage from './pages/Device';
 import DialogPage from './pages/Dialog';
-import Filesystem from './pages/Filesystem';
+import FilesystemPage from './pages/Filesystem';
 import GeolocationPage from './pages/Geolocation';
 import HapticsPage from './pages/Haptics';
 import KeyboardPage from './pages/Keyboard';
@@ -20,21 +20,21 @@ import PermissionPage from './pages/Permissions';
 import PushNotifications from './pages/PushNotifications';
 import ScreenReader from './pages/ScreenReader';
 import SharePage from './pages/Share';
-import SplashScreen from './pages/SplashScreen';
+import SplashScreenPage from './pages/SplashScreen';
 import StatusBarPage from './pages/StatusBar';
 import Storage from './pages/Storage';
 import TextZoom from './pages/TextZoom';
 import ToastPage from './pages/Toast';
 import WebView from './pages/WebView';
 
-interface AppPage {
+interface Page {
   readonly url: string;
   readonly title: string;
   readonly icon: JSX.Element;
   readonly component: typeof React.Component | React.FC;
 }
 
-const routes: AppPage[] = [
+const routes: Page[] = [
   {
     title: 'Action Sheet',
     url: '/action-sheet',
@@ -83,7 +83,7 @@ const routes: AppPage[] = [
         📸
       </span>
     ),
-    component: Camera,
+    component: CameraPage,
   },
   {
     title: 'Clipboard',
@@ -133,7 +133,7 @@ const routes: AppPage[] = [
         🗄
       </span>
     ),
-    component: Filesystem,
+    component: FilesystemPage,
   },
   {
     title: 'Geolocation',
@@ -243,7 +243,7 @@ const routes: AppPage[] = [
         🌊
       </span>
     ),
-    component: SplashScreen,
+    component: SplashScreenPage,
   },
   {
     title: 'Status Bar',

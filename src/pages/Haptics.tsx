@@ -11,16 +11,12 @@ import {
   IonTitle,
   IonToolbar,
 } from '@ionic/react';
-import {
-  Haptics,
-  HapticsImpactStyle,
-  HapticsNotificationType,
-} from '@capacitor/haptics';
+import { Haptics, ImpactStyle, NotificationType } from '@capacitor/haptics';
 
 import React from 'react';
 
 const HapticsPage: React.FC = () => {
-  const hapticsImpact = async (style = HapticsImpactStyle.Heavy) => {
+  const hapticsImpact = async (style = ImpactStyle.Heavy) => {
     try {
       await Haptics.impact({
         style: style,
@@ -30,7 +26,7 @@ const HapticsPage: React.FC = () => {
     }
   };
 
-  const hapticsNotif = async (type = HapticsNotificationType.Warning) => {
+  const hapticsNotif = async (type = NotificationType.Warning) => {
     try {
       await Haptics.notification({
         type: type,
@@ -45,11 +41,11 @@ const HapticsPage: React.FC = () => {
   };
 
   const hapticsSuccess = async () => {
-    hapticsNotif(HapticsNotificationType.Success);
+    hapticsNotif(NotificationType.Success);
   };
 
   const hapticsError = async () => {
-    hapticsNotif(HapticsNotificationType.Error);
+    hapticsNotif(NotificationType.Error);
   };
 
   const hapticsImpactHeavy = async () => {
@@ -57,11 +53,11 @@ const HapticsPage: React.FC = () => {
   };
 
   const hapticsImpactMedium = async () => {
-    hapticsImpact(HapticsImpactStyle.Medium);
+    hapticsImpact(ImpactStyle.Medium);
   };
 
   const hapticsImpactLight = async () => {
-    hapticsImpact(HapticsImpactStyle.Light);
+    hapticsImpact(ImpactStyle.Light);
   };
 
   const hapticsVibrate = async () => {
