@@ -1,5 +1,6 @@
 import {
   IonButtons,
+  IonButton,
   IonContent,
   IonHeader,
   IonPage,
@@ -44,7 +45,11 @@ class GeolocationPage extends React.Component<{}, GeolocationPageState> {
 
   options = { enableHighAccuracy: true };
 
-  async ionViewWillEnter() {
+  async ionViewDidLeave() {
+    await this.endWatch();
+  }
+
+  getLocation = async () => {
     try {
       const { coords, timestamp } = await Geolocation.getCurrentPosition(
         this.options,
@@ -64,7 +69,9 @@ class GeolocationPage extends React.Component<{}, GeolocationPageState> {
     } catch (error) {
       console.log('Error getting location', error);
     }
+  };
 
+  startWatch = async () => {
     this.watchId = Geolocation.watchPosition(this.options, (position, err) => {
       this.setState({
         currentLocation: {
@@ -79,11 +86,22 @@ class GeolocationPage extends React.Component<{}, GeolocationPageState> {
         },
       });
     });
-  }
+  };
 
-  ionViewDidLeave() {
-    Geolocation.clearWatch({ id: this.watchId });
-  }
+  endWatch = async () => {
+    await Geolocation.clearWatch({ id: this.watchId });
+    this.setState({ currentLocation: null });
+  };
+
+  checkPermissions = async () => {
+    const permissionStates = await Geolocation.checkPermissions();
+    alert(`Permissions are:\nlocation = ${permissionStates.location}`);
+  };
+
+  requestPermissions = async () => {
+    const permissionStates = await Geolocation.requestPermissions();
+    alert(`Permissions are:\nlocation = ${permissionStates.location}`);
+  };
 
   render() {
     const { currentLocation, initialLocation } = this.state;
@@ -100,8 +118,18 @@ class GeolocationPage extends React.Component<{}, GeolocationPageState> {
         </IonHeader>
         <IonContent>
           <IonCard>
+            <IonCardContent>
+              <IonButton expand="block" onClick={this.checkPermissions}>
+                Check Permissions
+              </IonButton>
+              <IonButton expand="block" onClick={this.requestPermissions}>
+                Request Permissions
+              </IonButton>
+            </IonCardContent>
+          </IonCard>
+          <IonCard>
             <IonCardHeader>
-              <IonCardTitle>Initial Location</IonCardTitle>
+              <IonCardTitle>Location</IonCardTitle>
             </IonCardHeader>
             <IonCardContent>
               {initialLocation != null ? (
@@ -127,9 +155,10 @@ class GeolocationPage extends React.Component<{}, GeolocationPageState> {
                       : '-'}
                   </li>
                 </ul>
-              ) : (
-                <p>Determining location...</p>
-              )}
+              ) : null}
+              <IonButton expand="block" onClick={this.getLocation}>
+                Get Location
+              </IonButton>
             </IonCardContent>
           </IonCard>
           <IonCard>
@@ -138,33 +167,41 @@ class GeolocationPage extends React.Component<{}, GeolocationPageState> {
             </IonCardHeader>
             <IonCardContent>
               {currentLocation != null ? (
-                <ul>
-                  <li>
-                    Timestamp:{' '}
-                    {currentLocation.timestamp
-                      ? new Date(currentLocation.timestamp).toISOString()
-                      : '-'}
-                  </li>
-                  <li>Latitude: {currentLocation.latitude}</li>
-                  <li>Longitude: {currentLocation.longitude}</li>
-                  <li>Altitude: {currentLocation.altitude}</li>
-                  <li>
-                    Heading:{' '}
-                    {currentLocation.heading ? currentLocation.heading : '-'}
-                  </li>
-                  <li>
-                    Speed: {currentLocation.speed ? currentLocation.speed : '-'}
-                  </li>
-                  <li>Accuracy: {currentLocation.accuracy}</li>
-                  <li>
-                    Altitude Accuracy:{' '}
-                    {currentLocation.altitudeAccuracy
-                      ? currentLocation.altitudeAccuracy
-                      : '-'}
-                  </li>
-                </ul>
+                [
+                  <ul>
+                    <li>
+                      Timestamp:{' '}
+                      {currentLocation.timestamp
+                        ? new Date(currentLocation.timestamp).toISOString()
+                        : '-'}
+                    </li>
+                    <li>Latitude: {currentLocation.latitude}</li>
+                    <li>Longitude: {currentLocation.longitude}</li>
+                    <li>Altitude: {currentLocation.altitude}</li>
+                    <li>
+                      Heading:{' '}
+                      {currentLocation.heading ? currentLocation.heading : '-'}
+                    </li>
+                    <li>
+                      Speed:{' '}
+                      {currentLocation.speed ? currentLocation.speed : '-'}
+                    </li>
+                    <li>Accuracy: {currentLocation.accuracy}</li>
+                    <li>
+                      Altitude Accuracy:{' '}
+                      {currentLocation.altitudeAccuracy
+                        ? currentLocation.altitudeAccuracy
+                        : '-'}
+                    </li>
+                  </ul>,
+                  <IonButton expand="block" onClick={this.endWatch}>
+                    Stop Watching Location
+                  </IonButton>,
+                ]
               ) : (
-                <p>Determining location...</p>
+                <IonButton expand="block" onClick={this.startWatch}>
+                  Watch Location
+                </IonButton>
               )}
             </IonCardContent>
           </IonCard>
