@@ -2,7 +2,6 @@ import React from 'react';
 
 import ActionSheetPage from './pages/ActionSheet';
 import AppPage from './pages/App';
-import BackgroundTask from './pages/BackgroundTask';
 import Browser from './pages/Browser';
 import CameraPage from './pages/Camera';
 import ClipboardPage from './pages/Clipboard';
@@ -16,7 +15,6 @@ import KeyboardPage from './pages/Keyboard';
 import LocalNotifications from './pages/LocalNotifications';
 import MotionPage from './pages/Motion';
 import NetworkPage from './pages/Network';
-import Permissions from './pages/Permissions';
 import PushNotifications from './pages/PushNotifications';
 import ScreenReader from './pages/ScreenReader';
 import SharePage from './pages/Share';
@@ -25,7 +23,6 @@ import StatusBarPage from './pages/StatusBar';
 import Storage from './pages/Storage';
 import TextZoom from './pages/TextZoom';
 import ToastPage from './pages/Toast';
-import WebView from './pages/WebView';
 
 interface Page {
   readonly url: string;
@@ -54,16 +51,6 @@ const routes: Page[] = [
       </span>
     ),
     component: AppPage,
-  },
-  {
-    title: 'Background Task',
-    url: '/background-task',
-    icon: (
-      <span role="img" aria-label="hammer and wrench">
-        🛠
-      </span>
-    ),
-    component: BackgroundTask,
   },
   {
     title: 'Browser',
@@ -196,16 +183,6 @@ const routes: Page[] = [
     component: NetworkPage,
   },
   {
-    title: 'Permissions',
-    url: '/permissions',
-    icon: (
-      <span role="img" aria-label="permissions">
-        🍿
-      </span>
-    ),
-    component: Permissions,
-  },
-  {
     title: 'Push Notifications',
     url: '/push-notifications',
     icon: (
@@ -284,16 +261,6 @@ const routes: Page[] = [
       </span>
     ),
     component: ToastPage,
-  },
-  {
-    title: 'WebView',
-    url: '/webview',
-    icon: (
-      <span role="img" aria-label="admission ticket">
-        🎟
-      </span>
-    ),
-    component: WebView,
   },
 ];
 
