@@ -10,7 +10,7 @@ import {
   useIonViewDidEnter,
 } from '@ionic/react';
 import React, { useState } from 'react';
-import { StatusBar, StatusBarStyle } from '@capacitor/status-bar';
+import { StatusBar, Style } from '@capacitor/status-bar';
 
 const StatusBarPage: React.FC = () => {
   const [statusbarInfoJson, setStatusbarInfoJson] = useState('');
@@ -23,19 +23,19 @@ const StatusBarPage: React.FC = () => {
 
   const changeStatusBar = async () => {
     StatusBar.setStyle({
-      style: StatusBarStyle.Default,
+      style: Style.Default,
     });
   };
 
   const changeStatusBarLight = async () => {
     StatusBar.setStyle({
-      style: StatusBarStyle.Light,
+      style: Style.Light,
     });
   };
 
   const changeStatusBarDark = async () => {
     StatusBar.setStyle({
-      style: StatusBarStyle.Dark,
+      style: Style.Dark,
     });
   };
 
