@@ -24,11 +24,14 @@ import {
 import { Formik } from 'formik';
 import React, { useEffect, useState } from 'react';
 
+import styles from './NotificationChannelsTest.module.css';
+
 type NewChannelForm = Omit<Channel, 'id'>;
 
 export default function NotificationChannelsTest() {
   const [showModal, setShowModal] = useState<boolean>(false);
   const [channelsList, setChannelsList] = useState<Channel[]>([]);
+  const [notSupported, setNotSupported] = useState<boolean>(false);
 
   const listNotificationChannels = async () => {
     try {
@@ -36,6 +39,9 @@ export default function NotificationChannelsTest() {
       setChannelsList(channels.channels);
     } catch (e) {
       console.error('listChannels error', e);
+      if (e.code === 'UNIMPLEMENTED') {
+        setNotSupported(true);
+      }
     }
   };
 
@@ -70,7 +76,12 @@ export default function NotificationChannelsTest() {
   }, []);
 
   return (
-    <div>
+    <div className={styles.container}>
+      {notSupported && (
+        <div className={styles.notSupported}>
+          <h2>Not supported on iOS</h2>
+        </div>
+      )}
       <section>
         <IonButton onClick={listNotificationChannels} expand="block">
           Refresh Notification Channels
