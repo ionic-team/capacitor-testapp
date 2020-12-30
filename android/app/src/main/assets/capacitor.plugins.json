@@ -16,6 +16,10 @@
 		"classpath": "com.capacitorjs.plugins.browser.BrowserPlugin"
 	},
 	{
+		"pkg": "@capacitor/camera",
+		"classpath": "com.capacitorjs.plugins.camera.CameraPlugin"
+	},
+	{
 		"pkg": "@capacitor/clipboard",
 		"classpath": "com.capacitorjs.plugins.clipboard.ClipboardPlugin"
 	},
@@ -26,6 +30,10 @@
 	{
 		"pkg": "@capacitor/dialog",
 		"classpath": "com.capacitorjs.plugins.dialog.DialogPlugin"
+	},
+	{
+		"pkg": "@capacitor/filesystem",
+		"classpath": "com.capacitorjs.plugins.filesystem.FilesystemPlugin"
 	},
 	{
 		"pkg": "@capacitor/haptics",
@@ -52,6 +60,10 @@
 		"classpath": "com.capacitorjs.plugins.share.SharePlugin"
 	},
 	{
+		"pkg": "@capacitor/splash-screen",
+		"classpath": "com.capacitorjs.plugins.splashscreen.SplashScreenPlugin"
+	},
+	{
 		"pkg": "@capacitor/status-bar",
 		"classpath": "com.capacitorjs.plugins.statusbar.StatusBarPlugin"
 	},
@@ -66,17 +78,5 @@
 	{
 		"pkg": "@capacitor/toast",
 		"classpath": "com.capacitorjs.plugins.toast.ToastPlugin"
-	},
-	{
-		"pkg": "@capacitor/splash-screen",
-		"classpath": "com.capacitorjs.plugins.splashscreen.SplashScreenPlugin"
-	},
-	{
-		"pkg": "@capacitor/camera",
-		"classpath": "com.capacitorjs.plugins.camera.CameraPlugin"
-	},
-	{
-		"pkg": "@capacitor/filesystem",
-		"classpath": "com.capacitorjs.plugins.filesystem.FilesystemPlugin"
 	}
 ]
