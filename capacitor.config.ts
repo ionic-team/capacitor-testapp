@@ -1,3 +1,5 @@
+/// <reference types="@capacitor/splash-screen" />
+
 import { CapacitorConfig } from '@capacitor/cli';
 
 const config: CapacitorConfig = {
