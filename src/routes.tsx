@@ -2,7 +2,6 @@ import React from 'react';
 
 import ActionSheetPage from './pages/ActionSheet';
 import AppPage from './pages/App';
-import BackgroundTask from './pages/BackgroundTask';
 import Browser from './pages/Browser';
 import CameraPage from './pages/Camera';
 import ClipboardPage from './pages/Clipboard';
@@ -10,13 +9,12 @@ import Console from './pages/Console';
 import DevicePage from './pages/Device';
 import DialogPage from './pages/Dialog';
 import FilesystemPage from './pages/Filesystem';
-import Geolocation from './pages/Geolocation';
+import GeolocationPage from './pages/Geolocation';
 import HapticsPage from './pages/Haptics';
 import KeyboardPage from './pages/Keyboard';
 import LocalNotifications from './pages/LocalNotifications';
 import MotionPage from './pages/Motion';
 import NetworkPage from './pages/Network';
-import Permissions from './pages/Permissions';
 import PushNotifications from './pages/PushNotifications';
 import ScreenReader from './pages/ScreenReader';
 import SharePage from './pages/Share';
@@ -25,16 +23,15 @@ import StatusBarPage from './pages/StatusBar';
 import Storage from './pages/Storage';
 import TextZoom from './pages/TextZoom';
 import ToastPage from './pages/Toast';
-import WebView from './pages/WebView';
 
-interface AppPage {
+interface Page {
   readonly url: string;
   readonly title: string;
   readonly icon: JSX.Element;
   readonly component: typeof React.Component | React.FC;
 }
 
-const routes: AppPage[] = [
+const routes: Page[] = [
   {
     title: 'Action Sheet',
     url: '/action-sheet',
@@ -54,16 +51,6 @@ const routes: AppPage[] = [
       </span>
     ),
     component: AppPage,
-  },
-  {
-    title: 'Background Task',
-    url: '/background-task',
-    icon: (
-      <span role="img" aria-label="hammer and wrench">
-        🛠
-      </span>
-    ),
-    component: BackgroundTask,
   },
   {
     title: 'Browser',
@@ -143,7 +130,7 @@ const routes: AppPage[] = [
         🌎
       </span>
     ),
-    component: Geolocation,
+    component: GeolocationPage,
   },
   {
     title: 'Haptics',
@@ -194,16 +181,6 @@ const routes: AppPage[] = [
       </span>
     ),
     component: NetworkPage,
-  },
-  {
-    title: 'Permissions',
-    url: '/permissions',
-    icon: (
-      <span role="img" aria-label="permissions">
-        🍿
-      </span>
-    ),
-    component: Permissions,
   },
   {
     title: 'Push Notifications',
@@ -284,16 +261,6 @@ const routes: AppPage[] = [
       </span>
     ),
     component: ToastPage,
-  },
-  {
-    title: 'WebView',
-    url: '/webview',
-    icon: (
-      <span role="img" aria-label="admission ticket">
-        🎟
-      </span>
-    ),
-    component: WebView,
   },
 ];
 
