@@ -14,9 +14,36 @@ import {
   useIonViewDidEnter,
   IonButton,
 } from '@ionic/react';
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
+import LocalNotificationTest from '../components/LocalNotificationTest';
+
+import './LocalNotifications.css';
 
 const LocalNotificationsPage: React.FC = () => {
+  const [hasPermission, setHasPermission] = useState<PermissionState>('denied');
+
+  const ensurePermissions = async (): Promise<PermissionState> => {
+    try {
+      let { display } = await LocalNotifications.checkPermissions();
+      console.log('LocalNotifications display permission:', display);
+
+      if (display === 'prompt') {
+        ({ display } = await LocalNotifications.requestPermissions());
+      }
+
+      if (display !== 'granted') {
+        throw new Error('User denied permissions!');
+      }
+
+      return display
+    } catch (e) {
+      console.log('permissions error');
+      console.error(e);
+
+      return 'denied';
+    }
+  };
+  
   const registerActions = async () => {
     try {
       await LocalNotifications.registerActionTypes({
@@ -75,22 +102,7 @@ const LocalNotificationsPage: React.FC = () => {
 
   const generateId = (): number => Math.floor(Math.random() * 10);
 
-  const ensurePermissions = async () => {
-    try {
-      let { display } = await LocalNotifications.checkPermissions();
-      console.log('LocalNotifications display permission:', display);
-
-      if (display === 'prompt') {
-        ({ display } = await LocalNotifications.requestPermissions());
-      }
-
-      if (display !== 'granted') {
-        throw new Error('User denied permissions!');
-      }
-    } catch (e) {
-      console.error(e);
-    }
-  };
+  
 
   const createNotification = (): LocalNotificationSchema => {
     return {
@@ -106,12 +118,7 @@ const LocalNotificationsPage: React.FC = () => {
     };
   };
 
-  const scheduleNow = async () => {
-    const notifications: LocalNotificationSchema[] = [createNotification()];
-    const result = await LocalNotifications.schedule({ notifications });
-
-    console.log('schedule result:', result);
-  };
+  
 
   const scheduleNowWithIcon = async () => {
     const notifications: LocalNotificationSchema[] = [
@@ -169,7 +176,8 @@ const LocalNotificationsPage: React.FC = () => {
   };
 
   useIonViewDidEnter(async () => {
-    await ensurePermissions();
+     const permissions = await ensurePermissions();
+     setHasPermission(permissions);
   });
 
   return (
@@ -183,24 +191,7 @@ const LocalNotificationsPage: React.FC = () => {
         </IonToolbar>
       </IonHeader>
       <IonContent>
-        <IonButton expand="block" onClick={scheduleNow}>
-          Schedule now
-        </IonButton>
-        <IonButton expand="block" onClick={scheduleNowWithIcon}>
-          Schedule now (custom icon on Android)
-        </IonButton>
-        <IonButton expand="block" onClick={scheduleOnce}>
-          Schedule in 10s
-        </IonButton>
-        <IonButton expand="block" onClick={scheduleEveryMinute}>
-          Schedule every minute
-        </IonButton>
-        <IonButton expand="block" onClick={scheduleEvery90Seconds}>
-          Schedule every 90 seconds
-        </IonButton>
-        <IonButton expand="block" onClick={cancelPending}>
-          Cancel Pending Notifications
-        </IonButton>
+        <LocalNotificationTest permissions={hasPermission}  />
       </IonContent>
     </IonPage>
   );
