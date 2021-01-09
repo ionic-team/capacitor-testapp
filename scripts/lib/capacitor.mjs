@@ -11,6 +11,7 @@ export const PLUGIN_PACKAGES = [
   'device',
   'dialog',
   'filesystem',
+  'geolocation',
   'haptics',
   'keyboard',
   'motion',
