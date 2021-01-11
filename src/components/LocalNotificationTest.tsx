@@ -70,15 +70,12 @@ export default function LocalNotificationTest({ permissions }: Props) {
 
   const scheduleOnce = async () => {
     const tenSecondsFromNow = new Date(new Date().getTime() + 10000);
-    console.log(tenSecondsFromNow);
     const notifications: LocalNotificationSchema[] = [
       {
         ...createNotification(),
         schedule: { at: tenSecondsFromNow },
       },
     ];
-
-    // console.log(notifications[0]);
 
     const result = await LocalNotifications.schedule({ notifications });
     console.log('schedule result:', result);
@@ -116,10 +113,14 @@ export default function LocalNotificationTest({ permissions }: Props) {
 
   const cancelPending = async () => {
     await getPendingNotifications();
-    console.log('pending:', pendingNotifications);
     await LocalNotifications.cancel(pendingNotifications);
     await getPendingNotifications();
   };
+
+  const refreshPending = async () => {
+    await getPendingNotifications();
+  };
+
   useEffect(() => {
     if (permissions === 'granted') {
       getPendingNotifications();
@@ -173,6 +174,9 @@ export default function LocalNotificationTest({ permissions }: Props) {
       </IonButton>
       <IonButton expand="block" onClick={cancelPending}>
         Cancel Pending Notifications
+      </IonButton>
+      <IonButton expand="block" onClick={refreshPending}>
+        Refresh Pending Notifications
       </IonButton>
     </div>
   );
