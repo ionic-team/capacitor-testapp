@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react';
 import cx from 'classnames';
 import {
   IonButton,
-  IonContent,
   IonItem,
   IonItemOption,
   IonItemOptions,
@@ -94,7 +93,7 @@ export default function NotificationTest({ permissions }: Props) {
     return () => {
       PushNotifications.removeAllListeners();
     };
-  }, []);
+  }, [permissions]);
 
   return (
     <div>
