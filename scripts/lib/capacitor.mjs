@@ -22,4 +22,5 @@ export const PLUGIN_PACKAGES = [
   'storage',
   'text-zoom',
   'toast',
+  'push-notifications',
 ];
