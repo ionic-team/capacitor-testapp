@@ -1,4 +1,4 @@
-package com.capacitorjs.testapp;
+package com.capacitorjs.app.testapp;
 
 import com.getcapacitor.BridgeActivity;
 
