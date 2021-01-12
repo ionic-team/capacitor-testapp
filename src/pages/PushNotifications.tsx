@@ -75,7 +75,7 @@ const PushNotificationsPage: React.FC = () => {
       <IonContent>
         <NotificationsTest permissions={hasPermission} />
         <br />
-        <NotificationChannelsTest />
+        <NotificationChannelsTest notificationType="push" />
       </IonContent>
     </IonPage>
   );

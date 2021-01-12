@@ -48,16 +48,16 @@
 		"classpath": "com.capacitorjs.plugins.keyboard.KeyboardPlugin"
 	},
 	{
-		"pkg": "@capacitor/local-notifications",
-		"classpath": "com.capacitorjs.plugins.localnotifications.LocalNotificationsPlugin"
-	},
-	{
 		"pkg": "@capacitor/network",
 		"classpath": "com.capacitorjs.plugins.network.NetworkPlugin"
 	},
 	{
 		"pkg": "@capacitor/push-notifications",
 		"classpath": "com.capacitorjs.plugins.pushnotifications.PushNotificationsPlugin"
+	},
+	{
+		"pkg": "@capacitor/local-notifications",
+		"classpath": "com.capacitorjs.plugins.localnotifications.LocalNotificationsPlugin"
 	},
 	{
 		"pkg": "@capacitor/screen-reader",

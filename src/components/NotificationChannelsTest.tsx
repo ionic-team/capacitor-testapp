@@ -1,5 +1,7 @@
 import { PushNotifications } from '@capacitor/push-notifications';
-import { Channel } from '@capacitor/push-notifications/dist/esm/definitions';
+import { LocalNotifications } from '@capacitor/local-notifications';
+import { Channel as PushNotificationChannel } from '@capacitor/push-notifications/dist/esm/definitions';
+import { Channel as LocalNotificationChannel } from '@capacitor/local-notifications/dist/esm/definitions';
 import {
   IonButton,
   IonContent,
@@ -26,17 +28,31 @@ import React, { useEffect, useState } from 'react';
 
 import styles from './NotificationChannelsTest.module.css';
 
-type NewChannelForm = Omit<Channel, 'id'>;
+type NewChannelForm = Omit<
+  PushNotificationChannel | LocalNotificationChannel,
+  'id'
+>;
 
-export default function NotificationChannelsTest() {
+interface Props {
+  notificationType: 'local' | 'push';
+}
+
+export default function NotificationChannelsTest({ notificationType }: Props) {
   const [showModal, setShowModal] = useState<boolean>(false);
-  const [channelsList, setChannelsList] = useState<Channel[]>([]);
+  const [channelsList, setChannelsList] = useState<
+    PushNotificationChannel[] | LocalNotificationChannel[]
+  >([]);
   const [notSupported, setNotSupported] = useState<boolean>(false);
 
   const listNotificationChannels = async () => {
     try {
-      const channels = await PushNotifications.listChannels();
-      setChannelsList(channels.channels);
+      if (notificationType === 'push') {
+        const channels = await PushNotifications.listChannels();
+        setChannelsList(channels.channels);
+      } else {
+        const channels = await LocalNotifications.listChannels();
+        setChannelsList(channels.channels);
+      }
     } catch (e) {
       console.error('listChannels error', e);
       if (e.code === 'UNIMPLEMENTED') {
@@ -47,23 +63,39 @@ export default function NotificationChannelsTest() {
 
   const createNotificationChannel = async (newChannel: NewChannelForm) => {
     try {
-      const channel: Channel = {
-        ...newChannel,
-        id: newChannel.name,
-      };
-
-      console.log('new channel', channel);
-      await PushNotifications.createChannel(channel);
+      if (notificationType === "push") {
+        const channel: PushNotificationChannel = {
+          ...newChannel,
+          id: newChannel.name,
+        };
+  
+        console.log('new channel', channel);
+        await PushNotifications.createChannel(channel);
+      } else {
+        const channel: LocalNotificationChannel = {
+          ...newChannel,
+          id: newChannel.name,
+        };
+  
+        console.log('new channel', channel);
+        await LocalNotifications.createChannel(channel);        
+      }
       await listNotificationChannels();
+      
     } catch (e) {
       console.log('createChannel error');
       console.error(e);
     }
   };
 
-  const deleteNotificationChannel = async (channel: Channel) => {
+  const deleteNotificationChannel = async (channel: PushNotificationChannel | LocalNotificationChannel) => {
     try {
-      await PushNotifications.deleteChannel(channel);
+      if (notificationType === "push") {
+        await PushNotifications.deleteChannel(channel);
+      } else {
+        await LocalNotifications.deleteChannel(channel);
+      }
+      
       await listNotificationChannels();
     } catch (e) {
       console.log('createChannel error');
