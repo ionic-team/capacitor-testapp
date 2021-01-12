@@ -10,6 +10,9 @@ const config: CapacitorConfig = {
     SplashScreen: {
       launchShowDuration: 0,
     },
+    PushNotifications: {
+      presentationOptions: ["alert", "sound"]
+    }
   },
 };
 
