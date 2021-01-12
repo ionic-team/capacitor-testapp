@@ -1,0 +1,46 @@
+{
+  "project_info": {
+    "project_number": "500972294356",
+    "project_id": "capacitor-testapp",
+    "storage_bucket": "capacitor-testapp.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:500972294356:android:85f74ddac9a71951beeb41",
+        "android_client_info": {
+          "package_name": "com.capacitorjs.testapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "500972294356-4c66s2ndbufk97cvicj5vnn08va4r1pi.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDp29rygBDnDPWmIn9Kdah8gXCK8WZLiZc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "500972294356-4c66s2ndbufk97cvicj5vnn08va4r1pi.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "500972294356-sjevv6tti6h5btovej4sasri5590ardb.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.capacitor.testapp"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

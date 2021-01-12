@@ -11,6 +11,7 @@ export const PLUGIN_PACKAGES = [
   'device',
   'dialog',
   'filesystem',
+  'geolocation',
   'haptics',
   'keyboard',
   'motion',
@@ -22,4 +23,5 @@ export const PLUGIN_PACKAGES = [
   'storage',
   'text-zoom',
   'toast',
+  'push-notifications',
 ];

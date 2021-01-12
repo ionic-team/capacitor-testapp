@@ -1,3 +1,4 @@
+import { PushNotifications } from '@capacitor/push-notifications';
 import {
   IonButtons,
   IonContent,
@@ -6,10 +7,61 @@ import {
   IonMenuButton,
   IonTitle,
   IonToolbar,
+  useIonViewDidEnter,
+  useIonViewWillLeave,
 } from '@ionic/react';
-import React from 'react';
 
-const PushNotifications: React.FC = () => {
+import React, { useState } from 'react';
+
+import './PushNotifications.css';
+import { PermissionState } from '@capacitor/core';
+import NotificationsTest from '../components/NotificationsTest';
+import NotificationChannelsTest from '../components/NotificationChannelsTest';
+
+const PushNotificationsPage: React.FC = () => {
+  const [hasPermission, setHasPermission] = useState<PermissionState>('denied');
+
+  const ensurePermissions = async (): Promise<PermissionState> => {
+    try {
+      let { receive } = await PushNotifications.checkPermissions();
+      console.log('PushNotifications receive permission:', receive);
+
+      if (receive === 'prompt') {
+        ({ receive } = await PushNotifications.requestPermissions());
+      }
+
+      if (receive !== 'granted') {
+        throw new Error('User denied permissions!');
+      }
+
+      return receive;
+    } catch (e) {
+      console.log('permissions error');
+      console.error(e);
+
+      return 'denied';
+    }
+  };
+
+  const register = async () => {
+    try {
+      await PushNotifications.register();
+    } catch (e) {
+      console.log('push notification registration error');
+      console.error(e);
+    }
+  };
+
+  useIonViewDidEnter(async () => {
+    const hasPermission = await ensurePermissions();
+    setHasPermission(hasPermission);
+    await register();
+  });
+
+  useIonViewWillLeave(() => {
+    PushNotifications.removeAllListeners();
+  });
+
   return (
     <IonPage>
       <IonHeader>
@@ -20,9 +72,13 @@ const PushNotifications: React.FC = () => {
           <IonTitle>Push Notifications</IonTitle>
         </IonToolbar>
       </IonHeader>
-      <IonContent></IonContent>
+      <IonContent>
+        <NotificationsTest permissions={hasPermission} />
+        <br />
+        <NotificationChannelsTest />
+      </IonContent>
     </IonPage>
   );
 };
 
-export default PushNotifications;
+export default PushNotificationsPage;
