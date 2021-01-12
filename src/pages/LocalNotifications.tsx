@@ -94,9 +94,21 @@ const LocalNotificationsPage: React.FC = () => {
     }
   };
 
+  const unRegisterListeners = async () => {
+    try {     
+      await LocalNotifications.removeAllListeners();
+    } catch (e) {
+      console.error(e);
+    }
+  }
+
   useEffect(() => {
     registerActions();
     registerListeners();
+
+    return () => {
+      unRegisterListeners();
+    }
   }, []);
 
   useIonViewDidEnter(async () => {

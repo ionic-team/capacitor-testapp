@@ -157,27 +157,29 @@ export default function LocalNotificationTest({ permissions }: Props) {
         )}
       </IonList>
       <br />
-      <IonButton expand="block" onClick={scheduleNow}>
-        Schedule now
-      </IonButton>
-      <IonButton expand="block" onClick={scheduleNowWithIcon}>
-        Schedule now (custom icon on Android)
-      </IonButton>
-      <IonButton expand="block" onClick={scheduleOnce}>
-        Schedule in 10s
-      </IonButton>
-      <IonButton expand="block" onClick={scheduleEveryMinute}>
-        Schedule every minute
-      </IonButton>
-      <IonButton expand="block" onClick={scheduleEvery90Seconds}>
-        Schedule every 90 seconds
-      </IonButton>
-      <IonButton expand="block" onClick={cancelPending}>
-        Cancel Pending Notifications
-      </IonButton>
-      <IonButton expand="block" onClick={refreshPending}>
-        Refresh Pending Notifications
-      </IonButton>
+      <section>
+        <IonButton expand="block" onClick={scheduleNow}>
+          Schedule now
+        </IonButton>
+        <IonButton expand="block" onClick={scheduleNowWithIcon}>
+          Schedule now (custom icon on Android)
+        </IonButton>
+        <IonButton expand="block" onClick={scheduleOnce}>
+          Schedule in 10s
+        </IonButton>
+        <IonButton expand="block" onClick={scheduleEveryMinute}>
+          Schedule every minute
+        </IonButton>
+        <IonButton expand="block" onClick={scheduleEvery90Seconds}>
+          Schedule every 90 seconds
+        </IonButton>
+        <IonButton expand="block" onClick={cancelPending}>
+          Cancel Pending Notifications
+        </IonButton>
+        <IonButton expand="block" onClick={refreshPending}>
+          Refresh Pending Notifications
+        </IonButton>
+      </section>
     </div>
   );
 }
