@@ -1,7 +1,5 @@
 import { ExceptionCode } from '@capacitor/core';
-import {
-  LocalNotifications,
-} from '@capacitor/local-notifications';
+import { LocalNotifications } from '@capacitor/local-notifications';
 import {
   IonButtons,
   IonContent,
@@ -10,7 +8,7 @@ import {
   IonMenuButton,
   IonTitle,
   IonToolbar,
-  useIonViewDidEnter
+  useIonViewDidEnter,
 } from '@ionic/react';
 import React, { useEffect, useState } from 'react';
 import LocalNotificationTest from '../components/LocalNotificationTest';
@@ -34,7 +32,7 @@ const LocalNotificationsPage: React.FC = () => {
         throw new Error('User denied permissions!');
       }
 
-      return display
+      return display;
     } catch (e) {
       console.log('permissions error');
       console.error(e);
@@ -42,7 +40,7 @@ const LocalNotificationsPage: React.FC = () => {
       return 'denied';
     }
   };
-  
+
   const registerActions = async () => {
     try {
       await LocalNotifications.registerActionTypes({
@@ -95,12 +93,12 @@ const LocalNotificationsPage: React.FC = () => {
   };
 
   const unRegisterListeners = async () => {
-    try {     
+    try {
       await LocalNotifications.removeAllListeners();
     } catch (e) {
       console.error(e);
     }
-  }
+  };
 
   useEffect(() => {
     registerActions();
@@ -108,12 +106,12 @@ const LocalNotificationsPage: React.FC = () => {
 
     return () => {
       unRegisterListeners();
-    }
+    };
   }, []);
 
   useIonViewDidEnter(async () => {
-     const permissions = await ensurePermissions();
-     setHasPermission(permissions);
+    const permissions = await ensurePermissions();
+    setHasPermission(permissions);
   });
 
   return (
@@ -127,8 +125,8 @@ const LocalNotificationsPage: React.FC = () => {
         </IonToolbar>
       </IonHeader>
       <IonContent>
-        <LocalNotificationTest permissions={hasPermission}  />
-        <br/>
+        <LocalNotificationTest permissions={hasPermission} />
+        <br />
         <NotificationChannelsTest notificationType="local" />
       </IonContent>
     </IonPage>

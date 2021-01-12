@@ -63,12 +63,12 @@ export default function NotificationChannelsTest({ notificationType }: Props) {
 
   const createNotificationChannel = async (newChannel: NewChannelForm) => {
     try {
-      if (notificationType === "push") {
+      if (notificationType === 'push') {
         const channel: PushNotificationChannel = {
           ...newChannel,
           id: newChannel.name,
         };
-  
+
         console.log('new channel', channel);
         await PushNotifications.createChannel(channel);
       } else {
@@ -76,26 +76,27 @@ export default function NotificationChannelsTest({ notificationType }: Props) {
           ...newChannel,
           id: newChannel.name,
         };
-  
+
         console.log('new channel', channel);
-        await LocalNotifications.createChannel(channel);        
+        await LocalNotifications.createChannel(channel);
       }
       await listNotificationChannels();
-      
     } catch (e) {
       console.log('createChannel error');
       console.error(e);
     }
   };
 
-  const deleteNotificationChannel = async (channel: PushNotificationChannel | LocalNotificationChannel) => {
+  const deleteNotificationChannel = async (
+    channel: PushNotificationChannel | LocalNotificationChannel,
+  ) => {
     try {
-      if (notificationType === "push") {
+      if (notificationType === 'push') {
         await PushNotifications.deleteChannel(channel);
       } else {
         await LocalNotifications.deleteChannel(channel);
       }
-      
+
       await listNotificationChannels();
     } catch (e) {
       console.log('createChannel error');
