@@ -8,7 +8,6 @@ import {
   IonTitle,
   IonToolbar,
   useIonViewDidEnter,
-  useIonViewWillLeave,
 } from '@ionic/react';
 
 import React, { useState } from 'react';

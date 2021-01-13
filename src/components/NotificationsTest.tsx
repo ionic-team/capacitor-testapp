@@ -98,7 +98,6 @@ export default function NotificationTest({ permissions }: Props) {
     if (permissions === 'granted') {
       getDeliveredNotifications();
     }
-
   }, [permissions]);
 
   useEffect(() => {
