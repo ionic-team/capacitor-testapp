@@ -24,7 +24,7 @@ import {
 } from '@ionic/react';
 
 import { Formik } from 'formik';
-import React, { useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 
 import styles from './NotificationChannelsTest.module.css';
 
@@ -44,7 +44,7 @@ export default function NotificationChannelsTest({ notificationType }: Props) {
   >([]);
   const [notSupported, setNotSupported] = useState<boolean>(false);
 
-  const listNotificationChannels = async () => {
+  const listNotificationChannels = useCallback(async () => {
     try {
       if (notificationType === 'push') {
         const channels = await PushNotifications.listChannels();
@@ -59,7 +59,7 @@ export default function NotificationChannelsTest({ notificationType }: Props) {
         setNotSupported(true);
       }
     }
-  };
+  }, [notificationType]);
 
   const createNotificationChannel = async (newChannel: NewChannelForm) => {
     try {
@@ -106,7 +106,7 @@ export default function NotificationChannelsTest({ notificationType }: Props) {
 
   useEffect(() => {
     listNotificationChannels();
-  }, []);
+  }, [listNotificationChannels]);
 
   return (
     <div className={styles.container}>
