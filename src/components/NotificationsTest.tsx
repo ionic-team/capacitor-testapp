@@ -62,6 +62,15 @@ export default function NotificationTest({ permissions }: Props) {
     }
   };
 
+  const unRegisterListeners = () => {
+    try {
+      PushNotifications.removeAllListeners();
+    } catch (e) {
+      console.log('removeAllListeners error');
+      console.error(e);
+    }
+  };
+
   useEffect(() => {
     PushNotifications.addListener('registration', token => {
       console.info('Registration token: ', token);
@@ -89,11 +98,13 @@ export default function NotificationTest({ permissions }: Props) {
     if (permissions === 'granted') {
       getDeliveredNotifications();
     }
-
-    return () => {
-      PushNotifications.removeAllListeners();
-    };
   }, [permissions]);
+
+  useEffect(() => {
+    return () => {
+      unRegisterListeners();
+    };
+  }, []);
 
   return (
     <div>
