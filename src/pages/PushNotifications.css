@@ -1,0 +1,20 @@
+section {
+  margin: 1em;
+}
+
+.permissionStatus {
+  display: block;
+  padding: 20px;
+  background-color: gray;
+  color: black;
+  text-align: center;
+  margin-bottom: 15px;
+}
+
+.permissionStatus.prompt {
+  background-color: rgb(231, 231, 49);
+}
+
+.permissionStatus.denied {
+  background-color: rgb(102, 6, 6);
+}

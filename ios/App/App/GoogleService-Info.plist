@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>500972294356-97vuqlsphmmve3grclbol5g4iemms2gd.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.500972294356-97vuqlsphmmve3grclbol5g4iemms2gd</string>
+	<key>API_KEY</key>
+	<string>AIzaSyAACu-4y0rFUcX7a9pQiffymVVX2HwKm8I</string>
+	<key>GCM_SENDER_ID</key>
+	<string>500972294356</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.capacitorjs.app.testapp</string>
+	<key>PROJECT_ID</key>
+	<string>capacitor-testapp</string>
+	<key>STORAGE_BUCKET</key>
+	<string>capacitor-testapp.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:500972294356:ios:4f8cc8df56c918fdbeeb41</string>
+</dict>
+</plist>

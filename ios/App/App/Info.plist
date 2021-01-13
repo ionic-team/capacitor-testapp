@@ -27,7 +27,7 @@
 			<string>com.getcapacitor.capacitor</string>
 			<key>CFBundleURLSchemes</key>
 			<array>
-				<string>com.capacitorjs.testapp</string>
+				<string>com.capacitorjs.app.testapp</string>
 			</array>
 		</dict>
 	</array>
