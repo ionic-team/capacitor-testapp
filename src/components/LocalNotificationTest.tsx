@@ -125,7 +125,7 @@ export default function LocalNotificationTest({ permissions }: Props) {
     if (permissions === 'granted') {
       getPendingNotifications();
     }
-  }, []);
+  }, [permissions]);
   return (
     <div>
       <section>
