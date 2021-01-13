@@ -58,10 +58,6 @@ const PushNotificationsPage: React.FC = () => {
     await register();
   });
 
-  useIonViewWillLeave(() => {
-    PushNotifications.removeAllListeners();
-  });
-
   return (
     <IonPage>
       <IonHeader>
