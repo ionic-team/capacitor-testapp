@@ -72,7 +72,7 @@ const SharePage: React.FC = () => {
       };
       var photo = await Camera.getPhoto(options);
       let shareRet = await Share.share({
-        url: `file:///${photo.path}`,
+        url: photo.path,
       });
       console.log('Share return', shareRet);
     } catch (err) {
