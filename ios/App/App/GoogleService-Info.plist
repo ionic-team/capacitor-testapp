@@ -3,9 +3,9 @@
 <plist version="1.0">
 <dict>
 	<key>CLIENT_ID</key>
-	<string>500972294356-sjevv6tti6h5btovej4sasri5590ardb.apps.googleusercontent.com</string>
+	<string>500972294356-97vuqlsphmmve3grclbol5g4iemms2gd.apps.googleusercontent.com</string>
 	<key>REVERSED_CLIENT_ID</key>
-	<string>com.googleusercontent.apps.500972294356-sjevv6tti6h5btovej4sasri5590ardb</string>
+	<string>com.googleusercontent.apps.500972294356-97vuqlsphmmve3grclbol5g4iemms2gd</string>
 	<key>API_KEY</key>
 	<string>AIzaSyAACu-4y0rFUcX7a9pQiffymVVX2HwKm8I</string>
 	<key>GCM_SENDER_ID</key>
@@ -13,7 +13,7 @@
 	<key>PLIST_VERSION</key>
 	<string>1</string>
 	<key>BUNDLE_ID</key>
-	<string>com.capacitor.testapp</string>
+	<string>com.capacitorjs.app.testapp</string>
 	<key>PROJECT_ID</key>
 	<string>capacitor-testapp</string>
 	<key>STORAGE_BUCKET</key>
@@ -29,6 +29,6 @@
 	<key>IS_SIGNIN_ENABLED</key>
 	<true></true>
 	<key>GOOGLE_APP_ID</key>
-	<string>1:500972294356:ios:a5d7ea4688ea7c94beeb41</string>
+	<string>1:500972294356:ios:4f8cc8df56c918fdbeeb41</string>
 </dict>
 </plist>

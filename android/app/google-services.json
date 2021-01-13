@@ -7,9 +7,9 @@
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:500972294356:android:85f74ddac9a71951beeb41",
+        "mobilesdk_app_id": "1:500972294356:android:1090debb4688ba86beeb41",
         "android_client_info": {
-          "package_name": "com.capacitorjs.testapp"
+          "package_name": "com.capacitorjs.app.testapp"
         }
       },
       "oauth_client": [
@@ -31,10 +31,10 @@
               "client_type": 3
             },
             {
-              "client_id": "500972294356-sjevv6tti6h5btovej4sasri5590ardb.apps.googleusercontent.com",
+              "client_id": "500972294356-97vuqlsphmmve3grclbol5g4iemms2gd.apps.googleusercontent.com",
               "client_type": 2,
               "ios_info": {
-                "bundle_id": "com.capacitor.testapp"
+                "bundle_id": "com.capacitorjs.app.testapp"
               }
             }
           ]

@@ -8,7 +8,6 @@ import {
   IonTitle,
   IonToolbar,
   useIonViewDidEnter,
-  useIonViewWillLeave,
 } from '@ionic/react';
 
 import React, { useState } from 'react';
@@ -56,10 +55,6 @@ const PushNotificationsPage: React.FC = () => {
     const hasPermission = await ensurePermissions();
     setHasPermission(hasPermission);
     await register();
-  });
-
-  useIonViewWillLeave(() => {
-    PushNotifications.removeAllListeners();
   });
 
   return (
