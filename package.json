@@ -33,6 +33,7 @@
     "@capacitor/motion": "^0.2.0",
     "@capacitor/network": "^0.3.0",
     "@capacitor/push-notifications": "^0.2.0",
+    "@capacitor/local-notifications": "^0.0.1",
     "@capacitor/screen-reader": "^0.2.0",
     "@capacitor/share": "^0.3.0",
     "@capacitor/splash-screen": "^0.2.0",

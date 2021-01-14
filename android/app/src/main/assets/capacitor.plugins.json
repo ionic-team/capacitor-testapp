@@ -56,6 +56,10 @@
 		"classpath": "com.capacitorjs.plugins.pushnotifications.PushNotificationsPlugin"
 	},
 	{
+		"pkg": "@capacitor/local-notifications",
+		"classpath": "com.capacitorjs.plugins.localnotifications.LocalNotificationsPlugin"
+	},
+	{
 		"pkg": "@capacitor/screen-reader",
 		"classpath": "com.capacitorjs.plugins.screenreader.ScreenReaderPlugin"
 	},

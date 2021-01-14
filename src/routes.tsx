@@ -12,7 +12,7 @@ import FilesystemPage from './pages/Filesystem';
 import GeolocationPage from './pages/Geolocation';
 import HapticsPage from './pages/Haptics';
 import KeyboardPage from './pages/Keyboard';
-import LocalNotifications from './pages/LocalNotifications';
+import LocalNotificationsPage from './pages/LocalNotifications';
 import MotionPage from './pages/Motion';
 import NetworkPage from './pages/Network';
 import PushNotifications from './pages/PushNotifications';
@@ -160,7 +160,7 @@ const routes: Page[] = [
         📟
       </span>
     ),
-    component: LocalNotifications,
+    component: LocalNotificationsPage,
   },
   {
     title: 'Motion',

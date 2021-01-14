@@ -24,4 +24,5 @@ export const PLUGIN_PACKAGES = [
   'text-zoom',
   'toast',
   'push-notifications',
+  'local-notifications',
 ];
