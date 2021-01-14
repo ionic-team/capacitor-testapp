@@ -13,7 +13,7 @@ import {
 import React from 'react';
 import {
   Camera,
-  PhotoOptions,
+  ImageOptions,
   CameraSource,
   CameraResultType,
   CameraPluginPermissions,
@@ -33,7 +33,7 @@ class CameraPage extends React.Component<{}, CameraPageState> {
 
   addPhoto = async (source: CameraSource, save: boolean = false) => {
     try {
-      const options: PhotoOptions = {
+      const options: ImageOptions = {
         quality: 100,
         resultType: CameraResultType.Uri,
         source: source,

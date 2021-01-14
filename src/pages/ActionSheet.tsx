@@ -9,7 +9,7 @@ import {
   IonToolbar,
 } from '@ionic/react';
 import React from 'react';
-import { ActionSheet, ActionSheetSchemaStyle } from '@capacitor/action-sheet';
+import { ActionSheet, ActionSheetButtonStyle } from '@capacitor/action-sheet';
 
 const ActionSheetPage: React.FC = () => {
   const showActions = async () => {
@@ -25,7 +25,7 @@ const ActionSheetPage: React.FC = () => {
         },
         {
           title: 'Remove',
-          style: ActionSheetSchemaStyle.Destructive,
+          style: ActionSheetButtonStyle.Destructive,
         },
       ],
     });
