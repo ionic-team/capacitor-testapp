@@ -32,7 +32,7 @@
     "@capacitor/keyboard": "^0.3.3",
     "@capacitor/motion": "^0.1.4",
     "@capacitor/network": "^0.2.4",
-    "@capacitor/push-notifications": "^0.1.0",
+    "@capacitor/push-notifications": "^0.2.0",
     "@capacitor/local-notifications": "^0.0.1",
     "@capacitor/screen-reader": "^0.1.4",
     "@capacitor/share": "^0.2.4",

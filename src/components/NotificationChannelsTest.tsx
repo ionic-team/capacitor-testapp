@@ -1,7 +1,7 @@
 import { PushNotifications } from '@capacitor/push-notifications';
 import { LocalNotifications } from '@capacitor/local-notifications';
-import { Channel as PushNotificationChannel } from '@capacitor/push-notifications/dist/esm/definitions';
-import { Channel as LocalNotificationChannel } from '@capacitor/local-notifications/dist/esm/definitions';
+import { Channel as PushNotificationChannel } from '@capacitor/push-notifications';
+import { Channel as LocalNotificationChannel } from '@capacitor/local-notifications';
 import {
   IonButton,
   IonContent,
