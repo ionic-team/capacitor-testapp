@@ -90,8 +90,8 @@ export default function LocalNotificationTest({ permissions }: Props) {
         ...createNotification(),
         schedule: { at: tenSecondsFromNow },
         extra: {
-          "customData": "hello",
-          "customData2": 99
+          customData: 'hello',
+          customData2: 99,
         },
       },
     ];
@@ -136,8 +136,8 @@ export default function LocalNotificationTest({ permissions }: Props) {
         ...createNotification(),
         schedule: { every: 'second', count: 90 },
         extra: {
-          "customData": "hello",
-          "customData2": 99
+          customData: 'hello',
+          customData2: 99,
         },
       },
     ];
@@ -150,11 +150,13 @@ export default function LocalNotificationTest({ permissions }: Props) {
 
   const cancelPending = async () => {
     await getPendingNotifications();
-    await LocalNotifications.cancel({ notifications: pendingNotifications.notifications.map((n) => {
-      return {
-        id: n.id.toString(),
-      }
-    })});
+    await LocalNotifications.cancel({
+      notifications: pendingNotifications.notifications.map(n => {
+        return {
+          id: n.id.toString(),
+        };
+      }),
+    });
     await getPendingNotifications();
   };
 
@@ -186,8 +188,12 @@ export default function LocalNotificationTest({ permissions }: Props) {
           return (
             <IonItem>
               <IonLabel>
-                <h2>(#{notification.id}) {notification.title}</h2>
-                <div>Repeats: {notification.schedule?.repeats ? "Yes" : "No"}</div>
+                <h2>
+                  (#{notification.id}) {notification.title}
+                </h2>
+                <div>
+                  Repeats: {notification.schedule?.repeats ? 'Yes' : 'No'}
+                </div>
                 <div>Extras: {JSON.stringify(notification.extra)}</div>
                 <div>Schedule: {JSON.stringify(notification.schedule)}</div>
               </IonLabel>
