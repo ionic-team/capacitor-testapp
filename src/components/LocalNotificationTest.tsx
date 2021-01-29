@@ -150,7 +150,11 @@ export default function LocalNotificationTest({ permissions }: Props) {
 
   const cancelPending = async () => {
     await getPendingNotifications();
-    await LocalNotifications.cancel(pendingNotifications);
+    await LocalNotifications.cancel({ notifications: pendingNotifications.notifications.map((n) => {
+      return {
+        id: n.id.toString(),
+      }
+    })});
     await getPendingNotifications();
   };
 
@@ -183,7 +187,7 @@ export default function LocalNotificationTest({ permissions }: Props) {
             <IonItem>
               <IonLabel>
                 <h2>(#{notification.id}) {notification.title}</h2>
-                <div>Repeats: {notification.repeats ? "Yes" : "No"}</div>
+                <div>Repeats: {notification.schedule?.repeats ? "Yes" : "No"}</div>
                 <div>Extras: {JSON.stringify(notification.extra)}</div>
                 <div>Schedule: {JSON.stringify(notification.schedule)}</div>
               </IonLabel>
