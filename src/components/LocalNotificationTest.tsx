@@ -83,6 +83,21 @@ export default function LocalNotificationTest({ permissions }: Props) {
     getPendingNotifications();
   };
 
+  const scheduleOnceWhileIdle = async () => {
+    const tenSecondsFromNow = new Date(new Date().getTime() + 10000);
+    const notifications: LocalNotificationSchema[] = [
+      {
+        ...createNotification(),
+        schedule: { at: tenSecondsFromNow, allowWhileIdle: true },
+      },
+    ];
+
+    const result = await LocalNotifications.schedule({ notifications });
+    console.log('schedule result:', result);
+
+    getPendingNotifications();
+  };
+
   const scheduleEveryMinute = async () => {
     const notifications: LocalNotificationSchema[] = [
       {
@@ -166,6 +181,9 @@ export default function LocalNotificationTest({ permissions }: Props) {
         </IonButton>
         <IonButton expand="block" onClick={scheduleOnce}>
           Schedule in 10s
+        </IonButton>
+        <IonButton expand="block" onClick={scheduleOnceWhileIdle}>
+          Schedule in 10s (even while idle)
         </IonButton>
         <IonButton expand="block" onClick={scheduleEveryMinute}>
           Schedule every minute
