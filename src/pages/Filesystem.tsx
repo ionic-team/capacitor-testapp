@@ -148,9 +148,14 @@ const FilesystemPage: React.FC = () => {
     console.log('Rename a file into a directory');
     await writeAll('fa');
     await mkdirAll('da');
-    await Filesystem.rename({ from: 'fa', to: 'da/fb' });
+    await Filesystem.rename({
+      directory: Directory.Data,
+      from: 'fa',
+      to: 'da/fb',
+    });
     await deleteAll('da/fb');
     await rmdirAll('da');
+    console.log('rename finished');
   };
 
   // Exercise the copy call
@@ -158,9 +163,14 @@ const FilesystemPage: React.FC = () => {
     console.log('Copy a file into a directory');
     await writeAll('fa');
     await mkdirAll('da');
-    await Filesystem.copy({ from: 'fa', to: 'da/fb' });
+    await Filesystem.copy({
+      directory: Directory.Data,
+      from: 'fa',
+      to: 'da/fb',
+    });
     await deleteAll(['fa', 'da/fb']);
     await rmdirAll('da');
+    console.log('copy finished');
   };
 
   const requestPermissions = async () => {
@@ -185,6 +195,7 @@ const FilesystemPage: React.FC = () => {
   const writeAll = (paths: string | string[]) => {
     return doAll(paths, path =>
       Filesystem.writeFile({
+        directory: Directory.Data,
         path,
         data: path,
         encoding: Encoding.UTF8,
@@ -194,13 +205,19 @@ const FilesystemPage: React.FC = () => {
 
   // Delete many files
   const deleteAll = (paths: string | string[]) => {
-    return doAll(paths, path => Filesystem.deleteFile({ path }));
+    return doAll(paths, path =>
+      Filesystem.deleteFile({
+        directory: Directory.Data,
+        path,
+      }),
+    );
   };
 
   // Create many directories
   const mkdirAll = (paths: string | string[]) => {
     return doAll(paths, path =>
       Filesystem.mkdir({
+        directory: Directory.Data,
         path,
         recursive: true,
       }),
@@ -209,7 +226,12 @@ const FilesystemPage: React.FC = () => {
 
   // Remove many directories
   const rmdirAll = (paths: string | string[]) => {
-    return doAll(paths, path => Filesystem.rmdir({ path }));
+    return doAll(paths, path =>
+      Filesystem.rmdir({
+        directory: Directory.Data,
+        path,
+      }),
+    );
   };
 
   return (
