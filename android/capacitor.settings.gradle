@@ -38,14 +38,20 @@ project(':capacitor-haptics').projectDir = new File('../node_modules/@capacitor/
 include ':capacitor-keyboard'
 project(':capacitor-keyboard').projectDir = new File('../node_modules/@capacitor/keyboard/android')
 
+include ':capacitor-local-notifications'
+project(':capacitor-local-notifications').projectDir = new File('../node_modules/@capacitor/local-notifications/android')
+
+include ':capacitor-native-ui'
+project(':capacitor-native-ui').projectDir = new File('../../capacitor-native-ui/packages/core/android')
+
+include ':capacitor-native-ui-library'
+project(':capacitor-native-ui-library').projectDir = new File('../../capacitor-native-ui/packages/library/android')
+
 include ':capacitor-network'
 project(':capacitor-network').projectDir = new File('../node_modules/@capacitor/network/android')
 
 include ':capacitor-push-notifications'
 project(':capacitor-push-notifications').projectDir = new File('../node_modules/@capacitor/push-notifications/android')
-
-include ':capacitor-local-notifications'
-project(':capacitor-local-notifications').projectDir = new File('../node_modules/@capacitor/local-notifications/android')
 
 include ':capacitor-screen-reader'
 project(':capacitor-screen-reader').projectDir = new File('../node_modules/@capacitor/screen-reader/android')

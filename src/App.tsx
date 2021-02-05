@@ -1,7 +1,11 @@
 import React from 'react';
 import { Redirect, Route } from 'react-router-dom';
-import { IonApp, IonRouterOutlet, IonSplitPane } from '@ionic/react';
-import { IonReactRouter } from '@ionic/react-router';
+import {
+  IonApp,
+  IonReactRouter,
+  IonRouterOutlet,
+  IonSplitPane,
+} from '@capacitor/native-ui-library-ionic-react';
 
 import Menu from './components/Menu';
 import Home from './pages/Home';
@@ -38,7 +42,7 @@ const App: React.FC = () => (
               key={i}
               path={route.url}
               component={route.component}
-              exact={true}
+              exact={route.exact === false ? false : true}
             />
           ))}
           <Route exact path="/" render={() => <Redirect to="/home" />} />

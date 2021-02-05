@@ -14,6 +14,7 @@ import HapticsPage from './pages/Haptics';
 import KeyboardPage from './pages/Keyboard';
 import LocalNotificationsPage from './pages/LocalNotifications';
 import MotionPage from './pages/Motion';
+import NativeUI from './pages/NativeUI';
 import NetworkPage from './pages/Network';
 import PushNotifications from './pages/PushNotifications';
 import ScreenReader from './pages/ScreenReader';
@@ -29,6 +30,7 @@ interface Page {
   readonly title: string;
   readonly icon: JSX.Element;
   readonly component: typeof React.Component | React.FC;
+  readonly exact?: boolean;
 }
 
 const routes: Page[] = [
@@ -171,6 +173,17 @@ const routes: Page[] = [
       </span>
     ),
     component: MotionPage,
+  },
+  {
+    title: 'Native UI',
+    url: '/native-ui',
+    icon: (
+      <span role="img" aria-label="rainbow">
+        🌈
+      </span>
+    ),
+    component: NativeUI,
+    exact: false,
   },
   {
     title: 'Network',
