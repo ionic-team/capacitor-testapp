@@ -22,16 +22,19 @@ const AppPage: React.FC = () => {
   let urlOpenHandler: PluginListenerHandle;
   let restoredResultHandler: PluginListenerHandle;
 
-  useIonViewDidEnter(() => {
-    stateChangeHandler = App.addListener('appStateChange', (state: any) => {
+  useIonViewDidEnter(async () => {
+    console.log('start');
+    stateChangeHandler = await App.addListener('appStateChange', (state: any) => {
       console.log('App state changed', state);
     });
 
-    urlOpenHandler = App.addListener('appUrlOpen', (data: any) => {
+    console.log('stateChangeHandler', stateChangeHandler);
+
+    urlOpenHandler = await App.addListener('appUrlOpen', (data: any) => {
       alert('APP URL OPEN: ' + data.url);
     });
 
-    restoredResultHandler = App.addListener(
+    restoredResultHandler = await App.addListener(
       'appRestoredResult',
       (data: any) => {
         alert('Got restored result');

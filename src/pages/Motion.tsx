@@ -27,14 +27,14 @@ const MotionPage: React.FC = () => {
     }
   });
 
-  const listenOrientation = () => {
-    orientationHandler = Motion.addListener('orientation', event => {
+  const listenOrientation = async () => {
+    orientationHandler = await Motion.addListener('orientation', event => {
       console.log('orientation', event);
     });
   };
 
-  const listenAcceleration = () => {
-    accelHandler = Motion.addListener('accel', event => {
+  const listenAcceleration = async () => {
+    accelHandler = await Motion.addListener('accel', event => {
       console.log('accel', event);
     });
   };

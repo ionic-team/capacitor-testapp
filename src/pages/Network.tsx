@@ -31,9 +31,9 @@ class NetworkPage extends React.Component<{}, NetworkPageState> {
     };
   }
 
-  ionViewDidEnter() {
+  async ionViewDidEnter() {
     this.updateNetworkStatus();
-    const handler = Network?.addListener(
+    const handler = await Network.addListener(
       'networkStatusChange',
       (status: ConnectionStatus) => {
         this.setState({

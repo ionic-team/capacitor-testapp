@@ -28,7 +28,7 @@ const BrowserPage: React.FC = () => {
 
   const autoCloseAfterDelay = async () => {
     loadedHandler?.remove();
-    loadedHandler = Browser.addListener('browserPageLoaded', async () => {
+    loadedHandler = await Browser.addListener('browserPageLoaded', async () => {
       await timeout(1000);
       await Browser.close();
       await timeout(200);
@@ -36,8 +36,8 @@ const BrowserPage: React.FC = () => {
     });
   };
 
-  useIonViewDidEnter(() => {
-    finishedHandler = Browser.addListener('browserFinished', async () => {
+  useIonViewDidEnter(async () => {
+    finishedHandler = await Browser.addListener('browserFinished', async () => {
       await timeout(200);
       alert(`You closed the window`);
     });
