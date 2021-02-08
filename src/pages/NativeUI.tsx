@@ -57,12 +57,15 @@ const NativeUI: React.FC = () => {
             exact={true}
           />
         </IonRouterOutlet>
-        <IonTabBar slot="bottom">
-          <IonTabButton tab="tab1" href="/native-ui/tab1">
+        <IonTabBar slot="bottom" visible={isTabbarVisible}>
+          <IonTabButton
+            tab="tab1"
+            href="/native-ui/tab1"
+            enabled={isTab1Enabled}>
             <IonIcon icon={triangle} />
             <IonLabel>Tab 1</IonLabel>
           </IonTabButton>
-          <IonTabButton tab="tab2" href="/native-ui/tab2">
+          <IonTabButton tab="tab2" href="/native-ui/tab2" visible={tab2Visible}>
             <IonIcon icon={ellipse} />
             <IonLabel>Tab 2</IonLabel>
           </IonTabButton>
