@@ -72,7 +72,7 @@ class GeolocationPage extends React.Component<{}, GeolocationPageState> {
   };
 
   startWatch = async () => {
-    this.watchId = Geolocation.watchPosition(this.options, (position, err) => {
+    this.watchId = await Geolocation.watchPosition(this.options, (position, err) => {
       this.setState({
         currentLocation: {
           timestamp: position?.timestamp,
