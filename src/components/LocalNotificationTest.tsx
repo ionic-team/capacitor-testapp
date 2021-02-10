@@ -153,7 +153,7 @@ export default function LocalNotificationTest({ permissions }: Props) {
     await LocalNotifications.cancel({
       notifications: pendingNotifications.notifications.map(n => {
         return {
-          id: n.id.toString(),
+          id: n.id,
         };
       }),
     });
@@ -184,7 +184,7 @@ export default function LocalNotificationTest({ permissions }: Props) {
   };
 
   const cancelOne = async () => {
-    await LocalNotifications.cancel({notifications: [{id: 222}]});
+    await LocalNotifications.cancel({ notifications: [{ id: 222 }] });
   };
 
   const refreshPending = async () => {
