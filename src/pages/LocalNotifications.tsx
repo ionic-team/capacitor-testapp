@@ -80,13 +80,19 @@ const LocalNotificationsPage: React.FC = () => {
 
   const registerListeners = () => {
     try {
-      LocalNotifications.addListener('localNotificationReceived', notification => {
-        console.log('Notification: ', notification);
-      });
+      LocalNotifications.addListener(
+        'localNotificationReceived',
+        notification => {
+          console.log('Notification: ', notification);
+        },
+      );
 
-      LocalNotifications.addListener('localNotificationActionPerformed', notification => {
-        console.log('Notification action performed', notification);
-      });
+      LocalNotifications.addListener(
+        'localNotificationActionPerformed',
+        notification => {
+          console.log('Notification action performed', notification);
+        },
+      );
     } catch (e) {
       console.error(e);
     }
