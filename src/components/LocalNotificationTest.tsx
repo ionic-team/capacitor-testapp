@@ -117,6 +117,33 @@ export default function LocalNotificationTest({ permissions }: Props) {
     await getPendingNotifications();
   };
 
+  const scheduleOne = async () => {
+    const tenSecondsFromNow = new Date(new Date().getTime() + 10000);
+    const notifications: LocalNotificationSchema[] = [
+      {
+        ...{
+          id: 222,
+          title: 'Get 10% off!',
+          body: 'Swipe now to learn more',
+          sound: 'beep.aiff',
+          attachments: [{ id: 'face', url: 'res:///assets/ionitron.png' }],
+          actionTypeId: 'OPEN_PRODUCT',
+          extra: {
+            productId: 'PRODUCT-1',
+          },
+        },
+        schedule: { at: tenSecondsFromNow },
+      },
+    ];
+
+    const result = await LocalNotifications.schedule({ notifications });
+    console.log('schedule result:', result);
+  };
+
+  const cancelOne = async () => {
+    await LocalNotifications.cancel({notifications: [{id: 222}]});
+  };
+
   const refreshPending = async () => {
     await getPendingNotifications();
   };
@@ -178,6 +205,12 @@ export default function LocalNotificationTest({ permissions }: Props) {
         </IonButton>
         <IonButton expand="block" onClick={refreshPending}>
           Refresh Pending Notifications
+        </IonButton>
+        <IonButton expand="block" onClick={scheduleOne}>
+          Schedule just one
+        </IonButton>
+        <IonButton expand="block" onClick={cancelOne}>
+          Cancel just one
         </IonButton>
       </section>
     </div>
