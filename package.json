@@ -45,7 +45,7 @@
     "@ionic/react": "^5.0.7",
     "@ionic/react-router": "^5.0.7",
     "@testing-library/jest-dom": "^5.11.6",
-    "@testing-library/react": "^11.2.2",
+    "@testing-library/react": "^11.2.5",
     "@testing-library/user-event": "^12.6.0",
     "@types/jest": "^26.0.19",
     "@types/node": "^14.14.16",
