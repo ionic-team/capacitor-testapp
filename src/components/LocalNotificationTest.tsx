@@ -83,6 +83,25 @@ export default function LocalNotificationTest({ permissions }: Props) {
     getPendingNotifications();
   };
 
+  const scheduleOnceWithExtras = async () => {
+    const tenSecondsFromNow = new Date(new Date().getTime() + 10000);
+    const notifications: LocalNotificationSchema[] = [
+      {
+        ...createNotification(),
+        schedule: { at: tenSecondsFromNow },
+        extra: {
+          customData: 'hello',
+          customData2: 99,
+        },
+      },
+    ];
+
+    const result = await LocalNotifications.schedule({ notifications });
+    console.log('schedule result:', result);
+
+    getPendingNotifications();
+  };
+
   const scheduleEveryMinute = async () => {
     const notifications: LocalNotificationSchema[] = [
       {
@@ -111,9 +130,33 @@ export default function LocalNotificationTest({ permissions }: Props) {
     getPendingNotifications();
   };
 
+  const scheduleEvery90SecondsWithExtras = async () => {
+    const notifications: LocalNotificationSchema[] = [
+      {
+        ...createNotification(),
+        schedule: { every: 'second', count: 90 },
+        extra: {
+          customData: 'hello',
+          customData2: 99,
+        },
+      },
+    ];
+
+    const result = await LocalNotifications.schedule({ notifications });
+    console.log('schedule result:', result);
+
+    getPendingNotifications();
+  };
+
   const cancelPending = async () => {
     await getPendingNotifications();
-    await LocalNotifications.cancel(pendingNotifications);
+    await LocalNotifications.cancel({
+      notifications: pendingNotifications.notifications.map(n => {
+        return {
+          id: n.id,
+        };
+      }),
+    });
     await getPendingNotifications();
   };
 
@@ -141,7 +184,7 @@ export default function LocalNotificationTest({ permissions }: Props) {
   };
 
   const cancelOne = async () => {
-    await LocalNotifications.cancel({notifications: [{id: 222}]});
+    await LocalNotifications.cancel({ notifications: [{ id: 222 }] });
   };
 
   const refreshPending = async () => {
@@ -172,7 +215,14 @@ export default function LocalNotificationTest({ permissions }: Props) {
           return (
             <IonItem>
               <IonLabel>
-                <h2>Notification ID: {notification.id}</h2>
+                <h2>
+                  (#{notification.id}) {notification.title}
+                </h2>
+                <div>
+                  Repeats: {notification.schedule?.repeats ? 'Yes' : 'No'}
+                </div>
+                <div>Extras: {JSON.stringify(notification.extra)}</div>
+                <div>Schedule: {JSON.stringify(notification.schedule)}</div>
               </IonLabel>
             </IonItem>
           );
@@ -194,11 +244,17 @@ export default function LocalNotificationTest({ permissions }: Props) {
         <IonButton expand="block" onClick={scheduleOnce}>
           Schedule in 10s
         </IonButton>
+        <IonButton expand="block" onClick={scheduleOnceWithExtras}>
+          Schedule in 10s with Extras
+        </IonButton>
         <IonButton expand="block" onClick={scheduleEveryMinute}>
           Schedule every minute
         </IonButton>
         <IonButton expand="block" onClick={scheduleEvery90Seconds}>
           Schedule every 90 seconds
+        </IonButton>
+        <IonButton expand="block" onClick={scheduleEvery90SecondsWithExtras}>
+          Schedule every 90 seconds with Extras
         </IonButton>
         <IonButton expand="block" onClick={cancelPending}>
           Cancel Pending Notifications
