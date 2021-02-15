@@ -198,6 +198,69 @@ export default function LocalNotificationTest({ permissions }: Props) {
     console.log('schedule result:', result);
   };
 
+  const scheduleOnWithSeconds = async () => {
+    const now = new Date();
+    console.log(now.getHours(), now.getMinutes() + 1, 30);
+    const notifications: LocalNotificationSchema[] = [
+      {
+        ...{
+          id: 222,
+          title: 'Get 10% off!',
+          body: 'Swipe now to learn more',
+          sound: 'beep.aiff',
+          attachments: [{ id: 'face', url: 'res:///assets/ionitron.png' }],
+          actionTypeId: 'OPEN_PRODUCT',
+          extra: {
+            productId: 'PRODUCT-1',
+          },
+        },
+        schedule: {
+          on: {
+            hour: now.getHours(),
+            minute: now.getMinutes() + 1,
+            second: 26,
+          },
+        },
+      },
+    ];
+
+    const result = await LocalNotifications.schedule({ notifications });
+    console.log('schedule result:', result);
+
+    getPendingNotifications();
+  };
+
+  const scheduleOnWithoutSeconds = async () => {
+    const now = new Date();
+    console.log(now.getHours(), now.getMinutes() + 1, 30);
+    const notifications: LocalNotificationSchema[] = [
+      {
+        ...{
+          id: 222,
+          title: 'Get 10% off!',
+          body: 'Swipe now to learn more',
+          sound: 'beep.aiff',
+          attachments: [{ id: 'face', url: 'res:///assets/ionitron.png' }],
+          actionTypeId: 'OPEN_PRODUCT',
+          extra: {
+            productId: 'PRODUCT-1',
+          },
+        },
+        schedule: {
+          on: {
+            hour: now.getHours(),
+            minute: now.getMinutes() + 1,
+          },
+        },
+      },
+    ];
+
+    const result = await LocalNotifications.schedule({ notifications });
+    console.log('schedule result:', result);
+
+    getPendingNotifications();
+  };
+
   const cancelOne = async () => {
     await LocalNotifications.cancel({ notifications: [{ id: 222 }] });
   };
@@ -282,6 +345,12 @@ export default function LocalNotificationTest({ permissions }: Props) {
         </IonButton>
         <IonButton expand="block" onClick={scheduleOne}>
           Schedule just one
+        </IonButton>
+        <IonButton expand="block" onClick={scheduleOnWithSeconds}>
+          Schedule just one (with seconds)
+        </IonButton>
+        <IonButton expand="block" onClick={scheduleOnWithoutSeconds}>
+          Schedule just one (without seconds)
         </IonButton>
         <IonButton expand="block" onClick={cancelOne}>
           Cancel just one
