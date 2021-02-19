@@ -22,7 +22,7 @@
     "@capacitor/browser": "^0.4.3",
     "@capacitor/camera": "^0.4.0",
     "@capacitor/clipboard": "^0.4.3",
-    "@capacitor/core": "^3.0.0-beta.2",
+    "@capacitor/core": "^3.0.0-beta.3",
     "@capacitor/device": "^0.5.3",
     "@capacitor/dialog": "^0.4.3",
     "@capacitor/filesystem": "^0.4.0",
