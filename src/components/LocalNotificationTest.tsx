@@ -250,12 +250,17 @@ export default function LocalNotificationTest({ permissions }: Props) {
       </IonList>
       <br />
       <section>
+        <h4>Scheduling Tests</h4>
+        <hr/>
+        <IonButton expand="block" onClick={scheduleOne}>
+          Schedule just one
+        </IonButton>
+        <IonButton expand="block" onClick={cancelOne}>
+          Cancel just one
+        </IonButton>
         <IonButton expand="block" onClick={scheduleNow}>
           Schedule now
-        </IonButton>
-        <IonButton expand="block" onClick={scheduleNowWithIcon}>
-          Schedule now (custom icon on Android)
-        </IonButton>
+        </IonButton>        
         <IonButton expand="block" onClick={scheduleOnce}>
           Schedule in 10s
         </IonButton>
@@ -280,11 +285,9 @@ export default function LocalNotificationTest({ permissions }: Props) {
         <IonButton expand="block" onClick={refreshPending}>
           Refresh Pending Notifications
         </IonButton>
-        <IonButton expand="block" onClick={scheduleOne}>
-          Schedule just one
-        </IonButton>
-        <IonButton expand="block" onClick={cancelOne}>
-          Cancel just one
+        <h4>Android Notification Style Tests</h4>
+        <IonButton expand="block" onClick={scheduleNowWithIcon}>
+          Custom Small Icon Test
         </IonButton>
       </section>
     </div>
