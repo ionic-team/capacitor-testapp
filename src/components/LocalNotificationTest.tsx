@@ -56,7 +56,7 @@ export default function LocalNotificationTest({ permissions }: Props) {
   const scheduleNowWithIcon = async () => {
     const notifications: LocalNotificationSchema[] = [
       {
-        ...createNotification(),
+        ...createNotification(),        
         smallIcon: 'ic_stat_icon_sample',
         iconColor: '#00ff00',
       },
@@ -67,6 +67,22 @@ export default function LocalNotificationTest({ permissions }: Props) {
 
     console.log('schedule result:', result);
   };
+
+  const scheduleNowWithLargeIcon = async() => {
+    const notifications: LocalNotificationSchema[] = [
+      {
+        ...createNotification(),        
+        smallIcon: 'ic_stat_icon_sample',
+        iconColor: '#00ff00',
+        largeIcon: 'large_icon_sample.png',
+      },
+    ];
+    const result = await LocalNotifications.schedule({ notifications });
+
+    getPendingNotifications();
+
+    console.log('schedule result:', result);
+  }
 
   const scheduleOnce = async () => {
     const tenSecondsFromNow = new Date(new Date().getTime() + 10000);
@@ -206,6 +222,50 @@ export default function LocalNotificationTest({ permissions }: Props) {
     await getPendingNotifications();
   };
 
+  const scheduleAndroidBigTextStyle = async () => {
+    const notifications: LocalNotificationSchema[] = [
+      {
+        ...{
+          id: 223,
+          title: 'Android Big Text Test',
+          body: "Testing, 1, 2, 3",
+          summaryText: "From Capacitor",
+          largeBody: 'Lorem ipsum dolor sit amet, consectetur adipiscing elite. Morbi quis magna lobortis, dignissim tortor eu, congue lectus. Vestibulum in purus sagittis est blandit sodales.\n\nAliquam lacinia mi id erat eleifend, nec elementum ipsum fermentum. Duis cursus eget lorem sed posuere. Aliquam congue sed lacus eget suscipit. Curabitur vulputate sem quis sollicitudin sollicitudin. Sed sed semper ligula. \n\nIn arcu urna, pretium vel cursus vel, interdum quis massa.',
+          sound: 'beep.aiff',
+          attachments: [{ id: 'face', url: 'res:///assets/ionitron.png' }],
+        },
+      },
+    ];
+
+    const result = await LocalNotifications.schedule({ notifications });
+    console.log('schedule result:', result);
+
+    await getPendingNotifications();
+  };
+
+  const testAndroidInboxStyle = async () => {
+    const notifications: LocalNotificationSchema[] = [
+      {
+        id: generateId(),
+        title: '4 New mails from Capacitor',
+        body: "You have new messages",        
+        summaryText: "+3 more messages",
+        largeIcon: 'large_icon_sample.png',
+        inboxList: [
+          'New direct message from John',
+          'New direct message from Jane',
+          'Don\'t miss our 50% off sale!',
+          'Payment Confirmation',
+        ],
+      },
+    ];
+
+    const result = await LocalNotifications.schedule({ notifications });
+    console.log('schedule result:', result);
+
+    await getPendingNotifications();
+  };
+
   useEffect(() => {
     if (permissions === 'granted') {
       getPendingNotifications();
@@ -251,7 +311,7 @@ export default function LocalNotificationTest({ permissions }: Props) {
       <br />
       <section>
         <h4>Scheduling Tests</h4>
-        <hr/>
+        <hr />
         <IonButton expand="block" onClick={scheduleOne}>
           Schedule just one
         </IonButton>
@@ -260,7 +320,7 @@ export default function LocalNotificationTest({ permissions }: Props) {
         </IonButton>
         <IonButton expand="block" onClick={scheduleNow}>
           Schedule now
-        </IonButton>        
+        </IonButton>
         <IonButton expand="block" onClick={scheduleOnce}>
           Schedule in 10s
         </IonButton>
@@ -288,6 +348,15 @@ export default function LocalNotificationTest({ permissions }: Props) {
         <h4>Android Notification Style Tests</h4>
         <IonButton expand="block" onClick={scheduleNowWithIcon}>
           Custom Small Icon Test
+        </IonButton>
+        <IonButton expand="block" onClick={scheduleNowWithLargeIcon}>
+          Custom Large Icon Test
+        </IonButton>
+        <IonButton expand="block" onClick={scheduleAndroidBigTextStyle}>
+          Android Big Text Style
+        </IonButton>
+        <IonButton expand="block" onClick={testAndroidInboxStyle}>
+          Android - Inbox Style
         </IonButton>
       </section>
     </div>
