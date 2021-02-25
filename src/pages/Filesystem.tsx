@@ -300,6 +300,44 @@ const FilesystemPage: React.FC = () => {
     }
   };
 
+  // Exercise the rename call
+  const renameFileTestUrl = async () => {
+    console.log('Rename a file into a directory');
+    await writeAll('fa');
+    await mkdirAll('da');
+    let uriResult = await Filesystem.getUri({
+      path: 'fa',
+      directory: Directory.Data,
+    });
+    await Filesystem.rename({
+      from: uriResult.uri,
+      toDirectory: Directory.Data,
+      to: 'da/fb',
+    });
+    await deleteAll('da/fb');
+    await rmdirAll('da');
+    console.log('rename finished');
+  };
+
+  // Exercise the copy call
+  const copyFileTestUrl = async () => {
+    console.log('Copy a file into a directory');
+    await writeAll('fa');
+    await mkdirAll('da');
+    let uriResult = await Filesystem.getUri({
+      path: 'fa',
+      directory: Directory.Data,
+    });
+    await Filesystem.copy({
+      from: uriResult.uri,
+      toDirectory: Directory.Data,
+      to: 'da/fb',
+    });
+    await deleteAll(['fa', 'da/fb']);
+    await rmdirAll('da');
+    console.log('copy finished');
+  };
+
   // Helper function to run the provided promise-returning function on a single item or array of items
   const doAll = async (item: string | string[], callback: myCallback) => {
     item = Array.isArray(item) ? item : [item];
@@ -448,6 +486,15 @@ const FilesystemPage: React.FC = () => {
             </IonButton>
             <IonButton expand="block" onClick={statUrl}>
               stat
+            </IonButton>
+          </IonItem>
+          <IonItem>
+            <IonLabel>More Tests url</IonLabel>
+            <IonButton expand="block" onClick={renameFileTestUrl}>
+              rename File
+            </IonButton>
+            <IonButton expand="block" onClick={copyFileTestUrl}>
+              copy File
             </IonButton>
           </IonItem>
         </IonList>
