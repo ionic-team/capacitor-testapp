@@ -3,6 +3,9 @@ import {
   IonButtons,
   IonContent,
   IonHeader,
+  IonItem,
+  IonLabel,
+  IonList,
   IonPage,
   IonMenuButton,
   IonTitle,
@@ -183,6 +186,158 @@ const FilesystemPage: React.FC = () => {
     console.log('check permissions result', result);
   };
 
+  const mkdirUrl = async () => {
+    try {
+      let uriResult = await Filesystem.getUri({
+        path: 'myfolder',
+        directory: Directory.Cache,
+      });
+      let ret = await Filesystem.mkdir({
+        path: uriResult.uri,
+        recursive: false,
+      });
+      console.log('Made dir', ret);
+    } catch (e) {
+      console.error('Unable to make directory', e);
+    }
+  };
+
+  const rmdirUrl = async () => {
+    try {
+      let uriResult = await Filesystem.getUri({
+        path: 'myfolder',
+        directory: Directory.Cache,
+      });
+      let ret = await Filesystem.rmdir({
+        path: uriResult.uri,
+      });
+      console.log('Removed dir', ret);
+    } catch (e) {
+      console.error('Unable to remove directory', e);
+    }
+  };
+
+  const readdirUrl = async () => {
+    try {
+      let uriResult = await Filesystem.getUri({
+        path: 'myfolder',
+        directory: Directory.Cache,
+      });
+      let ret = await Filesystem.readdir({
+        path: uriResult.uri,
+      });
+      console.log('Read dir', ret);
+    } catch (e) {
+      console.error('Unable to read dir', e);
+    }
+  };
+
+  const fileWriteUrl = async () => {
+    try {
+      let uriResult = await Filesystem.getUri({
+        path: 'myfolder/myfile.txt',
+        directory: Directory.Cache,
+      });
+      const result = await Filesystem.writeFile({
+        path: uriResult.uri,
+        data: 'This is a test',
+        encoding: Encoding.UTF8,
+      });
+      console.log('Wrote file', result);
+    } catch (e) {
+      console.error('Unable to write file (press mkdir first, silly)', e);
+    }
+  };
+
+  const fileReadUrl = async () => {
+    let uriResult = await Filesystem.getUri({
+      path: 'myfolder/myfile.txt',
+      directory: Directory.Cache,
+    });
+    let contents = await Filesystem.readFile({
+      path: uriResult.uri,
+      encoding: Encoding.UTF8,
+    });
+    console.log('file contents', contents.data);
+  };
+
+  const fileAppendUrl = async () => {
+    let uriResult = await Filesystem.getUri({
+      path: 'myfolder/myfile.txt',
+      directory: Directory.Cache,
+    });
+    await Filesystem.appendFile({
+      path: uriResult.uri,
+      data: 'MORE TESTS',
+      encoding: Encoding.UTF8,
+    });
+    console.log('Appended');
+  };
+
+  const fileDeleteUrl = async () => {
+    let uriResult = await Filesystem.getUri({
+      path: 'myfolder/myfile.txt',
+      directory: Directory.Cache,
+    });
+    await Filesystem.deleteFile({
+      path: uriResult.uri,
+    });
+    console.log('Deleted');
+  };
+
+  const statUrl = async () => {
+    try {
+      let uriResult = await Filesystem.getUri({
+        path: 'myfolder/myfile.txt',
+        directory: Directory.Cache,
+      });
+      let ret = await Filesystem.stat({
+        path: uriResult.uri,
+      });
+      console.log('STAT', ret);
+    } catch (e) {
+      console.error('Unable to stat file', e);
+    }
+  };
+
+  // Exercise the rename call
+  const renameFileTestUrl = async () => {
+    console.log('Rename a file into a directory');
+    await writeAll('fa');
+    await mkdirAll('da');
+    let uriResult = await Filesystem.getUri({
+      path: 'fa',
+      directory: Directory.Data,
+    });
+    await Filesystem.rename({
+      from: uriResult.uri,
+      toDirectory: Directory.Data,
+      to: 'da/fb',
+    });
+    await deleteAll('da/fb');
+    await rmdirAll('da');
+    console.log('rename finished');
+  };
+
+  // Exercise the copy call
+  const copyFileTestUrl = async () => {
+    console.log('Copy a file into a directory');
+    await writeAll('fa');
+    await mkdirAll('da');
+    let uriResult = await Filesystem.getUri({
+      path: 'fa',
+      directory: Directory.Data,
+    });
+    await Filesystem.copy({
+      from: uriResult.uri,
+      toDirectory: Directory.Data,
+      to: 'da/fb',
+    });
+    await deleteAll(['fa', 'da/fb']);
+    await rmdirAll('da');
+    console.log('copy finished');
+  };
+
   // Helper function to run the provided promise-returning function on a single item or array of items
   const doAll = async (item: string | string[], callback: myCallback) => {
     item = Array.isArray(item) ? item : [item];
@@ -245,48 +400,104 @@ const FilesystemPage: React.FC = () => {
         </IonToolbar>
       </IonHeader>
       <IonContent>
-        <IonButton expand="block" onClick={mkdir}>
-          mk dir
-        </IonButton>
-        <IonButton expand="block" onClick={rmdir}>
-          rm dir
-        </IonButton>
-        <IonButton expand="block" onClick={readdir}>
-          read dir
-        </IonButton>
-        <IonButton expand="block" onClick={fileWrite}>
-          file Write
-        </IonButton>
-        <IonButton expand="block" onClick={fileRead}>
-          file Read
-        </IonButton>
-        <IonButton expand="block" onClick={fileAppend}>
-          file Append
-        </IonButton>
-        <IonButton expand="block" onClick={fileDelete}>
-          file Delete
-        </IonButton>
-        <IonButton expand="block" onClick={stat}>
-          stat
-        </IonButton>
-        <IonButton expand="block" onClick={getUri}>
-          get Uri
-        </IonButton>
-        <IonButton expand="block" onClick={directoryTest}>
-          directory Test
-        </IonButton>
-        <IonButton expand="block" onClick={renameFileTest}>
-          rename File Test
-        </IonButton>
-        <IonButton expand="block" onClick={copyFileTest}>
-          copy File Test
-        </IonButton>
-        <IonButton expand="block" onClick={requestPermissions}>
-          request read/write permission
-        </IonButton>
-        <IonButton expand="block" onClick={checkPermissions}>
-          check read/write permission
-        </IonButton>
+        <IonList>
+          <IonItem>
+            <IonLabel>Directory</IonLabel>
+            <IonButton expand="block" onClick={mkdir}>
+              mk
+            </IonButton>
+            <IonButton expand="block" onClick={rmdir}>
+              rm
+            </IonButton>
+            <IonButton expand="block" onClick={readdir}>
+              read
+            </IonButton>
+          </IonItem>
+          <IonItem>
+            <IonLabel>File</IonLabel>
+            <IonButton expand="block" onClick={fileWrite}>
+              Write
+            </IonButton>
+            <IonButton expand="block" onClick={fileRead}>
+              Read
+            </IonButton>
+            <IonButton expand="block" onClick={fileAppend}>
+              Append
+            </IonButton>
+            <IonButton expand="block" onClick={fileDelete}>
+              Delete
+            </IonButton>
+            <IonButton expand="block" onClick={stat}>
+              stat
+            </IonButton>
+          </IonItem>
+          <IonItem>
+            <IonLabel>Tests</IonLabel>
+            <IonButton expand="block" onClick={getUri}>
+              get Uri
+            </IonButton>
+            <IonButton expand="block" onClick={directoryTest}>
+              directory
+            </IonButton>
+          </IonItem>
+          <IonItem>
+            <IonLabel>More Tests</IonLabel>
+            <IonButton expand="block" onClick={renameFileTest}>
+              rename File
+            </IonButton>
+            <IonButton expand="block" onClick={copyFileTest}>
+              copy File
+            </IonButton>
+          </IonItem>
+          <IonItem>
+            <IonLabel>Permissions</IonLabel>
+            <IonButton expand="block" onClick={requestPermissions}>
+              request
+            </IonButton>
+            <IonButton expand="block" onClick={checkPermissions}>
+              check
+            </IonButton>
+          </IonItem>
+          <IonItem>
+            <IonLabel>Directory with url</IonLabel>
+            <IonButton expand="block" onClick={mkdirUrl}>
+              mk
+            </IonButton>
+            <IonButton expand="block" onClick={rmdirUrl}>
+              rm
+            </IonButton>
+            <IonButton expand="block" onClick={readdirUrl}>
+              read
+            </IonButton>
+          </IonItem>
+          <IonItem>
+            <IonLabel>File url</IonLabel>
+            <IonButton expand="block" onClick={fileWriteUrl}>
+              Write
+            </IonButton>
+            <IonButton expand="block" onClick={fileReadUrl}>
+              Read
+            </IonButton>
+            <IonButton expand="block" onClick={fileAppendUrl}>
+              Append
+            </IonButton>
+            <IonButton expand="block" onClick={fileDeleteUrl}>
+              Delete
+            </IonButton>
+            <IonButton expand="block" onClick={statUrl}>
+              stat
+            </IonButton>
+          </IonItem>
+          <IonItem>
+            <IonLabel>More Tests url</IonLabel>
+            <IonButton expand="block" onClick={renameFileTestUrl}>
+              rename File
+            </IonButton>
+            <IonButton expand="block" onClick={copyFileTestUrl}>
+              copy File
+            </IonButton>
+          </IonItem>
+        </IonList>
       </IonContent>
     </IonPage>
   );
