@@ -56,7 +56,7 @@ export default function LocalNotificationTest({ permissions }: Props) {
   const scheduleNowWithIcon = async () => {
     const notifications: LocalNotificationSchema[] = [
       {
-        ...createNotification(),        
+        ...createNotification(),
         smallIcon: 'ic_stat_icon_sample',
         iconColor: '#00ff00',
       },
@@ -68,10 +68,10 @@ export default function LocalNotificationTest({ permissions }: Props) {
     console.log('schedule result:', result);
   };
 
-  const scheduleNowWithLargeIcon = async() => {
+  const scheduleNowWithLargeIcon = async () => {
     const notifications: LocalNotificationSchema[] = [
       {
-        ...createNotification(),        
+        ...createNotification(),
         smallIcon: 'ic_stat_icon_sample',
         iconColor: '#00ff00',
         largeIcon: 'large_icon_sample.png',
@@ -82,7 +82,7 @@ export default function LocalNotificationTest({ permissions }: Props) {
     getPendingNotifications();
 
     console.log('schedule result:', result);
-  }
+  };
 
   const scheduleOnce = async () => {
     const tenSecondsFromNow = new Date(new Date().getTime() + 10000);
@@ -214,6 +214,69 @@ export default function LocalNotificationTest({ permissions }: Props) {
     console.log('schedule result:', result);
   };
 
+  const scheduleOnWithSeconds = async () => {
+    const now = new Date();
+    console.log(now.getHours(), now.getMinutes() + 1, 30);
+    const notifications: LocalNotificationSchema[] = [
+      {
+        ...{
+          id: 222,
+          title: 'Get 10% off!',
+          body: 'Swipe now to learn more',
+          sound: 'beep.aiff',
+          attachments: [{ id: 'face', url: 'res:///assets/ionitron.png' }],
+          actionTypeId: 'OPEN_PRODUCT',
+          extra: {
+            productId: 'PRODUCT-1',
+          },
+        },
+        schedule: {
+          on: {
+            hour: now.getHours(),
+            minute: now.getMinutes() + 1,
+            second: 26,
+          },
+        },
+      },
+    ];
+
+    const result = await LocalNotifications.schedule({ notifications });
+    console.log('schedule result:', result);
+
+    getPendingNotifications();
+  };
+
+  const scheduleOnWithoutSeconds = async () => {
+    const now = new Date();
+    console.log(now.getHours(), now.getMinutes() + 1, 30);
+    const notifications: LocalNotificationSchema[] = [
+      {
+        ...{
+          id: 222,
+          title: 'Get 10% off!',
+          body: 'Swipe now to learn more',
+          sound: 'beep.aiff',
+          attachments: [{ id: 'face', url: 'res:///assets/ionitron.png' }],
+          actionTypeId: 'OPEN_PRODUCT',
+          extra: {
+            productId: 'PRODUCT-1',
+          },
+        },
+        schedule: {
+          on: {
+            hour: now.getHours(),
+            minute: now.getMinutes() + 1,
+          },
+        },
+      },
+    ];
+
+    const result = await LocalNotifications.schedule({ notifications });
+    console.log('schedule result:', result);
+
+    getPendingNotifications();
+  };
+
   const cancelOne = async () => {
     await LocalNotifications.cancel({ notifications: [{ id: 222 }] });
   };
@@ -228,9 +291,10 @@ export default function LocalNotificationTest({ permissions }: Props) {
         ...{
           id: 223,
           title: 'Android Big Text Test',
-          body: "Testing, 1, 2, 3",
-          summaryText: "From Capacitor",
-          largeBody: 'Lorem ipsum dolor sit amet, consectetur adipiscing elite. Morbi quis magna lobortis, dignissim tortor eu, congue lectus. Vestibulum in purus sagittis est blandit sodales.\n\nAliquam lacinia mi id erat eleifend, nec elementum ipsum fermentum. Duis cursus eget lorem sed posuere. Aliquam congue sed lacus eget suscipit. Curabitur vulputate sem quis sollicitudin sollicitudin. Sed sed semper ligula. \n\nIn arcu urna, pretium vel cursus vel, interdum quis massa.',
+          body: 'Testing, 1, 2, 3',
+          summaryText: 'From Capacitor',
+          largeBody:
+            'Lorem ipsum dolor sit amet, consectetur adipiscing elite. Morbi quis magna lobortis, dignissim tortor eu, congue lectus. Vestibulum in purus sagittis est blandit sodales.\n\nAliquam lacinia mi id erat eleifend, nec elementum ipsum fermentum. Duis cursus eget lorem sed posuere. Aliquam congue sed lacus eget suscipit. Curabitur vulputate sem quis sollicitudin sollicitudin. Sed sed semper ligula. \n\nIn arcu urna, pretium vel cursus vel, interdum quis massa.',
           sound: 'beep.aiff',
           attachments: [{ id: 'face', url: 'res:///assets/ionitron.png' }],
         },
@@ -248,13 +312,13 @@ export default function LocalNotificationTest({ permissions }: Props) {
       {
         id: generateId(),
         title: '4 New mails from Capacitor',
-        body: "You have new messages",        
-        summaryText: "+3 more messages",
+        body: 'You have new messages',
+        summaryText: '+3 more messages',
         largeIcon: 'large_icon_sample.png',
         inboxList: [
           'New direct message from John',
           'New direct message from Jane',
-          'Don\'t miss our 50% off sale!',
+          "Don't miss our 50% off sale!",
           'Payment Confirmation',
         ],
       },
@@ -265,6 +329,8 @@ export default function LocalNotificationTest({ permissions }: Props) {
 
     await getPendingNotifications();
   };
+
+  
 
   useEffect(() => {
     if (permissions === 'granted') {
@@ -318,6 +384,12 @@ export default function LocalNotificationTest({ permissions }: Props) {
         <IonButton expand="block" onClick={cancelOne}>
           Cancel just one
         </IonButton>
+        <IonButton expand="block" onClick={scheduleOnWithSeconds}>
+          Schedule just one (with seconds)
+        </IonButton>
+        <IonButton expand="block" onClick={scheduleOnWithoutSeconds}>
+          Schedule just one (without seconds)
+        </IonButton>
         <IonButton expand="block" onClick={scheduleNow}>
           Schedule now
         </IonButton>
@@ -356,7 +428,7 @@ export default function LocalNotificationTest({ permissions }: Props) {
           Android Big Text Style
         </IonButton>
         <IonButton expand="block" onClick={testAndroidInboxStyle}>
-          Android - Inbox Style
+          Android Inbox Style
         </IonButton>
       </section>
     </div>
