@@ -38,7 +38,7 @@
     "@capacitor/share": "^0.5.0",
     "@capacitor/splash-screen": "^0.3.3",
     "@capacitor/status-bar": "^0.4.3",
-    "@capacitor/storage": "^0.3.3",
+    "@capacitor/storage": "^0.3.5",
     "@capacitor/text-zoom": "^0.3.3",
     "@capacitor/toast": "^0.4.3",
     "@ionic/pwa-elements": "^3.0.1",
