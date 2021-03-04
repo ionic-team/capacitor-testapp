@@ -330,7 +330,44 @@ export default function LocalNotificationTest({ permissions }: Props) {
     await getPendingNotifications();
   };
 
-  
+  const testAndroidGroupStyle = async () => {
+    const notifications: LocalNotificationSchema[] = [
+      {
+        title: 'Noti1',
+        body: 'Body1',
+        id: 1,
+        schedule: { at: new Date(Date.now() + 1000 * 5) },
+        actionTypeId: '',
+        extra: null,
+        group: '1',
+      },
+      {
+        title: 'Noti2',
+        body: 'Body2',
+        id: 2,
+        schedule: { at: new Date(Date.now() + 1000 * 5) },
+        actionTypeId: '',
+        extra: null,
+        group: '1',
+      },
+      {
+        title: 'NotiGroup',
+        body: 'NotiGroup',
+        id: 3,
+        schedule: { at: new Date(Date.now() + 1000 * 5) },
+        actionTypeId: '',
+        extra: null,
+        group: '1',
+        groupSummary: true,
+        summaryText: 'Test Summary',
+      },
+    ];
+
+    const result = await LocalNotifications.schedule({ notifications });
+    console.log('schedule result:', result);
+
+    await getPendingNotifications();
+  };
 
   useEffect(() => {
     if (permissions === 'granted') {
@@ -429,6 +466,9 @@ export default function LocalNotificationTest({ permissions }: Props) {
         </IonButton>
         <IonButton expand="block" onClick={testAndroidInboxStyle}>
           Android Inbox Style
+        </IonButton>
+        <IonButton expand="block" onClick={testAndroidGroupStyle}>
+          Android Group Notification
         </IonButton>
       </section>
     </div>
