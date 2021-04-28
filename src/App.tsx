@@ -1,7 +1,8 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Redirect, Route } from 'react-router-dom';
 import { IonApp, IonRouterOutlet, IonSplitPane } from '@ionic/react';
 import { IonReactRouter } from '@ionic/react-router';
+import { SplashScreen } from '@capacitor/splash-screen';
 
 import Menu from './components/Menu';
 import Home from './pages/Home';
@@ -26,26 +27,32 @@ import '@ionic/react/css/display.css';
 import './theme/variables.css';
 import './theme/global.css';
 
-const App: React.FC = () => (
-  <IonApp>
-    <IonReactRouter>
-      <IonSplitPane contentId="main">
-        <Menu />
-        <IonRouterOutlet id="main">
-          <Route path="/home" component={Home} exact={true} />
-          {routes.map((route, i) => (
-            <Route
-              key={i}
-              path={route.url}
-              component={route.component}
-              exact={true}
-            />
-          ))}
-          <Route exact path="/" render={() => <Redirect to="/home" />} />
-        </IonRouterOutlet>
-      </IonSplitPane>
-    </IonReactRouter>
-  </IonApp>
-);
+const App: React.FC = () => {
+  useEffect(() => {
+    SplashScreen.hide();
+  }, []);
+
+  return (
+    <IonApp>
+      <IonReactRouter>
+        <IonSplitPane contentId="main">
+          <Menu />
+          <IonRouterOutlet id="main">
+            <Route path="/home" component={Home} exact={true} />
+            {routes.map((route, i) => (
+              <Route
+                key={i}
+                path={route.url}
+                component={route.component}
+                exact={true}
+              />
+            ))}
+            <Route exact path="/" render={() => <Redirect to="/home" />} />
+          </IonRouterOutlet>
+        </IonSplitPane>
+      </IonReactRouter>
+    </IonApp>
+  );
+};
 
 export default App;
