@@ -22,19 +22,19 @@ const MotionPage: React.FC = () => {
   const [showPermButton, setShowPermButton] = useState(false);
 
   useIonViewDidEnter(() => {
-    if (typeof DeviceOrientationEvent.requestPermission === 'function') {
+    if (DeviceOrientationEvent !== undefined && typeof DeviceOrientationEvent.requestPermission === 'function') {
       setShowPermButton(true);
     }
   });
 
-  const listenOrientation = () => {
-    orientationHandler = Motion.addListener('orientation', event => {
+  const listenOrientation = async () => {
+    orientationHandler = await Motion.addListener('orientation', event => {
       console.log('orientation', event);
     });
   };
 
-  const listenAcceleration = () => {
-    accelHandler = Motion.addListener('accel', event => {
+  const listenAcceleration = async () => {
+    accelHandler = await Motion.addListener('accel', event => {
       console.log('accel', event);
     });
   };
