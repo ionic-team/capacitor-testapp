@@ -66,6 +66,10 @@ const KeyboardPage: React.FC = () => {
     Keyboard.setStyle({ style: KeyboardStyle.Dark });
   };
 
+  const setStyleDefault= async () => {
+    Keyboard.setStyle({ style: KeyboardStyle.Default });
+  };
+
   const setResizeModeNone = async () => {
     Keyboard.setResizeMode({ mode: KeyboardResize.None });
   };
@@ -110,6 +114,9 @@ const KeyboardPage: React.FC = () => {
         </IonButton>
         <IonButton expand="block" onClick={setStyleDark}>
           set Style Dark
+        </IonButton>
+        <IonButton expand="block" onClick={setStyleDefault}>
+          set Style Default
         </IonButton>
         <IonButton expand="block" onClick={setResizeModeNone}>
           set Resize Mode None
