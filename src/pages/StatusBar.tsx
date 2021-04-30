@@ -3,6 +3,7 @@ import {
   IonButtons,
   IonContent,
   IonHeader,
+  IonLabel,
   IonPage,
   IonMenuButton,
   IonTitle,
@@ -10,15 +11,21 @@ import {
   useIonViewDidEnter,
 } from '@ionic/react';
 import React, { useState } from 'react';
+import { Capacitor } from '@capacitor/core';
 import { StatusBar, Style } from '@capacitor/status-bar';
 
 const StatusBarPage: React.FC = () => {
   const [statusbarInfoJson, setStatusbarInfoJson] = useState('');
+  const [showButtons, setShowButtons] = useState(true);
 
   useIonViewDidEnter(() => {
-    window.addEventListener('statusTap', function () {
-      console.log('statusbar tapped');
-    });
+    if (Capacitor.isPluginAvailable('StatusBar')) {
+      window.addEventListener('statusTap', function () {
+        console.log('statusbar tapped');
+      });
+    } else {
+      setShowButtons(false);
+    }
   });
 
   const changeStatusBar = async () => {
@@ -87,37 +94,44 @@ const StatusBarPage: React.FC = () => {
         </IonToolbar>
       </IonHeader>
       <IonContent>
-        <IonButton expand="block" onClick={changeStatusBar}>
-          Change StatusBar Style Default
-        </IonButton>
-        <IonButton expand="block" onClick={changeStatusBarLight}>
-          Change StatusBar Style Light
-        </IonButton>
-        <IonButton expand="block" onClick={changeStatusBarDark}>
-          Change StatusBar Style Dark
-        </IonButton>
-        <IonButton expand="block" onClick={showStatusBar}>
-          Show
-        </IonButton>
-        <IonButton expand="block" onClick={hideStatusBar}>
-          Hide
-        </IonButton>
-        <IonButton expand="block" onClick={overlayStatusbar}>
-          overlay Statusbar
-        </IonButton>
-        <IonButton expand="block" onClick={unOverlayStatusbar}>
-          unoverlay Statusbar
-        </IonButton>
-        <IonButton expand="block" onClick={setBackgroundColor}>
-          Set Background Color
-        </IonButton>
-
-        <IonButton expand="block" onClick={getInfo}>
-          get Info
-        </IonButton>
-        <div>
-          <pre>{statusbarInfoJson}</pre>
-        </div>
+        {showButtons ? (
+          [
+            <IonButton expand="block" onClick={changeStatusBar}>
+              Change StatusBar Style Default
+            </IonButton>,
+            <IonButton expand="block" onClick={changeStatusBarLight}>
+              Change StatusBar Style Light
+            </IonButton>,
+            <IonButton expand="block" onClick={changeStatusBarDark}>
+              Change StatusBar Style Dark
+            </IonButton>,
+            <IonButton expand="block" onClick={showStatusBar}>
+              Show
+            </IonButton>,
+            <IonButton expand="block" onClick={hideStatusBar}>
+              Hide
+            </IonButton>,
+            <IonButton expand="block" onClick={overlayStatusbar}>
+              overlay Statusbar
+            </IonButton>,
+            <IonButton expand="block" onClick={unOverlayStatusbar}>
+              unoverlay Statusbar
+            </IonButton>,
+            <IonButton expand="block" onClick={setBackgroundColor}>
+              Set Background Color
+            </IonButton>,
+            <IonButton expand="block" onClick={getInfo}>
+              get Info
+            </IonButton>,
+            <div>
+              <pre>{statusbarInfoJson}</pre>
+            </div>,
+          ]
+        ) : (
+          <IonLabel>
+            StatusBar plugin not supported on {Capacitor.getPlatform()}
+          </IonLabel>
+        )}
       </IonContent>
     </IonPage>
   );

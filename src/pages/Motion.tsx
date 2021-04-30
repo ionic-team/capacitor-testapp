@@ -15,15 +15,24 @@ import {
   useIonViewDidEnter,
 } from '@ionic/react';
 import React, { useState } from 'react';
+import { Capacitor } from '@capacitor/core';
 
 const MotionPage: React.FC = () => {
   let accelHandler: PluginListenerHandle;
   let orientationHandler: PluginListenerHandle;
   const [showPermButton, setShowPermButton] = useState(false);
+  const [showButtons, setShowButtons] = useState(true);
 
   useIonViewDidEnter(() => {
-    if (DeviceOrientationEvent !== undefined && typeof DeviceOrientationEvent.requestPermission === 'function') {
-      setShowPermButton(true);
+    if (Capacitor.isPluginAvailable('Motion')) {
+      if (
+        DeviceOrientationEvent !== undefined &&
+        typeof DeviceOrientationEvent.requestPermission === 'function'
+      ) {
+        setShowPermButton(true);
+      }
+    } else {
+      setShowButtons(false);
     }
   });
 
@@ -76,34 +85,42 @@ const MotionPage: React.FC = () => {
       </IonHeader>
       <IonContent>
         <IonList>
-          {showPermButton ? (
-            <IonItem>
-              <IonLabel>iOS 13 Permission</IonLabel>
-              <IonButton expand="block" onClick={requestPermission}>
-                Request Motion Permission
-              </IonButton>
-            </IonItem>
+          {showButtons ? (
+            showPermButton ? (
+              <IonItem>
+                <IonLabel>iOS 13 Permission</IonLabel>
+                <IonButton expand="block" onClick={requestPermission}>
+                  Request Motion Permission
+                </IonButton>
+              </IonItem>
+            ) : (
+              [
+                <IonItem>
+                  <IonLabel>Orientation</IonLabel>
+                  <IonButton expand="block" onClick={listenOrientation}>
+                    Listen Orientation
+                  </IonButton>
+                  <IonButton expand="block" onClick={stopOrientation}>
+                    Stop Orientation
+                  </IonButton>
+                </IonItem>,
+                <IonItem>
+                  <IonLabel>Acceleration</IonLabel>
+                  <IonButton expand="block" onClick={listenAcceleration}>
+                    Listen Acceleration
+                  </IonButton>
+                  <IonButton expand="block" onClick={stopAcceleration}>
+                    Stop Acceleration
+                  </IonButton>
+                </IonItem>,
+              ]
+            )
           ) : (
-            [
-              <IonItem>
-                <IonLabel>Orientation</IonLabel>
-                <IonButton expand="block" onClick={listenOrientation}>
-                  Listen Orientation
-                </IonButton>
-                <IonButton expand="block" onClick={stopOrientation}>
-                  Stop Orientation
-                </IonButton>
-              </IonItem>,
-              <IonItem>
-                <IonLabel>Acceleration</IonLabel>
-                <IonButton expand="block" onClick={listenAcceleration}>
-                  Listen Acceleration
-                </IonButton>
-                <IonButton expand="block" onClick={stopAcceleration}>
-                  Stop Acceleration
-                </IonButton>
-              </IonItem>,
-            ]
+            <IonItem>
+              <IonLabel>
+                Motion plugin not supported on {Capacitor.getPlatform()}
+              </IonLabel>
+            </IonItem>
           )}
         </IonList>
       </IonContent>
