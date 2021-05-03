@@ -20,6 +20,12 @@ const DevicePage: React.FC = () => {
     setDeviceInfoJson(JSON.stringify(info, null, 2));
   };
 
+  const getDeviceId = async () => {
+    const id = await Device.getId();
+    console.log('Got device id', id);
+    setDeviceInfoJson(JSON.stringify(id, null, 2));
+  };
+
   const getDeviceBatteryInfo = async () => {
     const info = await Device.getBatteryInfo();
     console.log('Got device battery info', info);
@@ -44,6 +50,9 @@ const DevicePage: React.FC = () => {
       <IonContent>
         <IonButton expand="block" onClick={getDeviceInfo}>
           Device Info
+        </IonButton>
+        <IonButton expand="block" onClick={getDeviceId}>
+          Device Id
         </IonButton>
         <IonButton expand="block" onClick={getDeviceBatteryInfo}>
           Device Battery Info
