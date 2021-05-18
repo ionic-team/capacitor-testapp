@@ -24,9 +24,8 @@ const ScreenReaderPage: React.FC = () => {
   const [sentence, setSentence] = useState('Hello World?');
 
   useIonViewDidEnter(() => {
-    handler = ScreenReader.addListener(
-      'screenReaderStateChange',
-      ({ value }: any) => alert(`State Change! Screen Reader on? ${value}`),
+    handler = ScreenReader.addListener('stateChange', ({ value }: any) =>
+      alert(`State Change! Screen Reader on? ${value}`),
     );
   });
 
