@@ -15,7 +15,7 @@ const Home: React.FC = () => {
       <IonHeader>
         <IonToolbar>
           <IonButtons slot="start">
-            <IonMenuButton />
+            <IonMenuButton id="menu-button" />
           </IonButtons>
           <IonTitle>Home</IonTitle>
         </IonToolbar>

@@ -5,12 +5,16 @@ describe('Home page', () => {
     WebView.waitForWebsiteLoaded();
   });
 
-  it('should be able search for the url method and open it', () => {
+  it('Should open side menu', async () => {
     // To be able to use the site in the webview webdriver.io we first need to
     // change the context from native to webview
     WebView.switchToContext(CONTEXT_REF.WEBVIEW);
     // Now the site can be accessed like you would automate a normal website
     // keep in mind the responsiveness
+
+    const menu = await $('#menu-button');
+    await menu.waitForDisplayed({ timeout: 5000 });
+    await (await expect(menu)).toHaveText('Tab 1');
 
     /**
      * IMPORTANT!!
