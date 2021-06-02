@@ -22,14 +22,13 @@ interface Props {
 }
 
 export default function NotificationTest({ permissions }: Props) {
-  const [
-    notificationList,
-    setNotificationList,
-  ] = useState<PushNotificationDeliveredList>({ notifications: [] });
+  const [notificationList, setNotificationList] =
+    useState<PushNotificationDeliveredList>({ notifications: [] });
 
   const getDeliveredNotifications = async () => {
     try {
-      const notificationList = await PushNotifications.getDeliveredNotifications();
+      const notificationList =
+        await PushNotifications.getDeliveredNotifications();
       setNotificationList(notificationList);
     } catch (e) {
       console.log('getDeliveredNotifications error');

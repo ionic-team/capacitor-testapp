@@ -1,0 +1,2 @@
+(this["webpackJsonpcapacitor-testapp"]=this["webpackJsonpcapacitor-testapp"]||[]).push([[0],{208:function(t,e,i){"use strict";i.r(e),i.d(e,"MotionWeb",(function(){return a}));var n=i(8),r=i(11),c=i(12),a=function(t){Object(r.a)(i,t);var e=Object(c.a)(i);function i(){var t;return Object(n.a)(this,i),(t=e.call(this)).registerWindowListener("devicemotion","accel"),t.registerWindowListener("deviceorientation","orientation"),t}return i}(i(7).e)}}]);
+//# sourceMappingURL=0.b2ac3278.chunk.js.map
