@@ -8,7 +8,12 @@
     "noImplicitAny": true,
     "strictPropertyInitialization": true,
     "strictNullChecks": true,
-    "types": ["node", "webdriverio/sync", "@wdio/mocha-framework"]
+    "types": [
+      "node",
+      "webdriverio/async",
+      "@wdio/mocha-framework",
+      "expect-webdriverio"
+    ]
   },
   "include": ["./config/**/*.ts", "./tests/**/*.ts"]
 }

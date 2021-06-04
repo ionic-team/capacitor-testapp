@@ -17,10 +17,10 @@
     "noFallthroughCasesInSwitch": true,
     "types": [
       "node",
+      "webdriverio/sync",
       "@wdio/mocha-framework",
-      "webdriverio/async",
       "expect-webdriverio"
     ]
   },
-  "include": ["src", "./config/**/*.ts", "./tests/**/*.ts"]
+  "include": ["src"]
 }
