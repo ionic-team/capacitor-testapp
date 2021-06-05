@@ -127,13 +127,13 @@ export const config: WebdriverIO.Config = {
   // see also: https://webdriver.io/docs/dot-reporter
   reporters: ['spec'],
   // Options to be passed to Jasmine.
-  jasmineOpts: {
+  mochaOpts: {
     // Jasmine default timeout
     /**
      * NOTE: This has been increased for more stable Appium Native app
      * tests because they can take a bit longer.
      */
-    defaultTimeoutInterval: 1200000,
+    timeout: 1200000,
   },
   //
   // =====

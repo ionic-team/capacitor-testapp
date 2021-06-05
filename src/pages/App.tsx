@@ -15,6 +15,7 @@ import React, { useState } from 'react';
 import { PluginListenerHandle } from '@capacitor/core';
 import { App } from '@capacitor/app';
 import { AppLauncher } from '@capacitor/app-launcher';
+import { capInvoke } from '../utils/call';
 
 const AppPage: React.FC = () => {
   const [appInfoJson, setAppInfoJson] = useState('');
@@ -43,7 +44,7 @@ const AppPage: React.FC = () => {
   });
 
   const getLaunchUrl = async () => {
-    const ret = await App.getLaunchUrl();
+    const ret = await capInvoke(() => App.getLaunchUrl());
     if (ret && ret.url) {
       alert('App opened with URL: ' + ret.url);
     }
@@ -51,13 +52,13 @@ const AppPage: React.FC = () => {
   };
 
   const getInfo = async () => {
-    const info = await App.getInfo();
+    const info = await capInvoke(() => App.getInfo());
     console.log('Got device info', info);
     setAppInfoJson(JSON.stringify(info, null, 2));
   };
 
   const getState = async () => {
-    const info = await App.getState();
+    const info = await capInvoke(() => App.getState());
     console.log('Got device state', info);
     setAppInfoJson(JSON.stringify(info, null, 2));
   };
@@ -67,19 +68,23 @@ const AppPage: React.FC = () => {
   };
 
   const canOpenUrl = async () => {
-    const ret = await AppLauncher.canOpenUrl({ url: 'mailto:name@email.com' });
+    const ret = await capInvoke(() =>
+      AppLauncher.canOpenUrl({ url: 'mailto:name@email.com' }),
+    );
     console.log('Can open url: ', ret.value);
   };
 
   const openUrl = async () => {
-    const ret = await AppLauncher.openUrl({
-      url: 'mailto:name@email.com',
-    });
+    const ret = await capInvoke(() =>
+      AppLauncher.openUrl({
+        url: 'mailto:name@email.com',
+      }),
+    );
     console.log('Open url response: ', ret);
   };
 
   const failCall = async () => {
-    await AppLauncher.openUrl({ url: '' });
+    await capInvoke(() => AppLauncher.openUrl({ url: '' }));
   };
 
   useIonViewDidLeave(() => {

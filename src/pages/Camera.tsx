@@ -19,6 +19,7 @@ import {
   CameraPluginPermissions,
 } from '@capacitor/camera';
 import { Capacitor } from '@capacitor/core';
+import { capInvoke } from '../utils/call';
 
 interface CameraPageState {
   filePath: string | null;
@@ -41,7 +42,7 @@ class CameraPage extends React.Component<{}, CameraPageState> {
         allowEditing: false,
         webUseInput: source === CameraSource.Photos,
       };
-      var photo = await Camera.getPhoto(options);
+      var photo = await capInvoke(() => Camera.getPhoto(options));
       this.setState({
         filePath: photo.path ?? photo.webPath ?? null,
         metadata: JSON.stringify(photo.exif, null, 2),
@@ -52,17 +53,23 @@ class CameraPage extends React.Component<{}, CameraPageState> {
   };
 
   checkPermissions = async () => {
-    const permissionStates = await Camera.checkPermissions();
-    alert(
-      `Permissions are:\ncamera = ${permissionStates.camera}\nphotos = ${permissionStates.photos}`,
-    );
+    const permissionStates = await capInvoke(() => Camera.checkPermissions());
+    if (permissionStates) {
+      alert(
+        `Permissions are:\ncamera = ${permissionStates.camera}\nphotos = ${permissionStates.photos}`,
+      );
+    }
   };
 
   requestPermissions = async (permissions?: CameraPluginPermissions) => {
-    const permissionStates = await Camera.requestPermissions(permissions);
-    alert(
-      `Permissions are:\ncamera = ${permissionStates.camera}\nphotos = ${permissionStates.photos}`,
+    const permissionStates = await capInvoke(() =>
+      Camera.requestPermissions(permissions),
     );
+    if (permissionStates) {
+      alert(
+        `Permissions are:\ncamera = ${permissionStates.camera}\nphotos = ${permissionStates.photos}`,
+      );
+    }
   };
 
   render() {
