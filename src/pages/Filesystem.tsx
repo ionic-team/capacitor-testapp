@@ -134,7 +134,7 @@ const FilesystemPage: React.FC = () => {
           directory: Directory.Data,
         }),
       );
-      alert(ret.uri);
+      console.log(ret.uri);
     } catch (e) {
       console.error('Unable to stat file', e);
     }
@@ -418,33 +418,39 @@ const FilesystemPage: React.FC = () => {
   // Create many files
   const writeAll = (paths: string | string[]) => {
     return doAll(paths, path =>
-      Filesystem.writeFile({
-        directory: Directory.Data,
-        path,
-        data: path,
-        encoding: Encoding.UTF8,
-      }),
+      capInvoke(() =>
+        Filesystem.writeFile({
+          directory: Directory.Data,
+          path,
+          data: path,
+          encoding: Encoding.UTF8,
+        }),
+      ),
     );
   };
 
   // Delete many files
   const deleteAll = (paths: string | string[]) => {
     return doAll(paths, path =>
-      Filesystem.deleteFile({
-        directory: Directory.Data,
-        path,
-      }),
+      capInvoke(() =>
+        Filesystem.deleteFile({
+          directory: Directory.Data,
+          path,
+        }),
+      ),
     );
   };
 
   // Create many directories
   const mkdirAll = (paths: string | string[]) => {
     return doAll(paths, path =>
-      Filesystem.mkdir({
-        directory: Directory.Data,
-        path,
-        recursive: true,
-      }),
+      capInvoke(() =>
+        Filesystem.mkdir({
+          directory: Directory.Data,
+          path,
+          recursive: true,
+        }),
+      ),
     );
   };
 
@@ -487,25 +493,25 @@ const FilesystemPage: React.FC = () => {
           <IonItem>
             <IonLabel>File</IonLabel>
             <IonButton expand="block" onClick={fileWrite}>
-              Write (F)
+              write (f)
             </IonButton>
             <IonButton expand="block" onClick={fileRead}>
-              Read (F)
+              read (f)
             </IonButton>
             <IonButton expand="block" onClick={fileAppend}>
-              Append (F)
+              append (f)
             </IonButton>
             <IonButton expand="block" onClick={fileDelete}>
-              Delete (F)
+              delete (f)
             </IonButton>
             <IonButton expand="block" onClick={stat}>
-              stat (F)
+              stat (f)
             </IonButton>
           </IonItem>
           <IonItem>
             <IonLabel>Tests</IonLabel>
             <IonButton expand="block" onClick={getUri}>
-              get Uri
+              get uri
             </IonButton>
             <IonButton expand="block" onClick={directoryTest}>
               directory
@@ -514,58 +520,58 @@ const FilesystemPage: React.FC = () => {
           <IonItem>
             <IonLabel>More Tests</IonLabel>
             <IonButton expand="block" onClick={renameFileTest}>
-              rename File
+              rename file
             </IonButton>
             <IonButton expand="block" onClick={copyFileTest}>
-              copy File
+              copy file
             </IonButton>
           </IonItem>
           <IonItem>
             <IonLabel>Permissions</IonLabel>
             <IonButton expand="block" onClick={requestPermissions}>
-              request
+              request perms
             </IonButton>
             <IonButton expand="block" onClick={checkPermissions}>
-              check
+              check perms
             </IonButton>
           </IonItem>
           <IonItem>
             <IonLabel>Directory with url</IonLabel>
             <IonButton expand="block" onClick={mkdirUrl}>
-              mk
+              mk (u)
             </IonButton>
             <IonButton expand="block" onClick={rmdirUrl}>
-              rm
+              rm (u)
             </IonButton>
             <IonButton expand="block" onClick={readdirUrl}>
-              read
+              read (u)
             </IonButton>
           </IonItem>
           <IonItem>
             <IonLabel>File url</IonLabel>
             <IonButton expand="block" onClick={fileWriteUrl}>
-              Write (U)
+              write (u)
             </IonButton>
             <IonButton expand="block" onClick={fileReadUrl}>
-              Read (U)
+              read (u)
             </IonButton>
             <IonButton expand="block" onClick={fileAppendUrl}>
-              Append (U)
+              append (u)
             </IonButton>
             <IonButton expand="block" onClick={fileDeleteUrl}>
-              Delete (U)
+              delete (u)
             </IonButton>
             <IonButton expand="block" onClick={statUrl}>
-              stat (U)
+              stat (u)
             </IonButton>
           </IonItem>
           <IonItem>
             <IonLabel>More Tests url</IonLabel>
             <IonButton expand="block" onClick={renameFileTestUrl}>
-              rename File
+              rename file test
             </IonButton>
             <IonButton expand="block" onClick={copyFileTestUrl}>
-              copy File
+              copy file test
             </IonButton>
           </IonItem>
         </IonList>

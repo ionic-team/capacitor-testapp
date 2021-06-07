@@ -194,28 +194,59 @@ describe('home page', () => {
       files: []
     });
 
-    await IonicE2E.tapButton('Write (F)');
+    await IonicE2E.tapButton('write (f)');
     await waitResult({
       uri: "/DOCUMENTS/secrets/text.txt"
     });
 
-    await IonicE2E.tapButton('Read (F)');
+    await IonicE2E.tapButton('read (f)');
     await waitResult({
       data: "This is a test"
     });
 
-    await IonicE2E.tapButton('Append (F)');
+    await IonicE2E.tapButton('append (f)');
     await waitResult('');
 
-    await IonicE2E.tapButton('Read (F)');
+    await IonicE2E.tapButton('read (f)');
     await waitResult({
       data: "This is a testMORE TESTS"
     });
 
-    await IonicE2E.tapButton('stat (F)');
+    await IonicE2E.tapButton('stat (f)');
     await waitResult({
       "type": "file",
       "size": 14
     });
+
+    await IonicE2E.tapButton('get uri');
+    await waitResult({
+      "uri": "/DATA/text.txt"
+    });
+
+    await IonicE2E.tapButton('directory');
+    await waitResult({
+      "data": "This is a test"
+    });
+
+    await IonicE2E.tapButton('rename file');
+    await waitResult('');
+    await IonicE2E.tapButton('copy file');
+    await waitResult('');
+
+    await IonicE2E.tapButton('request perms');
+    await waitResult({
+      publicStorage: "granted"
+    });
+    await IonicE2E.tapButton('check perms');
+    await waitResult({
+      publicStorage: "granted"
+    });
+
+    await IonicE2E.tapButton('mk (u)');
+    await waitResult('');
+    await IonicE2E.tapButton('rm (u)');
+    await waitResult('');
+    await IonicE2E.tapButton('read (u)');
+    await waitResult('');
   });
 });
