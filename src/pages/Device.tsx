@@ -10,30 +10,31 @@ import {
 } from '@ionic/react';
 import React, { useState } from 'react';
 import { Device } from '@capacitor/device';
+import { capInvoke } from '../utils/call';
 
 const DevicePage: React.FC = () => {
   const [deviceInfoJson, setDeviceInfoJson] = useState('');
 
   const getDeviceInfo = async () => {
-    const info = await Device.getInfo();
+    const info = await capInvoke(() => Device.getInfo());
     console.log('Got device info', info);
     setDeviceInfoJson(JSON.stringify(info, null, 2));
   };
 
   const getDeviceId = async () => {
-    const id = await Device.getId();
+    const id = await capInvoke(() => Device.getId());
     console.log('Got device id', id);
     setDeviceInfoJson(JSON.stringify(id, null, 2));
   };
 
   const getDeviceBatteryInfo = async () => {
-    const info = await Device.getBatteryInfo();
+    const info = await capInvoke(() => Device.getBatteryInfo());
     console.log('Got device battery info', info);
     setDeviceInfoJson(JSON.stringify(info, null, 2));
   };
 
   const getDeviceLanguageCode = async () => {
-    const code = await Device.getLanguageCode();
+    const code = await capInvoke(() => Device.getLanguageCode());
     alert('Language: ' + code.value);
   };
 

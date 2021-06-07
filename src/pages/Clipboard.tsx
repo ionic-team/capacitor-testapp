@@ -13,6 +13,7 @@ import {
 } from '@ionic/react';
 import React from 'react';
 import { Clipboard } from '@capacitor/clipboard';
+import { capInvoke } from '../utils/call';
 
 interface ClipboardInterface {
   content: string;
@@ -32,24 +33,28 @@ class ClipboardPage extends React.Component<{}, ClipboardPageState> {
   }
 
   getClipboardData = async () => {
-    const data = await Clipboard.read();
-    this.setState({
-      clipboardData: {
-        type: data.type,
-        content: data.value,
-      },
-    });
+    const data = await capInvoke(() => Clipboard.read());
+    if (data) {
+      this.setState({
+        clipboardData: {
+          type: data.type,
+          content: data.value,
+        },
+      });
+    }
   };
 
   setClipboardText = async () => {
-    Clipboard.write({ string: 'www.reddit.com' });
+    capInvoke(() => Clipboard.write({ string: 'www.reddit.com' }));
   };
 
   setClipboardImage = async () => {
-    Clipboard.write({
-      image:
-        'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAMAAABEpIrGAAAAAXNSR0IB2cksfwAAAAlwSFlzAAALEwAACxMBAJqcGAAAAK5QTFRFAAAAQGCMQGCMQGCMQGCMQGCMQGCMQGCMQGCMQGCMQGCMQGCMQGCMQGCMQGCMQGCMQGCMQGCMQGCMQGCMQGCMQGCMQGCMQGCMQGCMQGCMQGCMQGCMQGCMQGCMQGCMQGCMQGCMQGCMQGCMQGCMQGCMQGCMQGCMQGCMQGCMQGCMQGCMQGCMQGCMQGCMQGCMQGCMQGCMQGCMQGCMQGCMQGCMQGCMQGCMQGCMQGCMQGCMdURlpwAAADp0Uk5TAAIBAwVPqge4RUP8/6/C+Dz3scU9S/r7+UjPxva2GtmzBMe/GxnbrLrB2typrquwsqj9P81Gtz5HSsnXzJUAAAF3SURBVHicjZPrWsIwDIbTtYDQOE4yJjrOIAdBERC9/xszbdN1Qx+1f9b1e5t+aRqAMISIwk8kBFwNaZgc5oXCUFCp5osSajd1WirpDY23TEhQMTZbRUJCA7GNHUuQ3qUffRdOEdDTqDExhLB6gn1M770psj+gLegIUA80QXzEjAETaDiyiwmOYTK10xRnCiLnrzeYw2LJxNOKJ2vpAlj/myEstlbQSKdbXfiUrP9tIHRJF1Bx/gOBJkbMOgHP7L9AaMwifwdkc8emCqfgPtSFvi8/EONQLPp2vhEJ3/r/iVdO/ooo+NijS3+7CMQOIPIhJisLlGK08ZAXS03tESWCbq/nAOnry5dsiCXtfzvm76tr9T5iIEaYHt2TE15PMKuGbOens9MjqMW8HEeUrZtu5vmzF/DOxVobQx32f6LO8VdQb5v3aevPddGYnkMPSWj1aYt7H9IQ5P9SbCsFrSbOpE+Jqp9erpvqI1Oh6eDwWdb/bttfG/8LFe8ohlFXdYYAAAAASUVORK5CYII=',
-    });
+    capInvoke(() =>
+      Clipboard.write({
+        image:
+          'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAMAAABEpIrGAAAAAXNSR0IB2cksfwAAAAlwSFlzAAALEwAACxMBAJqcGAAAAK5QTFRFAAAAQGCMQGCMQGCMQGCMQGCMQGCMQGCMQGCMQGCMQGCMQGCMQGCMQGCMQGCMQGCMQGCMQGCMQGCMQGCMQGCMQGCMQGCMQGCMQGCMQGCMQGCMQGCMQGCMQGCMQGCMQGCMQGCMQGCMQGCMQGCMQGCMQGCMQGCMQGCMQGCMQGCMQGCMQGCMQGCMQGCMQGCMQGCMQGCMQGCMQGCMQGCMQGCMQGCMQGCMQGCMQGCMQGCMdURlpwAAADp0Uk5TAAIBAwVPqge4RUP8/6/C+Dz3scU9S/r7+UjPxva2GtmzBMe/GxnbrLrB2typrquwsqj9P81Gtz5HSsnXzJUAAAF3SURBVHicjZPrWsIwDIbTtYDQOE4yJjrOIAdBERC9/xszbdN1Qx+1f9b1e5t+aRqAMISIwk8kBFwNaZgc5oXCUFCp5osSajd1WirpDY23TEhQMTZbRUJCA7GNHUuQ3qUffRdOEdDTqDExhLB6gn1M770psj+gLegIUA80QXzEjAETaDiyiwmOYTK10xRnCiLnrzeYw2LJxNOKJ2vpAlj/myEstlbQSKdbXfiUrP9tIHRJF1Bx/gOBJkbMOgHP7L9AaMwifwdkc8emCqfgPtSFvi8/EONQLPp2vhEJ3/r/iVdO/ooo+NijS3+7CMQOIPIhJisLlGK08ZAXS03tESWCbq/nAOnry5dsiCXtfzvm76tr9T5iIEaYHt2TE15PMKuGbOens9MjqMW8HEeUrZtu5vmzF/DOxVobQx32f6LO8VdQb5v3aevPddGYnkMPSWj1aYt7H9IQ5P9SbCsFrSbOpE+Jqp9erpvqI1Oh6eDwWdb/bttfG/8LFe8ohlFXdYYAAAAASUVORK5CYII=',
+      }),
+    );
   };
 
   render() {

@@ -13,6 +13,7 @@ import {
 } from '@ionic/react';
 import React from 'react';
 import { Filesystem, Directory, Encoding } from '@capacitor/filesystem';
+import { capInvoke } from '../utils/call';
 
 interface myCallback {
   (path: string): void;
@@ -21,11 +22,13 @@ interface myCallback {
 const FilesystemPage: React.FC = () => {
   const mkdir = async () => {
     try {
-      let ret = await Filesystem.mkdir({
-        path: 'secrets',
-        directory: Directory.Documents,
-        recursive: false,
-      });
+      let ret = await capInvoke(() =>
+        Filesystem.mkdir({
+          path: 'secrets',
+          directory: Directory.Documents,
+          recursive: false,
+        }),
+      );
       console.log('Made dir', ret);
     } catch (e) {
       console.error('Unable to make directory', e);
@@ -34,10 +37,12 @@ const FilesystemPage: React.FC = () => {
 
   const rmdir = async () => {
     try {
-      let ret = await Filesystem.rmdir({
-        path: 'secrets',
-        directory: Directory.Documents,
-      });
+      let ret = await capInvoke(() =>
+        Filesystem.rmdir({
+          path: 'secrets',
+          directory: Directory.Documents,
+        }),
+      );
       console.log('Removed dir', ret);
     } catch (e) {
       console.error('Unable to remove directory', e);
@@ -46,10 +51,12 @@ const FilesystemPage: React.FC = () => {
 
   const readdir = async () => {
     try {
-      let ret = await Filesystem.readdir({
-        path: 'secrets',
-        directory: Directory.Documents,
-      });
+      let ret = await capInvoke(() =>
+        Filesystem.readdir({
+          path: 'secrets',
+          directory: Directory.Documents,
+        }),
+      );
       console.log('Read dir', ret);
     } catch (e) {
       console.error('Unable to read dir', e);
@@ -58,12 +65,14 @@ const FilesystemPage: React.FC = () => {
 
   const fileWrite = async () => {
     try {
-      const result = await Filesystem.writeFile({
-        path: 'secrets/text.txt',
-        data: 'This is a test',
-        directory: Directory.Documents,
-        encoding: Encoding.UTF8,
-      });
+      const result = await capInvoke(() =>
+        Filesystem.writeFile({
+          path: 'secrets/text.txt',
+          data: 'This is a test',
+          directory: Directory.Documents,
+          encoding: Encoding.UTF8,
+        }),
+      );
       console.log('Wrote file', result);
     } catch (e) {
       console.error('Unable to write file (press mkdir first, silly)', e);
@@ -71,38 +80,46 @@ const FilesystemPage: React.FC = () => {
   };
 
   const fileRead = async () => {
-    let contents = await Filesystem.readFile({
-      path: 'secrets/text.txt',
-      directory: Directory.Documents,
-      encoding: Encoding.UTF8,
-    });
+    let contents = await capInvoke(() =>
+      Filesystem.readFile({
+        path: 'secrets/text.txt',
+        directory: Directory.Documents,
+        encoding: Encoding.UTF8,
+      }),
+    );
     console.log('file contents', contents.data);
   };
 
   const fileAppend = async () => {
-    await Filesystem.appendFile({
-      path: 'secrets/text.txt',
-      data: 'MORE TESTS',
-      directory: Directory.Documents,
-      encoding: Encoding.UTF8,
-    });
+    await capInvoke(() =>
+      Filesystem.appendFile({
+        path: 'secrets/text.txt',
+        data: 'MORE TESTS',
+        directory: Directory.Documents,
+        encoding: Encoding.UTF8,
+      }),
+    );
     console.log('Appended');
   };
 
   const fileDelete = async () => {
-    await Filesystem.deleteFile({
-      path: 'secrets/text.txt',
-      directory: Directory.Documents,
-    });
+    await capInvoke(() =>
+      Filesystem.deleteFile({
+        path: 'secrets/text.txt',
+        directory: Directory.Documents,
+      }),
+    );
     console.log('Deleted');
   };
 
   const stat = async () => {
     try {
-      let ret = await Filesystem.stat({
-        path: 'secrets/text.txt',
-        directory: Directory.Documents,
-      });
+      let ret = await capInvoke(() =>
+        Filesystem.stat({
+          path: 'secrets/text.txt',
+          directory: Directory.Documents,
+        }),
+      );
       console.log('STAT', ret);
     } catch (e) {
       console.error('Unable to stat file', e);
@@ -111,10 +128,12 @@ const FilesystemPage: React.FC = () => {
 
   const getUri = async () => {
     try {
-      let ret = await Filesystem.getUri({
-        path: 'text.txt',
-        directory: Directory.Data,
-      });
+      let ret = await capInvoke(() =>
+        Filesystem.getUri({
+          path: 'text.txt',
+          directory: Directory.Data,
+        }),
+      );
       alert(ret.uri);
     } catch (e) {
       console.error('Unable to stat file', e);
@@ -123,20 +142,26 @@ const FilesystemPage: React.FC = () => {
 
   const directoryTest = async () => {
     try {
-      const result = await Filesystem.writeFile({
-        path: 'text.txt',
-        data: 'This is a test',
-        directory: Directory.Data,
-        encoding: Encoding.UTF8,
-      });
+      const result = await capInvoke(() =>
+        Filesystem.writeFile({
+          path: 'text.txt',
+          data: 'This is a test',
+          directory: Directory.Data,
+          encoding: Encoding.UTF8,
+        }),
+      );
       console.log('wrote file', result);
-      let stat = await Filesystem.stat({
-        path: 'text.txt',
-        directory: Directory.Data,
-      });
-      let data = await Filesystem.readFile({
-        path: stat.uri,
-      });
+      let stat = await capInvoke(() =>
+        Filesystem.stat({
+          path: 'text.txt',
+          directory: Directory.Data,
+        }),
+      );
+      let data = await capInvoke(() =>
+        Filesystem.readFile({
+          path: stat.uri,
+        }),
+      );
       console.log('Stat 1', stat);
       console.log(data);
       console.log('Stat 3', stat);
@@ -151,11 +176,13 @@ const FilesystemPage: React.FC = () => {
     console.log('Rename a file into a directory');
     await writeAll('fa');
     await mkdirAll('da');
-    await Filesystem.rename({
-      directory: Directory.Data,
-      from: 'fa',
-      to: 'da/fb',
-    });
+    await capInvoke(() =>
+      Filesystem.rename({
+        directory: Directory.Data,
+        from: 'fa',
+        to: 'da/fb',
+      }),
+    );
     await deleteAll('da/fb');
     await rmdirAll('da');
     console.log('rename finished');
@@ -166,36 +193,42 @@ const FilesystemPage: React.FC = () => {
     console.log('Copy a file into a directory');
     await writeAll('fa');
     await mkdirAll('da');
-    await Filesystem.copy({
-      directory: Directory.Data,
-      from: 'fa',
-      to: 'da/fb',
-    });
+    await capInvoke(() =>
+      Filesystem.copy({
+        directory: Directory.Data,
+        from: 'fa',
+        to: 'da/fb',
+      }),
+    );
     await deleteAll(['fa', 'da/fb']);
     await rmdirAll('da');
     console.log('copy finished');
   };
 
   const requestPermissions = async () => {
-    const result = await Filesystem.requestPermissions();
+    const result = await capInvoke(() => Filesystem.requestPermissions());
     console.log('request permissions result', result);
   };
 
   const checkPermissions = async () => {
-    const result = await Filesystem.checkPermissions();
+    const result = await capInvoke(() => Filesystem.checkPermissions());
     console.log('check permissions result', result);
   };
 
   const mkdirUrl = async () => {
     try {
-      let uriResult = await Filesystem.getUri({
-        path: 'myfolder',
-        directory: Directory.Cache,
-      });
-      let ret = await Filesystem.mkdir({
-        path: uriResult.uri,
-        recursive: false,
-      });
+      let uriResult = await capInvoke(() =>
+        Filesystem.getUri({
+          path: 'myfolder',
+          directory: Directory.Cache,
+        }),
+      );
+      let ret = await capInvoke(() =>
+        Filesystem.mkdir({
+          path: uriResult.uri,
+          recursive: false,
+        }),
+      );
       console.log('Made dir', ret);
     } catch (e) {
       console.error('Unable to make directory', e);
@@ -204,13 +237,17 @@ const FilesystemPage: React.FC = () => {
 
   const rmdirUrl = async () => {
     try {
-      let uriResult = await Filesystem.getUri({
-        path: 'myfolder',
-        directory: Directory.Cache,
-      });
-      let ret = await Filesystem.rmdir({
-        path: uriResult.uri,
-      });
+      let uriResult = await capInvoke(() =>
+        Filesystem.getUri({
+          path: 'myfolder',
+          directory: Directory.Cache,
+        }),
+      );
+      let ret = await capInvoke(() =>
+        Filesystem.rmdir({
+          path: uriResult.uri,
+        }),
+      );
       console.log('Removed dir', ret);
     } catch (e) {
       console.error('Unable to remove directory', e);
@@ -219,13 +256,17 @@ const FilesystemPage: React.FC = () => {
 
   const readdirUrl = async () => {
     try {
-      let uriResult = await Filesystem.getUri({
-        path: 'myfolder',
-        directory: Directory.Cache,
-      });
-      let ret = await Filesystem.readdir({
-        path: uriResult.uri,
-      });
+      let uriResult = await capInvoke(() =>
+        Filesystem.getUri({
+          path: 'myfolder',
+          directory: Directory.Cache,
+        }),
+      );
+      let ret = await capInvoke(() =>
+        Filesystem.readdir({
+          path: uriResult.uri,
+        }),
+      );
       console.log('Read dir', ret);
     } catch (e) {
       console.error('Unable to read dir', e);
@@ -234,15 +275,19 @@ const FilesystemPage: React.FC = () => {
 
   const fileWriteUrl = async () => {
     try {
-      let uriResult = await Filesystem.getUri({
-        path: 'myfolder/myfile.txt',
-        directory: Directory.Cache,
-      });
-      const result = await Filesystem.writeFile({
-        path: uriResult.uri,
-        data: 'This is a test',
-        encoding: Encoding.UTF8,
-      });
+      let uriResult = await capInvoke(() =>
+        Filesystem.getUri({
+          path: 'myfolder/myfile.txt',
+          directory: Directory.Cache,
+        }),
+      );
+      const result = await capInvoke(() =>
+        Filesystem.writeFile({
+          path: uriResult.uri,
+          data: 'This is a test',
+          encoding: Encoding.UTF8,
+        }),
+      );
       console.log('Wrote file', result);
     } catch (e) {
       console.error('Unable to write file (press mkdir first, silly)', e);
@@ -250,50 +295,66 @@ const FilesystemPage: React.FC = () => {
   };
 
   const fileReadUrl = async () => {
-    let uriResult = await Filesystem.getUri({
-      path: 'myfolder/myfile.txt',
-      directory: Directory.Cache,
-    });
-    let contents = await Filesystem.readFile({
-      path: uriResult.uri,
-      encoding: Encoding.UTF8,
-    });
+    let uriResult = await capInvoke(() =>
+      Filesystem.getUri({
+        path: 'myfolder/myfile.txt',
+        directory: Directory.Cache,
+      }),
+    );
+    let contents = await capInvoke(() =>
+      Filesystem.readFile({
+        path: uriResult.uri,
+        encoding: Encoding.UTF8,
+      }),
+    );
     console.log('file contents', contents.data);
   };
 
   const fileAppendUrl = async () => {
-    let uriResult = await Filesystem.getUri({
-      path: 'myfolder/myfile.txt',
-      directory: Directory.Cache,
-    });
-    await Filesystem.appendFile({
-      path: uriResult.uri,
-      data: 'MORE TESTS',
-      encoding: Encoding.UTF8,
-    });
+    let uriResult = await capInvoke(() =>
+      Filesystem.getUri({
+        path: 'myfolder/myfile.txt',
+        directory: Directory.Cache,
+      }),
+    );
+    await capInvoke(() =>
+      Filesystem.appendFile({
+        path: uriResult.uri,
+        data: 'MORE TESTS',
+        encoding: Encoding.UTF8,
+      }),
+    );
     console.log('Appended');
   };
 
   const fileDeleteUrl = async () => {
-    let uriResult = await Filesystem.getUri({
-      path: 'myfolder/myfile.txt',
-      directory: Directory.Cache,
-    });
-    await Filesystem.deleteFile({
-      path: uriResult.uri,
-    });
+    let uriResult = await capInvoke(() =>
+      Filesystem.getUri({
+        path: 'myfolder/myfile.txt',
+        directory: Directory.Cache,
+      }),
+    );
+    await capInvoke(() =>
+      Filesystem.deleteFile({
+        path: uriResult.uri,
+      }),
+    );
     console.log('Deleted');
   };
 
   const statUrl = async () => {
     try {
-      let uriResult = await Filesystem.getUri({
-        path: 'myfolder/myfile.txt',
-        directory: Directory.Cache,
-      });
-      let ret = await Filesystem.stat({
-        path: uriResult.uri,
-      });
+      let uriResult = await capInvoke(() =>
+        Filesystem.getUri({
+          path: 'myfolder/myfile.txt',
+          directory: Directory.Cache,
+        }),
+      );
+      let ret = await capInvoke(() =>
+        Filesystem.stat({
+          path: uriResult.uri,
+        }),
+      );
       console.log('STAT', ret);
     } catch (e) {
       console.error('Unable to stat file', e);
@@ -305,15 +366,19 @@ const FilesystemPage: React.FC = () => {
     console.log('Rename a file into a directory');
     await writeAll('fa');
     await mkdirAll('da');
-    let uriResult = await Filesystem.getUri({
-      path: 'fa',
-      directory: Directory.Data,
-    });
-    await Filesystem.rename({
-      from: uriResult.uri,
-      toDirectory: Directory.Data,
-      to: 'da/fb',
-    });
+    let uriResult = await capInvoke(() =>
+      Filesystem.getUri({
+        path: 'fa',
+        directory: Directory.Data,
+      }),
+    );
+    await capInvoke(() =>
+      Filesystem.rename({
+        from: uriResult.uri,
+        toDirectory: Directory.Data,
+        to: 'da/fb',
+      }),
+    );
     await deleteAll('da/fb');
     await rmdirAll('da');
     console.log('rename finished');
@@ -324,15 +389,19 @@ const FilesystemPage: React.FC = () => {
     console.log('Copy a file into a directory');
     await writeAll('fa');
     await mkdirAll('da');
-    let uriResult = await Filesystem.getUri({
-      path: 'fa',
-      directory: Directory.Data,
-    });
-    await Filesystem.copy({
-      from: uriResult.uri,
-      toDirectory: Directory.Data,
-      to: 'da/fb',
-    });
+    let uriResult = await capInvoke(() =>
+      Filesystem.getUri({
+        path: 'fa',
+        directory: Directory.Data,
+      }),
+    );
+    await capInvoke(() =>
+      Filesystem.copy({
+        from: uriResult.uri,
+        toDirectory: Directory.Data,
+        to: 'da/fb',
+      }),
+    );
     await deleteAll(['fa', 'da/fb']);
     await rmdirAll('da');
     console.log('copy finished');
@@ -382,10 +451,12 @@ const FilesystemPage: React.FC = () => {
   // Remove many directories
   const rmdirAll = (paths: string | string[]) => {
     return doAll(paths, path =>
-      Filesystem.rmdir({
-        directory: Directory.Data,
-        path,
-      }),
+      capInvoke(() =>
+        Filesystem.rmdir({
+          directory: Directory.Data,
+          path,
+        }),
+      ),
     );
   };
 
@@ -404,31 +475,31 @@ const FilesystemPage: React.FC = () => {
           <IonItem>
             <IonLabel>Directory</IonLabel>
             <IonButton expand="block" onClick={mkdir}>
-              mk
+              mkdir
             </IonButton>
             <IonButton expand="block" onClick={rmdir}>
-              rm
+              rmdir
             </IonButton>
             <IonButton expand="block" onClick={readdir}>
-              read
+              readdir
             </IonButton>
           </IonItem>
           <IonItem>
             <IonLabel>File</IonLabel>
             <IonButton expand="block" onClick={fileWrite}>
-              Write
+              Write (F)
             </IonButton>
             <IonButton expand="block" onClick={fileRead}>
-              Read
+              Read (F)
             </IonButton>
             <IonButton expand="block" onClick={fileAppend}>
-              Append
+              Append (F)
             </IonButton>
             <IonButton expand="block" onClick={fileDelete}>
-              Delete
+              Delete (F)
             </IonButton>
             <IonButton expand="block" onClick={stat}>
-              stat
+              stat (F)
             </IonButton>
           </IonItem>
           <IonItem>
@@ -473,19 +544,19 @@ const FilesystemPage: React.FC = () => {
           <IonItem>
             <IonLabel>File url</IonLabel>
             <IonButton expand="block" onClick={fileWriteUrl}>
-              Write
+              Write (U)
             </IonButton>
             <IonButton expand="block" onClick={fileReadUrl}>
-              Read
+              Read (U)
             </IonButton>
             <IonButton expand="block" onClick={fileAppendUrl}>
-              Append
+              Append (U)
             </IonButton>
             <IonButton expand="block" onClick={fileDeleteUrl}>
-              Delete
+              Delete (U)
             </IonButton>
             <IonButton expand="block" onClick={statUrl}>
-              stat
+              stat (U)
             </IonButton>
           </IonItem>
           <IonItem>

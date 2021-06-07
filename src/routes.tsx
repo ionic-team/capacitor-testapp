@@ -5,7 +5,6 @@ import AppPage from './pages/App';
 import Browser from './pages/Browser';
 import CameraPage from './pages/Camera';
 import ClipboardPage from './pages/Clipboard';
-import Console from './pages/Console';
 import DevicePage from './pages/Device';
 import DialogPage from './pages/Dialog';
 import FilesystemPage from './pages/Filesystem';
@@ -81,16 +80,6 @@ const routes: Page[] = [
       </span>
     ),
     component: ClipboardPage,
-  },
-  {
-    title: 'Console',
-    url: '/console',
-    icon: (
-      <span role="img" aria-label="receipt">
-        🧾
-      </span>
-    ),
-    component: Console,
   },
   {
     title: 'Device',

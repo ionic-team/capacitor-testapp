@@ -1,5 +1,7 @@
 import WebView, { CONTEXT_REF } from '../helpers/WebView';
 
+import * as matches from 'lodash.matches';
+
 interface ElementActionOptions {
   visibilityTimeout?: number;
 }
@@ -60,6 +62,29 @@ describe('home page', () => {
     await IonicE2E.setDevice(Device.Mobile);
   });
 
+  const getResultValue = async () => {
+    const p = await $('.result-pane textarea');
+    return p.getValue();
+  }
+
+  const waitResult = async (result, options: ElementActionOptions) => {
+    return browser.waitUntil(async () => {
+      const p = await $('.result-pane textarea');
+      const value = await p.getValue();
+      if (value === result) {
+        return true;
+      }
+      console.log('Checking value against result', value, result);
+      // return value == JSON.stringify(result, null, 2);
+
+      return matches(value, result);
+    }, {
+      timeout: 10000,
+      timeoutMsg: 'Waited but still false',
+      interval: 500
+    });
+  }
+
   const openPage = async (itemText: string) => {
     // Go back to home
     await browser.url('/home');
@@ -114,7 +139,7 @@ describe('home page', () => {
 
   // Camera
 
-  it.only('should do camera', async () => {
+  it('should do camera', async () => {
     await openPage('Camera');
 
     await IonicE2E.tapButton('Check Permissions');
@@ -137,5 +162,60 @@ describe('home page', () => {
 
     await IonicE2E.tapButton('Choose Picture');
     await IonicE2E.tapButton('Prompt');
+  });
+
+  // Clipboard
+  it('should do clipboard', async () => {
+    await openPage('Clipboard');
+
+    await IonicE2E.tapButton('Text to Clipboard');
+    await IonicE2E.tapButton('Image to Clipboard');
+    await IonicE2E.tapButton('Read Clipboard Data');
+  });
+
+  // Device
+  it('should do device', async () => {
+    await openPage('Device');
+
+    await IonicE2E.tapButton('Device Info');
+    await IonicE2E.tapButton('Device ID');
+    await IonicE2E.tapButton('Device Battery Info');
+    await IonicE2E.tapButton('Language Code');
+  });
+
+  it.only('should do filesystem', async () => {
+    await openPage('Filesystem');
+
+    await IonicE2E.tapButton('mkdir');
+    await browser.pause(500);
+    await waitResult('');
+    await IonicE2E.tapButton('readdir');
+    await waitResult({
+      files: []
+    });
+
+    await IonicE2E.tapButton('Write (F)');
+    await waitResult({
+      uri: "/DOCUMENTS/secrets/text.txt"
+    });
+
+    await IonicE2E.tapButton('Read (F)');
+    await waitResult({
+      data: "This is a test"
+    });
+
+    await IonicE2E.tapButton('Append (F)');
+    await waitResult('');
+
+    await IonicE2E.tapButton('Read (F)');
+    await waitResult({
+      data: "This is a testMORE TESTS"
+    });
+
+    await IonicE2E.tapButton('stat (F)');
+    await waitResult({
+      "type": "file",
+      "size": 14
+    });
   });
 });

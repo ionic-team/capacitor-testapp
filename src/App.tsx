@@ -5,6 +5,7 @@ import { IonReactRouter } from '@ionic/react-router';
 import { SplashScreen } from '@capacitor/splash-screen';
 
 import Menu from './components/Menu';
+import Result from './components/Result';
 import Home from './pages/Home';
 import routes from './routes';
 
@@ -26,8 +27,11 @@ import '@ionic/react/css/display.css';
 
 import './theme/variables.css';
 import './theme/global.css';
+import AppStore from './store';
 
 const App: React.FC = () => {
+  const result = AppStore.useState(s => s.result);
+
   useEffect(() => {
     SplashScreen.hide();
   }, []);
@@ -50,6 +54,7 @@ const App: React.FC = () => {
             <Route exact path="/" render={() => <Redirect to="/home" />} />
           </IonRouterOutlet>
         </IonSplitPane>
+        <Result result={result} />
       </IonReactRouter>
     </IonApp>
   );

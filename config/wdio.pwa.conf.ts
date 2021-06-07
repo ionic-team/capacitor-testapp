@@ -21,7 +21,7 @@ config.services = [
 config.capabilities = [{
   browserName: 'chrome',
   'wdio:devtoolsOptions': {
-    // headless: true
+    headless: true
   },
   'goog:chromeOptions': {
     prefs: {
