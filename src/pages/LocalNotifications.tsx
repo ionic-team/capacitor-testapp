@@ -13,6 +13,7 @@ import {
 import React, { useEffect, useState } from 'react';
 import LocalNotificationTest from '../components/LocalNotificationTest';
 import NotificationChannelsTest from '../components/NotificationChannelsTest';
+import { capInvoke } from '../utils/call';
 
 import './LocalNotifications.css';
 
@@ -21,11 +22,15 @@ const LocalNotificationsPage: React.FC = () => {
 
   const ensurePermissions = async (): Promise<PermissionState> => {
     try {
-      let { display } = await LocalNotifications.checkPermissions();
+      let { display } = await capInvoke(() =>
+        LocalNotifications.checkPermissions(),
+      );
       console.log('LocalNotifications display permission:', display);
 
       if (display === 'prompt') {
-        ({ display } = await LocalNotifications.requestPermissions());
+        ({ display } = await capInvoke(() =>
+          LocalNotifications.requestPermissions(),
+        ));
       }
 
       if (display !== 'granted') {
@@ -43,29 +48,31 @@ const LocalNotificationsPage: React.FC = () => {
 
   const registerActions = async () => {
     try {
-      await LocalNotifications.registerActionTypes({
-        types: [
-          {
-            id: 'OPEN_PRODUCT',
-            actions: [
-              {
-                id: 'view',
-                title: 'Product',
-              },
-              {
-                id: 'remove',
-                title: 'Remove',
-                destructive: true,
-              },
-              {
-                id: 'response',
-                title: 'Response',
-                input: true,
-              },
-            ],
-          },
-        ],
-      });
+      await capInvoke(() =>
+        LocalNotifications.registerActionTypes({
+          types: [
+            {
+              id: 'OPEN_PRODUCT',
+              actions: [
+                {
+                  id: 'view',
+                  title: 'Product',
+                },
+                {
+                  id: 'remove',
+                  title: 'Remove',
+                  destructive: true,
+                },
+                {
+                  id: 'response',
+                  title: 'Response',
+                  input: true,
+                },
+              ],
+            },
+          ],
+        }),
+      );
     } catch (e) {
       if (e.code === ExceptionCode.Unavailable) {
         console.warn(
@@ -80,18 +87,22 @@ const LocalNotificationsPage: React.FC = () => {
 
   const registerListeners = () => {
     try {
-      LocalNotifications.addListener(
-        'localNotificationReceived',
-        notification => {
-          console.log('Notification: ', notification);
-        },
+      capInvoke(() =>
+        LocalNotifications.addListener(
+          'localNotificationReceived',
+          notification => {
+            console.log('Notification: ', notification);
+          },
+        ),
       );
 
-      LocalNotifications.addListener(
-        'localNotificationActionPerformed',
-        notification => {
-          console.log('Notification action performed', notification);
-        },
+      capInvoke(() =>
+        LocalNotifications.addListener(
+          'localNotificationActionPerformed',
+          notification => {
+            console.log('Notification action performed', notification);
+          },
+        ),
       );
     } catch (e) {
       console.error(e);
@@ -100,7 +111,7 @@ const LocalNotificationsPage: React.FC = () => {
 
   const unRegisterListeners = async () => {
     try {
-      await LocalNotifications.removeAllListeners();
+      await capInvoke(() => LocalNotifications.removeAllListeners());
     } catch (e) {
       console.error(e);
     }

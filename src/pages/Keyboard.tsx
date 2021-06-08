@@ -14,6 +14,7 @@ import {
 import React from 'react';
 import { Keyboard, KeyboardResize, KeyboardStyle } from '@capacitor/keyboard';
 import { PluginListenerHandle } from '@capacitor/core';
+import { capInvoke } from '../utils/call';
 
 const KeyboardPage: React.FC = () => {
   let hideHandler: PluginListenerHandle;
@@ -22,13 +23,17 @@ const KeyboardPage: React.FC = () => {
   let isBarShowing = true;
   let scrollEnabled = true;
 
-  useIonViewDidEnter(() => {
-    showHandler = Keyboard.addListener('keyboardWillShow', info => {
-      console.log('keyboard show', info);
-    });
-    hideHandler = Keyboard.addListener('keyboardWillHide', () => {
-      console.log('keyboard hide');
-    });
+  useIonViewDidEnter(async () => {
+    showHandler = await capInvoke(() =>
+      Keyboard.addListener('keyboardWillShow', info => {
+        console.log('keyboard show', info);
+      }),
+    );
+    hideHandler = await capInvoke(() =>
+      Keyboard.addListener('keyboardWillHide', () => {
+        console.log('keyboard hide');
+      }),
+    );
   });
 
   useIonViewDidLeave(() => {
@@ -37,53 +42,57 @@ const KeyboardPage: React.FC = () => {
   });
 
   const show = async () => {
-    Keyboard.show();
+    capInvoke(() => Keyboard.show());
   };
 
   const hide = async () => {
-    Keyboard.hide();
+    capInvoke(() => Keyboard.hide());
   };
 
   const toggleAccessoryBar = async () => {
     isBarShowing = !isBarShowing;
-    Keyboard.setAccessoryBarVisible({
-      isVisible: isBarShowing,
-    });
+    capInvoke(() =>
+      Keyboard.setAccessoryBarVisible({
+        isVisible: isBarShowing,
+      }),
+    );
   };
 
   const toggleScroll = async () => {
     scrollEnabled = !scrollEnabled;
-    Keyboard.setScroll({
-      isDisabled: scrollEnabled,
-    });
+    capInvoke(() =>
+      Keyboard.setScroll({
+        isDisabled: scrollEnabled,
+      }),
+    );
   };
 
   const setStyleLight = async () => {
-    Keyboard.setStyle({ style: KeyboardStyle.Light });
+    capInvoke(() => Keyboard.setStyle({ style: KeyboardStyle.Light }));
   };
 
   const setStyleDark = async () => {
-    Keyboard.setStyle({ style: KeyboardStyle.Dark });
+    capInvoke(() => Keyboard.setStyle({ style: KeyboardStyle.Dark }));
   };
 
   const setStyleDefault = async () => {
-    Keyboard.setStyle({ style: KeyboardStyle.Default });
+    capInvoke(() => Keyboard.setStyle({ style: KeyboardStyle.Default }));
   };
 
   const setResizeModeNone = async () => {
-    Keyboard.setResizeMode({ mode: KeyboardResize.None });
+    capInvoke(() => Keyboard.setResizeMode({ mode: KeyboardResize.None }));
   };
 
   const setResizeModeBody = async () => {
-    Keyboard.setResizeMode({ mode: KeyboardResize.Body });
+    capInvoke(() => Keyboard.setResizeMode({ mode: KeyboardResize.Body }));
   };
 
   const setResizeModeNative = async () => {
-    Keyboard.setResizeMode({ mode: KeyboardResize.Native });
+    capInvoke(() => Keyboard.setResizeMode({ mode: KeyboardResize.Native }));
   };
 
   const setResizeModeIonic = async () => {
-    Keyboard.setResizeMode({ mode: KeyboardResize.Ionic });
+    capInvoke(() => Keyboard.setResizeMode({ mode: KeyboardResize.Ionic }));
   };
 
   return (

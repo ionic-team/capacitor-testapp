@@ -246,7 +246,7 @@ describe('home page', () => {
     await waitResult('');
   });
 
-  it.only('should do geolocation', async () => {
+  it('should do geolocation', async () => {
     await openPage('Geolocation');
 
     await IonicE2E.tapButton('Check Permissions');
@@ -267,5 +267,61 @@ describe('home page', () => {
     await browser.pause(1000);
 
     await waitResult('1');
+  });
+
+  it('should do haptics', async () => {
+    await openPage('Haptics');
+
+    await IonicE2E.tapButton('Heavy');
+    await IonicE2E.tapButton('Medium');
+    await IonicE2E.tapButton('Light');
+    await IonicE2E.tapButton('Warn');
+    await IonicE2E.tapButton('Success');
+    await IonicE2E.tapButton('Error');
+    await IonicE2E.tapButton('Vibrate');
+    await IonicE2E.tapButton('Start');
+    await IonicE2E.tapButton('Changed');
+    await IonicE2E.tapButton('End');
+  });
+
+  it('should do keyboard', async () => {
+    await openPage('Keyboard');
+
+    await IonicE2E.tapButton('Show');
+    await IonicE2E.tapButton('Hide');
+    await IonicE2E.tapButton('Toggle Accessory Bar');
+    await IonicE2E.tapButton('Toggle Scroll');
+    await IonicE2E.tapButton('Set Style Light');
+    await IonicE2E.tapButton('Set Style Dark');
+    await IonicE2E.tapButton('Set Style Default');
+    await IonicE2E.tapButton('Set Resize Mode None');
+    await IonicE2E.tapButton('Set Resize Mode Body');
+    await IonicE2E.tapButton('Set Resize Mode Native');
+    await IonicE2E.tapButton('Set Resize Mode Ionic');
+  });
+  it.only('should do local notifications', async () => {
+    await openPage('Local Notifications');
+
+    await waitResult({ 'display': 'granted' });
+  });
+  it('should do motion', async () => {
+  });
+  it('should do network', async () => {
+  });
+  it('should do push notifications', async () => {
+  });
+  it('should do screen reader', async () => {
+  });
+  it('should do share', async () => {
+  });
+  it('should do splash screen', async () => {
+  });
+  it('should do status bar', async () => {
+  });
+  it('should do storage', async () => {
+  });
+  it('should do text zoom', async () => {
+  });
+  it('should do toast', async () => {
   });
 });

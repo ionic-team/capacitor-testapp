@@ -14,13 +14,16 @@ import {
 import { Haptics, ImpactStyle, NotificationType } from '@capacitor/haptics';
 
 import React from 'react';
+import { capInvoke } from '../utils/call';
 
 const HapticsPage: React.FC = () => {
   const hapticsImpact = async (style = ImpactStyle.Heavy) => {
     try {
-      await Haptics.impact({
-        style: style,
-      });
+      await capInvoke(() =>
+        Haptics.impact({
+          style: style,
+        }),
+      );
     } catch (ex) {
       console.log('ex', ex);
     }
@@ -28,9 +31,11 @@ const HapticsPage: React.FC = () => {
 
   const hapticsNotif = async (type = NotificationType.Warning) => {
     try {
-      await Haptics.notification({
-        type: type,
-      });
+      await capInvoke(() =>
+        Haptics.notification({
+          type: type,
+        }),
+      );
     } catch (ex) {
       console.log('ex', ex);
     }
@@ -62,26 +67,26 @@ const HapticsPage: React.FC = () => {
 
   const hapticsVibrate = async () => {
     try {
-      await Haptics.vibrate();
+      await capInvoke(() => Haptics.vibrate());
     } catch (ex) {
       console.log('ex', ex);
     }
   };
 
   const hapticsSelectionStart = async () => {
-    await Haptics.selectionStart();
+    await capInvoke(() => Haptics.selectionStart());
   };
 
   const hapticsSelectionChanged = async () => {
     try {
-      await Haptics.selectionChanged();
+      await capInvoke(() => Haptics.selectionChanged());
     } catch (ex) {
       console.log('ex', ex);
     }
   };
 
   const hapticsSelectionEnd = async () => {
-    await Haptics.selectionEnd();
+    await capInvoke(() => Haptics.selectionEnd());
   };
 
   return (
