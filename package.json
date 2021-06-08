@@ -84,7 +84,7 @@
     "@wdio/spec-reporter": "^7.7.0",
     "chromedriver": "^90.0.1",
     "expect-webdriverio": "^3.0.0",
-    "lodash.matches": "^4.6.0",
+    "lodash": "^4.17.21",
     "prettier": "^2.0.5",
     "pullstate": "^1.22.1",
     "ts-node": "^9.1.1",

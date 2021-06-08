@@ -1,6 +1,7 @@
 import WebView, { CONTEXT_REF } from '../helpers/WebView';
 
-import * as matches from 'lodash.matches';
+const isMatch = require('lodash/isMatch');
+const isEqual = require('lodash/isEqual');
 
 interface ElementActionOptions {
   visibilityTimeout?: number;
@@ -62,22 +63,17 @@ describe('home page', () => {
     await IonicE2E.setDevice(Device.Mobile);
   });
 
-  const getResultValue = async () => {
-    const p = await $('.result-pane textarea');
-    return p.getValue();
-  }
-
-  const waitResult = async (result, options: ElementActionOptions) => {
-    return browser.waitUntil(async () => {
+  const waitResult = async (result) => {// , options: ElementActionOptions = { visibilityTimeout: 5000 }) => {
+    await browser.waitUntil(async () => {
       const p = await $('.result-pane textarea');
       const value = await p.getValue();
-      if (value === result) {
+      if (typeof result === 'string' && value === result) {
         return true;
       }
-      console.log('Checking value against result', value, result);
-      // return value == JSON.stringify(result, null, 2);
+      console.log('Checking value against result', value, result, Object.keys(JSON.parse(value)), Object.keys(result));
 
-      return matches(value, result);
+      // return Object.keys(result) == Object.keys(JSON.parse(value));
+      return isEqual(Object.keys(result), Object.keys(JSON.parse(value)));
     }, {
       timeout: 10000,
       timeoutMsg: 'Waited but still false',
@@ -183,7 +179,7 @@ describe('home page', () => {
     await IonicE2E.tapButton('Language Code');
   });
 
-  it.only('should do filesystem', async () => {
+  it('should do filesystem', async () => {
     await openPage('Filesystem');
 
     await IonicE2E.tapButton('mkdir');
@@ -248,5 +244,28 @@ describe('home page', () => {
     await waitResult('');
     await IonicE2E.tapButton('read (u)');
     await waitResult('');
+  });
+
+  it.only('should do geolocation', async () => {
+    await openPage('Geolocation');
+
+    await IonicE2E.tapButton('Check Permissions');
+    await waitResult({
+      location: 'prompt'
+    });
+    await IonicE2E.tapButton('Request Permissions');
+    await IonicE2E.tapButton('Get Location');
+
+    await waitResult({
+      "coords": {},
+      "timestamp": ""
+    });
+
+    await IonicE2E.tapButton('Watch Location');
+
+    // Wait for the watch to engage, takes a bit longer
+    await browser.pause(1000);
+
+    await waitResult('1');
   });
 });
