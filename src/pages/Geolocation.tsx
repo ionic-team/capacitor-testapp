@@ -8,7 +8,6 @@ import {
   IonMenuButton,
   IonTitle,
   IonToolbar,
-  withIonLifeCycle,
   IonCard,
   IonCardHeader,
   IonCardTitle,
@@ -29,15 +28,12 @@ interface LocationInterface {
   timestamp?: number;
 }
 
-interface GeolocationPageState {
-  initialLocation: LocationInterface | null;
-  currentLocation: LocationInterface | null;
-}
-
 const GeolocationPage = () => {
   const [watchId, setWatchId] = useState('');
-  const [initialLocation, setInitialLocation] = useState<any>(null);
-  const [currentLocation, setCurrentLocation] = useState<any>(null);
+  const [initialLocation, setInitialLocation] =
+    useState<LocationInterface | null>(null);
+  const [currentLocation, setCurrentLocation] =
+    useState<LocationInterface | null>(null);
 
   const options = { enableHighAccuracy: true };
 

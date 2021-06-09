@@ -1,4 +1,4 @@
-import WebView, { CONTEXT_REF } from '../helpers/WebView';
+import { Device, IonicE2E } from "../helpers/Ionic";
 
 const isMatch = require('lodash/isMatch');
 const isEqual = require('lodash/isEqual');
@@ -14,57 +14,16 @@ interface OpenMenuOptions extends ElementActionOptions {
   delayForAnimation?: boolean;
 }
 
-enum Device {
-  Mobile = 'mobile'
-}
-class IonicE2E {
-  static async native() {
-    WebView.switchToContext(CONTEXT_REF.NATIVE);
-  }
-  static async web() {
-    WebView.switchToContext(CONTEXT_REF.WEBVIEW);
-  }
-  static async setDevice(device: Device) {
-    switch (device) {
-      case Device.Mobile: {
-        await browser.setWindowSize(375, 812);
-      }
-    }
-  }
-
-  static async waitElement(selector: string, { visibilityTimeout = 5000 }: ElementActionOptions = {}) {
-    const el = await $(selector);
-    await el.waitForDisplayed({ timeout: visibilityTimeout });
-    return el;
-  }
-
-  static async tapButton(buttonTitle, { visibilityTimeout }: TapButtonOptions = { visibilityTimeout: 5000 }) {
-    const button = await $(`ion-button=${buttonTitle}`);
-    await button.waitForDisplayed({ timeout: visibilityTimeout });
-    await (await expect(button)).toBeDisplayed();
-
-    await button.click();
-  }
-
-  static async openMenu({ delayForAnimation = true, visibilityTimeout = 5000 }: OpenMenuOptions = {}) {
-    const menuButton = await $('ion-menu-button');
-    await menuButton.waitForDisplayed({ timeout: visibilityTimeout });
-    await menuButton.click();
-
-    // Let the menu animate open/closed
-    if (delayForAnimation) {
-      await browser.pause(300);
-    }
-  }
-}
 
 describe('home page', () => {
   beforeEach(async () => {
     await IonicE2E.setDevice(Device.Mobile);
+    await IonicE2E.web();
+    await IonicE2E.url('/home');
   });
 
   const waitResult = async (result) => {// , options: ElementActionOptions = { visibilityTimeout: 5000 }) => {
-    await browser.waitUntil(async () => {
+    await driver.waitUntil(async () => {
       const p = await $('.result-pane textarea');
       const value = await p.getValue();
       if (typeof result === 'string' && value === result) {
@@ -83,7 +42,7 @@ describe('home page', () => {
 
   const openPage = async (itemText: string) => {
     // Go back to home
-    await browser.url('/home');
+    // await driver.url('/home');
 
     await IonicE2E.openMenu();
 
@@ -100,14 +59,26 @@ describe('home page', () => {
 
   // Action sheet
 
-  it('should open action sheet', async () => {
+  it.only('should open action sheet', async () => {
     await openPage('Action Sheet');
 
     await IonicE2E.tapButton('Show Actions');
 
-    const pwaActionSheet = await $('pwa-action-sheet');
-    await pwaActionSheet.waitForDisplayed({ timeout: 5000 });
-    await (await expect(pwaActionSheet)).toBeDisplayed();
+    await IonicE2E.onWeb(async () => {
+      const pwaActionSheet = await $('pwa-action-sheet');
+      await pwaActionSheet.waitForDisplayed({ timeout: 5000 });
+      await (await expect(pwaActionSheet)).toBeDisplayed();
+
+    });
+
+    await IonicE2E.onIOS(async () => {
+      await IonicE2E.native();
+      const actionSheet = await IonicE2E.findElementIOS('Photo Options');
+      await actionSheet.waitForDisplayed({ timeout: 5000 });
+      await (await expect(actionSheet)).toBeDisplayed();
+    });
+
+    await IonicE2E.pause(5000);
   });
 
   // App
@@ -122,10 +93,10 @@ describe('home page', () => {
     await IonicE2E.tapButton('Test Failing Call');
   });
 
-  // Browser
+  // driver
 
-  it('should do browser', async () => {
-    await openPage('Browser');
+  it('should do driver', async () => {
+    await openPage('driver');
 
     await IonicE2E.tapButton('Open URL');
     // iOS only
@@ -183,7 +154,7 @@ describe('home page', () => {
     await openPage('Filesystem');
 
     await IonicE2E.tapButton('mkdir');
-    await browser.pause(500);
+    await driver.pause(500);
     await waitResult('');
     await IonicE2E.tapButton('readdir');
     await waitResult({
@@ -264,7 +235,7 @@ describe('home page', () => {
     await IonicE2E.tapButton('Watch Location');
 
     // Wait for the watch to engage, takes a bit longer
-    await browser.pause(1000);
+    await driver.pause(1000);
 
     await waitResult('1');
   });
@@ -299,7 +270,7 @@ describe('home page', () => {
     await IonicE2E.tapButton('Set Resize Mode Native');
     await IonicE2E.tapButton('Set Resize Mode Ionic');
   });
-  it.only('should do local notifications', async () => {
+  it('should do local notifications', async () => {
     await openPage('Local Notifications');
 
     await waitResult({ 'display': 'granted' });

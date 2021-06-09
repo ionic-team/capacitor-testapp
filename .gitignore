@@ -3,6 +3,9 @@
 .gradle
 .eslintcache
 
+app.xcarchive/
+app/App.zip
+
 # dependencies
 /node_modules
 /.pnp
