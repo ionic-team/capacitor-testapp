@@ -65,10 +65,8 @@ describe('home page', () => {
     await IonicE2E.tapButton('Show Actions');
 
     await IonicE2E.onWeb(async () => {
-      const pwaActionSheet = await $('pwa-action-sheet');
-      await pwaActionSheet.waitForDisplayed({ timeout: 5000 });
+      const pwaActionSheet = await IonicE2E.waitElement('pwa-action-sheet');
       await (await expect(pwaActionSheet)).toBeDisplayed();
-
     });
 
     await IonicE2E.onIOS(async () => {
