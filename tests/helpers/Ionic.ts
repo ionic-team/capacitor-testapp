@@ -1,5 +1,24 @@
 import WebView, { CONTEXT_REF } from '../helpers/WebView';
 
+interface ElementActionOptions {
+  /**
+   * How long to wait (in ms) for the element to be visible before
+   * the test fails. Default: 5000 ms
+   */
+  visibilityTimeout?: number;
+}
+
+interface TapButtonOptions extends ElementActionOptions {
+  /**
+   * Whether to scroll the element into view first. Default: true
+   */
+  scroll?: boolean;
+}
+
+interface OpenMenuOptions extends ElementActionOptions {
+  delayForAnimation?: boolean;
+}
+
 export enum Device {
   Mobile = 'mobile'
 }
@@ -79,10 +98,12 @@ export class IonicE2E {
     return el;
   }
 
-  static async tapButton(buttonTitle, { visibilityTimeout }: TapButtonOptions = { visibilityTimeout: 5000 }) {
+  static async tapButton(buttonTitle, { visibilityTimeout = 5000, scroll = true }: TapButtonOptions = {}) {
     const button = await $(`ion-button=${buttonTitle}`);
     await button.waitForDisplayed({ timeout: visibilityTimeout });
-    await button.scrollIntoView();
+    if (scroll) {
+      await button.scrollIntoView();
+    }
     await (await expect(button)).toBeDisplayed();
 
     await button.click();

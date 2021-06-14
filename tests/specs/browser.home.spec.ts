@@ -3,17 +3,6 @@ import { Device, IonicE2E } from "../helpers/Ionic";
 const isMatch = require('lodash/isMatch');
 const isEqual = require('lodash/isEqual');
 
-interface ElementActionOptions {
-  visibilityTimeout?: number;
-}
-
-interface TapButtonOptions extends ElementActionOptions {
-}
-
-interface OpenMenuOptions extends ElementActionOptions {
-  delayForAnimation?: boolean;
-}
-
 
 describe('home page', () => {
   beforeEach(async () => {
@@ -270,7 +259,7 @@ describe('home page', () => {
     await IonicE2E.tapButton('Set Resize Mode Native');
     await IonicE2E.tapButton('Set Resize Mode Ionic');
   });
-  it.only('should do local notifications', async () => {
+  it('should do local notifications', async () => {
     await openPage('Local Notifications');
 
     await waitResult({ 'display': 'granted' });
@@ -290,24 +279,34 @@ describe('home page', () => {
     await IonicE2E.tapButton('Schedule just one (without seconds)');
     await IonicE2E.tapButton('Cancel just one');
   });
-  it('should do motion', async () => {
+  it.only('should do motion', async () => {
+    await openPage('Local Notifications');
   });
   it('should do network', async () => {
+    await openPage('Network');
   });
   it('should do push notifications', async () => {
+    await openPage('Push Notifications');
   });
   it('should do screen reader', async () => {
+    await openPage('Screen Reader');
   });
   it('should do share', async () => {
+    await openPage('Share');
   });
   it('should do splash screen', async () => {
+    await openPage('Splash Screen');
   });
   it('should do status bar', async () => {
+    await openPage('Status Bar');
   });
   it('should do storage', async () => {
+    await openPage('Storage');
   });
   it('should do text zoom', async () => {
+    await openPage('Text Zoom');
   });
   it('should do toast', async () => {
+    await openPage('Toast');
   });
 });

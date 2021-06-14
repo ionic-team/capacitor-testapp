@@ -9,6 +9,7 @@ export const capInvoke = async (fn: () => any, err?: (error: Error) => void) => 
     });
     return result;
   } catch (e) {
+    console.error(e);
     err?.(e);
     AppStore.update(s => {
       s.result = null;
