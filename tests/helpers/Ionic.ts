@@ -82,6 +82,7 @@ export class IonicE2E {
   static async tapButton(buttonTitle, { visibilityTimeout }: TapButtonOptions = { visibilityTimeout: 5000 }) {
     const button = await $(`ion-button=${buttonTitle}`);
     await button.waitForDisplayed({ timeout: visibilityTimeout });
+    await button.scrollIntoView();
     await (await expect(button)).toBeDisplayed();
 
     await button.click();

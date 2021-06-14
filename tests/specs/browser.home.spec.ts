@@ -51,6 +51,8 @@ describe('home page', () => {
 
     const linkItem = await menu.$(`ion-item*=${itemText}`);
     await linkItem.waitForDisplayed({ timeout: 5000 });
+    // await linkItem.moveTo();
+    await linkItem.scrollIntoView();
     await linkItem.click();
 
     const menuElement = await $('ion-menu');
@@ -59,7 +61,7 @@ describe('home page', () => {
 
   // Action sheet
 
-  it.only('should open action sheet', async () => {
+  it('should open action sheet', async () => {
     await openPage('Action Sheet');
 
     await IonicE2E.tapButton('Show Actions');
@@ -268,10 +270,25 @@ describe('home page', () => {
     await IonicE2E.tapButton('Set Resize Mode Native');
     await IonicE2E.tapButton('Set Resize Mode Ionic');
   });
-  it('should do local notifications', async () => {
+  it.only('should do local notifications', async () => {
     await openPage('Local Notifications');
 
     await waitResult({ 'display': 'granted' });
+
+    await IonicE2E.tapButton('Schedule now');
+    await IonicE2E.tapButton('Schedule now (custom icon on Android)');
+    await IonicE2E.tapButton('Schedule in 10s');
+    await IonicE2E.tapButton('Schedule in 10s (even while idle)');
+    await IonicE2E.tapButton('Schedule in 10s with Extras');
+    await IonicE2E.tapButton('Schedule every minute');
+    await IonicE2E.tapButton('Schedule every 90 seconds');
+    await IonicE2E.tapButton('Schedule every 90 seconds with Extras');
+    await IonicE2E.tapButton('Cancel Pending Notifications');
+    await IonicE2E.tapButton('Refresh Pending Notifications');
+    await IonicE2E.tapButton('Schedule just one');
+    await IonicE2E.tapButton('Schedule just one (with seconds)');
+    await IonicE2E.tapButton('Schedule just one (without seconds)');
+    await IonicE2E.tapButton('Cancel just one');
   });
   it('should do motion', async () => {
   });
