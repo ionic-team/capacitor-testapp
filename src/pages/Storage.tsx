@@ -16,6 +16,7 @@ import React, { useState } from 'react';
 import { Storage } from '@capacitor/storage';
 
 import { createEventTargetValueExtractor } from '../utils/dom';
+import { capInvoke } from '../utils/call';
 
 const StoragePage: React.FC = () => {
   const [group, setGroup] = useState('CapacitorStorage');
@@ -31,35 +32,35 @@ const StoragePage: React.FC = () => {
   };
 
   const handleGetClicked = async () => {
-    const { value } = await Storage.get({ key });
-    alert(`${key}: ${value}`);
+    const { value } = await capInvoke(() => Storage.get({ key }));
+    // alert(`${key}: ${value}`);
   };
 
   const handleSetClicked = async () => {
-    await Storage.set({ key, value });
+    await capInvoke(() => Storage.set({ key, value }));
   };
 
   const handleRemoveClicked = async () => {
-    await Storage.remove({ key });
+    await capInvoke(() => Storage.remove({ key }));
   };
 
   const handleRemoveAllClicked = async () => {
-    await Storage.clear();
+    await capInvoke(() => Storage.clear());
   };
 
   const handleGetAllClicked = async () => {
-    const { keys } = await Storage.keys();
-    alert(`all keys: ${keys.join(', ')}`);
+    const { keys } = await capInvoke(() => Storage.keys());
+    // alert(`all keys: ${keys.join(', ')}`);
   };
 
   const handleMigrationTestClicked = async () => {
     // localStorage.setItem('_cap_key1', 'data1');
     // localStorage.setItem('_cap_key2', 'data2');
-    const { migrated, existing } = await Storage.migrate();
+    const { migrated, existing } = await capInvoke(() => Storage.migrate());
 
-    alert(
+    /*alert(
       `Done!\n${migrated.length} keys migrated, ${existing.length} not migrated.`,
-    );
+    );*/
   };
 
   return (
@@ -87,7 +88,11 @@ const StoragePage: React.FC = () => {
           </IonItem>
           <IonItem>
             <IonLabel position="stacked">Value</IonLabel>
-            <IonInput value={value} onInput={handleValueInputChange} />
+            <IonInput
+              value={value}
+              onInput={handleValueInputChange}
+              id="storage-value"
+            />
           </IonItem>
           <IonButton onClick={handleSetClicked} expand="full">
             Set {key}

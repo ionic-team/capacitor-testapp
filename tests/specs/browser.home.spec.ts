@@ -325,14 +325,53 @@ describe('home page', () => {
     await IonicE2E.tapButton('Show Splash, auto-hide, 2s');
     await IonicE2E.tapButton('Show Splash, 6s');
   });
-  it.only('should do status bar', async () => {
+  it('should do status bar', async () => {
     await openPage('Status Bar');
 
     const status = await IonicE2E.waitElement('#status');
     await (await expect(status)).toHaveText('StatusBar plugin not supported on web');
   });
-  it('should do storage', async () => {
+  it.only('should do storage', async () => {
     await openPage('Storage');
+
+    await IonicE2E.setInputValue('#storage-value', 'myvalue');
+
+    await IonicE2E.tapButton('Set key1');
+    await IonicE2E.tapButton('Get key1');
+
+    await waitResult({
+      value: 'myvalue'
+    });
+
+    await IonicE2E.tapButton('Get All Keys');
+
+    await waitResult({
+      keys: ['key1']
+    });
+
+    await IonicE2E.tapButton('Remove key1');
+
+    await IonicE2E.tapButton('Get key1');
+
+    await waitResult({
+      value: null
+    });
+
+    await IonicE2E.tapButton('Set key1');
+    await IonicE2E.tapButton('Clear Storage');
+
+    await IonicE2E.tapButton('Get All Keys');
+
+    await waitResult({
+      keys: []
+    });
+
+    await IonicE2E.tapButton('Migration Test');
+
+    await waitResult({
+      migrated: [],
+      existing: []
+    });
   });
   it('should do text zoom', async () => {
     await openPage('Text Zoom');

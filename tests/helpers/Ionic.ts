@@ -119,4 +119,18 @@ export class IonicE2E {
       await driver.pause(300);
     }
   }
+
+  static async setInputValue(selector: string, value: string, { visibilityTimeout = 5000 }: ElementActionOptions = {}) {
+    const el = await $(selector);
+    await el.waitForDisplayed({ timeout: visibilityTimeout });
+    console.log('Got input element', el);
+
+    const ionTags = ['ion-input', 'ion-textarea']
+    if (ionTags.indexOf(await el.getTagName()) >= 0) {
+      const input = await el.$('input');
+      return driver.elementSendKeys(input.elementId, value);
+    } else {
+      return el.setValue(value);
+    }
+  }
 }
