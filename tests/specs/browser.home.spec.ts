@@ -331,7 +331,7 @@ describe('home page', () => {
     const status = await IonicE2E.waitElement('#status');
     await (await expect(status)).toHaveText('StatusBar plugin not supported on web');
   });
-  it.only('should do storage', async () => {
+  it('should do storage', async () => {
     await openPage('Storage');
 
     await IonicE2E.setInputValue('#storage-value', 'myvalue');
@@ -375,8 +375,19 @@ describe('home page', () => {
   });
   it('should do text zoom', async () => {
     await openPage('Text Zoom');
+
+    const status = await IonicE2E.waitElement('#status');
+    await (await expect(status)).toHaveText('TextZoom plugin not supported on web');
   });
-  it('should do toast', async () => {
+  it.only('should do toast', async () => {
     await openPage('Toast');
+
+    await IonicE2E.tapButton('Show (top)');
+    let toast = await IonicE2E.waitElement('pwa-toast');
+    await expect(toast).toHaveText('Hello!');
+    await IonicE2E.tapButton('Show (center)');
+    await expect(toast).toHaveText('Hello!');
+    await IonicE2E.tapButton('Show (bottom)');
+    await expect(toast).toHaveText('Hello!');
   });
 });

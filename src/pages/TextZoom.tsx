@@ -92,7 +92,7 @@ const TextZoomPage: React.FC = () => {
             </IonList>,
           ]
         ) : (
-          <IonLabel>
+          <IonLabel id="status">
             TextZoom plugin not supported on {Capacitor.getPlatform()}
           </IonLabel>
         )}
