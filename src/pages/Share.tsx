@@ -10,16 +10,19 @@ import {
 } from '@ionic/react';
 import React from 'react';
 import { Share } from '@capacitor/share';
+import { capInvoke } from '../utils/call';
 
 const SharePage: React.FC = () => {
   const showSharing = async () => {
     try {
-      let shareRet = await Share.share({
-        title: 'See cool stuff',
-        text: 'Really awesome thing you need to see right meow',
-        url: 'http://ionicframework.com/',
-        dialogTitle: 'Share with buddies',
-      });
+      let shareRet = await capInvoke(() =>
+        Share.share({
+          title: 'See cool stuff',
+          text: 'Really awesome thing you need to see right meow',
+          url: 'http://ionicframework.com/',
+          dialogTitle: 'Share with buddies',
+        }),
+      );
       console.log('Share return', shareRet);
     } catch (err) {
       console.log('err', err);
@@ -28,9 +31,11 @@ const SharePage: React.FC = () => {
 
   const showSharingTextOnly = async () => {
     try {
-      let shareRet = await Share.share({
-        text: 'Really awesome thing you need to see right meow',
-      });
+      let shareRet = await capInvoke(() =>
+        Share.share({
+          text: 'Really awesome thing you need to see right meow',
+        }),
+      );
       console.log('Share return', shareRet);
     } catch (err) {
       console.log('err', err);
@@ -39,9 +44,11 @@ const SharePage: React.FC = () => {
 
   const showSharingUrlOnly = async () => {
     try {
-      let shareRet = await Share.share({
-        url: 'http://ionicframework.com/',
-      });
+      let shareRet = await capInvoke(() =>
+        Share.share({
+          url: 'http://ionicframework.com/',
+        }),
+      );
       console.log('Share return', shareRet);
     } catch (err) {
       console.log('err', err);

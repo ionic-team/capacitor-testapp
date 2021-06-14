@@ -13,6 +13,7 @@ import React from 'react';
 import { Network, ConnectionStatus } from '@capacitor/network';
 import { PluginListenerHandle } from '@capacitor/core';
 import './Network.css';
+import { capInvoke } from '../utils/call';
 
 interface NetworkPageState {
   handler: PluginListenerHandle | undefined;
@@ -50,7 +51,7 @@ class NetworkPage extends React.Component<{}, NetworkPageState> {
   }
 
   updateNetworkStatus = async () => {
-    const status = await Network?.getStatus();
+    const status = await capInvoke(() => Network?.getStatus());
     this.setState({
       networkStatus: status,
     });
@@ -71,15 +72,15 @@ class NetworkPage extends React.Component<{}, NetworkPageState> {
         <IonContent>
           <div className="container">
             {status?.connected ? (
-              <IonText color="dark">
+              <IonText color="dark" id="connection-status">
                 <p>Connected</p>
               </IonText>
             ) : (
-              <IonText color="medium">
+              <IonText color="medium" id="connection-status">
                 <p>Disconnected</p>
               </IonText>
             )}
-            <IonText color="dark">
+            <IonText color="dark" id="connection-type">
               <p>Connection type is {status?.connectionType}</p>
             </IonText>
           </div>

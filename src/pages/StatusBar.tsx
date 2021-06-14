@@ -13,6 +13,7 @@ import {
 import React, { useState } from 'react';
 import { Capacitor } from '@capacitor/core';
 import { StatusBar, Style } from '@capacitor/status-bar';
+import { capInvoke } from '../utils/call';
 
 const StatusBarPage: React.FC = () => {
   const [statusbarInfoJson, setStatusbarInfoJson] = useState('');
@@ -29,37 +30,43 @@ const StatusBarPage: React.FC = () => {
   });
 
   const changeStatusBar = async () => {
-    StatusBar.setStyle({
-      style: Style.Default,
-    });
+    capInvoke(() =>
+      StatusBar.setStyle({
+        style: Style.Default,
+      }),
+    );
   };
 
   const changeStatusBarLight = async () => {
-    StatusBar.setStyle({
-      style: Style.Light,
-    });
+    capInvoke(() =>
+      StatusBar.setStyle({
+        style: Style.Light,
+      }),
+    );
   };
 
   const changeStatusBarDark = async () => {
-    StatusBar.setStyle({
-      style: Style.Dark,
-    });
+    capInvoke(() =>
+      StatusBar.setStyle({
+        style: Style.Dark,
+      }),
+    );
   };
 
   const showStatusBar = async () => {
-    StatusBar.show();
+    capInvoke(() => StatusBar.show());
   };
 
   const hideStatusBar = async () => {
-    StatusBar.hide();
+    capInvoke(() => StatusBar.hide());
   };
 
   const overlayStatusbar = async () => {
-    StatusBar.setOverlaysWebView({ overlay: true });
+    capInvoke(() => StatusBar.setOverlaysWebView({ overlay: true }));
   };
 
   const unOverlayStatusbar = async () => {
-    StatusBar.setOverlaysWebView({ overlay: false });
+    capInvoke(() => StatusBar.setOverlaysWebView({ overlay: false }));
   };
 
   const setBackgroundColor = async () => {
@@ -74,11 +81,11 @@ const StatusBarPage: React.FC = () => {
       })
       .join('');
     console.log(`Random color: #${randomColor}`);
-    StatusBar.setBackgroundColor({ color: `#${randomColor}` });
+    capInvoke(() => StatusBar.setBackgroundColor({ color: `#${randomColor}` }));
   };
 
   const getInfo = async () => {
-    const info = await StatusBar.getInfo();
+    const info = await capInvoke(() => StatusBar.getInfo());
     console.log('Got statusbar info', info);
     setStatusbarInfoJson(JSON.stringify(info, null, 2));
   };
@@ -128,7 +135,7 @@ const StatusBarPage: React.FC = () => {
             </div>,
           ]
         ) : (
-          <IonLabel>
+          <IonLabel id="status">
             StatusBar plugin not supported on {Capacitor.getPlatform()}
           </IonLabel>
         )}

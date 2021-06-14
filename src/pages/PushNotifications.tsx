@@ -16,17 +16,22 @@ import './PushNotifications.css';
 import { PermissionState } from '@capacitor/core';
 import NotificationsTest from '../components/NotificationsTest';
 import NotificationChannelsTest from '../components/NotificationChannelsTest';
+import { capInvoke } from '../utils/call';
 
 const PushNotificationsPage: React.FC = () => {
   const [hasPermission, setHasPermission] = useState<PermissionState>('denied');
 
   const ensurePermissions = async (): Promise<PermissionState> => {
     try {
-      let { receive } = await PushNotifications.checkPermissions();
+      let { receive } = await capInvoke(() =>
+        PushNotifications.checkPermissions(),
+      );
       console.log('PushNotifications receive permission:', receive);
 
       if (receive === 'prompt') {
-        ({ receive } = await PushNotifications.requestPermissions());
+        ({ receive } = await capInvoke(() =>
+          PushNotifications.requestPermissions(),
+        ));
       }
 
       if (receive !== 'granted') {
@@ -44,7 +49,7 @@ const PushNotificationsPage: React.FC = () => {
 
   const register = async () => {
     try {
-      await PushNotifications.register();
+      await capInvoke(() => PushNotifications.register());
     } catch (e) {
       console.log('push notification registration error');
       console.error(e);

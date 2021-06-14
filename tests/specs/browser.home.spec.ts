@@ -279,26 +279,57 @@ describe('home page', () => {
     await IonicE2E.tapButton('Schedule just one (without seconds)');
     await IonicE2E.tapButton('Cancel just one');
   });
-  it.only('should do motion', async () => {
-    await openPage('Local Notifications');
+
+  it('should do motion', async () => {
+    await openPage('Motion');
+
+    await IonicE2E.tapButton('Listen orientation');
+    await IonicE2E.tapButton('Stop orientation');
+    await IonicE2E.tapButton('Listen acceleration');
+    await IonicE2E.tapButton('Stop acceleration');
   });
+
   it('should do network', async () => {
     await openPage('Network');
+
+    const status = await IonicE2E.waitElement('#connection-status');
+
+    await (await expect(status)).toHaveText('Connected');
+
+    const type = await IonicE2E.waitElement('#connection-type');
+
+    await (await expect(type)).toHaveText('Connection type is wifi');
   });
+
   it('should do push notifications', async () => {
     await openPage('Push Notifications');
   });
+
   it('should do screen reader', async () => {
     await openPage('Screen Reader');
+
+    await IonicE2E.tapButton('Enabled?');
+    await IonicE2E.tapButton('Speak');
   });
   it('should do share', async () => {
     await openPage('Share');
+
+    await IonicE2E.tapButton('Show Sharing');
+    await IonicE2E.tapButton('Show Sharing (text only)');
+    await IonicE2E.tapButton('Show Sharing (url only)');
   });
   it('should do splash screen', async () => {
     await openPage('Splash Screen');
+
+    await IonicE2E.tapButton('Show Splash, auto-hide, default length');
+    await IonicE2E.tapButton('Show Splash, auto-hide, 2s');
+    await IonicE2E.tapButton('Show Splash, 6s');
   });
-  it('should do status bar', async () => {
+  it.only('should do status bar', async () => {
     await openPage('Status Bar');
+
+    const status = await IonicE2E.waitElement('#status');
+    await (await expect(status)).toHaveText('StatusBar plugin not supported on web');
   });
   it('should do storage', async () => {
     await openPage('Storage');

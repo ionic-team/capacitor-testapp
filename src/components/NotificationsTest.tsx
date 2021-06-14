@@ -16,6 +16,7 @@ import {
   PushNotificationSchema,
 } from '@capacitor/push-notifications/dist/esm/definitions';
 import { PermissionState } from '@capacitor/core';
+import { capInvoke } from '../utils/call';
 
 interface Props {
   permissions: PermissionState;
@@ -27,8 +28,9 @@ export default function NotificationTest({ permissions }: Props) {
 
   const getDeliveredNotifications = async () => {
     try {
-      const notificationList =
-        await PushNotifications.getDeliveredNotifications();
+      const notificationList = await capInvoke(() =>
+        PushNotifications.getDeliveredNotifications(),
+      );
       setNotificationList(notificationList);
     } catch (e) {
       console.log('getDeliveredNotifications error');
@@ -38,7 +40,9 @@ export default function NotificationTest({ permissions }: Props) {
 
   const removeDeliveredNotifications = async () => {
     try {
-      await PushNotifications.removeAllDeliveredNotifications();
+      await capInvoke(() =>
+        PushNotifications.removeAllDeliveredNotifications(),
+      );
       await getDeliveredNotifications();
     } catch (e) {
       console.log('removeAllDeliveredNotifications error');
@@ -53,7 +57,9 @@ export default function NotificationTest({ permissions }: Props) {
       const newList: PushNotificationDeliveredList = {
         notifications: [notification],
       };
-      await PushNotifications.removeDeliveredNotifications(newList);
+      await capInvoke(() =>
+        PushNotifications.removeDeliveredNotifications(newList),
+      );
       await getDeliveredNotifications();
     } catch (e) {
       console.log('removeDeliveredNotifications error');
@@ -63,7 +69,7 @@ export default function NotificationTest({ permissions }: Props) {
 
   const unRegisterListeners = () => {
     try {
-      PushNotifications.removeAllListeners();
+      capInvoke(() => PushNotifications.removeAllListeners());
     } catch (e) {
       console.log('removeAllListeners error');
       console.error(e);
@@ -71,27 +77,38 @@ export default function NotificationTest({ permissions }: Props) {
   };
 
   useEffect(() => {
-    PushNotifications.addListener('registration', token => {
-      console.info('Registration token: ', token);
-    });
+    capInvoke(() =>
+      PushNotifications.addListener('registration', token => {
+        console.info('Registration token: ', token);
+      }),
+    );
 
-    PushNotifications.addListener('registrationError', err => {
-      console.error('Registration error: ', err);
-    });
+    capInvoke(() =>
+      PushNotifications.addListener('registrationError', err => {
+        console.error('Registration error: ', err);
+      }),
+    );
 
-    PushNotifications.addListener('pushNotificationReceived', notification => {
-      console.log('Push notification received: ', notification);
-    });
+    capInvoke(() =>
+      PushNotifications.addListener(
+        'pushNotificationReceived',
+        notification => {
+          console.log('Push notification received: ', notification);
+        },
+      ),
+    );
 
-    PushNotifications.addListener(
-      'pushNotificationActionPerformed',
-      notification => {
-        console.log(
-          'Push notification action performed',
-          notification.actionId,
-          notification.inputValue,
-        );
-      },
+    capInvoke(() =>
+      PushNotifications.addListener(
+        'pushNotificationActionPerformed',
+        notification => {
+          console.log(
+            'Push notification action performed',
+            notification.actionId,
+            notification.inputValue,
+          );
+        },
+      ),
     );
 
     if (permissions === 'granted') {

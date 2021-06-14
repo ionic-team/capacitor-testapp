@@ -27,6 +27,7 @@ import { Formik } from 'formik';
 import React, { useCallback, useEffect, useState } from 'react';
 
 import styles from './NotificationChannelsTest.module.css';
+import { capInvoke } from '../utils/call';
 
 type NewChannelForm = Omit<
   PushNotificationChannel | LocalNotificationChannel,
@@ -47,10 +48,14 @@ export default function NotificationChannelsTest({ notificationType }: Props) {
   const listNotificationChannels = useCallback(async () => {
     try {
       if (notificationType === 'push') {
-        const channels = await PushNotifications.listChannels();
+        const channels = await capInvoke(() =>
+          PushNotifications.listChannels(),
+        );
         setChannelsList(channels.channels);
       } else {
-        const channels = await LocalNotifications.listChannels();
+        const channels = await capInvoke(() =>
+          LocalNotifications.listChannels(),
+        );
         setChannelsList(channels.channels);
       }
     } catch (e) {
@@ -70,7 +75,7 @@ export default function NotificationChannelsTest({ notificationType }: Props) {
         };
 
         console.log('new channel', channel);
-        await PushNotifications.createChannel(channel);
+        await capInvoke(() => PushNotifications.createChannel(channel));
       } else {
         const channel: LocalNotificationChannel = {
           ...newChannel,
@@ -92,7 +97,7 @@ export default function NotificationChannelsTest({ notificationType }: Props) {
   ) => {
     try {
       if (notificationType === 'push') {
-        await PushNotifications.deleteChannel(channel);
+        await capInvoke(() => PushNotifications.deleteChannel(channel));
       } else {
         await LocalNotifications.deleteChannel(channel);
       }

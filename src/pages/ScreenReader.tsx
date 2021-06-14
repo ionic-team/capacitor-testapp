@@ -17,15 +17,18 @@ import {
   useIonViewDidLeave,
 } from '@ionic/react';
 import React, { useState } from 'react';
+import { capInvoke } from '../utils/call';
 import { createEventTargetValueExtractor } from '../utils/dom';
 
 const ScreenReaderPage: React.FC = () => {
   let handler: PluginListenerHandle;
   const [sentence, setSentence] = useState('Hello World?');
 
-  useIonViewDidEnter(() => {
-    handler = ScreenReader.addListener('stateChange', ({ value }: any) =>
-      alert(`State Change! Screen Reader on? ${value}`),
+  useIonViewDidEnter(async () => {
+    handler = await capInvoke(() =>
+      ScreenReader.addListener('stateChange', ({ value }: any) =>
+        alert(`State Change! Screen Reader on? ${value}`),
+      ),
     );
   });
 
@@ -35,7 +38,9 @@ const ScreenReaderPage: React.FC = () => {
 
   const isVoiceOverEnabled = async () => {
     try {
-      const { value: enabled } = await ScreenReader.isEnabled();
+      const { value: enabled } = await capInvoke(() =>
+        ScreenReader.isEnabled(),
+      );
       alert(`Screen Reader on? ${enabled}`);
     } catch (e) {
       if (e.code === ExceptionCode.Unavailable) {
@@ -49,7 +54,7 @@ const ScreenReaderPage: React.FC = () => {
   };
 
   const speak = async () => {
-    await ScreenReader.speak({ value: sentence });
+    await capInvoke(() => ScreenReader.speak({ value: sentence }));
   };
 
   const handleSpeakInputChange = createEventTargetValueExtractor(setSentence);
@@ -69,7 +74,7 @@ const ScreenReaderPage: React.FC = () => {
           <IonItem>
             <IonLabel>Screen Reader</IonLabel>
             <IonButton expand="block" onClick={isVoiceOverEnabled}>
-              TalkBack/VoiceOver Enabled?
+              Enabled?
             </IonButton>
           </IonItem>
           <IonItem>
