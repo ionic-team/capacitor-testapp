@@ -382,12 +382,14 @@ describe('home page', () => {
   it.only('should do toast', async () => {
     await openPage('Toast');
 
-    await IonicE2E.tapButton('Show (top)');
-    let toast = await IonicE2E.waitElement('pwa-toast');
-    await expect(toast).toHaveText('Hello!');
-    await IonicE2E.tapButton('Show (center)');
-    await expect(toast).toHaveText('Hello!');
-    await IonicE2E.tapButton('Show (bottom)');
-    await expect(toast).toHaveText('Hello!');
+    await IonicE2E.onWeb(async () => {
+      await IonicE2E.tapButton('Show (top)');
+      let toast = await IonicE2E.waitElement('pwa-toast');
+      await expect(toast).toHaveText('Hello!');
+      await IonicE2E.tapButton('Show (center)');
+      await expect(toast).toHaveText('Hello!');
+      await IonicE2E.tapButton('Show (bottom)');
+      await expect(toast).toHaveText('Hello!');
+    });
   });
 });
