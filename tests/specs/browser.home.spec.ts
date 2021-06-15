@@ -21,7 +21,7 @@ describe('home page', () => {
       console.log('Checking value against result', value, result, Object.keys(JSON.parse(value)), Object.keys(result));
 
       // return Object.keys(result) == Object.keys(JSON.parse(value));
-      return isEqual(Object.keys(result), Object.keys(JSON.parse(value)));
+      return isEqual(Object.keys(result).sort(), Object.keys(JSON.parse(value)).sort());
     }, {
       timeout: 10000,
       timeoutMsg: 'Waited but still false',
@@ -122,7 +122,7 @@ describe('home page', () => {
   });
 
   // Clipboard
-  it.only('should do clipboard', async () => {
+  it('should do clipboard', async () => {
     await openPage('Clipboard');
 
     await IonicE2E.tapButton('Text to Clipboard');
@@ -140,7 +140,7 @@ describe('home page', () => {
     await IonicE2E.tapButton('Language Code');
   });
 
-  it('should do filesystem', async () => {
+  it.only('should do filesystem', async () => {
     await openPage('Filesystem');
 
     await IonicE2E.tapButton('mkdir');
