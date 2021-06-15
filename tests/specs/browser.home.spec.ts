@@ -50,7 +50,7 @@ describe('home page', () => {
 
   // Action sheet
 
-  it('should open action sheet', async () => {
+  it.skip('should open action sheet', async () => {
     await openPage('Action Sheet');
 
     await IonicE2E.tapButton('Show Actions');
@@ -84,7 +84,7 @@ describe('home page', () => {
 
   // driver
 
-  it('should do browser', async () => {
+  it.skip('should do browser', async () => {
     await openPage('Browser');
 
     await IonicE2E.tapButton('Open URL');
@@ -122,7 +122,7 @@ describe('home page', () => {
   });
 
   // Clipboard
-  it('should do clipboard', async () => {
+  it.only('should do clipboard', async () => {
     await openPage('Clipboard');
 
     await IonicE2E.tapButton('Text to Clipboard');
