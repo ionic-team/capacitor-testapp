@@ -254,13 +254,13 @@ describe('home page', () => {
     await IonicE2E.tapButton('Hide');
     await IonicE2E.tapButton('Toggle Accessory Bar');
     await IonicE2E.tapButton('Toggle Scroll');
-    await IonicE2E.tapButton('Set Style Light');
-    await IonicE2E.tapButton('Set Style Dark');
-    await IonicE2E.tapButton('Set Style Default');
-    await IonicE2E.tapButton('Set Resize Mode None');
-    await IonicE2E.tapButton('Set Resize Mode Body');
-    await IonicE2E.tapButton('Set Resize Mode Native');
-    await IonicE2E.tapButton('Set Resize Mode Ionic');
+    await IonicE2E.tapButton('set Style Light');
+    await IonicE2E.tapButton('set Style Dark');
+    await IonicE2E.tapButton('set Style Default');
+    await IonicE2E.tapButton('set Resize Mode None');
+    await IonicE2E.tapButton('set Resize Mode Body');
+    await IonicE2E.tapButton('set Resize Mode Native');
+    await IonicE2E.tapButton('set Resize Mode Ionic');
   });
   it('should do local notifications', async () => {
     await openPage('Local Notifications');
@@ -286,10 +286,10 @@ describe('home page', () => {
   it('should do motion', async () => {
     await openPage('Motion');
 
-    await IonicE2E.tapButton('Listen orientation');
-    await IonicE2E.tapButton('Stop orientation');
-    await IonicE2E.tapButton('Listen acceleration');
-    await IonicE2E.tapButton('Stop acceleration');
+    await IonicE2E.tapButton('Listen Orientation');
+    await IonicE2E.tapButton('Stop Orientation');
+    await IonicE2E.tapButton('Listen Acceleration');
+    await IonicE2E.tapButton('Stop Acceleration');
   });
 
   it('should do network', async () => {
@@ -308,7 +308,7 @@ describe('home page', () => {
     await openPage('Push Notifications');
   });
 
-  it.only('should do screen reader', async () => {
+  it('should do screen reader', async () => {
     await openPage('Screen Reader');
 
     await IonicE2E.tapButton('Enabled?');
