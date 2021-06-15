@@ -38,10 +38,12 @@ const ScreenReaderPage: React.FC = () => {
 
   const isVoiceOverEnabled = async () => {
     try {
-      const { value: enabled } = await capInvoke(() =>
-        ScreenReader.isEnabled(),
-      );
-      alert(`Screen Reader on? ${enabled}`);
+      const ret = await capInvoke(() => ScreenReader.isEnabled());
+
+      if (ret) {
+        const { value: enabled } = ret;
+        alert(`Screen Reader on? ${enabled}`);
+      }
     } catch (e) {
       if (e.code === ExceptionCode.Unavailable) {
         console.warn(

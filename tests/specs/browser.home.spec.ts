@@ -308,7 +308,7 @@ describe('home page', () => {
     await openPage('Push Notifications');
   });
 
-  it('should do screen reader', async () => {
+  it.only('should do screen reader', async () => {
     await openPage('Screen Reader');
 
     await IonicE2E.tapButton('Enabled?');
