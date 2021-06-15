@@ -15,6 +15,6 @@ export const capInvoke = async (fn: () => any, err?: (error: Error) => void) => 
       s.result = null;
       s.error = e;
     });
-    throw e;
+    // throw e;
   }
 }

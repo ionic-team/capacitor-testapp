@@ -75,7 +75,7 @@ class ClipboardPage extends React.Component<{}, ClipboardPageState> {
         </IonItemDivider>
         <IonContent>
           <IonButton onClick={this.setClipboardText} expand="block">
-            Text to clipboard
+            Text to Clipboard
           </IonButton>
           <IonButton onClick={this.setClipboardImage} expand="block">
             Image to Clipboard
