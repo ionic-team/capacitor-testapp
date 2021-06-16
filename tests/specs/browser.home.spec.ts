@@ -223,6 +223,7 @@ describe('home page', () => {
       await IonicE2E.native();
       const allow = await IonicE2E.findElementIOS('Allow Once');
       await allow.click();
+      await IonicE2E.web();
     });
 
     await IonicE2E.tapButton('Get Location');
