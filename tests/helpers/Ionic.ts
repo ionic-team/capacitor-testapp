@@ -88,6 +88,10 @@ export class IonicE2E {
     }
   }
 
+  static async setLocation(lat: number, lng: number) {
+    return driver.setGeoLocation({ latitude: '' + lat, longitude: '' + lat, altitude: "94.23" });
+  }
+
   static findElementIOS(text: string) {
     return $(`-ios class chain:**/XCUIElementTypeAny[\`label == "${text}"\`]`);
   }
