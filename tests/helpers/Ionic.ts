@@ -56,7 +56,7 @@ export class IonicE2E {
   }
 
   static onIOS(fn: () => Promise<void>) {
-    if (this.isAndroid()) {
+    if (this.isIOS()) {
       return fn();
     }
   }

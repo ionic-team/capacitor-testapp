@@ -9,6 +9,7 @@ describe('home page', () => {
     await IonicE2E.setDevice(Device.Mobile);
     await IonicE2E.web();
     await IonicE2E.url('/home');
+    await IonicE2E.pause(5000);
   });
 
   const waitResult = async (result) => {// , options: ElementActionOptions = { visibilityTimeout: 5000 }) => {
@@ -140,7 +141,7 @@ describe('home page', () => {
     await IonicE2E.tapButton('Language Code');
   });
 
-  it.only('should do filesystem', async () => {
+  it('should do filesystem', async () => {
     await openPage('Filesystem');
 
     await IonicE2E.tapButton('mkdir');
@@ -209,7 +210,7 @@ describe('home page', () => {
     await waitResult('');
   });
 
-  it('should do geolocation', async () => {
+  it.only('should do geolocation', async () => {
     await openPage('Geolocation');
 
     await IonicE2E.tapButton('Check Permissions');
@@ -217,6 +218,13 @@ describe('home page', () => {
       location: 'prompt'
     });
     await IonicE2E.tapButton('Request Permissions');
+
+    await IonicE2E.onIOS(async () => {
+      await IonicE2E.native();
+      const allow = await IonicE2E.findElementIOS('Allow Once');
+      await allow.click();
+    });
+
     await IonicE2E.tapButton('Get Location');
 
     await waitResult({
@@ -224,6 +232,7 @@ describe('home page', () => {
       "timestamp": ""
     });
 
+    await IonicE2E.pause(20000);
     await IonicE2E.tapButton('Watch Location');
 
     // Wait for the watch to engage, takes a bit longer
