@@ -129,7 +129,7 @@ export class IonicE2E {
 
     // Let the menu animate open/closed
     if (delayForAnimation) {
-      await driver.pause(300);
+      await driver.pause(500);
     }
   }
 

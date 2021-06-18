@@ -37,6 +37,10 @@ describe('home page', () => {
 
     await IonicE2E.openMenu();
 
+    // Wait because sometimes if you click too quickly after opening the menu
+    // it doesn't close properly
+    await IonicE2E.pause(500);
+
     const menu = await $('#inbox-list');
     await menu.waitForDisplayed({ timeout: 5000 });
 
@@ -67,6 +71,9 @@ describe('home page', () => {
       const actionSheet = await IonicE2E.findElementIOS('Photo Options');
       await actionSheet.waitForDisplayed({ timeout: 5000 });
       await (await expect(actionSheet)).toBeDisplayed();
+      const upload = await IonicE2E.findElementIOS('Upload');
+      await upload.waitForDisplayed({ timeout: 5000 });
+      await upload.click();
     });
   });
 
