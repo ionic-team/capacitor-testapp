@@ -48,6 +48,7 @@ class WebView {
     // The first context will always be the NATIVE_APP,
     // the second one will always be the WebdriverIO web page
     const currentContexts = await this.getCurrentContexts();
+    console.log('Switching to context', currentContexts, context);
     return driver.switchContext(currentContexts[context === CONTEXT_REF.NATIVE ? 0 : 1]);
   }
 

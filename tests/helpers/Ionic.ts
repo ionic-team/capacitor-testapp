@@ -24,6 +24,9 @@ export enum Device {
 }
 export class IonicE2E {
   static waitForLoad() {
+    if (this.isWeb()) {
+      return;
+    }
     return WebView.waitForWebsiteLoaded();
   }
 
