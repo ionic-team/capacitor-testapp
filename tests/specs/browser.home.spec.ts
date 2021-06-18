@@ -51,7 +51,7 @@ describe('home page', () => {
 
   // Action sheet
 
-  it.skip('should open action sheet', async () => {
+  it('should open action sheet', async () => {
     await openPage('Action Sheet');
 
     await IonicE2E.tapButton('Show Actions');
@@ -210,7 +210,7 @@ describe('home page', () => {
     await waitResult('');
   });
 
-  it.only('should do geolocation', async () => {
+  it('should do geolocation', async () => {
     await openPage('Geolocation');
 
     await IonicE2E.tapButton('Check Permissions');
@@ -242,7 +242,7 @@ describe('home page', () => {
     await IonicE2E.tapButton('Watch Location');
 
     // Wait for the watch to engage, takes a bit longer
-    await driver.pause(1000);
+    await driver.pause(2000);
 
     // Fix to wait for anything
     // await waitResult('1');

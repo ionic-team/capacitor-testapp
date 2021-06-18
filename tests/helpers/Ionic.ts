@@ -89,6 +89,11 @@ export class IonicE2E {
   }
 
   static async setLocation(lat: number, lng: number) {
+    if (this.isWeb()) {
+      // Not available on web
+      return;
+    }
+
     return driver.setGeoLocation({ latitude: '' + lat, longitude: '' + lat, altitude: "94.23" });
   }
 
