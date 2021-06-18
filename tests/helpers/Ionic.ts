@@ -23,6 +23,10 @@ export enum Device {
   Mobile = 'mobile'
 }
 export class IonicE2E {
+  static waitForLoad() {
+    return WebView.waitForWebsiteLoaded();
+  }
+
   static native() {
     if (this.isWeb()) {
       return;

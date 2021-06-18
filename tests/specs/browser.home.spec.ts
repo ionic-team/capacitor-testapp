@@ -6,6 +6,7 @@ const isEqual = require('lodash/isEqual');
 
 describe('home page', () => {
   beforeEach(async () => {
+    await IonicE2E.waitForLoad();
     await IonicE2E.setDevice(Device.Mobile);
     await IonicE2E.web();
     await IonicE2E.url('/home');

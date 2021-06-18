@@ -23,9 +23,11 @@ class WebView {
    * the webview
    */
   waitForWebViewContextLoaded() {
-    driver.waitUntil(
+    return driver.waitUntil(
       async () => {
         const currentContexts = await this.getCurrentContexts();
+
+        console.log('Waiting for contexts, got', currentContexts);
 
         return currentContexts.length > 1 &&
           currentContexts.find(context => context.toLowerCase().includes(CONTEXT_REF.WEBVIEW)) !== 'undefined';
@@ -46,7 +48,7 @@ class WebView {
     // The first context will always be the NATIVE_APP,
     // the second one will always be the WebdriverIO web page
     const currentContexts = await this.getCurrentContexts();
-    driver.switchContext(currentContexts[context === CONTEXT_REF.NATIVE ? 0 : 1]);
+    return driver.switchContext(currentContexts[context === CONTEXT_REF.NATIVE ? 0 : 1]);
   }
 
   /**
@@ -60,7 +62,7 @@ class WebView {
    * Wait for the document to be fully loaded
    */
   waitForDocumentFullyLoaded() {
-    driver.waitUntil(
+    return driver.waitUntil(
       // A webpage can have multiple states, the ready state is the one we need to have.
       // This looks like the same implementation as for the w3c implementation for `browser.url('https://webdriver.io')`
       // That command also waits for the readiness of the page, see also the w3c specs
@@ -77,11 +79,11 @@ class WebView {
   /**
    * Wait for the website in the webview to be loaded
    */
-  waitForWebsiteLoaded() {
-    this.waitForWebViewContextLoaded();
-    this.switchToContext(CONTEXT_REF.WEBVIEW);
-    this.waitForDocumentFullyLoaded();
-    this.switchToContext(CONTEXT_REF.NATIVE);
+  async waitForWebsiteLoaded() {
+    await this.waitForWebViewContextLoaded();
+    await this.switchToContext(CONTEXT_REF.WEBVIEW);
+    await this.waitForDocumentFullyLoaded();
+    await this.switchToContext(CONTEXT_REF.NATIVE);
   }
 
   async waitForWebViewIsDisplayedByXpath(isShown = true): Promise<boolean | void> {
