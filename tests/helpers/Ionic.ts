@@ -45,8 +45,9 @@ export class IonicE2E {
 
   static url(url: string) {
     if (this.isWeb()) {
-      browser.url(url);
+      return browser.url(url);
     }
+    return Promise.resolve();
   }
 
   static pause(ms: number) {

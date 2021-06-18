@@ -56,7 +56,7 @@ describe('home page', () => {
 
   // Action sheet
 
-  it('should open action sheet', async () => {
+  it.skip('should open action sheet', async () => {
     await openPage('Action Sheet');
 
     await IonicE2E.tapButton('Show Actions');
@@ -74,6 +74,8 @@ describe('home page', () => {
       const upload = await IonicE2E.findElementIOS('Upload');
       await upload.waitForDisplayed({ timeout: 5000 });
       await upload.click();
+      // Wait for the action sheet to close again
+      await IonicE2E.pause(800);
     });
   });
 
