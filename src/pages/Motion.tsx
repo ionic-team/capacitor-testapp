@@ -66,10 +66,10 @@ const MotionPage: React.FC = () => {
       if (result === 'granted') {
         setShowPermButton(false);
       } else {
-        alert(`don't have permissions to listen`);
+        console.log(`don't have permissions to listen`);
       }
     } catch (e) {
-      alert('error requesting permssion');
+      console.error('error requesting permssion');
     }
   };
 

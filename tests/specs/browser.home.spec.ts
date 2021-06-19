@@ -12,7 +12,7 @@ describe('home page', () => {
   beforeEach(async () => {
     await IonicE2E.setDevice(Device.Mobile);
     await IonicE2E.web();
-    await IonicE2E.url('/home');
+    // await IonicE2E.url('/home');
   });
 
   const waitResult = async (result) => {// , options: ElementActionOptions = { visibilityTimeout: 5000 }) => {

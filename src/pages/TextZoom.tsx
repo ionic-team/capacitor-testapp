@@ -39,12 +39,12 @@ const TextZoomPage: React.FC = () => {
 
   const getZoomLevel = async () => {
     const { value: level } = await TextZoom.get();
-    alert(`Current zoom level: ${level}`);
+    console.log(`Current zoom level: ${level}`);
   };
 
   const getPreferredZoomLevel = async () => {
     const { value: level } = await TextZoom.getPreferred();
-    alert(`Preferred zoom level: ${level}`);
+    console.log(`Preferred zoom level: ${level}`);
   };
 
   const setZoomLevel = async () => {

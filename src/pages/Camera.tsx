@@ -48,14 +48,14 @@ class CameraPage extends React.Component<{}, CameraPageState> {
         metadata: JSON.stringify(photo.exif, null, 2),
       });
     } catch (e) {
-      alert(`Failed to get picture with error:\n'${e}'`);
+      console.error(`Failed to get picture with error:\n'${e}'`);
     }
   };
 
   checkPermissions = async () => {
     const permissionStates = await capInvoke(() => Camera.checkPermissions());
     if (permissionStates) {
-      alert(
+      console.log(
         `Permissions are:\ncamera = ${permissionStates.camera}\nphotos = ${permissionStates.photos}`,
       );
     }
@@ -66,7 +66,7 @@ class CameraPage extends React.Component<{}, CameraPageState> {
       Camera.requestPermissions(permissions),
     );
     if (permissionStates) {
-      alert(
+      console.log(
         `Permissions are:\ncamera = ${permissionStates.camera}\nphotos = ${permissionStates.photos}`,
       );
     }

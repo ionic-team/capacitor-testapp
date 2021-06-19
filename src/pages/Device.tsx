@@ -35,7 +35,7 @@ const DevicePage: React.FC = () => {
 
   const getDeviceLanguageCode = async () => {
     const code = await capInvoke(() => Device.getLanguageCode());
-    alert('Language: ' + code.value);
+    console.log('Language: ' + code.value);
   };
 
   return (

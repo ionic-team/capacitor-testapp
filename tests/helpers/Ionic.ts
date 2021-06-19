@@ -127,7 +127,7 @@ export class IonicE2E {
   }
 
   static async openMenu({ delayForAnimation = true, visibilityTimeout = 5000 }: OpenMenuOptions = {}) {
-    const menuButton = await $('ion-menu-button');
+    const menuButton = await $('div.ion-page:not(.ion-page-hidden) ion-menu-button');
     await menuButton.waitForDisplayed({ timeout: visibilityTimeout });
     await menuButton.click();
 

@@ -32,14 +32,14 @@ const BrowserPage: React.FC = () => {
       await timeout(1000);
       await Browser.close();
       await timeout(200);
-      alert(`The window was closed for you`);
+      console.log(`The window was closed for you`);
     });
   };
 
   useIonViewDidEnter(() => {
     finishedHandler = Browser.addListener('browserFinished', async () => {
       await timeout(200);
-      alert(`You closed the window`);
+      console.log(`You closed the window`);
     });
   });
 

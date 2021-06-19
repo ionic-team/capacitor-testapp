@@ -27,7 +27,7 @@ const ScreenReaderPage: React.FC = () => {
   useIonViewDidEnter(async () => {
     handler = await capInvoke(() =>
       ScreenReader.addListener('stateChange', ({ value }: any) =>
-        alert(`State Change! Screen Reader on? ${value}`),
+        console.log(`State Change! Screen Reader on? ${value}`),
       ),
     );
   });
@@ -42,7 +42,7 @@ const ScreenReaderPage: React.FC = () => {
 
       if (ret) {
         const { value: enabled } = ret;
-        alert(`Screen Reader on? ${enabled}`);
+        console.log(`Screen Reader on? ${enabled}`);
       }
     } catch (e) {
       if (e.code === ExceptionCode.Unavailable) {

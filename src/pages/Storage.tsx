@@ -33,7 +33,7 @@ const StoragePage: React.FC = () => {
 
   const handleGetClicked = async () => {
     const { value } = await capInvoke(() => Storage.get({ key }));
-    // alert(`${key}: ${value}`);
+    console.log(`${key}: ${value}`);
   };
 
   const handleSetClicked = async () => {
@@ -50,7 +50,7 @@ const StoragePage: React.FC = () => {
 
   const handleGetAllClicked = async () => {
     const { keys } = await capInvoke(() => Storage.keys());
-    // alert(`all keys: ${keys.join(', ')}`);
+    console.log(`all keys: ${keys.join(', ')}`);
   };
 
   const handleMigrationTestClicked = async () => {
@@ -58,9 +58,9 @@ const StoragePage: React.FC = () => {
     // localStorage.setItem('_cap_key2', 'data2');
     const { migrated, existing } = await capInvoke(() => Storage.migrate());
 
-    /*alert(
+    console.log(
       `Done!\n${migrated.length} keys migrated, ${existing.length} not migrated.`,
-    );*/
+    );
   };
 
   return (

@@ -29,13 +29,13 @@ const AppPage: React.FC = () => {
     });
 
     urlOpenHandler = App.addListener('appUrlOpen', (data: any) => {
-      alert('APP URL OPEN: ' + data.url);
+      console.log('APP URL OPEN: ' + data.url);
     });
 
     restoredResultHandler = App.addListener(
       'appRestoredResult',
       (data: any) => {
-        alert('Got restored result');
+        console.log('Got restored result');
         console.log('Restored result:', data);
       },
     );
@@ -46,7 +46,7 @@ const AppPage: React.FC = () => {
   const getLaunchUrl = async () => {
     const ret = await capInvoke(() => App.getLaunchUrl());
     if (ret && ret.url) {
-      alert('App opened with URL: ' + ret.url);
+      console.log('App opened with URL: ' + ret.url);
     }
     console.log('Launch url: ', ret);
   };
