@@ -14,7 +14,7 @@ import {
   IonToolbar,
   useIonViewDidEnter,
 } from '@ionic/react';
-import React, { useState } from 'react';
+import React, { useCallback, useState } from 'react';
 import { Capacitor } from '@capacitor/core';
 
 const MotionPage: React.FC = () => {
@@ -60,7 +60,7 @@ const MotionPage: React.FC = () => {
     }
   };
 
-  const requestPermission = async () => {
+  const requestPermission = useCallback(async () => {
     try {
       const result = await DeviceMotionEvent.requestPermission();
       if (result === 'granted') {
@@ -71,7 +71,7 @@ const MotionPage: React.FC = () => {
     } catch (e) {
       console.error('error requesting permssion');
     }
-  };
+  }, []);
 
   return (
     <IonPage>

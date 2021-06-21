@@ -150,4 +150,12 @@ export class IonicE2E {
       return el.setValue(value);
     }
   }
+
+  static async tryAcceptAlert() {
+    try {
+      await driver.acceptAlert();
+    } catch (e) {
+      console.warn('No alert to accept');
+    }
+  }
 }

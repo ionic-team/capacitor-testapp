@@ -52,9 +52,9 @@ describe('home page', () => {
     await menu.waitForDisplayed({ timeout: 5000 });
 
     const linkItem = await menu.$(`ion-item*=${itemText}`);
+    await linkItem.scrollIntoView();
     await linkItem.waitForDisplayed({ timeout: 5000 });
     // await linkItem.moveTo();
-    await linkItem.scrollIntoView();
     await linkItem.click();
 
     const menuElement = await $('ion-menu');
@@ -63,7 +63,7 @@ describe('home page', () => {
 
   // Action sheet
 
-  it.skip('should open action sheet', async () => {
+  it('should open action sheet', async () => {
     await openPage('Action Sheet');
 
     await IonicE2E.tapButton('Show Actions');
@@ -296,10 +296,14 @@ describe('home page', () => {
     await IonicE2E.tapButton('set Resize Mode Ionic');
   });
 
-  it.only('should do local notifications', async () => {
+  it('should do local notifications', async () => {
     await openPage('Local Notifications');
 
-    await driver.acceptAlert();
+    try {
+      await driver.acceptAlert();
+    } catch (e) {
+      console.error('No alert to accept');
+    }
 
     await waitResult({ 'display': 'granted' }, {
       exact: true
@@ -324,10 +328,21 @@ describe('home page', () => {
   it('should do motion', async () => {
     await openPage('Motion');
 
-    await IonicE2E.tapButton('Listen Orientation');
-    await IonicE2E.tapButton('Stop Orientation');
-    await IonicE2E.tapButton('Listen Acceleration');
-    await IonicE2E.tapButton('Stop Acceleration');
+    await IonicE2E.onIOS(async () => {
+      /*
+      Not working for some reason, only works with actual click from user (simulator)
+      await IonicE2E.tapButton('Request Motion Permission');
+      await IonicE2E.pause(2000);
+      await IonicE2E.tryAcceptAlert();
+      */
+    });
+
+    await IonicE2E.onWeb(async () => {
+      await IonicE2E.tapButton('Listen Orientation');
+      await IonicE2E.tapButton('Stop Orientation');
+      await IonicE2E.tapButton('Listen Acceleration');
+      await IonicE2E.tapButton('Stop Acceleration');
+    });
   });
 
   it('should do network', async () => {
@@ -352,13 +367,21 @@ describe('home page', () => {
     await IonicE2E.tapButton('Enabled?');
     await IonicE2E.tapButton('Speak');
   });
+
   it('should do share', async () => {
     await openPage('Share');
 
     await IonicE2E.tapButton('Show Sharing');
     await IonicE2E.tapButton('Show Sharing (text only)');
     await IonicE2E.tapButton('Show Sharing (url only)');
+
+    await IonicE2E.onIOS(async () => {
+      await IonicE2E.native();
+      const close = await IonicE2E.findElementIOS('Close');
+      close.click();
+    });
   });
+
   it('should do splash screen', async () => {
     await openPage('Splash Screen');
 
@@ -366,12 +389,14 @@ describe('home page', () => {
     await IonicE2E.tapButton('Show Splash, auto-hide, 2s');
     await IonicE2E.tapButton('Show Splash, 6s');
   });
+
   it('should do status bar', async () => {
     await openPage('Status Bar');
 
     const status = await IonicE2E.waitElement('#status');
     await (await expect(status)).toHaveText('StatusBar plugin not supported on web');
   });
+
   it('should do storage', async () => {
     await openPage('Storage');
 
