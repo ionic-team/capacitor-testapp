@@ -15,16 +15,20 @@ describe('home page', () => {
     // await IonicE2E.url('/home');
   });
 
-  const waitResult = async (result) => {// , options: ElementActionOptions = { visibilityTimeout: 5000 }) => {
+  const waitResult = async (result, { exact = false } = {}) => {// , options: ElementActionOptions = { visibilityTimeout: 5000 }) => {
     await driver.waitUntil(async () => {
       const p = await $('.result-pane textarea');
       const value = await p.getValue();
       if (typeof result === 'string' && value === result) {
         return true;
       }
-      console.log('Checking value against result', value, result, Object.keys(JSON.parse(value)), Object.keys(result));
 
-      // return Object.keys(result) == Object.keys(JSON.parse(value));
+      // If this object must match exactly, do an exact comparison
+      if (exact) {
+        return isEqual(result, JSON.parse(value));
+      }
+
+      // Otherwise make sure the objects have the same keys
       return isEqual(Object.keys(result).sort(), Object.keys(JSON.parse(value)).sort());
     }, {
       timeout: 10000,
@@ -291,10 +295,15 @@ describe('home page', () => {
     await IonicE2E.tapButton('set Resize Mode Native');
     await IonicE2E.tapButton('set Resize Mode Ionic');
   });
-  it('should do local notifications', async () => {
+
+  it.only('should do local notifications', async () => {
     await openPage('Local Notifications');
 
-    await waitResult({ 'display': 'granted' });
+    await driver.acceptAlert();
+
+    await waitResult({ 'display': 'granted' }, {
+      exact: true
+    });
 
     await IonicE2E.tapButton('Schedule now');
     await IonicE2E.tapButton('Schedule now (custom icon on Android)');
