@@ -390,11 +390,25 @@ describe('home page', () => {
     await IonicE2E.tapButton('Show Splash, 6s');
   });
 
-  it('should do status bar', async () => {
+  it.only('should do status bar', async () => {
     await openPage('Status Bar');
 
-    const status = await IonicE2E.waitElement('#status');
-    await (await expect(status)).toHaveText('StatusBar plugin not supported on web');
+    await IonicE2E.onWeb(async () => {
+      const status = await IonicE2E.waitElement('#status');
+      await (await expect(status)).toHaveText('StatusBar plugin not supported on web');
+    });
+
+    await IonicE2E.onIOS(async () => {
+      await IonicE2E.tapButton('Change StatusBar Style Default');
+      await IonicE2E.tapButton('Change StatusBar Style Light');
+      await IonicE2E.tapButton('Change StatusBar Style Dark');
+      await IonicE2E.tapButton('Show');
+      await IonicE2E.tapButton('Hide');
+      await IonicE2E.tapButton('overlay Statusbar');
+      await IonicE2E.tapButton('unoverlay Statusbar');
+      await IonicE2E.tapButton('Set Background Color');
+      await IonicE2E.tapButton('get Info');
+    });
   });
 
   it('should do storage', async () => {
@@ -439,12 +453,21 @@ describe('home page', () => {
       existing: []
     });
   });
-  it('should do text zoom', async () => {
+
+  it.only('should do text zoom', async () => {
     await openPage('Text Zoom');
 
-    const status = await IonicE2E.waitElement('#status');
-    await (await expect(status)).toHaveText('TextZoom plugin not supported on web');
+    await IonicE2E.onWeb(async () => {
+      const status = await IonicE2E.waitElement('#status');
+      await (await expect(status)).toHaveText('TextZoom plugin not supported on web');
+    });
+
+    await IonicE2E.onIOS(async () => {
+      await IonicE2E.tapButton('Get Current Zoom');
+      await IonicE2E.tapButton('Get Preferred Zoom');
+    });
   });
+
   it('should do toast', async () => {
     await openPage('Toast');
 
