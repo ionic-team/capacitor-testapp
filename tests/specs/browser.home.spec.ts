@@ -15,7 +15,7 @@ describe('home page', () => {
     // await IonicE2E.url('/home');
   });
 
-  const waitResult = async (result, { exact = false } = {}) => {// , options: ElementActionOptions = { visibilityTimeout: 5000 }) => {
+  const waitResult = async (result: any, { exact = false } = {}) => {// , options: ElementActionOptions = { visibilityTimeout: 5000 }) => {
     await driver.waitUntil(async () => {
       const p = await $('.result-pane textarea');
       const value = await p.getValue();

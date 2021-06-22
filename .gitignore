@@ -3,6 +3,8 @@
 .gradle
 .eslintcache
 
+.tsbuild
+
 app.xcarchive/
 app/App.zip
 

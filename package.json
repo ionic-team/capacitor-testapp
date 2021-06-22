@@ -21,8 +21,8 @@
     "android.app": "TS_NODE_PROJECT=./tsconfig.webdriverio.json wdio config/wdio.android.app.conf.ts",
     "android.browser": "TS_NODE_PROJECT=./tsconfig.webdriverio.json wdio config/wdio.android.browser.conf.ts",
     "ios.app": "TS_NODE_PROJECT=./tsconfig.webdriverio.json wdio config/wdio.ios.app.conf.ts",
-    "ios.sauce.simulators.app.eu": "REGION=eu wdio ./config/saucelabs/wdio.ios.simulators.app.conf.ts",
-    "ios.sauce.simulators.app.us": "wdio ./config/saucelabs/wdio.ios.simulators.app.conf.ts",
+    "ios.sauce.simulators.app.eu": "TS_NODE_PROJECT=./tsconfig.webdriverio.json REGION=eu wdio ./config/saucelabs/wdio.ios.simulators.app.conf.ts",
+    "ios.sauce.simulators.app.us": "TS_NODE_PROJECT=./tsconfig.webdriverio.json wdio ./config/saucelabs/wdio.ios.simulators.app.conf.ts",
     "ios.browser": "TS_NODE_PROJECT=./tsconfig.webdriverio.json wdio config/wdio.ios.browser.conf.ts",
     "pwa": "TS_NODE_PROJECT=./tsconfig.webdriverio.json wdio config/wdio.pwa.conf.ts"
   },
@@ -81,6 +81,7 @@
     "@wdio/appium-service": "^7.7.3",
     "@wdio/local-runner": "^7.7.2",
     "@wdio/mocha-framework": "^7.7.2",
+    "@wdio/sauce-service": "^7.7.4",
     "@wdio/spec-reporter": "^7.7.0",
     "chromedriver": "^90.0.1",
     "expect-webdriverio": "^3.0.0",

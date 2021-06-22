@@ -6,6 +6,7 @@
     "module": "commonjs",
     "removeComments": true,
     "noImplicitAny": true,
+    "esModuleInterop": true,
     "strictPropertyInitialization": true,
     "strictNullChecks": true,
     "types": [

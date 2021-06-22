@@ -1,14 +1,13 @@
 import config from './wdio.shared.sauce.conf';
+const buildName = `WebdriverIO Native Demo app, iOS RDC: ${new Date().getTime()}`;
 
 // ============
 // Specs
 // ============
 config.specs = [
-  './tests/specs/**/app*.spec.ts',
+  './tests/specs/**/*.spec.ts',
 ];
 config.exclude = [
-  // Exclude this one because the test can only be executed on emulators/simulators
-  './tests/specs/**/app.biometric.login.spec.ts',
 ];
 
 // ============
@@ -25,7 +24,7 @@ config.capabilities = [
     // @ts-ignore
     deviceName: 'Samsung Galaxy S[8912].*',
     platformName: 'Android',
-    automationName: 'UiAutomator2',
+    automationName: 'XCUITest',
     phoneOnly: true,
     orientation: 'PORTRAIT',
     // Keep the device connected between tests so we don't need to wait for the cleaning process
@@ -35,15 +34,14 @@ config.capabilities = [
     maxInstances: 5,
     // The path to the app that has been uploaded to the Sauce Storage,
     // see https://wiki.saucelabs.com/display/DOCS/Application+Storage for more information
-    app: 'storage:filename=wdio-demo-app-android.apk',
-    appWaitActivity: 'com.wdiodemoapp.MainActivity',
+    app: 'storage:filename=App.zip',
     // Always default the language to a language you prefer so you know the app language is always as expected
     language: 'en',
     locale: 'en',
     // Add a name to the test
     name: 'wdio-demo-app-test',
     build: `WebdriverIO Native Demo app, Android Real Devices: ${new Date().getTime()}`
-  } as any,
+  } as any
 ];
 
 // This port was defined in the `wdio.shared.conf.ts`
