@@ -21,7 +21,7 @@ execute(async () => {
       await Promise.all(
         CORE_PACKAGES.map(async project => [
           `@capacitor/${project}`,
-          `^${await getLatestVersion(`@capacitor/${project}`, 'next')}`,
+          `^${await getLatestVersion(`@capacitor/${project}`, 'latest')}`,
         ]),
       ),
     ),
@@ -40,7 +40,7 @@ execute(async () => {
       await Promise.all(
         CORE_DEV_PACKAGES.map(async project => [
           `@capacitor/${project}`,
-          `^${await getLatestVersion(`@capacitor/${project}`, 'next')}`,
+          `^${await getLatestVersion(`@capacitor/${project}`, 'latest')}`,
         ]),
       ),
     ),
