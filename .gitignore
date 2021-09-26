@@ -5,6 +5,8 @@
 
 .tsbuild
 
+app/
+
 app.xcarchive/
 app/App.zip
 

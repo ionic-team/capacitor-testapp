@@ -76,6 +76,7 @@
   },
   "devDependencies": {
     "@capacitor/cli": "^3.1.1",
+    "@ionic/e2e": "^0.0.1",
     "@types/classnames": "^2.2.11",
     "@types/mocha": "^8.2.2",
     "@wdio/appium-service": "^7.7.3",

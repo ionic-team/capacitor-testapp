@@ -1,4 +1,4 @@
-import { Device, IonicE2E } from "../helpers/Ionic";
+import * as IonicE2E from '@ionic/e2e';
 
 const isMatch = require('lodash/isMatch');
 const isEqual = require('lodash/isEqual');
@@ -10,7 +10,7 @@ describe('home page', () => {
   });
 
   beforeEach(async () => {
-    await IonicE2E.setDevice(Device.Mobile);
+    await IonicE2E.setDevice(IonicE2E.Device.Mobile);
     await IonicE2E.web();
     // await IonicE2E.url('/home');
   });
@@ -390,7 +390,7 @@ describe('home page', () => {
     await IonicE2E.tapButton('Show Splash, 6s');
   });
 
-  it.only('should do status bar', async () => {
+  it('should do status bar', async () => {
     await openPage('Status Bar');
 
     await IonicE2E.onWeb(async () => {
@@ -454,7 +454,7 @@ describe('home page', () => {
     });
   });
 
-  it.only('should do text zoom', async () => {
+  it('should do text zoom', async () => {
     await openPage('Text Zoom');
 
     await IonicE2E.onWeb(async () => {

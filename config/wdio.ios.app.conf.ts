@@ -22,14 +22,13 @@ config.capabilities = [
     // This is `appium:` for all Appium Capabilities which can be found here
     // http://appium.io/docs/en/writing-running-appium/caps/
     'appium:deviceName': 'iPhone 12 Pro Max',
-    'appium:platformVersion': '14.5',
+    'appium:platformVersion': '15.0',
     'appium:orientation': 'PORTRAIT',
     'appium:automationName': 'XCUITest',
     // The path to the app
     'appium:app': join(process.cwd(), './app/App.zip'),
     // Read the reset strategies very well, they differ per platform, see
     // http://appium.io/docs/en/writing-running-appium/other/reset-strategies/
-    'appium:noReset': true,
     'appium:newCommandTimeout': 240,
   },
 ];
