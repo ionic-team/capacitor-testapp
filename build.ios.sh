@@ -1,6 +1,7 @@
 #!/bin/bash
 # ionic capacitor sync
 rm -rf app.xcarchive
+mkdir app
 # xcodebuild clean -workspace ios/App/App.xcworkspace -scheme App
 
 # Build the Simulator .app
