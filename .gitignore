@@ -4,6 +4,7 @@
 .eslintcache
 
 .tsbuild
+.ionic
 
 app/
 

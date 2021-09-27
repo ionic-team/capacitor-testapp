@@ -13,18 +13,8 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "android.browserstack.app": "wdio ./config/browserstack/wdio.android.bs.app.conf.ts",
-    "android.sauce.emulators.app.eu": "REGION=eu  wdio config/saucelabs/wdio.android.emulators.app.conf.ts",
-    "android.sauce.emulators.app.us": "wdio config/saucelabs/wdio.android.emulators.app.conf.ts",
-    "android.sauce.rdc.app.eu": "REGION=eu wdio config/saucelabs/wdio.android.rdc.app.conf.ts",
-    "android.sauce.rdc.app.us": "wdio config/saucelabs/wdio.android.rdc.app.conf.ts",
-    "android.app": "TS_NODE_PROJECT=./tsconfig.webdriverio.json wdio config/wdio.android.app.conf.ts",
-    "android.browser": "TS_NODE_PROJECT=./tsconfig.webdriverio.json wdio config/wdio.android.browser.conf.ts",
-    "ios.app": "TS_NODE_PROJECT=./tsconfig.webdriverio.json wdio config/wdio.ios.app.conf.ts",
-    "ios.sauce.simulators.app.eu": "TS_NODE_PROJECT=./tsconfig.webdriverio.json REGION=eu wdio ./config/saucelabs/wdio.ios.simulators.app.conf.ts",
-    "ios.sauce.simulators.app.us": "TS_NODE_PROJECT=./tsconfig.webdriverio.json wdio ./config/saucelabs/wdio.ios.simulators.app.conf.ts",
-    "ios.browser": "TS_NODE_PROJECT=./tsconfig.webdriverio.json wdio config/wdio.ios.browser.conf.ts",
-    "pwa": "TS_NODE_PROJECT=./tsconfig.webdriverio.json wdio config/wdio.pwa.conf.ts"
+    "e2e:build": "e2e build",
+    "e2e:run": "e2e run"
   },
   "dependencies": {
     "@capacitor/action-sheet": "^1.0.2",
@@ -76,22 +66,13 @@
   },
   "devDependencies": {
     "@capacitor/cli": "^3.1.1",
-    "@ionic/e2e": "^0.0.1",
+    "@ionic/e2e": "^0.0.6",
     "@types/classnames": "^2.2.11",
     "@types/mocha": "^8.2.2",
-    "@wdio/appium-service": "^7.7.3",
-    "@wdio/local-runner": "^7.7.2",
-    "@wdio/mocha-framework": "^7.7.2",
-    "@wdio/sauce-service": "^7.7.4",
-    "@wdio/spec-reporter": "^7.7.0",
-    "chromedriver": "^90.0.1",
-    "expect-webdriverio": "^3.0.0",
     "lodash": "^4.17.21",
     "prettier": "^2.0.5",
     "pullstate": "^1.22.1",
-    "ts-node": "^9.1.1",
-    "typescript": "^4.2.4",
-    "wdio-chromedriver-service": "^7.1.0"
+    "typescript": "^4.2.4"
   },
   "eslintConfig": {
     "extends": "react-app"
