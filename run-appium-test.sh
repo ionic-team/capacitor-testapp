@@ -8,7 +8,7 @@ if [ "$CI_PLATFORM" == "ios" ]; then
         npm i -g appium@latest
         npm run build
         npx cap sync ios
-        npm run e2e:build ios:simulator
+        npm run e2e:build ios:simulator | xcpretty --color
         xcrun simctl list
         xcrun simctl boot "iPhone 12 Pro"
         npm run e2e:run ios:simulator
