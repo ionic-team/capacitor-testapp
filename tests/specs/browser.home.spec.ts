@@ -1,8 +1,12 @@
 import * as IonicE2E from '@ionic/e2e';
+import { Browser } from 'webdriverio';
+import * as ExpectWebdriverIO from 'expect-webdriverio';
 
 const isMatch = require('lodash/isMatch');
 const isEqual = require('lodash/isEqual');
 
+declare const driver: Browser<'async'>;
+declare const expect: ExpectWebdriverIO.Expect;
 
 describe('home page', () => {
   before(async () => {
@@ -15,27 +19,34 @@ describe('home page', () => {
     // await IonicE2E.url('/home');
   });
 
-  const waitResult = async (result: any, { exact = false } = {}) => {// , options: ElementActionOptions = { visibilityTimeout: 5000 }) => {
-    await driver.waitUntil(async () => {
-      const p = await $('.result-pane textarea');
-      const value = await p.getValue();
-      if (typeof result === 'string' && value === result) {
-        return true;
-      }
+  const waitResult = async (result: any, { exact = false } = {}) => {
+    // , options: ElementActionOptions = { visibilityTimeout: 5000 }) => {
+    await driver.waitUntil(
+      async () => {
+        const p = await driver.$('.result-pane textarea');
+        const value = await p.getValue();
+        if (typeof result === 'string' && value === result) {
+          return true;
+        }
 
-      // If this object must match exactly, do an exact comparison
-      if (exact) {
-        return isEqual(result, JSON.parse(value));
-      }
+        // If this object must match exactly, do an exact comparison
+        if (exact) {
+          return isEqual(result, JSON.parse(value));
+        }
 
-      // Otherwise make sure the objects have the same keys
-      return isEqual(Object.keys(result).sort(), Object.keys(JSON.parse(value)).sort());
-    }, {
-      timeout: 10000,
-      timeoutMsg: 'Waited but still false',
-      interval: 500
-    });
-  }
+        // Otherwise make sure the objects have the same keys
+        return isEqual(
+          Object.keys(result).sort(),
+          Object.keys(JSON.parse(value)).sort(),
+        );
+      },
+      {
+        timeout: 10000,
+        timeoutMsg: 'Waited but still false',
+        interval: 500,
+      },
+    );
+  };
 
   const openPage = async (itemText: string) => {
     // Go back to home
@@ -48,7 +59,7 @@ describe('home page', () => {
     // it doesn't close properly
     await IonicE2E.pause(500);
 
-    const menu = await $('#inbox-list');
+    const menu = await driver.$('#inbox-list');
     await menu.waitForDisplayed({ timeout: 5000 });
 
     const linkItem = await menu.$(`ion-item*=${itemText}`);
@@ -57,8 +68,14 @@ describe('home page', () => {
     // await linkItem.moveTo();
     await linkItem.click();
 
-    const menuElement = await $('ion-menu');
+    const menuElement = await driver.$('ion-menu');
     await menuElement.waitForDisplayed({ timeout: 5000, reverse: true });
+  };
+
+  function findElementIOS(text: string) {
+    return driver.$(
+      `-ios class chain:**/XCUIElementTypeAny[\`label == "${text}"\`]`,
+    );
   }
 
   // Action sheet
@@ -75,10 +92,25 @@ describe('home page', () => {
 
     await IonicE2E.onIOS(async () => {
       await IonicE2E.native();
-      const actionSheet = await IonicE2E.findElementIOS('Photo Options');
+      const actionSheet = await findElementIOS('Photo Options');
       await actionSheet.waitForDisplayed({ timeout: 5000 });
       await (await expect(actionSheet)).toBeDisplayed();
-      const upload = await IonicE2E.findElementIOS('Upload');
+      const upload = await findElementIOS('Upload');
+      await upload.waitForDisplayed({ timeout: 5000 });
+      await upload.click();
+      // Wait for the action sheet to close again
+      await IonicE2E.pause(800);
+    });
+
+    await IonicE2E.onAndroid(async () => {
+      await IonicE2E.native();
+      const actionSheet = await driver.$(
+        `android=new UiSelector().text("Photo Options")`,
+      );
+      await actionSheet.waitForDisplayed({ timeout: 2000 });
+      await (await expect(actionSheet)).toBeDisplayed();
+
+      const upload = await driver.$(`android=new UiSelector().text("Upload")`);
       await upload.waitForDisplayed({ timeout: 5000 });
       await upload.click();
       // Wait for the action sheet to close again
@@ -111,7 +143,7 @@ describe('home page', () => {
     await IonicE2E.tapButton('Close most recently opened');
   });
 
-  // Camera
+  // // Camera
 
   it.skip('should do camera', async () => {
     await openPage('Camera');
@@ -123,23 +155,33 @@ describe('home page', () => {
     await IonicE2E.tapButton('Take Picture');
     await IonicE2E.pause(150000);
 
-    let shutter = await IonicE2E.waitElement('>>>.shutter', { visibilityTimeout: 20000 });
+    let shutter = await IonicE2E.waitElement('>>>.shutter', {
+      visibilityTimeout: 20000,
+    });
     await shutter.click();
-    let accept = await IonicE2E.waitElement('>>>.accept-use', { visibilityTimeout: 20000 });
+    let accept = await IonicE2E.waitElement('>>>.accept-use', {
+      visibilityTimeout: 20000,
+    });
     await accept.click();
 
-    await IonicE2E.tapButton('Take Picture and Save', { visibilityTimeout: 20000 });
+    await IonicE2E.tapButton('Take Picture and Save', {
+      visibilityTimeout: 20000,
+    });
 
-    shutter = await IonicE2E.waitElement('>>>.shutter', { visibilityTimeout: 20000 });
+    shutter = await IonicE2E.waitElement('>>>.shutter', {
+      visibilityTimeout: 20000,
+    });
     await shutter.click();
-    accept = await IonicE2E.waitElement('>>>.accept-use', { visibilityTimeout: 20000 });
+    accept = await IonicE2E.waitElement('>>>.accept-use', {
+      visibilityTimeout: 20000,
+    });
     await accept.click();
 
     await IonicE2E.tapButton('Choose Picture');
     await IonicE2E.tapButton('Prompt');
   });
 
-  // Clipboard
+  // // Clipboard
   it('should do clipboard', async () => {
     await openPage('Clipboard');
 
@@ -148,7 +190,7 @@ describe('home page', () => {
     await IonicE2E.tapButton('Read Clipboard Data');
   });
 
-  // Device
+  // // Device
   it('should do device', async () => {
     await openPage('Device');
 
@@ -166,43 +208,52 @@ describe('home page', () => {
     await waitResult('');
     await IonicE2E.tapButton('readdir');
     await waitResult({
-      files: []
+      files: [],
     });
 
     await IonicE2E.tapButton('write (f)');
     await waitResult({
-      uri: "/DOCUMENTS/secrets/text.txt"
+      uri: '/DOCUMENTS/secrets/text.txt',
     });
 
     await IonicE2E.tapButton('read (f)');
     await waitResult({
-      data: "This is a test"
+      data: 'This is a test',
     });
 
-    await IonicE2E.tapButton('append (f)');
-    await waitResult('');
+    await IonicE2E.onIOS(async () => {
+      await IonicE2E.tapButton('append (f)');
+      await waitResult('');
+    });
+
+    await IonicE2E.onAndroid(async () => {
+      await IonicE2E.tapButton('append (f)');
+      await waitResult({
+        uri: '/DOCUMENTS/secrets/text.txt',
+      });
+    });
 
     await IonicE2E.tapButton('read (f)');
     await waitResult({
-      data: "This is a testMORE TESTS"
+      data: 'This is a testMORE TESTS',
     });
 
     await IonicE2E.tapButton('stat (f)');
     await waitResult({
-      "type": "file",
-      "size": 24,
-      "ctime": 0,
-      "mtime": 0,
-      "uri": ""
+      type: 'file',
+      size: 24,
+      ctime: 0,
+      mtime: 0,
+      uri: '',
     });
 
     await IonicE2E.tapButton('get uri');
     await waitResult({
-      "uri": "/DATA/secrets/text.txt"
+      uri: '/DATA/secrets/text.txt',
     });
     await IonicE2E.tapButton('directory');
     await waitResult({
-      "data": "This is a test"
+      data: 'This is a test',
     });
 
     await IonicE2E.tapButton('rename file');
@@ -212,11 +263,11 @@ describe('home page', () => {
 
     await IonicE2E.tapButton('request perms');
     await waitResult({
-      publicStorage: "granted"
+      publicStorage: 'granted',
     });
     await IonicE2E.tapButton('check perms');
     await waitResult({
-      publicStorage: "granted"
+      publicStorage: 'granted',
     });
 
     await IonicE2E.tapButton('mk (u)');
@@ -232,27 +283,32 @@ describe('home page', () => {
 
     await IonicE2E.tapButton('Check Permissions');
     await waitResult({
-      location: 'prompt'
+      location: 'prompt',
     });
     await IonicE2E.tapButton('Request Permissions');
 
     await IonicE2E.onIOS(async () => {
       await IonicE2E.native();
-      const allow = await IonicE2E.findElementIOS('Allow Once');
+      const allow = await findElementIOS('Allow Once');
       await allow.click();
       await IonicE2E.web();
       await waitResult({
-        location: 'granted'
+        location: 'granted',
       });
     });
 
-    await IonicE2E.setLocation(43.0664229, -89.3978106);
+    await driver.setGeoLocation({
+      latitude: 43.0664229,
+      longitude: -89.3978106,
+      altitude: 1.2,
+    });
+    // await IonicE2E.setLocation(43.0664229, -89.3978106);
 
     await IonicE2E.tapButton('Get Location');
 
     await waitResult({
-      "coords": {},
-      "timestamp": ""
+      coords: {},
+      timestamp: '',
     });
 
     await IonicE2E.pause(20000);
@@ -299,15 +355,19 @@ describe('home page', () => {
   it('should do local notifications', async () => {
     await openPage('Local Notifications');
 
+    await IonicE2E.pause(400);
     try {
       await driver.acceptAlert();
     } catch (e) {
       console.error('No alert to accept');
     }
 
-    await waitResult({ 'display': 'granted' }, {
-      exact: true
-    });
+    await waitResult(
+      { display: 'granted' },
+      {
+        exact: true,
+      },
+    );
 
     await IonicE2E.tapButton('Schedule now');
     await IonicE2E.tapButton('Schedule now (custom icon on Android)');
@@ -317,12 +377,14 @@ describe('home page', () => {
     await IonicE2E.tapButton('Schedule every minute');
     await IonicE2E.tapButton('Schedule every 90 seconds');
     await IonicE2E.tapButton('Schedule every 90 seconds with Extras');
-    await IonicE2E.tapButton('Cancel Pending Notifications');
     await IonicE2E.tapButton('Refresh Pending Notifications');
     await IonicE2E.tapButton('Schedule just one');
     await IonicE2E.tapButton('Schedule just one (with seconds)');
     await IonicE2E.tapButton('Schedule just one (without seconds)');
     await IonicE2E.tapButton('Cancel just one');
+    // Cancel all pending notifications so that none happen during the rest of our tests
+    await IonicE2E.tapButton('Cancel Pending Notifications');
+    await IonicE2E.pause(10000);
   });
 
   it('should do motion', async () => {
@@ -377,7 +439,9 @@ describe('home page', () => {
 
     await IonicE2E.onIOS(async () => {
       await IonicE2E.native();
-      const close = await IonicE2E.findElementIOS('Close');
+      // Wait to make sure its displayed
+      await IonicE2E.pause(1000);
+      const close = await findElementIOS('Close');
       close.click();
     });
   });
@@ -395,15 +459,17 @@ describe('home page', () => {
 
     await IonicE2E.onWeb(async () => {
       const status = await IonicE2E.waitElement('#status');
-      await (await expect(status)).toHaveText('StatusBar plugin not supported on web');
+      await (
+        await expect(status)
+      ).toHaveText('StatusBar plugin not supported on web');
     });
 
     await IonicE2E.onIOS(async () => {
       await IonicE2E.tapButton('Change StatusBar Style Default');
       await IonicE2E.tapButton('Change StatusBar Style Light');
       await IonicE2E.tapButton('Change StatusBar Style Dark');
-      await IonicE2E.tapButton('Show');
-      await IonicE2E.tapButton('Hide');
+      // await IonicE2E.tapButton('Show');
+      // await IonicE2E.tapButton('Hide');
       await IonicE2E.tapButton('overlay Statusbar');
       await IonicE2E.tapButton('unoverlay Statusbar');
       await IonicE2E.tapButton('Set Background Color');
@@ -420,13 +486,13 @@ describe('home page', () => {
     await IonicE2E.tapButton('Get key1');
 
     await waitResult({
-      value: 'myvalue'
+      value: 'myvalue',
     });
 
     await IonicE2E.tapButton('Get All Keys');
 
     await waitResult({
-      keys: ['key1']
+      keys: ['key1'],
     });
 
     await IonicE2E.tapButton('Remove key1');
@@ -434,7 +500,7 @@ describe('home page', () => {
     await IonicE2E.tapButton('Get key1');
 
     await waitResult({
-      value: null
+      value: null,
     });
 
     await IonicE2E.tapButton('Set key1');
@@ -443,14 +509,14 @@ describe('home page', () => {
     await IonicE2E.tapButton('Get All Keys');
 
     await waitResult({
-      keys: []
+      keys: [],
     });
 
     await IonicE2E.tapButton('Migration Test');
 
     await waitResult({
       migrated: [],
-      existing: []
+      existing: [],
     });
   });
 
@@ -459,7 +525,9 @@ describe('home page', () => {
 
     await IonicE2E.onWeb(async () => {
       const status = await IonicE2E.waitElement('#status');
-      await (await expect(status)).toHaveText('TextZoom plugin not supported on web');
+      await (
+        await expect(status)
+      ).toHaveText('TextZoom plugin not supported on web');
     });
 
     await IonicE2E.onIOS(async () => {
