@@ -11,6 +11,7 @@
     "update-all": "node ./scripts/update-all.mjs",
     "start": "react-scripts start",
     "build": "react-scripts build",
+    "appflow:build": "./run-appium-test.sh",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "e2e:build": "e2e build",
