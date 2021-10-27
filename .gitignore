@@ -4,7 +4,9 @@
 .eslintcache
 
 .tsbuild
-.ionic
+.ionic/app.xcarchive
+.ionic/wdio.config.ts
+
 
 app/
 
