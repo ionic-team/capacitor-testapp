@@ -7,6 +7,8 @@ const config = {
     'appium:platformVersion': '15.0',
     'appium:app': './.ionic/App-ios-simulator.zip',
     'appium:isHeadless': true,
+    'appium:launchTimeout': 20000,
+    'appium:locationServicesEnabled': true,
   },
   'ios:browser': {
     'appium:deviceName': 'iPhone 12 Pro Max',
