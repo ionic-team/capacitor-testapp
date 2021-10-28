@@ -1,7 +1,7 @@
 const config = {
   // override wdio config values here
   connectionRetryTimeout: 900000,
-  logLevel: 'error',
+  logLevel: 'trace',
 
   // desired capabilities here
   'ios:simulator': {
