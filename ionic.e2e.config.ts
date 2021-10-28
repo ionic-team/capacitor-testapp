@@ -1,6 +1,9 @@
 const config = {
-  logLevel: 'error',
   // override wdio config values here
+  connectionRetryTimeout: 900000,
+  logLevel: 'error',
+
+  // desired capabilities here
   'ios:simulator': {
     'appium:platformName': 'iOS',
     'appium:deviceName': 'iPhone 12 Pro',
