@@ -1,5 +1,5 @@
 const config = {
-  logLevel: 'trace',
+  logLevel: 'error',
   // override wdio config values here
   'ios:simulator': {
     'appium:platformName': 'iOS',
@@ -7,8 +7,7 @@ const config = {
     'appium:platformVersion': '15.0',
     'appium:app': './.ionic/App-ios-simulator.zip',
     'appium:isHeadless': true,
-    'appium:launchTimeout': 20000,
-    'appium:locationServicesEnabled': true,
+    'appium:wdaLaunchTimeout': 600000,
   },
   'ios:browser': {
     'appium:deviceName': 'iPhone 12 Pro Max',
