@@ -30,7 +30,8 @@ const Menu: React.FC = () => {
               routerLink={'/home'}
               routerDirection="none"
               lines="none"
-              detail={false}>
+              detail={false}
+            >
               <IonLabel>
                 <span role="img" aria-label="house with garden">
                   🏡
@@ -49,7 +50,8 @@ const Menu: React.FC = () => {
                 routerLink={route.url}
                 routerDirection="none"
                 lines="none"
-                detail={false}>
+                detail={false}
+              >
                 <IonLabel>
                   {route.icon} {route.title}
                 </IonLabel>

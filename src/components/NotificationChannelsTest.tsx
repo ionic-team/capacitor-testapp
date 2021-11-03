@@ -123,7 +123,8 @@ export default function NotificationChannelsTest({ notificationType }: Props) {
           expand="block"
           onClick={e => {
             setShowModal(true);
-          }}>
+          }}
+        >
           Create Notification Channel
         </IonButton>
       </section>
@@ -143,7 +144,8 @@ export default function NotificationChannelsTest({ notificationType }: Props) {
                   color="danger"
                   onClick={() => {
                     deleteNotificationChannel(channel);
-                  }}>
+                  }}
+                >
                   Delete
                 </IonItemOption>
               </IonItemOptions>
@@ -198,7 +200,8 @@ function NewChannelModal({ show, dismiss, createChannel }: ModalProps) {
             createChannel(values).then(() => {
               dismiss();
             });
-          }}>
+          }}
+        >
           {({ values, errors, isValid, handleSubmit, setFieldValue }) => (
             <form onSubmit={handleSubmit}>
               <IonList>
@@ -209,7 +212,8 @@ function NewChannelModal({ show, dismiss, createChannel }: ModalProps) {
                     value={values.name}
                     onIonChange={e =>
                       setFieldValue('name', e.detail.value ?? '')
-                    }></IonInput>
+                    }
+                  ></IonInput>
                 </IonItem>
                 <IonItem>
                   <IonLabel position="stacked">Channel Description</IonLabel>
@@ -217,7 +221,8 @@ function NewChannelModal({ show, dismiss, createChannel }: ModalProps) {
                     value={values.description}
                     onIonChange={e =>
                       setFieldValue('description', e.detail.value ?? '')
-                    }></IonInput>
+                    }
+                  ></IonInput>
                 </IonItem>
                 <IonItem>
                   <IonLabel>Importance</IonLabel>
@@ -225,7 +230,8 @@ function NewChannelModal({ show, dismiss, createChannel }: ModalProps) {
                     value={values.importance}
                     onIonChange={e =>
                       setFieldValue('importance', e.detail.value ?? '3')
-                    }>
+                    }
+                  >
                     <IonSelectOption value={1}>1</IonSelectOption>
                     <IonSelectOption value={2}>2</IonSelectOption>
                     <IonSelectOption value={3}>3</IonSelectOption>
@@ -238,9 +244,8 @@ function NewChannelModal({ show, dismiss, createChannel }: ModalProps) {
                   <IonLabel>Sound</IonLabel>
                   <IonInput
                     value={values.sound}
-                    onIonChange={e =>
-                      setFieldValue('sound', e.detail.value)
-                    }></IonInput>
+                    onIonChange={e => setFieldValue('sound', e.detail.value)}
+                  ></IonInput>
                 </IonItem>
                 <IonItem>
                   <IonLabel>Visibility</IonLabel>
@@ -248,7 +253,8 @@ function NewChannelModal({ show, dismiss, createChannel }: ModalProps) {
                     value={values.visibility}
                     onIonChange={e =>
                       setFieldValue('visibility', e.detail.value)
-                    }>
+                    }
+                  >
                     <IonSelectOption value={-1}>-1</IonSelectOption>
                     <IonSelectOption value={0}>0</IonSelectOption>
                     <IonSelectOption value={1}>1</IonSelectOption>
@@ -268,7 +274,8 @@ function NewChannelModal({ show, dismiss, createChannel }: ModalProps) {
                     value={values.lightColor}
                     onIonChange={e =>
                       setFieldValue('lightColor', e.detail.value)
-                    }></IonInput>
+                    }
+                  ></IonInput>
                 </IonItem>
                 <IonItem>
                   <IonLabel>Vibration</IonLabel>
@@ -286,7 +293,8 @@ function NewChannelModal({ show, dismiss, createChannel }: ModalProps) {
                   color="primary"
                   expand="block"
                   disabled={!isValid}
-                  type="submit">
+                  type="submit"
+                >
                   Create
                 </IonButton>
                 <br />
@@ -295,7 +303,8 @@ function NewChannelModal({ show, dismiss, createChannel }: ModalProps) {
                   expand="block"
                   onClick={() => {
                     dismiss();
-                  }}>
+                  }}
+                >
                   Cancel
                 </IonButton>
               </section>
