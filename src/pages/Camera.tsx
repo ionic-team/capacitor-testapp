@@ -86,19 +86,22 @@ class CameraPage extends React.Component<{}, CameraPageState> {
                 expand="block"
                 onClick={() =>
                   this.requestPermissions({ permissions: ['camera'] })
-                }>
+                }
+              >
                 Request Camera Permissions
               </IonButton>
               <IonButton
                 expand="block"
                 onClick={() =>
                   this.requestPermissions({ permissions: ['photos'] })
-                }>
+                }
+              >
                 Request Photo Permissions
               </IonButton>
               <IonButton
                 expand="block"
-                onClick={() => this.requestPermissions()}>
+                onClick={() => this.requestPermissions()}
+              >
                 Request All Permissions
               </IonButton>
             </IonCardContent>
@@ -107,22 +110,26 @@ class CameraPage extends React.Component<{}, CameraPageState> {
             <IonCardContent>
               <IonButton
                 expand="block"
-                onClick={() => this.addPhoto(CameraSource.Camera)}>
+                onClick={() => this.addPhoto(CameraSource.Camera)}
+              >
                 Take Picture
               </IonButton>
               <IonButton
                 expand="block"
-                onClick={() => this.addPhoto(CameraSource.Camera, true)}>
+                onClick={() => this.addPhoto(CameraSource.Camera, true)}
+              >
                 Take Picture and Save
               </IonButton>
               <IonButton
                 expand="block"
-                onClick={() => this.addPhoto(CameraSource.Photos)}>
+                onClick={() => this.addPhoto(CameraSource.Photos)}
+              >
                 Choose Picture
               </IonButton>
               <IonButton
                 expand="block"
-                onClick={() => this.addPhoto(CameraSource.Prompt)}>
+                onClick={() => this.addPhoto(CameraSource.Prompt)}
+              >
                 Prompt
               </IonButton>
             </IonCardContent>

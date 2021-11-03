@@ -18,10 +18,8 @@ interface Props {
 }
 
 export default function LocalNotificationTest({ permissions }: Props) {
-  const [
-    pendingNotifications,
-    setPendingNotifications,
-  ] = useState<PendingResult>({ notifications: [] });
+  const [pendingNotifications, setPendingNotifications] =
+    useState<PendingResult>({ notifications: [] });
 
   const generateId = (): number => Math.floor(Math.random() * 10);
 
@@ -283,7 +281,8 @@ export default function LocalNotificationTest({ permissions }: Props) {
             prompt: permissions === 'prompt',
             denied: permissions === 'denied',
             granted: permissions === 'granted',
-          })}>
+          })}
+        >
           Local Notifications Permission {permissions.toString().toUpperCase()}
         </span>
       </section>

@@ -13,15 +13,15 @@ export const extractEventTargetValue = (event: SyntheticEvent): string => {
   return event.target.value;
 };
 
-export const createEventHandler = <A extends any[]>(
-  callback: (event: SyntheticEvent, ...args: A) => void,
-) => (event: SyntheticEvent, ...args: A): void => {
-  event.preventDefault();
-  callback(event, ...args);
-};
+export const createEventHandler =
+  <A extends any[]>(callback: (event: SyntheticEvent, ...args: A) => void) =>
+  (event: SyntheticEvent, ...args: A): void => {
+    event.preventDefault();
+    callback(event, ...args);
+  };
 
-export const createEventTargetValueExtractor = (
-  callback: (value: string) => void,
-) => (event: SyntheticEvent): void => {
-  callback(extractEventTargetValue(event));
-};
+export const createEventTargetValueExtractor =
+  (callback: (value: string) => void) =>
+  (event: SyntheticEvent): void => {
+    callback(extractEventTargetValue(event));
+  };

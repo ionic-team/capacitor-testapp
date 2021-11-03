@@ -125,7 +125,8 @@ const AppPage: React.FC = () => {
           <a
             href="https://capacitorjs.com/"
             target="_blank"
-            rel="noopener noreferrer">
+            rel="noopener noreferrer"
+          >
             Read more
           </a>
         </p>
