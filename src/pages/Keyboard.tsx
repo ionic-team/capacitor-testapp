@@ -66,7 +66,7 @@ const KeyboardPage: React.FC = () => {
     Keyboard.setStyle({ style: KeyboardStyle.Dark });
   };
 
-  const setStyleDefault= async () => {
+  const setStyleDefault = async () => {
     Keyboard.setStyle({ style: KeyboardStyle.Default });
   };
 

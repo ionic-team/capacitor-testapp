@@ -70,7 +70,8 @@ const BrowserPage: React.FC = () => {
                   loadedHandler?.remove();
                   loadedHandler = null;
                   Browser.open({ url: 'https://capacitorjs.com' });
-                }}>
+                }}
+              >
                 Open URL
               </IonButton>
             </IonCol>
@@ -83,7 +84,8 @@ const BrowserPage: React.FC = () => {
                   onClick={() => {
                     autoCloseAfterDelay();
                     Browser.open({ url: 'https://capacitorjs.com' });
-                  }}>
+                  }}
+                >
                   Open and then close URL
                 </IonButton>
               </IonCol>
@@ -96,7 +98,8 @@ const BrowserPage: React.FC = () => {
                   expand="block"
                   onClick={() => {
                     Browser.close();
-                  }}>
+                  }}
+                >
                   Close most recently opened
                 </IonButton>
               </IonCol>

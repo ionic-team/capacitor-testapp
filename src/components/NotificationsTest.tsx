@@ -22,14 +22,13 @@ interface Props {
 }
 
 export default function NotificationTest({ permissions }: Props) {
-  const [
-    notificationList,
-    setNotificationList,
-  ] = useState<PushNotificationDeliveredList>({ notifications: [] });
+  const [notificationList, setNotificationList] =
+    useState<PushNotificationDeliveredList>({ notifications: [] });
 
   const getDeliveredNotifications = async () => {
     try {
-      const notificationList = await PushNotifications.getDeliveredNotifications();
+      const notificationList =
+        await PushNotifications.getDeliveredNotifications();
       setNotificationList(notificationList);
     } catch (e) {
       console.log('getDeliveredNotifications error');
@@ -115,7 +114,8 @@ export default function NotificationTest({ permissions }: Props) {
             prompt: permissions === 'prompt',
             denied: permissions === 'denied',
             granted: permissions === 'granted',
-          })}>
+          })}
+        >
           Push Notifications Permission {permissions.toString().toUpperCase()}
         </span>
         <IonButton onClick={getDeliveredNotifications} expand="block">
@@ -142,7 +142,8 @@ export default function NotificationTest({ permissions }: Props) {
                   color="danger"
                   onClick={() => {
                     removeDeliveredNotification(notification);
-                  }}>
+                  }}
+                >
                   Remove
                 </IonItemOption>
               </IonItemOptions>
