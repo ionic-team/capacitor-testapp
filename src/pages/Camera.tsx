@@ -9,6 +9,10 @@ import {
   IonCardContent,
   IonCard,
   IonButton,
+  IonGrid,
+  IonRow,
+  IonCol,
+  IonImg,
 } from '@ionic/react';
 import React from 'react';
 import {
@@ -17,18 +21,21 @@ import {
   CameraSource,
   CameraResultType,
   CameraPluginPermissions,
+  GalleryPhoto,
+  GalleryImageOptions,
 } from '@capacitor/camera';
 import { Capacitor } from '@capacitor/core';
 
 interface CameraPageState {
   filePath: string | null;
   metadata: string | null;
+  photos: GalleryPhoto[] | null;
 }
 
 class CameraPage extends React.Component<{}, CameraPageState> {
   constructor(props: {}) {
     super(props);
-    this.state = { filePath: null, metadata: null };
+    this.state = { filePath: null, metadata: null, photos: null };
   }
 
   addPhoto = async (source: CameraSource, save: boolean = false) => {
@@ -51,6 +58,22 @@ class CameraPage extends React.Component<{}, CameraPageState> {
     }
   };
 
+  pickPhotos = async (limit: number = 0) => {
+    try {
+      const options: GalleryImageOptions = {
+        quality: 100,
+        limit,
+      };
+      var photosResult = await Camera.pickImages(options);
+      console.log('photos result', photosResult);
+      this.setState({
+        photos: photosResult.photos,
+      });
+    } catch (e) {
+      alert(`Failed to get picture with error:\n'${e}'`);
+    }
+  };
+
   checkPermissions = async () => {
     const permissionStates = await Camera.checkPermissions();
     alert(
@@ -66,6 +89,7 @@ class CameraPage extends React.Component<{}, CameraPageState> {
   };
 
   render() {
+    const photos = this.state.photos;
     return (
       <IonPage>
         <IonHeader>
@@ -132,8 +156,23 @@ class CameraPage extends React.Component<{}, CameraPageState> {
               >
                 Prompt
               </IonButton>
+              <IonButton expand="block" onClick={() => this.pickPhotos()}>
+                Pick Photos
+              </IonButton>
+              <IonButton expand="block" onClick={() => this.pickPhotos(3)}>
+                Pick 3 Photos
+              </IonButton>
             </IonCardContent>
           </IonCard>
+          <IonGrid>
+            <IonRow>
+              {photos?.map(photo => (
+                <IonCol size="6">
+                  <IonImg src={photo.webPath}></IonImg>
+                </IonCol>
+              ))}
+            </IonRow>
+          </IonGrid>
           {this.state.filePath != null ? (
             <IonCard>
               <IonCardContent>
