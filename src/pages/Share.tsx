@@ -3,15 +3,28 @@ import {
   IonButtons,
   IonContent,
   IonHeader,
+  IonLabel,
   IonPage,
   IonMenuButton,
   IonTitle,
   IonToolbar,
+  useIonViewDidEnter,
 } from '@ionic/react';
-import React from 'react';
+import React, { useState } from 'react';
 import { Share } from '@capacitor/share';
 
 const SharePage: React.FC = () => {
+  const [showButtons, setShowButtons] = useState(true);
+
+  useIonViewDidEnter(() => {
+    checkSupported();
+  });
+
+  const checkSupported = async () => {
+    const result = await Share.canShare();
+    setShowButtons(result.value);
+  };
+
   const showSharing = async () => {
     try {
       let shareRet = await Share.share({
@@ -59,15 +72,21 @@ const SharePage: React.FC = () => {
         </IonToolbar>
       </IonHeader>
       <IonContent>
-        <IonButton expand="block" onClick={showSharing}>
-          Show Sharing
-        </IonButton>
-        <IonButton expand="block" onClick={showSharingTextOnly}>
-          Show Sharing (text only)
-        </IonButton>
-        <IonButton expand="block" onClick={showSharingUrlOnly}>
-          Show Sharing (url only)
-        </IonButton>
+        {showButtons ? (
+          [
+            <IonButton expand="block" onClick={showSharing}>
+              Show Sharing
+            </IonButton>,
+            <IonButton expand="block" onClick={showSharingTextOnly}>
+              Show Sharing (text only)
+            </IonButton>,
+            <IonButton expand="block" onClick={showSharingUrlOnly}>
+              Show Sharing (url only)
+            </IonButton>,
+          ]
+        ) : (
+          <IonLabel>Sharing not supported</IonLabel>
+        )}
       </IonContent>
     </IonPage>
   );
