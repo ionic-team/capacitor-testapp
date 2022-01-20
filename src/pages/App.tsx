@@ -12,7 +12,11 @@ import {
   isPlatform,
 } from '@ionic/react';
 import React, { useState } from 'react';
-import { PluginListenerHandle } from '@capacitor/core';
+import {
+  Capacitor,
+  ExceptionCode,
+  PluginListenerHandle,
+} from '@capacitor/core';
 import { App } from '@capacitor/app';
 import { AppLauncher } from '@capacitor/app-launcher';
 
@@ -66,6 +70,21 @@ const AppPage: React.FC = () => {
     App.exitApp();
   };
 
+  const minimizeApp = async () => {
+    try {
+      await App.minimizeApp();
+    } catch (e) {
+      if (e.code === ExceptionCode.Unimplemented) {
+        console.warn(
+          'minimizeApp is not implemented for',
+          Capacitor.getPlatform(),
+        );
+      } else {
+        console.error(e);
+      }
+    }
+  };
+
   const canOpenUrl = async () => {
     const ret = await AppLauncher.canOpenUrl({ url: 'mailto:name@email.com' });
     console.log('Can open url: ', ret.value);
@@ -110,6 +129,9 @@ const AppPage: React.FC = () => {
             Exit app
           </IonButton>
         ) : null}
+        <IonButton expand="block" onClick={minimizeApp}>
+          Minimize app
+        </IonButton>
         <IonButton expand="block" onClick={canOpenUrl}>
           Can Open Url
         </IonButton>
