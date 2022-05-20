@@ -10,6 +10,7 @@ import DevicePage from './pages/Device';
 import DialogPage from './pages/Dialog';
 import FilesystemPage from './pages/Filesystem';
 import GeolocationPage from './pages/Geolocation';
+import GoogleMaps from './pages/GoogleMaps';
 import HapticsPage from './pages/Haptics';
 import KeyboardPage from './pages/Keyboard';
 import LocalNotificationsPage from './pages/LocalNotifications';
@@ -131,6 +132,16 @@ const routes: Page[] = [
       </span>
     ),
     component: GeolocationPage,
+  },
+  {
+    title: 'Google Maps',
+    url: '/google-maps',
+    icon: (
+      <span role="img" aria-label="globe showing Americas">
+        🌎
+      </span>
+    ),
+    component: GoogleMaps,
   },
   {
     title: 'Haptics',
