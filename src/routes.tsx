@@ -6,6 +6,7 @@ import Browser from './pages/Browser';
 import CameraPage from './pages/Camera';
 import ClipboardPage from './pages/Clipboard';
 import Console from './pages/Console';
+import CookiesPage from './pages/Cookies';
 import DevicePage from './pages/Device';
 import DialogPage from './pages/Dialog';
 import FilesystemPage from './pages/Filesystem';
@@ -81,6 +82,16 @@ const routes: Page[] = [
       </span>
     ),
     component: ClipboardPage,
+  },
+  {
+    title: 'Cookies',
+    url: '/cookies',
+    icon: (
+      <span role="img" aria-label="cookies">
+        🍪
+      </span>
+    ),
+    component: CookiesPage,
   },
   {
     title: 'Console',
