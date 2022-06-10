@@ -11,7 +11,6 @@ const config: CapacitorConfig = {
   plugins: {
     SplashScreen: {
       launchAutoHide: false,
-      useAndroid12API: true,
     },
     LocalNotifications: {
       smallIcon: 'ic_stat_icon_config_sample',

@@ -4,8 +4,7 @@
 	"webDir": "build",
 	"plugins": {
 		"SplashScreen": {
-			"launchAutoHide": false,
-			"useAndroid12API": true
+			"launchAutoHide": false
 		},
 		"LocalNotifications": {
 			"smallIcon": "ic_stat_icon_config_sample",
