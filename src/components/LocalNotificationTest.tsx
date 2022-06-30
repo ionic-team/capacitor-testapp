@@ -1,4 +1,5 @@
 import {
+  DeliveredNotifications,
   LocalNotifications,
   LocalNotificationSchema,
   PendingResult,
@@ -6,6 +7,9 @@ import {
 import {
   IonButton,
   IonItem,
+  IonItemSliding,
+  IonItemOption,
+  IonItemOptions,
   IonLabel,
   IonList,
   IonListHeader,
@@ -20,6 +24,8 @@ interface Props {
 export default function LocalNotificationTest({ permissions }: Props) {
   const [pendingNotifications, setPendingNotifications] =
     useState<PendingResult>({ notifications: [] });
+  const [notificationList, setNotificationList] =
+    useState<DeliveredNotifications>({ notifications: [] });
 
   const generateId = (): number => Math.floor(Math.random() * 10);
 
@@ -267,6 +273,42 @@ export default function LocalNotificationTest({ permissions }: Props) {
     await getPendingNotifications();
   };
 
+  const getDeliveredNotifications = async () => {
+    try {
+      const notificationList =
+        await LocalNotifications.getDeliveredNotifications();
+      setNotificationList(notificationList);
+    } catch (e) {
+      console.log('getDeliveredNotifications error');
+      console.error(e);
+    }
+  };
+
+  const removeDeliveredNotifications = async () => {
+    try {
+      await LocalNotifications.removeAllDeliveredNotifications();
+      await getDeliveredNotifications();
+    } catch (e) {
+      console.log('removeAllDeliveredNotifications error');
+      console.error(e);
+    }
+  };
+
+  const removeDeliveredNotification = async (
+    notification: LocalNotificationSchema,
+  ) => {
+    try {
+      const newList: DeliveredNotifications = {
+        notifications: [notification],
+      };
+      await LocalNotifications.removeDeliveredNotifications(newList);
+      await getDeliveredNotifications();
+    } catch (e) {
+      console.log('removeDeliveredNotifications error');
+      console.error(e);
+    }
+  };
+
   useEffect(() => {
     if (permissions === 'granted') {
       getPendingNotifications();
@@ -354,7 +396,43 @@ export default function LocalNotificationTest({ permissions }: Props) {
         <IonButton expand="block" onClick={cancelOne}>
           Cancel just one
         </IonButton>
+        <IonButton onClick={getDeliveredNotifications} expand="block">
+          Refresh Delivered Notifications
+        </IonButton>
+        <IonButton onClick={removeDeliveredNotifications} expand="block">
+          Remove All Delivered Notifications
+        </IonButton>
       </section>
+      <IonList>
+        <IonListHeader>Notifications (swipe to remove)</IonListHeader>
+        {notificationList.notifications.map(notification => {
+          return (
+            <IonItemSliding>
+              <IonItem>
+                <IonLabel>
+                  <h2>{notification.title}</h2>
+                  <p>{notification.body}</p>
+                </IonLabel>
+              </IonItem>
+              <IonItemOptions side="end">
+                <IonItemOption
+                  color="danger"
+                  onClick={() => {
+                    removeDeliveredNotification(notification);
+                  }}
+                >
+                  Remove
+                </IonItemOption>
+              </IonItemOptions>
+            </IonItemSliding>
+          );
+        })}
+        {notificationList.notifications.length === 0 && (
+          <IonItem>
+            <IonLabel>No notifications.</IonLabel>
+          </IonItem>
+        )}
+      </IonList>
     </div>
   );
 }
