@@ -20,7 +20,7 @@ import ScreenReader from './pages/ScreenReader';
 import SharePage from './pages/Share';
 import SplashScreenPage from './pages/SplashScreen';
 import StatusBarPage from './pages/StatusBar';
-import Storage from './pages/Storage';
+import Preferences from './pages/Preferences';
 import TextZoom from './pages/TextZoom';
 import ToastPage from './pages/Toast';
 
@@ -233,14 +233,14 @@ const routes: Page[] = [
     component: StatusBarPage,
   },
   {
-    title: 'Storage',
-    url: '/storage',
+    title: 'Preferences',
+    url: '/preferences',
     icon: (
       <span role="img" aria-label="wastebasket">
         🗑
       </span>
     ),
-    component: Storage,
+    component: Preferences,
   },
   {
     title: 'Text Zoom',
