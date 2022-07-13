@@ -86,6 +86,11 @@ const KeyboardPage: React.FC = () => {
     Keyboard.setResizeMode({ mode: KeyboardResize.Ionic });
   };
 
+  const getResizeMode = async () => {
+    const res = await Keyboard.getResizeMode();
+    alert(res.mode);
+  };
+
   return (
     <IonPage>
       <IonHeader>
@@ -129,6 +134,9 @@ const KeyboardPage: React.FC = () => {
         </IonButton>
         <IonButton expand="block" onClick={setResizeModeIonic}>
           set Resize Mode Ionic
+        </IonButton>
+        <IonButton expand="block" onClick={getResizeMode}>
+          get Resize Mode
         </IonButton>
         <IonInput placeholder="Enter Input"></IonInput>
       </IonContent>
