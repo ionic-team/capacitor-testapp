@@ -20,7 +20,7 @@ export const PLUGIN_PACKAGES = [
   'share',
   'splash-screen',
   'status-bar',
-  'storage',
+  'preferences',
   'text-zoom',
   'toast',
   'push-notifications',
