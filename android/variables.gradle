@@ -11,7 +11,7 @@ ext {
     androidxMaterialVersion = '1.5.0'
     androidxExifInterfaceVersion = '1.3.3'
     firebaseMessagingVersion =  '23.0.0'
-    playServicesLocationVersion =  '19.0.1'
+    playServicesLocationVersion =  '20.0.0'
     junitVersion =  '4.13.2'
     androidxJunitVersion =  '1.1.3'
     androidxEspressoCoreVersion =  '3.4.0'

@@ -16,6 +16,7 @@ import React, { useEffect, useState } from 'react';
 
 const CookiesPage: React.FC = () => {
     const [cookiesString, setCookiesString] = useState('');
+    const [url, setUrl] = useState('');
     const [key, setKey] = useState('');
     const [value, setValue] = useState('');
 
@@ -30,10 +31,7 @@ const CookiesPage: React.FC = () => {
 
     const setCapacitorCookie = async () => {
         try {
-            await CapacitorCookies.setCookie({
-                key: key,
-                value: value,
-            });
+            await CapacitorCookies.setCookie({url,key,value,});
 
             setCookiesString(document.cookie);
         }
@@ -44,10 +42,7 @@ const CookiesPage: React.FC = () => {
 
     const deleteCookie = async () => {
         try {
-            await CapacitorCookies.deleteCookie({
-                key: key,
-            });
-
+            await CapacitorCookies.deleteCookie({url,key,});
             setCookiesString(document.cookie);
         }
         catch (error) {
@@ -57,7 +52,7 @@ const CookiesPage: React.FC = () => {
 
     const clearCookies = async () => {
         try {
-            await CapacitorCookies.clearCookies({});
+            await CapacitorCookies.clearCookies({url});
 
             setCookiesString(document.cookie);
         }
@@ -87,25 +82,25 @@ const CookiesPage: React.FC = () => {
                 </IonToolbar>
             </IonHeader>
             <IonContent style={{ 'fontSize': 'x-large' }}>
-                <IonText style={{ 'width': '100%' }}>Cookies: {cookiesString}</IonText>
-                <IonButton style={{ 'width': '100%' }} onClick={() => setCookiesString(document.cookie)}>Get Cookies</IonButton>
-                {/* <IonLabel style={{ 'width': '100%' }}>URL:</IonLabel>
+                <IonText>Cookies: {cookiesString}</IonText>
+                <IonButton expand="block" onClick={() => setCookiesString(document.cookie)}>Get Cookies</IonButton>
+                <IonLabel>URL:</IonLabel>
                 <IonInput value={url}
                     onIonChange={e => setUrl(e.detail.value ?? '')}
-                    placeholder="Enter URL"></IonInput> */}
-                <IonLabel style={{ 'width': '100%' }}>Key:</IonLabel>
+                    placeholder="Enter URL"></IonInput>
+                <IonLabel>Key:</IonLabel>
                 <IonInput value={key}
                     onIonChange={e => setKey(e.detail.value ?? '')}
                     placeholder="Enter Key"></IonInput>
-                <IonLabel style={{ 'width': '100%' }} >Value:</IonLabel>
+                <IonLabel>Value:</IonLabel>
                 <IonInput value={value}
                     onIonChange={e => setValue(e.detail.value ?? '')}
                     placeholder="Enter Value"></IonInput>
-                <IonButton style={{ 'width': '100%' }} onClick={setCookie}>Set Cookie</IonButton>
-                <IonButton style={{ 'width': '100%' }} onClick={setCapacitorCookie}>Set Capacitor Cookie</IonButton>
-                <IonButton style={{ 'width': '100%' }} onClick={deleteCookie}>Delete Cookie</IonButton>
-                <IonButton style={{ 'width': '100%' }} onClick={clearCookies}>Clear Cookies</IonButton>
-                <IonButton style={{ 'width': '100%' }} onClick={clearAllCookies}>Clear All Cookies</IonButton>
+                <IonButton expand="block" onClick={setCookie}>Set Cookie</IonButton>
+                <IonButton expand="block" onClick={setCapacitorCookie}>Set Capacitor Cookie</IonButton>
+                <IonButton expand="block" onClick={deleteCookie}>Delete Cookie</IonButton>
+                <IonButton expand="block" onClick={clearCookies}>Clear Cookies</IonButton>
+                <IonButton expand="block" onClick={clearAllCookies}>Clear All Cookies</IonButton>
             </IonContent>
         </IonPage>
     );
