@@ -4,7 +4,6 @@ buildscript {
     
     repositories {
         google()
-        jcenter()
         mavenCentral()
     }
     dependencies {
@@ -21,7 +20,6 @@ apply from: "variables.gradle"
 allprojects {
     repositories {
         google()
-        jcenter()
         mavenCentral()
     }
 }
@@ -29,4 +27,5 @@ allprojects {
 task clean(type: Delete) {
     delete rootProject.buildDir
 }
+
 
