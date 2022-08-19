@@ -37,6 +37,11 @@ const DevicePage: React.FC = () => {
     alert('Language: ' + code.value);
   };
 
+  const getDeviceLanguageTag = async () => {
+    const tag = await Device.getLanguageTag();
+    setDeviceInfoJson(JSON.stringify(tag, null, 2));
+  };
+
   return (
     <IonPage>
       <IonHeader>
@@ -59,6 +64,9 @@ const DevicePage: React.FC = () => {
         </IonButton>
         <IonButton expand="block" onClick={getDeviceLanguageCode}>
           Language Code
+        </IonButton>
+        <IonButton expand="block" onClick={getDeviceLanguageTag}>
+          Language Tag
         </IonButton>
         <div>
           <pre>{deviceInfoJson}</pre>

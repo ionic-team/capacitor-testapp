@@ -13,11 +13,11 @@ import {
   IonInput,
 } from '@ionic/react';
 import React, { useState } from 'react';
-import { Storage } from '@capacitor/storage';
+import { Preferences } from '@capacitor/preferences';
 
 import { createEventTargetValueExtractor } from '../utils/dom';
 
-const StoragePage: React.FC = () => {
+const PreferencesPage: React.FC = () => {
   const [group, setGroup] = useState('CapacitorStorage');
   const [key, setKey] = useState('key1');
   const [value, setValue] = useState('');
@@ -27,35 +27,35 @@ const StoragePage: React.FC = () => {
   const handleValueInputChange = createEventTargetValueExtractor(setValue);
 
   const handleSetGroupClicked = async () => {
-    await Storage.configure({ group });
+    await Preferences.configure({ group });
   };
 
   const handleGetClicked = async () => {
-    const { value } = await Storage.get({ key });
+    const { value } = await Preferences.get({ key });
     alert(`${key}: ${value}`);
   };
 
   const handleSetClicked = async () => {
-    await Storage.set({ key, value });
+    await Preferences.set({ key, value });
   };
 
   const handleRemoveClicked = async () => {
-    await Storage.remove({ key });
+    await Preferences.remove({ key });
   };
 
   const handleRemoveAllClicked = async () => {
-    await Storage.clear();
+    await Preferences.clear();
   };
 
   const handleGetAllClicked = async () => {
-    const { keys } = await Storage.keys();
+    const { keys } = await Preferences.keys();
     alert(`all keys: ${keys.join(', ')}`);
   };
 
   const handleMigrationTestClicked = async () => {
     // localStorage.setItem('_cap_key1', 'data1');
     // localStorage.setItem('_cap_key2', 'data2');
-    const { migrated, existing } = await Storage.migrate();
+    const { migrated, existing } = await Preferences.migrate();
 
     alert(
       `Done!\n${migrated.length} keys migrated, ${existing.length} not migrated.`,
@@ -69,13 +69,13 @@ const StoragePage: React.FC = () => {
           <IonButtons slot="start">
             <IonMenuButton />
           </IonButtons>
-          <IonTitle>Storage</IonTitle>
+          <IonTitle>Preferences</IonTitle>
         </IonToolbar>
       </IonHeader>
       <IonContent>
         <IonList>
           <IonItem>
-            <IonLabel position="stacked">Storage Group</IonLabel>
+            <IonLabel position="stacked">Preferences Group</IonLabel>
             <IonInput value={group} onInput={handleGroupInputChange} />
             <IonButton onClick={handleSetGroupClicked} slot="end">
               Set
@@ -99,7 +99,7 @@ const StoragePage: React.FC = () => {
             Remove {key}
           </IonButton>
           <IonButton onClick={handleRemoveAllClicked} expand="full">
-            Clear Storage
+            Clear Preferences
           </IonButton>
           <IonButton onClick={handleGetAllClicked} expand="full">
             Get All Keys
@@ -116,4 +116,4 @@ const StoragePage: React.FC = () => {
   );
 };
 
-export default StoragePage;
+export default PreferencesPage;
