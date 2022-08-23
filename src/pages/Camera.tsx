@@ -88,6 +88,16 @@ class CameraPage extends React.Component<{}, CameraPageState> {
     );
   };
 
+  pickLimitedLibraryPhotos = async () => {
+    const res = await Camera.pickLimitedLibraryPhotos();
+    console.log('res', res);
+  };
+
+  getLimitedLibraryPhotos = async () => {
+    const res = await Camera.getLimitedLibraryPhotos();
+    console.log('res', res);
+  };
+
   render() {
     const photos = this.state.photos;
     return (
@@ -161,6 +171,18 @@ class CameraPage extends React.Component<{}, CameraPageState> {
               </IonButton>
               <IonButton expand="block" onClick={() => this.pickPhotos(3)}>
                 Pick 3 Photos
+              </IonButton>
+              <IonButton
+                expand="block"
+                onClick={() => this.pickLimitedLibraryPhotos()}
+              >
+                pickLimitedLibraryPhotos
+              </IonButton>
+              <IonButton
+                expand="block"
+                onClick={() => this.getLimitedLibraryPhotos()}
+              >
+                getLimitedLibraryPhotos
               </IonButton>
             </IonCardContent>
           </IonCard>
