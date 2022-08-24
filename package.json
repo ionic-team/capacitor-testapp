@@ -20,7 +20,7 @@
     "@capacitor/app": "^4.0.0",
     "@capacitor/app-launcher": "^4.0.0",
     "@capacitor/browser": "^4.0.0",
-    "@capacitor/camera": "^4.0.0",
+    "@capacitor/camera": "^4.0.1",
     "@capacitor/clipboard": "^4.0.0",
     "@capacitor/core": "^4.0.0",
     "@capacitor/device": "^4.0.0",
