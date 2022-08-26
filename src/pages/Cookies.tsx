@@ -23,6 +23,10 @@ const CookiesPage: React.FC = () => {
     useEffect(() => {
         setCookiesString(document.cookie);
     }, []);
+
+    const getCookies = () => {
+        setCookiesString(document.cookie);
+    }
     
     const setCookie = () => {
         document.cookie = key + '=' + value;
@@ -83,7 +87,7 @@ const CookiesPage: React.FC = () => {
             </IonHeader>
             <IonContent style={{ 'fontSize': 'x-large' }}>
                 <IonText>Cookies: {cookiesString}</IonText>
-                <IonButton expand="block" onClick={() => setCookiesString(document.cookie)}>Get Cookies</IonButton>
+                <IonButton expand="block" onClick={() => getCookies()}>Get Cookies</IonButton>
                 <IonLabel>URL:</IonLabel>
                 <IonInput value={url}
                     onIonChange={e => setUrl(e.detail.value ?? '')}
@@ -96,7 +100,7 @@ const CookiesPage: React.FC = () => {
                 <IonInput value={value}
                     onIonChange={e => setValue(e.detail.value ?? '')}
                     placeholder="Enter Value"></IonInput>
-                <IonButton expand="block" onClick={setCookie}>Set Cookie</IonButton>
+                <IonButton expand="block" onClick={setCookie}>Set Document Cookie</IonButton>
                 <IonButton expand="block" onClick={setCapacitorCookie}>Set Capacitor Cookie</IonButton>
                 <IonButton expand="block" onClick={deleteCookie}>Delete Cookie</IonButton>
                 <IonButton expand="block" onClick={clearCookies}>Clear Cookies</IonButton>
