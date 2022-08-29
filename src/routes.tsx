@@ -23,6 +23,7 @@ import StatusBarPage from './pages/StatusBar';
 import Preferences from './pages/Preferences';
 import TextZoom from './pages/TextZoom';
 import ToastPage from './pages/Toast';
+import HttpPage from './pages/Http';
 
 interface Page {
   readonly url: string;
@@ -141,6 +142,16 @@ const routes: Page[] = [
       </span>
     ),
     component: HapticsPage,
+  },
+  {
+    title: 'HTTP',
+    url: '/http',
+    icon: (
+      <span role="img" aria-label="globe with meridians">
+        🌐
+      </span>
+    ),
+    component: HttpPage,
   },
   {
     title: 'Keyboard',
