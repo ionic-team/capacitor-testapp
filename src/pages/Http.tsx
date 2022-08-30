@@ -13,6 +13,7 @@ import {
   IonSelect,
   IonSelectOption,
 } from '@ionic/react';
+import { CapacitorHttp } from '@capacitor/core';
 import React, { useState } from 'react';
 
 const HttpPage: React.FC = () => {
@@ -88,7 +89,14 @@ const HttpPage: React.FC = () => {
   };
 
   const sendRequestCapacitor = async () => {
-    setResponse('{}');
+    const response = await CapacitorHttp.request({
+      url,
+      method: requestType,
+      data: params.length > 0 ? JSON.parse(params) : undefined,
+      headers: JSON.parse(headers),
+    });
+
+    setResponse(JSON.stringify(response.data));
   };
 
   return (
