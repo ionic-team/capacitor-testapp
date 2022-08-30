@@ -88,15 +88,15 @@ class CameraPage extends React.Component<{}, CameraPageState> {
     );
   };
 
-  pickLimitedLibraryPhotos = async () => {
-    const res = await Camera.pickLimitedLibraryPhotos();
-    console.log('res', res);
-  };
+  // pickLimitedLibraryPhotos = async () => {
+  //   const res = await Camera.pickLimitedLibraryPhotos();
+  //   console.log('res', res);
+  // };
 
-  getLimitedLibraryPhotos = async () => {
-    const res = await Camera.getLimitedLibraryPhotos();
-    console.log('res', res);
-  };
+  // getLimitedLibraryPhotos = async () => {
+  //   const res = await Camera.getLimitedLibraryPhotos();
+  //   console.log('res', res);
+  // };
 
   render() {
     const photos = this.state.photos;
@@ -172,7 +172,7 @@ class CameraPage extends React.Component<{}, CameraPageState> {
               <IonButton expand="block" onClick={() => this.pickPhotos(3)}>
                 Pick 3 Photos
               </IonButton>
-              <IonButton
+              {/* <IonButton
                 expand="block"
                 onClick={() => this.pickLimitedLibraryPhotos()}
               >
@@ -183,7 +183,7 @@ class CameraPage extends React.Component<{}, CameraPageState> {
                 onClick={() => this.getLimitedLibraryPhotos()}
               >
                 getLimitedLibraryPhotos
-              </IonButton>
+              </IonButton> */}
             </IonCardContent>
           </IonCard>
           <IonGrid>
