@@ -63,7 +63,7 @@ const HttpPage: React.FC = () => {
 
   const sendRequestXHR = async () => {
     try {
-      var xhr = new XMLHttpRequest();
+      const xhr = new XMLHttpRequest();
       xhr.open(requestType, url, true);
 
       for (const [key, value] of Object.entries(JSON.parse(headers))) {
