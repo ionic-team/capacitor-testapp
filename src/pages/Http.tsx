@@ -49,7 +49,7 @@ const HttpPage: React.FC = () => {
   const sendRequestFetch = async () => {
     try {
       const response = await fetch(url, {
-        headers: JSON.parse(headers),
+        headers: headers.length > 0 ? JSON.parse(headers) : undefined,
         method: requestType,
         body: params.length > 0 ? params : undefined,
       });
@@ -117,26 +117,22 @@ const HttpPage: React.FC = () => {
         <IonInput
           value={url}
           onIonChange={e => setUrl(e.detail.value ?? '')}
-          placeholder="Enter URL"
-        ></IonInput>
+          placeholder="Enter URL"></IonInput>
         <IonLabel>Headers:</IonLabel>
         <IonInput
           value={headers}
           onIonChange={e => setHeaders(e.detail.value ?? '')}
-          placeholder="Enter Headers"
-        ></IonInput>
+          placeholder="Enter Headers"></IonInput>
         <IonLabel>Params:</IonLabel>
         <IonInput
           value={params}
           onIonChange={e => setParams(e.detail.value ?? '')}
-          placeholder="Enter Params"
-        ></IonInput>
+          placeholder="Enter Params"></IonInput>
         <IonLabel>Request Type:</IonLabel>
         <IonSelect
           placeholder="Select Request Type"
           onIonChange={e => setRequestType(e.detail.value ?? '')}
-          value={requestType}
-        >
+          value={requestType}>
           <IonSelectOption value="GET">GET</IonSelectOption>
           <IonSelectOption value="POST">POST</IonSelectOption>
           <IonSelectOption value="PUT">PUT</IonSelectOption>
@@ -147,8 +143,7 @@ const HttpPage: React.FC = () => {
         <IonSelect
           placeholder="Select Implementation"
           onIonChange={e => setImplementation(e.detail.value ?? '')}
-          value={implementation}
-        >
+          value={implementation}>
           <IonSelectOption value="FETCH">Fetch</IonSelectOption>
           <IonSelectOption value="XHR">XMLHttpRequest</IonSelectOption>
           <IonSelectOption value="CAPACITOR">Capacitor</IonSelectOption>

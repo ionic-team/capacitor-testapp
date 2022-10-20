@@ -24,8 +24,9 @@ const CookiesPage: React.FC = () => {
     setCookiesString(document.cookie);
   }, []);
 
-  const getCookies = () => {
-    setCookiesString(document.cookie);
+  const getCookies = async () => {
+    const cookies = await CapacitorCookies.getCookies({ url });
+    setCookiesString(cookies.toString());
   };
 
   const setCookie = () => {
@@ -90,20 +91,17 @@ const CookiesPage: React.FC = () => {
         <IonInput
           value={url}
           onIonChange={e => setUrl(e.detail.value ?? '')}
-          placeholder="Enter URL"
-        ></IonInput>
+          placeholder="Enter URL"></IonInput>
         <IonLabel>Key:</IonLabel>
         <IonInput
           value={key}
           onIonChange={e => setKey(e.detail.value ?? '')}
-          placeholder="Enter Key"
-        ></IonInput>
+          placeholder="Enter Key"></IonInput>
         <IonLabel>Value:</IonLabel>
         <IonInput
           value={value}
           onIonChange={e => setValue(e.detail.value ?? '')}
-          placeholder="Enter Value"
-        ></IonInput>
+          placeholder="Enter Value"></IonInput>
         <IonButton expand="block" onClick={setCookie}>
           Set Document Cookie
         </IonButton>
