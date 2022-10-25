@@ -12,6 +12,12 @@ import {
 } from '@ionic/react';
 import React, { useState } from 'react';
 import { Share } from '@capacitor/share';
+import {
+  Camera,
+  CameraResultType,
+  CameraSource,
+  ImageOptions,
+} from '@capacitor/camera';
 
 const SharePage: React.FC = () => {
   const [showButtons, setShowButtons] = useState(true);
@@ -61,6 +67,36 @@ const SharePage: React.FC = () => {
     }
   };
 
+  const showSharingRemoteImage = async () => {
+    try {
+      let shareRet = await Share.share({
+        url: 'https://ichef.bbci.co.uk/news/800/cpsprodpb/150EA/production/_107005268_gettyimages-611696954.jpg',
+      });
+      console.log('Share return', shareRet);
+    } catch (err) {
+      console.log('err', err);
+    }
+  };
+
+  const showSharingLocalImage = async () => {
+    try {
+      const options: ImageOptions = {
+        quality: 50,
+        resultType: CameraResultType.Uri,
+        source: CameraSource.Camera,
+        saveToGallery: false,
+        allowEditing: false,
+      };
+      var photo = await Camera.getPhoto(options);
+      let shareRet = await Share.share({
+        url: photo.path,
+      });
+      console.log('Share return', shareRet);
+    } catch (err) {
+      console.log('err', err);
+    }
+  };
+
   return (
     <IonPage>
       <IonHeader>
@@ -82,6 +118,12 @@ const SharePage: React.FC = () => {
             </IonButton>,
             <IonButton expand="block" onClick={showSharingUrlOnly}>
               Show Sharing (url only)
+            </IonButton>,
+            <IonButton expand="block" onClick={showSharingRemoteImage}>
+              Show Sharing (remote image)
+            </IonButton>,
+            <IonButton expand="block" onClick={showSharingLocalImage}>
+              Show Sharing (camera image)
             </IonButton>,
           ]
         ) : (
