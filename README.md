@@ -44,5 +44,6 @@ Follow the setup instructions for each repo:
 Then, back in this repo, run the following to link the packages in both repos to this app:
 
 ```shell
+npm install
 npm run toggle-local
 ```
