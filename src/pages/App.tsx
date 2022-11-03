@@ -17,18 +17,28 @@ import {
   ExceptionCode,
   PluginListenerHandle,
 } from '@capacitor/core';
-import { App } from '@capacitor/app';
+import { App, AppState } from '@capacitor/app';
 import { AppLauncher } from '@capacitor/app-launcher';
 
 const AppPage: React.FC = () => {
   const [appInfoJson, setAppInfoJson] = useState('');
   let stateChangeHandler: PluginListenerHandle;
+  let pauseHandler: PluginListenerHandle;
+  let resumeHandler: PluginListenerHandle;
   let urlOpenHandler: PluginListenerHandle;
   let restoredResultHandler: PluginListenerHandle;
 
   useIonViewDidEnter(() => {
-    stateChangeHandler = App.addListener('appStateChange', (state: any) => {
+    stateChangeHandler = App.addListener('appStateChange', (state: AppState) => {
       console.log('App state changed', state);
+    });
+
+    pauseHandler = App.addListener('pause', async () => {
+      console.log('App paused');
+    });
+
+    resumeHandler = App.addListener('resume', () => {
+      console.log('App resumed');
     });
 
     urlOpenHandler = App.addListener('appUrlOpen', (data: any) => {
@@ -105,6 +115,8 @@ const AppPage: React.FC = () => {
     stateChangeHandler.remove();
     urlOpenHandler.remove();
     restoredResultHandler.remove();
+    pauseHandler.remove();
+    resumeHandler.remove();
   });
 
   return (
