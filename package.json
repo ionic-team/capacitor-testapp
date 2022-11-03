@@ -66,6 +66,7 @@
   "devDependencies": {
     "@capacitor/cli": "^4.0.0",
     "@types/classnames": "^2.2.11",
+    "cross-spawn": "^7.0.3",
     "prettier": "^2.0.5"
   },
   "eslintConfig": {
