@@ -26,7 +26,7 @@ const CookiesPage: React.FC = () => {
 
   const getCookies = async () => {
     const cookies = await CapacitorCookies.getCookies({ url });
-    setCookiesString(cookies.toString());
+    setCookiesString(JSON.stringify(cookies));
   };
 
   const setCookie = () => {
