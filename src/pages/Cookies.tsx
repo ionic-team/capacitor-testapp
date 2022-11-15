@@ -2,6 +2,7 @@ import { CapacitorCookies } from '@capacitor/core';
 import {
   IonButtons,
   IonContent,
+  IonDatetime,
   IonHeader,
   IonPage,
   IonMenuButton,
@@ -16,6 +17,7 @@ import React, { useEffect, useState } from 'react';
 
 const CookiesPage: React.FC = () => {
   const [cookiesString, setCookiesString] = useState('');
+  const [expires, setExpires] = useState('');
   const [url, setUrl] = useState('');
   const [key, setKey] = useState('');
   const [value, setValue] = useState('');
@@ -30,13 +32,23 @@ const CookiesPage: React.FC = () => {
   };
 
   const setCookie = () => {
-    document.cookie = key + '=' + value;
+    const date = new Date(expires);
+    const sanitizedExpires = isNaN(date.getTime()) ? '' : date.toUTCString();
+    document.cookie = `${key}=${value}; domain=${url}; expires=${sanitizedExpires}`;
     setCookiesString(document.cookie);
   };
 
   const setCapacitorCookie = async () => {
     try {
-      await CapacitorCookies.setCookie({ url, key, value });
+      const date = new Date(expires);
+      const sanitizedExpires = isNaN(date.getTime()) ? '' : date.toUTCString();
+
+      await CapacitorCookies.setCookie({
+        url,
+        key,
+        value,
+        expires: sanitizedExpires,
+      });
 
       setCookiesString(document.cookie);
     } catch (error) {
@@ -93,6 +105,15 @@ const CookiesPage: React.FC = () => {
           onIonChange={e => setUrl(e.detail.value ?? '')}
           placeholder="Enter URL"
         ></IonInput>
+        <IonLabel>Expires:</IonLabel>
+        <IonDatetime
+          value={expires}
+          displayFormat="DDD, DD MMM YYYY HH:mm:ss"
+          displayTimezone="utc"
+          onIonChange={e => setExpires(e.detail.value ?? '')}
+        >
+          {expires}
+        </IonDatetime>
         <IonLabel>Key:</IonLabel>
         <IonInput
           value={key}

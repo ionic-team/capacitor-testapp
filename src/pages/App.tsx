@@ -29,9 +29,12 @@ const AppPage: React.FC = () => {
   let restoredResultHandler: PluginListenerHandle;
 
   useIonViewDidEnter(() => {
-    stateChangeHandler = App.addListener('appStateChange', (state: AppState) => {
-      console.log('App state changed', state);
-    });
+    stateChangeHandler = App.addListener(
+      'appStateChange',
+      (state: AppState) => {
+        console.log('App state changed', state);
+      },
+    );
 
     pauseHandler = App.addListener('pause', async () => {
       console.log('App paused');
