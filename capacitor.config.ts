@@ -9,6 +9,12 @@ const config: CapacitorConfig = {
   appName: 'capacitor-testapp',
   webDir: 'build',
   plugins: {
+    CapacitorCookies: {
+      enabled: true,
+    },
+    CapacitorHttp: {
+      enabled: true,
+    },
     SplashScreen: {
       launchAutoHide: false,
     },
