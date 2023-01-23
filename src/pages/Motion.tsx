@@ -17,6 +17,10 @@ import {
 import React, { useState } from 'react';
 import { Capacitor } from '@capacitor/core';
 
+// https://developer.mozilla.org/en-US/docs/Web/API/DeviceOrientationEvent
+//  DeviceOrientationEvent and DeviceMotionEvent will be set as any to avoid typescript errors 
+// when accessing requestPermission
+
 const MotionPage: React.FC = () => {
   let accelHandler: PluginListenerHandle;
   let orientationHandler: PluginListenerHandle;
@@ -27,7 +31,7 @@ const MotionPage: React.FC = () => {
     if (Capacitor.isPluginAvailable('Motion')) {
       if (
         DeviceOrientationEvent !== undefined &&
-        typeof DeviceOrientationEvent.requestPermission === 'function'
+        typeof (DeviceOrientationEvent as any).requestPermission === 'function'
       ) {
         setShowPermButton(true);
       }
@@ -62,7 +66,7 @@ const MotionPage: React.FC = () => {
 
   const requestPermission = async () => {
     try {
-      const result = await DeviceMotionEvent.requestPermission();
+      const result = await (DeviceMotionEvent as any).requestPermission();
       if (result === 'granted') {
         setShowPermButton(false);
       } else {
