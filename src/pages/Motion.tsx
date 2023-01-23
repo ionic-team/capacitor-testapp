@@ -18,7 +18,7 @@ import React, { useState } from 'react';
 import { Capacitor } from '@capacitor/core';
 
 // https://developer.mozilla.org/en-US/docs/Web/API/DeviceOrientationEvent
-//  DeviceOrientationEvent and DeviceMotionEvent will be set as any to avoid typescript errors 
+// DeviceOrientationEvent and DeviceMotionEvent will be set as any to avoid typescript errors 
 // when accessing requestPermission
 
 const MotionPage: React.FC = () => {
