@@ -64,6 +64,10 @@
 		"classpath": "com.capacitorjs.plugins.pushnotifications.PushNotificationsPlugin"
 	},
 	{
+		"pkg": "@capacitor/screen-orientation",
+		"classpath": "com.capacitorjs.plugins.screenorientation.ScreenOrientationPlugin"
+	},
+	{
 		"pkg": "@capacitor/screen-reader",
 		"classpath": "com.capacitorjs.plugins.screenreader.ScreenReaderPlugin"
 	},

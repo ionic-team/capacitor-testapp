@@ -19,6 +19,7 @@ import MotionPage from './pages/Motion';
 import NetworkPage from './pages/Network';
 import PushNotifications from './pages/PushNotifications';
 import ScreenReader from './pages/ScreenReader';
+import ScreenOrientation from './pages/ScreenOrientation';
 import SharePage from './pages/Share';
 import SplashScreenPage from './pages/SplashScreen';
 import StatusBarPage from './pages/StatusBar';
@@ -223,6 +224,16 @@ const routes: Page[] = [
       </span>
     ),
     component: ScreenReader,
+  },
+  {
+    title: 'Screen Orientation',
+    url: '/screen-orientation',
+    icon: (
+      <span role="img" aria-label="counterclockwise arrows">
+        🔄
+      </span>
+    ),
+    component: ScreenOrientation,
   },
   {
     title: 'Share',
