@@ -21,6 +21,7 @@ import {
 
 const SharePage: React.FC = () => {
   const [showButtons, setShowButtons] = useState(true);
+  const [photos, setPhotos] = useState<string[]>([]);
 
   useIonViewDidEnter(() => {
     checkSupported();
@@ -88,6 +89,8 @@ const SharePage: React.FC = () => {
         allowEditing: false,
       };
       var photo = await Camera.getPhoto(options);
+      const newPhotos = [photo.path!, ...photos];
+      setPhotos(newPhotos);
       let shareRet = await Share.share({
         url: photo.path,
       });
@@ -95,6 +98,13 @@ const SharePage: React.FC = () => {
     } catch (err) {
       console.log('err', err);
     }
+  };
+
+  const showSharingLocalImages = async () => {
+    let shareRet = await Share.share({
+      files: photos,
+    });
+    console.log('Share return', shareRet);
   };
 
   return (
@@ -124,6 +134,9 @@ const SharePage: React.FC = () => {
             </IonButton>,
             <IonButton expand="block" onClick={showSharingLocalImage}>
               Show Sharing (camera image)
+            </IonButton>,
+            <IonButton expand="block" onClick={showSharingLocalImages}>
+              Show Sharing multiple (camera image)
             </IonButton>,
           ]
         ) : (
