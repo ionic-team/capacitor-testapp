@@ -1,6 +1,7 @@
 import { PushNotifications } from '@capacitor/push-notifications';
 import {
   IonButtons,
+  IonButton,
   IonContent,
   IonHeader,
   IonPage,
@@ -51,6 +52,15 @@ const PushNotificationsPage: React.FC = () => {
     }
   };
 
+  const unregister = async () => {
+    try {
+      await PushNotifications.unregister()
+    } catch(e: any) {
+      console.log('unregistering for push notifications')
+      console.error(e)
+    }
+  }
+
   useIonViewDidEnter(async () => {
     const hasPermission = await ensurePermissions();
     setHasPermission(hasPermission);
@@ -70,6 +80,9 @@ const PushNotificationsPage: React.FC = () => {
       <IonContent>
         <NotificationsTest permissions={hasPermission} />
         <br />
+        <IonButton onClick={unregister} expand="block">
+          Unregister for Notifications
+        </IonButton>
         <NotificationChannelsTest notificationType="push" />
       </IonContent>
     </IonPage>
