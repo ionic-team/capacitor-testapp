@@ -1,16 +1,28 @@
 {
   "name": "capacitor-testapp",
-  "description": "",
   "version": "0.0.1",
   "private": true,
+  "description": "",
   "scripts": {
-    "lint": "npm run prettier -- --check",
+    "build": "tsc && vite build",
     "fmt": "npm run prettier -- --write",
+    "lint": "npm run prettier -- --check",
     "prettier": "prettier '{src,scripts,public}/**/*.{css,html,ts,tsx,mjs}'",
-    "toggle-local": "node ./scripts/toggle-local.mjs",
-    "update-all": "node ./scripts/update-all.mjs",
     "start": "vite",
-    "build": "tsc && vite build"
+    "toggle-local": "node ./scripts/toggle-local.mjs",
+    "update-all": "node ./scripts/update-all.mjs"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
   },
   "dependencies": {
     "@capacitor/action-sheet": "^5.0.0",
@@ -41,14 +53,14 @@
     "@capacitor/text-zoom": "^5.0.0",
     "@capacitor/toast": "^5.0.0",
     "@ionic/pwa-elements": "^3.1.1",
-    "@types/jest": "^26.0.20",
-    "@types/node": "^18.0.0",
-    "classnames": "^2.2.6",
-    "formik": "^2.2.6",
     "@ionic/react": "^7.0.0",
     "@ionic/react-router": "^7.0.0",
+    "@types/jest": "^26.0.20",
+    "@types/node": "^18.0.0",
     "@types/react-router": "^5.1.20",
     "@types/react-router-dom": "^5.3.3",
+    "classnames": "^2.2.6",
+    "formik": "^2.2.6",
     "ionicons": "^7.0.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
@@ -57,34 +69,22 @@
   },
   "devDependencies": {
     "@capacitor/cli": "^5.0.0",
-    "@types/classnames": "^2.2.11",
-    "cross-spawn": "^7.0.3",
-    "prettier": "^2.0.5",
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^14.0.0",
     "@testing-library/user-event": "^14.4.3",
+    "@types/classnames": "^2.2.11",
     "@types/react": "^18.0.27",
     "@types/react-dom": "^18.0.10",
     "@vitejs/plugin-legacy": "^4.0.2",
     "@vitejs/plugin-react": "^3.1.0",
+    "cross-spawn": "^7.0.3",
     "eslint": "^8.35.0",
     "eslint-plugin-react": "^7.32.2",
     "jsdom": "^21.1.0",
+    "prettier": "^2.0.5",
+    "terser": "^5.17.3",
     "typescript": "^4.9.3",
     "vite": "^4.1.0",
-    "vitest": "^0.29.2",
-    "terser": "^5.17.3"
-  },
-  "browserslist": {
-    "production": [
-      ">0.2%",
-      "not dead",
-      "not op_mini all"
-    ],
-    "development": [
-      "last 1 chrome version",
-      "last 1 firefox version",
-      "last 1 safari version"
-    ]
+    "vitest": "^0.29.2"
   }
 }
