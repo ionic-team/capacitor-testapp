@@ -86,7 +86,7 @@ const AppPage: React.FC = () => {
   const minimizeApp = async () => {
     try {
       await App.minimizeApp();
-    } catch (e) {
+    } catch (e: any) {
       if (e.code === ExceptionCode.Unimplemented) {
         console.warn(
           'minimizeApp is not implemented for',

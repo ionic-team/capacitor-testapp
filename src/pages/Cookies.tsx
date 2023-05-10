@@ -108,9 +108,7 @@ const CookiesPage: React.FC = () => {
         <IonLabel>Expires:</IonLabel>
         <IonDatetime
           value={expires}
-          displayFormat="DDD, DD MMM YYYY HH:mm:ss"
-          displayTimezone="utc"
-          onIonChange={e => setExpires(e.detail.value ?? '')}
+          onIonChange={(ev: any) => setExpires(ev.detail.value ?? '')}
         >
           {expires}
         </IonDatetime>
