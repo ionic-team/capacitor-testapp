@@ -17,6 +17,7 @@ export const PLUGIN_PACKAGES = [
   'motion',
   'network',
   'screen-reader',
+  'screen-orientation',
   'share',
   'splash-screen',
   'status-bar',
