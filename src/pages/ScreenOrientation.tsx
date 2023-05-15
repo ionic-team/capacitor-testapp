@@ -74,6 +74,9 @@ const ScreenOrientationPage: React.FC = () => {
         </IonToolbar>
       </IonHeader>
       <IonContent>
+        <IonButton expand="block" onClick={() => lockOrientation('landscape')}>
+          Lock landscape
+        </IonButton>
         <IonButton
           expand="block"
           onClick={() => lockOrientation('landscape-primary')}
@@ -85,6 +88,9 @@ const ScreenOrientationPage: React.FC = () => {
           onClick={() => lockOrientation('landscape-secondary')}
         >
           Lock landscape secundary
+        </IonButton>
+        <IonButton expand="block" onClick={() => lockOrientation('portrait')}>
+          Lock portrait
         </IonButton>
         <IonButton
           expand="block"
