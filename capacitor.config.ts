@@ -7,7 +7,7 @@ import { CapacitorConfig } from '@capacitor/cli';
 const config: CapacitorConfig = {
   appId: 'com.capacitorjs.app.testapp',
   appName: 'capacitor-testapp',
-  webDir: 'build',
+  webDir: 'dist',
   plugins: {
     CapacitorCookies: {
       enabled: true,

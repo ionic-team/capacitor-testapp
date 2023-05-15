@@ -27,6 +27,7 @@ const MotionPage: React.FC = () => {
     if (Capacitor.isPluginAvailable('Motion')) {
       if (
         DeviceOrientationEvent !== undefined &&
+        // @ts-ignore
         typeof DeviceOrientationEvent.requestPermission === 'function'
       ) {
         setShowPermButton(true);
@@ -62,6 +63,7 @@ const MotionPage: React.FC = () => {
 
   const requestPermission = async () => {
     try {
+      // @ts-ignore
       const result = await DeviceMotionEvent.requestPermission();
       if (result === 'granted') {
         setShowPermButton(false);

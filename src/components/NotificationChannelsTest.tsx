@@ -53,7 +53,7 @@ export default function NotificationChannelsTest({ notificationType }: Props) {
         const channels = await LocalNotifications.listChannels();
         setChannelsList(channels.channels);
       }
-    } catch (e) {
+    } catch (e: any) {
       console.error('listChannels error', e);
       if (e.code === 'UNIMPLEMENTED') {
         setNotSupported(true);

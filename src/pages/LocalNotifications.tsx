@@ -66,7 +66,7 @@ const LocalNotificationsPage: React.FC = () => {
           },
         ],
       });
-    } catch (e) {
+    } catch (e: any) {
       if (e.code === ExceptionCode.Unavailable) {
         console.warn(
           'Action types are unsupported in the browser! Handling this in my own way...',
