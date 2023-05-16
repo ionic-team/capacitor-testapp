@@ -70,15 +70,6 @@ export default function NotificationTest({ permissions }: Props) {
     }
   };
 
-  const unregisterPushNotifications = async () => {
-    try {
-      await PushNotifications.register();
-    } catch (e: any) {
-      console.log('unregistering for push notifications failed');
-      console.error(e);
-    }
-  };
-
   useEffect(() => {
     PushNotifications.addListener('registration', token => {
       console.info('Registration token: ', token);
@@ -132,9 +123,6 @@ export default function NotificationTest({ permissions }: Props) {
         </IonButton>
         <IonButton onClick={removeDeliveredNotifications} expand="block">
           Remove All Delivered Notifications
-        </IonButton>
-        <IonButton onClick={unregisterPushNotifications} expand="block">
-          Unregister for Push Notifications
         </IonButton>
       </section>
       <IonList>
