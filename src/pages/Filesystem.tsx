@@ -10,15 +10,27 @@ import {
   IonMenuButton,
   IonTitle,
   IonToolbar,
+  IonProgressBar,
 } from '@ionic/react';
-import React from 'react';
+import React, { useState } from 'react';
 import { Filesystem, Directory, Encoding } from '@capacitor/filesystem';
+import { ProgressStatus } from '@capacitor/filesystem';
 
 interface myCallback {
   (path: string): void;
 }
 
 const FilesystemPage: React.FC = () => {
+  const [progress, setProgress] = useState(0);
+
+  // Small PDF
+  const smallFile =
+    'https://raw.githubusercontent.com/mozilla/pdf.js/ba2edeae/examples/learning/helloworld.pdf';
+
+  // Large PDF (~20mb)
+  const largeFile =
+    'https://raw.githubusercontent.com/kyokidG/large-pdf-viewer-poc/58a3df6adc4fe9bd5f02d2f583d6747e187d93ae/public/test2.pdf';
+
   const mkdir = async () => {
     try {
       let ret = await Filesystem.mkdir({
@@ -389,6 +401,32 @@ const FilesystemPage: React.FC = () => {
     );
   };
 
+  const downloadFile = async (file: string) => {
+    try {
+      setProgress(0);
+      const fileUrlSplit = file.split('/');
+      const path = fileUrlSplit[fileUrlSplit.length - 1];
+
+      Filesystem.addListener('progress', (status: ProgressStatus) => {
+        const progress = status.bytes / status.contentLength;
+        setProgress(progress);
+      });
+
+      const downloadFileResult = await Filesystem.downloadFile({
+        url: file,
+        directory: Directory.Data,
+        path,
+        progress: true,
+      });
+
+      setProgress(0);
+      console.log('Downloaded file!', downloadFileResult);
+      alert('Downloaded file successfully!');
+    } catch (err) {
+      console.error('Unable to download file', err);
+    }
+  };
+
   return (
     <IonPage>
       <IonHeader>
@@ -397,6 +435,7 @@ const FilesystemPage: React.FC = () => {
             <IonMenuButton />
           </IonButtons>
           <IonTitle>Filesystem</IonTitle>
+          {progress > 0 && <IonProgressBar value={progress} />}
         </IonToolbar>
       </IonHeader>
       <IonContent>
@@ -429,6 +468,15 @@ const FilesystemPage: React.FC = () => {
             </IonButton>
             <IonButton expand="block" onClick={stat}>
               stat
+            </IonButton>
+          </IonItem>
+          <IonItem>
+            <IonLabel>Download</IonLabel>
+            <IonButton expand="block" onClick={() => downloadFile(smallFile)}>
+              Small File
+            </IonButton>
+            <IonButton expand="block" onClick={() => downloadFile(largeFile)}>
+              Large File
             </IonButton>
           </IonItem>
           <IonItem>
