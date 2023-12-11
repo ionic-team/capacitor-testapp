@@ -26,14 +26,18 @@ const TextZoomPage: React.FC = () => {
   const [level, setLevel] = useState('1');
   const [showButtons, setShowButtons] = useState(true);
 
-  useIonViewDidEnter(async () => {
+  useIonViewDidEnter(() => {
     if (Capacitor.isPluginAvailable('TextZoom')) {
-      const { value: level } = await TextZoom.get();
-      setLevel(level.toString());
+      getInitialZoom();
     } else {
       setShowButtons(false);
     }
   });
+
+  const getInitialZoom = async () => {
+    const { value: level } = await TextZoom.get();
+      setLevel(level.toString());
+  }
 
   const handleLevelInputChange = createEventTargetValueExtractor(setLevel);
 

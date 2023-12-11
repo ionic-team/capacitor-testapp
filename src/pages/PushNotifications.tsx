@@ -51,11 +51,15 @@ const PushNotificationsPage: React.FC = () => {
     }
   };
 
-  useIonViewDidEnter(async () => {
+  useIonViewDidEnter(() => {
+    checkPermissionsAndRegister();
+  });
+
+  const checkPermissionsAndRegister = async () => {
     const hasPermission = await ensurePermissions();
     setHasPermission(hasPermission);
     await register();
-  });
+  }
 
   return (
     <IonPage>

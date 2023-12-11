@@ -115,10 +115,14 @@ const LocalNotificationsPage: React.FC = () => {
     };
   }, []);
 
-  useIonViewDidEnter(async () => {
+  useIonViewDidEnter(() => {
+    checkPermissions();
+  });
+
+  const checkPermissions = async () => {
     const permissions = await ensurePermissions();
     setHasPermission(permissions);
-  });
+  }
 
   return (
     <IonPage>
