@@ -309,6 +309,15 @@ export default function LocalNotificationTest({ permissions }: Props) {
     }
   };
 
+  const checkExact = async () => {
+    const res = await LocalNotifications.checkExactNotificationSetting();
+    console.log('res', res);
+  };
+  const openExact = async () => {
+    const res = await LocalNotifications.changeExactNotificationSetting();
+    console.log('res', res);
+  };
+
   useEffect(() => {
     if (permissions === 'granted') {
       getPendingNotifications();
@@ -401,6 +410,12 @@ export default function LocalNotificationTest({ permissions }: Props) {
         </IonButton>
         <IonButton onClick={removeDeliveredNotifications} expand="block">
           Remove All Delivered Notifications
+        </IonButton>
+        <IonButton expand="block" onClick={checkExact}>
+          Check exact setting
+        </IonButton>
+        <IonButton expand="block" onClick={openExact}>
+          Open exact setting
         </IonButton>
       </section>
       <IonList>
