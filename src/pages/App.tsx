@@ -114,6 +114,16 @@ const AppPage: React.FC = () => {
     await AppLauncher.openUrl({ url: '' });
   };
 
+  const getAppLanguageCode = async () => {
+    const info = await App.getAppLanguageCode();
+    setAppInfoJson(JSON.stringify(info, null, 2));
+  };
+
+  const getAppLanguageTag = async () => {
+    const info = await App.getAppLanguageTag();
+    setAppInfoJson(JSON.stringify(info, null, 2));
+  };
+
   useIonViewDidLeave(() => {
     stateChangeHandler.remove();
     urlOpenHandler.remove();
@@ -155,6 +165,12 @@ const AppPage: React.FC = () => {
         </IonButton>
         <IonButton expand="block" onClick={failCall}>
           Test Failing Call
+        </IonButton>
+        <IonButton expand="block" onClick={getAppLanguageCode}>
+          Get App Language Code
+        </IonButton>
+        <IonButton expand="block" onClick={getAppLanguageTag}>
+          Get App Language Tag
         </IonButton>
         <p>
           <a href="tel:212-549-2543">Telephone Test</a>
