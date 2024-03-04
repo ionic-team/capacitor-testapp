@@ -36,8 +36,8 @@ const TextZoomPage: React.FC = () => {
 
   const getInitialZoom = async () => {
     const { value: level } = await TextZoom.get();
-      setLevel(level.toString());
-  }
+    setLevel(level.toString());
+  };
 
   const handleLevelInputChange = createEventTargetValueExtractor(setLevel);
 
