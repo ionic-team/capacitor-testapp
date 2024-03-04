@@ -33,7 +33,11 @@ class NetworkPage extends React.Component<{}, NetworkPageState> {
 
   ionViewDidEnter() {
     this.updateNetworkStatus();
-    const handler = Network?.addListener(
+    this.setListeners();
+  }
+
+  setListeners = async () => {
+    const handler = await Network?.addListener(
       'networkStatusChange',
       (status: ConnectionStatus) => {
         this.setState({
@@ -42,7 +46,7 @@ class NetworkPage extends React.Component<{}, NetworkPageState> {
       },
     );
     this.setState({ handler: handler });
-  }
+  };
 
   ionViewDidLeave() {
     this.state.handler?.remove();
