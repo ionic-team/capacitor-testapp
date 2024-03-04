@@ -23,13 +23,17 @@ const KeyboardPage: React.FC = () => {
   let scrollEnabled = true;
 
   useIonViewDidEnter(() => {
-    showHandler = Keyboard.addListener('keyboardWillShow', info => {
+    setListeners();
+  });
+
+  const setListeners = async () => {
+    showHandler = await Keyboard.addListener('keyboardWillShow', info => {
       console.log('keyboard show', info);
     });
-    hideHandler = Keyboard.addListener('keyboardWillHide', () => {
+    hideHandler = await Keyboard.addListener('keyboardWillHide', () => {
       console.log('keyboard hide');
     });
-  });
+  };
 
   useIonViewDidLeave(() => {
     hideHandler.remove();
