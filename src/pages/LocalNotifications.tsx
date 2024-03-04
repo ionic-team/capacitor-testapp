@@ -122,7 +122,7 @@ const LocalNotificationsPage: React.FC = () => {
   const checkPermissions = async () => {
     const permissions = await ensurePermissions();
     setHasPermission(permissions);
-  }
+  };
 
   return (
     <IonPage>
