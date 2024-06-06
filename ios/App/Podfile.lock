@@ -1,52 +1,52 @@
 PODS:
-  - Capacitor (6.0.0-rc.0):
+  - Capacitor (6.0.0):
     - CapacitorCordova
-  - CapacitorActionSheet (6.0.0-beta.1):
+  - CapacitorActionSheet (6.0.0):
     - Capacitor
-  - CapacitorApp (6.0.0-beta.1):
+  - CapacitorApp (6.0.0):
     - Capacitor
-  - CapacitorAppLauncher (6.0.0-beta.1):
+  - CapacitorAppLauncher (6.0.0):
     - Capacitor
-  - CapacitorBrowser (6.0.0-beta.1):
+  - CapacitorBrowser (6.0.0):
     - Capacitor
-  - CapacitorCamera (6.0.0-beta.1):
+  - CapacitorCamera (6.0.0):
     - Capacitor
-  - CapacitorClipboard (6.0.0-beta.1):
+  - CapacitorClipboard (6.0.0):
     - Capacitor
-  - CapacitorCordova (6.0.0-rc.0)
-  - CapacitorDevice (6.0.0-beta.1):
+  - CapacitorCordova (6.0.0)
+  - CapacitorDevice (6.0.0):
     - Capacitor
-  - CapacitorDialog (6.0.0-beta.1):
+  - CapacitorDialog (6.0.0):
     - Capacitor
-  - CapacitorFilesystem (6.0.0-beta.1):
+  - CapacitorFilesystem (6.0.0):
     - Capacitor
-  - CapacitorGeolocation (6.0.0-beta.1):
+  - CapacitorGeolocation (6.0.0):
     - Capacitor
-  - CapacitorHaptics (6.0.0-beta.1):
+  - CapacitorHaptics (6.0.0):
     - Capacitor
-  - CapacitorKeyboard (6.0.0-beta.1):
+  - CapacitorKeyboard (6.0.0):
     - Capacitor
-  - CapacitorLocalNotifications (6.0.0-beta.1):
+  - CapacitorLocalNotifications (6.0.0):
     - Capacitor
-  - CapacitorNetwork (6.0.0-beta.1):
+  - CapacitorNetwork (6.0.0):
     - Capacitor
-  - CapacitorPreferences (6.0.0-beta.1):
+  - CapacitorPreferences (6.0.0):
     - Capacitor
-  - CapacitorPushNotifications (6.0.0-beta.1):
+  - CapacitorPushNotifications (6.0.0):
     - Capacitor
-  - CapacitorScreenOrientation (6.0.0-beta.1):
+  - CapacitorScreenOrientation (6.0.0):
     - Capacitor
-  - CapacitorScreenReader (6.0.0-beta.1):
+  - CapacitorScreenReader (6.0.0):
     - Capacitor
-  - CapacitorShare (6.0.0-beta.1):
+  - CapacitorShare (6.0.0):
     - Capacitor
-  - CapacitorSplashScreen (6.0.0-beta.1):
+  - CapacitorSplashScreen (6.0.0):
     - Capacitor
-  - CapacitorStatusBar (6.0.0-beta.1):
+  - CapacitorStatusBar (6.0.0):
     - Capacitor
-  - CapacitorTextZoom (6.0.0-beta.1):
+  - CapacitorTextZoom (6.0.0):
     - Capacitor
-  - CapacitorToast (6.0.0-beta.1):
+  - CapacitorToast (6.0.0):
     - Capacitor
   - Firebase/CoreOnly (9.5.0):
     - FirebaseCore (= 9.5.0)
@@ -201,31 +201,31 @@ EXTERNAL SOURCES:
     :path: "../../node_modules/@capacitor/toast"
 
 SPEC CHECKSUMS:
-  Capacitor: c5b8b4e73032b078db259f1bbe71afd09fd84250
-  CapacitorActionSheet: 59e74e556759df83bf6f4578253151f2e5635c51
-  CapacitorApp: 96672537adb2c4b0890024f1cd8e2a3b510adc03
-  CapacitorAppLauncher: 302e03767df8bbf22111065b1a162128f983dacb
-  CapacitorBrowser: 78e8783fb44753db1424940d478df26c64126434
-  CapacitorCamera: 7abd3a373c133051f5481988f2dc6311f2fb0dad
-  CapacitorClipboard: 30d1b904eee02c5c7d8faeb729f2a6842df94078
-  CapacitorCordova: e8930c71b1bf90e793253f3057b3354a88ed83b3
-  CapacitorDevice: 74dfd29758d0291a6d560f3849b7de3ea0a97beb
-  CapacitorDialog: 5bdd898c172ce841b29e91c1e112608226224d82
-  CapacitorFilesystem: 47f90eb844f08192946315f3a0b4c12c3af4d4c2
-  CapacitorGeolocation: 968f007ed07d019dee7fe93a44a142683ce4880e
-  CapacitorHaptics: a41a9c0c1deadb79550885a0a0786bec2c5f3b24
-  CapacitorKeyboard: 5b92ccdd5177aa0fc1b25d6ae885c96594b4cc98
-  CapacitorLocalNotifications: 1ba0bb7c767ec02f5386c10574074af9fcac3154
-  CapacitorNetwork: d140cfa52c5eb4acb513a14f9f921c36031d6283
-  CapacitorPreferences: 9dde27d80d96402baf2a4a2f457f7fe3b0ac280c
-  CapacitorPushNotifications: ea0d1948195577a30ec8d2a06df1c56db41eda49
-  CapacitorScreenOrientation: cfc6b91632147ddef7038e96a7a244a7c2301fab
-  CapacitorScreenReader: b37452f0f29de3c7b154a61960a686367b69f76c
-  CapacitorShare: ffe39c893a9298a170529cbb1b59293685e3aff7
-  CapacitorSplashScreen: b9552bf341655cd0a9a3975dd9503aa43ac785ac
-  CapacitorStatusBar: 84f75b4b7814bdbaea7464a44b22511c2dba12ef
-  CapacitorTextZoom: f53cedad75b2e3ac397f820740433a0f043a0b7f
-  CapacitorToast: 56d4b16332889badadba4202a30b9cb1fdb00cb6
+  Capacitor: 559d073c4ca6c27f8e7002c807eea94c3ba435a9
+  CapacitorActionSheet: de123f478f394373f84a96614ce2b1a6c30253e4
+  CapacitorApp: 9d53aec7101f7b030a950c5bdc4df8612576b279
+  CapacitorAppLauncher: 24ce4be152a84883378d22114ffe6c492056ced2
+  CapacitorBrowser: 7e1e2cdbb3e372f09f0bad0c4c21a6d187b679ad
+  CapacitorCamera: b61f125d92a0ef75d7becb7956fed7dd13187ee0
+  CapacitorClipboard: 80282f684154124b9019ebf401235b70b0cf4994
+  CapacitorCordova: 8c4bfdf69368512e85b1d8b724dd7546abeb30af
+  CapacitorDevice: f8fd88f9edd1261c55a109f32015b09bbbfdc4a0
+  CapacitorDialog: 64aa82840ee5e9c066f9e1a49c1e186afd3f24d2
+  CapacitorFilesystem: 60e59ba274c234a979e7a3be2552feaadcee4263
+  CapacitorGeolocation: 1f12bbe372b65116e851bd8e3a94cf0ef9bacebb
+  CapacitorHaptics: 9ebc9363f0e9b8eb4295088a0b474530acf1859b
+  CapacitorKeyboard: deacbd09d8d1029c3681197fb05d206b721d5f73
+  CapacitorLocalNotifications: 4ab68f0be5f697a579558fadd307d823a9ec1c26
+  CapacitorNetwork: f15a94c16a33cba7c47a17814cb6bcfe3ea34ded
+  CapacitorPreferences: c9b839a80baa72e4ed4bdb117618e1950d3046b5
+  CapacitorPushNotifications: e18636e8a96f1d70b4c669e21c730e995bf5e5c9
+  CapacitorScreenOrientation: d78ce2b710bfcd1c32d3a090d32b6686c1c95e4f
+  CapacitorScreenReader: 039da921b443a37ecf4f3f1b39a8a6869a3f58ce
+  CapacitorShare: a771200d3b924a5d7ad9d9fecbac517e4c0aa74f
+  CapacitorSplashScreen: 5431ab8d19c1c6e95777d53bfaa7a36a6c3d94c7
+  CapacitorStatusBar: 2e4369f99166125435641b1908d05f561eaba6f6
+  CapacitorTextZoom: 696722e5c479b364f2429584f11ad386d609bd1a
+  CapacitorToast: ba573a7bc5dfd622e78d5be126a84ee221da4180
   Firebase: 800f16f07af493d98d017446a315c27af0552f41
   FirebaseCore: 25c0400b670fd1e2f2104349cd3b5dcce8d9418f
   FirebaseCoreDiagnostics: 17cbf4e72b1dbd64bfdc33d4b1f07bce4f16f1d8
@@ -239,4 +239,4 @@ SPEC CHECKSUMS:
 
 PODFILE CHECKSUM: 86f679db508b8a11da49e0da2c32ba720465ff26
 
-COCOAPODS: 1.14.3
+COCOAPODS: 1.15.2
