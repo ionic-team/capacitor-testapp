@@ -29,35 +29,39 @@ const AppPage: React.FC = () => {
   let restoredResultHandler: PluginListenerHandle;
 
   useIonViewDidEnter(() => {
-    stateChangeHandler = App.addListener(
+    setListeners();
+
+    getLaunchUrl();
+  });
+
+  const setListeners = async () => {
+    stateChangeHandler = await App.addListener(
       'appStateChange',
       (state: AppState) => {
         console.log('App state changed', state);
       },
     );
 
-    pauseHandler = App.addListener('pause', async () => {
+    pauseHandler = await App.addListener('pause', async () => {
       console.log('App paused');
     });
 
-    resumeHandler = App.addListener('resume', () => {
+    resumeHandler = await App.addListener('resume', () => {
       console.log('App resumed');
     });
 
-    urlOpenHandler = App.addListener('appUrlOpen', (data: any) => {
+    urlOpenHandler = await App.addListener('appUrlOpen', (data: any) => {
       alert('APP URL OPEN: ' + data.url);
     });
 
-    restoredResultHandler = App.addListener(
+    restoredResultHandler = await App.addListener(
       'appRestoredResult',
       (data: any) => {
         alert('Got restored result');
         console.log('Restored result:', data);
       },
     );
-
-    getLaunchUrl();
-  });
+  };
 
   const getLaunchUrl = async () => {
     const ret = await App.getLaunchUrl();

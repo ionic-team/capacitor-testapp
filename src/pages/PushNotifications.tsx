@@ -59,7 +59,7 @@ const PushNotificationsPage: React.FC = () => {
     const hasPermission = await ensurePermissions();
     setHasPermission(hasPermission);
     await register();
-  }
+  };
 
   return (
     <IonPage>
