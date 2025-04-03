@@ -62,7 +62,7 @@
     "classnames": "^2.2.6",
     "formik": "^2.2.6",
     "ionicons": "^7.0.0",
-    "react": "^18.2.0",
+    "react": "^19.1.0",
     "react-dom": "^18.2.0",
     "react-router": "^5.3.4",
     "react-router-dom": "^5.3.4"
@@ -73,7 +73,7 @@
     "@testing-library/react": "^14.0.0",
     "@testing-library/user-event": "^14.4.3",
     "@types/classnames": "^2.2.11",
-    "@types/react": "^18.0.27",
+    "@types/react": "^19.1.0",
     "@types/react-dom": "^18.0.10",
     "@vitejs/plugin-legacy": "^4.0.2",
     "@vitejs/plugin-react": "^4.0.0",
