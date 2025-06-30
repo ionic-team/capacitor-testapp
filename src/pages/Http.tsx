@@ -15,6 +15,7 @@ import {
 } from '@ionic/react';
 import { CapacitorHttp } from '@capacitor/core';
 import React, { useState } from 'react';
+import axios from 'axios';
 
 const HttpPage: React.FC = () => {
   const [url, setUrl] = useState(
@@ -25,6 +26,8 @@ const HttpPage: React.FC = () => {
   );
   const [params, setParams] = useState('');
   const [response, setResponse] = useState('');
+  const [request, setRequest] = useState('');
+  const [files, setFiles] = useState<FileList | null>();
   const [requestType, setRequestType] = useState('GET');
   const [implementation, setImplementation] = useState('FETCH');
 
@@ -99,6 +102,26 @@ const HttpPage: React.FC = () => {
     setResponse(JSON.stringify(response.data));
   };
 
+  const submitFiles = async () => {
+    if(files){
+      const fileFirst = files?.item(0)
+      if (!fileFirst) return
+      
+      const formData = new FormData();
+      formData.append('file', fileFirst);
+      
+      const response = await axios.post('https://httpbin.org/post', formData, {
+        headers: {
+          'Content-Type': 'multipart/form-data',
+        }
+      });
+      
+      setResponse("TODOASDF: " + JSON.stringify(JSON.parse(response.request.response).headers));
+      // TODOASDF This is failing prior to being sent to the android/ios native layer
+      // We need to figure out if axios is using fetch or XMLHttpRequest under the hood and go from there
+    }
+  };
+
   return (
     <IonPage>
       <IonHeader>
@@ -110,6 +133,7 @@ const HttpPage: React.FC = () => {
         </IonToolbar>
       </IonHeader>
       <IonContent style={{ fontSize: 'x-large' }}>
+        TODOASDF "Content-Length":"2264","Content-Type":"multipart/form-data"
         <IonText color="primary">
           <p>Response: {response}</p>
         </IonText>
@@ -160,6 +184,16 @@ const HttpPage: React.FC = () => {
           Send Request
         </IonButton>
       </IonContent>
+      <input
+        title="Attach files"
+        type="file"
+        accept="image/*"
+        multiple
+       onChange={(e) => setFiles(e.target.files)}
+        />
+        <IonButton expand="block" onClick={() => submitFiles()}>
+          Submit Files
+        </IonButton>
     </IonPage>
   );
 };

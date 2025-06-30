@@ -6,7 +6,7 @@ import { CapacitorConfig } from '@capacitor/cli';
 
 const config: CapacitorConfig = {
   appId: 'com.capacitorjs.app.testapp',
-  appName: 'capacitor-testapp',
+  appName: 'TESTAPP',
   webDir: 'dist',
   plugins: {
     CapacitorCookies: {
@@ -15,16 +15,22 @@ const config: CapacitorConfig = {
     CapacitorHttp: {
       enabled: true,
     },
-    SplashScreen: {
-      launchAutoHide: false,
-    },
     LocalNotifications: {
       smallIcon: 'ic_stat_icon_config_sample',
       iconColor: '#CE0B7C',
     },
     PushNotifications: {
-      presentationOptions: ["alert", "sound"]
-    }
+      presentationOptions: ['alert', 'sound'],
+    },
+    plugins: {
+      SplashScreen: {
+        launchShowDuration: 10000,
+      },
+      StatusBar: {
+        backgroundColor: '#FFA500',
+        style: 'DEFAULT',
+      },
+    },
   },
 };
 

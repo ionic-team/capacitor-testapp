@@ -7,9 +7,9 @@ The Capacitor TestApp is used to develop new features and verify bug fixes in Ca
 1. Fork and clone this repo.
 2. Install the dependencies.
 
-    ```shell
-    npm install
-    ```
+   ```shell
+   npm install
+   ```
 
 The TestApp is just like any other Ionic React app. See [the docs](https://ionicframework.com/docs/react) to learn what you can do.
 
@@ -24,6 +24,7 @@ You can also opt-out of the Ionic CLI and use npm scripts and the Capacitor CLI 
 - `npm start`
 - `npx cap sync`
 - `npx cap run <platform>` (no automatic livereload)
+  - To use a physical android device make sure it is plugged in and usb debugging is turned on in the settings
 
 ### Developing Capacitor
 
@@ -38,6 +39,7 @@ git clone git@github.com:ionic-team/capacitor-plugins.git
 ```
 
 Follow the setup instructions for each repo:
+
 - [`capacitor`](https://github.com/ionic-team/capacitor/blob/HEAD/CONTRIBUTING.md)
 - [`capacitor-plugins`](https://github.com/ionic-team/capacitor-plugins/blob/main/CONTRIBUTING.md) (make sure to run `npm run toggle-local`)
 

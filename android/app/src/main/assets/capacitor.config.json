@@ -1,6 +1,6 @@
 {
 	"appId": "com.capacitorjs.app.testapp",
-	"appName": "capacitor-testapp",
+	"appName": "TESTAPP",
 	"webDir": "dist",
 	"plugins": {
 		"CapacitorCookies": {
@@ -8,9 +8,6 @@
 		},
 		"CapacitorHttp": {
 			"enabled": true
-		},
-		"SplashScreen": {
-			"launchAutoHide": false
 		},
 		"LocalNotifications": {
 			"smallIcon": "ic_stat_icon_config_sample",
@@ -21,6 +18,15 @@
 				"alert",
 				"sound"
 			]
+		},
+		"plugins": {
+			"SplashScreen": {
+				"launchShowDuration": 10000
+			},
+			"StatusBar": {
+				"backgroundColor": "#FFA500",
+				"style": "DEFAULT"
+			}
 		}
 	}
 }
