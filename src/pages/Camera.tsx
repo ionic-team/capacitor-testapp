@@ -38,14 +38,18 @@ class CameraPage extends React.Component<{}, CameraPageState> {
     this.state = { filePath: null, metadata: null, photos: null };
   }
 
-  addPhoto = async (source: CameraSource, save: boolean = false) => {
+  addPhoto = async (
+    source: CameraSource,
+    save: boolean = false,
+    editing: boolean = false,
+  ) => {
     try {
       const options: ImageOptions = {
         quality: 100,
         resultType: CameraResultType.Uri,
         source: source,
         saveToGallery: save,
-        allowEditing: false,
+        allowEditing: editing,
         webUseInput: source === CameraSource.Photos,
       };
       var photo = await Camera.getPhoto(options);
@@ -153,6 +157,12 @@ class CameraPage extends React.Component<{}, CameraPageState> {
                 onClick={() => this.addPhoto(CameraSource.Camera, true)}
               >
                 Take Picture and Save
+              </IonButton>
+              <IonButton
+                expand="block"
+                onClick={() => this.addPhoto(CameraSource.Camera, false, true)}
+              >
+                Take Picture and Edit
               </IonButton>
               <IonButton
                 expand="block"
