@@ -118,6 +118,14 @@ const AppPage: React.FC = () => {
     await AppLauncher.openUrl({ url: '' });
   };
 
+  const enableBackButtonHandler = async () => {
+    await App.toggleBackButtonHandler({ enabled: true });
+  };
+
+  const disableBackButtonHandler = async () => {
+    await App.toggleBackButtonHandler({ enabled: false });
+  };
+
   useIonViewDidLeave(() => {
     stateChangeHandler.remove();
     urlOpenHandler.remove();
@@ -160,8 +168,16 @@ const AppPage: React.FC = () => {
         <IonButton expand="block" onClick={failCall}>
           Test Failing Call
         </IonButton>
-        <IonButton expand="block" href="https://flems.io/#0=N4IgzgpgNhDGAuEAmIBcIB0ALeBbKIANCAGYCWMYaA2qAHYCGuEamO+RIsA9nYn6wA8WAIwA+ADp1BDAARYAThBIBeCSDJ8IfVAHpdWbswDEASS18A3GFhYIzFT1wZYDAA4NYZeNwUArMAx3NwxEMHhgyw9YAGsGAHMIRyMXd09vXwCgtxCwiJzLT3gyXhUGOiQFbjIkDE1+eCCEEroMADVTAFEAdUttJEt1STpZWQAVCHDUWQB5N21ZAEEABWWpQV0GYY3RMU5IGGbeKnQAJlQRADYQAF9CeiYWdAwAzh4LeCE5RWU1LhTXNEMv5AsFQpN8m49AYjBAAPwkKq4FRICAQNxQTQxIZjToAZTGGy2+2gcGKx1YAAZUJcAOy3e4gRjMVguMBUYjvBqsW4AXRuQA">
-        {/* If the link above ever expires, this is the HTML to test opening an intent for this app.
+        <IonButton expand="block" onClick={enableBackButtonHandler}>
+          Enable Back Button Handler
+        </IonButton>
+        <IonButton expand="block" onClick={disableBackButtonHandler}>
+          Disable Back Button Handler
+        </IonButton>
+        <IonButton
+          expand="block"
+          href="https://flems.io/#0=N4IgzgpgNhDGAuEAmIBcIB0ALeBbKIANCAGYCWMYaA2qAHYCGuEamO+RIsA9nYn6wA8WAIwA+ADp1BDAARYAThBIBeCSDJ8IfVAHpdWbswDEASS18A3GFhYIzFT1wZYDAA4NYZeNwUArMAx3NwxEMHhgyw9YAGsGAHMIRyMXd09vXwCgtxCwiJzLT3gyXhUGOiQFbjIkDE1+eCCEEroMADVTAFEAdUttJEt1STpZWQAVCHDUWQB5N21ZAEEABWWpQV0GYY3RMU5IGGbeKnQAJlQRADYQAF9CeiYWdAwAzh4LeCE5RWU1LhTXNEMv5AsFQpN8m49AYjBAAPwkKq4FRICAQNxQTQxIZjToAZTGGy2+2gcGKx1YAAZUJcAOy3e4gRjMVguMBUYjvBqsW4AXRuQA">
+          {/* If the link above ever expires, this is the HTML to test opening an intent for this app.
         <h1>
         <a href="intent://home#Intent;scheme=com.capacitorjs.app.testapp;package=com.capacitorjs.app.testapp;action=android.intent.action.VIEW;end;">
           Test: Open APP
@@ -175,8 +191,7 @@ const AppPage: React.FC = () => {
           <a
             href="https://capacitorjs.com/"
             target="_blank"
-            rel="noopener noreferrer"
-          >
+            rel="noopener noreferrer">
             Read more
           </a>
         </p>
