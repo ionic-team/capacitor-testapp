@@ -1,5 +1,5 @@
 PODS:
-  - Capacitor (7.2.0):
+  - Capacitor (8.0.0-alpha.2):
     - CapacitorCordova
   - CapacitorActionSheet (7.0.1):
     - Capacitor
@@ -13,7 +13,7 @@ PODS:
     - Capacitor
   - CapacitorClipboard (7.0.1):
     - Capacitor
-  - CapacitorCordova (7.2.0)
+  - CapacitorCordova (8.0.0-alpha.2)
   - CapacitorDevice (7.0.1):
     - Capacitor
   - CapacitorDialog (7.0.1):
@@ -203,14 +203,14 @@ EXTERNAL SOURCES:
     :path: "../../node_modules/@capacitor/toast"
 
 SPEC CHECKSUMS:
-  Capacitor: 03bc7cbdde6a629a8b910a9d7d78c3cc7ed09ea7
+  Capacitor: 82af0e75f93d8d6260b780c0b6fb6d98dd7244d4
   CapacitorActionSheet: 4213427449132ae4135674d93010cb011725647e
   CapacitorApp: febecbb9582cb353aed037e18ec765141f880fe9
   CapacitorAppLauncher: bab4ca931a308252d2bafcb78ca6a364bd1d4c4e
   CapacitorBrowser: 6299776d496e968505464884d565992faa20444a
   CapacitorCamera: 6e73f1fc6c629a672658705a02409b60854bc0f1
   CapacitorClipboard: 70bfdb42b877b320a6e511ab94fa7a6a55d57ecb
-  CapacitorCordova: 5967b9ba03915ef1d585469d6e31f31dc49be96f
+  CapacitorCordova: 9b60d7dd7f5035cefe9b5f7f3edf11ccd93b6ae6
   CapacitorDevice: c6f6d587dd310527f8a48bf09c4e7b4a4cf14329
   CapacitorDialog: 0e09f242f6c3f5e82e4dc76b20f2a056be57a579
   CapacitorFilesystem: e6261c410436f54908c11f94336c5b58286b1db0
@@ -239,6 +239,6 @@ SPEC CHECKSUMS:
   nanopb: fad817b59e0457d11a5dfbde799381cd727c1275
   PromisesObjC: f5707f49cb48b9636751c5b2e7d227e43fba9f47
 
-PODFILE CHECKSUM: 40c4376da4317650e2f6f87769fbedbfce4a645e
+PODFILE CHECKSUM: e0490ba851f21ebb661b2309d2ae788818c752b4
 
 COCOAPODS: 1.16.2
