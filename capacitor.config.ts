@@ -27,7 +27,7 @@ const config: CapacitorConfig = {
       presentationOptions: ['alert', 'sound'],
     },
     App: {
-      disableBackButtonListener: false,
+      disableBackButtonHandler: false,
     },
   },
 };
