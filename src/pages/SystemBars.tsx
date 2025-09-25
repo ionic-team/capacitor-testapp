@@ -9,24 +9,55 @@ import {
   IonTitle,
   IonToolbar,
   useIonViewDidEnter,
+  IonItem,
+  IonList,
+  IonSelect,
+  IonSelectOption,
 } from '@ionic/react';
 import { SystemBars } from '@capacitor/core';
+import { SystemBarInsets } from '@capacitor/core/types/core-plugins';
+import { useState } from 'react';
 
 const SystemBarsPage: React.FC = () => {
+  const [selectedInset, setSelectedInset] = useState<SystemBarInsets | null>(
+    null,
+  );
+
+  const onselectedInsetChange = (e: any) => {
+    setSelectedInset(e.detail.value ?? null);
+    console.log(e.detail.value);
+  };
+
   const onHideSystemBars = async () => {
-    await SystemBars.setHidden({ hidden: true });
+    SystemBars.setHidden({
+      hidden: true,
+      inset: selectedInset ?? undefined,
+    });
+    await SystemBars.setHidden({
+      hidden: true,
+      inset: selectedInset ?? undefined,
+    });
   };
 
   const onShowSystemBars = async () => {
-    await SystemBars.setHidden({ hidden: false });
+    await SystemBars.setHidden({
+      hidden: false,
+      inset: selectedInset ?? undefined,
+    });
   };
 
   const onSetLightStyle = async () => {
-    await SystemBars.setStyle({ style: 'LIGHT' });
+    await SystemBars.setStyle({
+      style: 'LIGHT',
+      inset: selectedInset ?? undefined,
+    });
   };
 
   const onSetDarkStyle = async () => {
-    await SystemBars.setStyle({ style: 'DARK' });
+    await SystemBars.setStyle({
+      style: 'DARK',
+      inset: selectedInset ?? undefined,
+    });
   };
 
   return (
@@ -40,6 +71,20 @@ const SystemBarsPage: React.FC = () => {
         </IonToolbar>
       </IonHeader>
       <IonContent>
+        <IonList>
+          <IonItem>
+            <IonSelect
+              onIonChange={onselectedInsetChange}
+              label="Insets"
+              aria-label="inset">
+              <IonSelectOption value="">All</IonSelectOption>
+              <IonSelectOption value="top">Top</IonSelectOption>
+              <IonSelectOption value="bottom">Bottom</IonSelectOption>
+              <IonSelectOption value="left">Left</IonSelectOption>
+              <IonSelectOption value="right">Right</IonSelectOption>
+            </IonSelect>
+          </IonItem>
+        </IonList>
         <IonButton expand="block" onClick={onShowSystemBars}>
           Show System Bars
         </IonButton>
