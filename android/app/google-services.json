@@ -1,40 +1,40 @@
 {
   "project_info": {
-    "project_number": "500972294356",
-    "project_id": "capacitor-testapp",
-    "storage_bucket": "capacitor-testapp.appspot.com"
+    "project_number": "152494924252",
+    "project_id": "mobileecosystem-b80d4",
+    "storage_bucket": "mobileecosystem-b80d4.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:500972294356:android:1090debb4688ba86beeb41",
+        "mobilesdk_app_id": "1:152494924252:android:c9184ed0e92ae846feaf19",
         "android_client_info": {
-          "package_name": "com.capacitorjs.app.testapp"
+          "package_name": "com.outsystems.rd.FirebaseAnalyticsSampleApp"
         }
       },
       "oauth_client": [
         {
-          "client_id": "500972294356-4c66s2ndbufk97cvicj5vnn08va4r1pi.apps.googleusercontent.com",
+          "client_id": "152494924252-1pdkh93l64a16v3648u14kv5qoat8kok.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyDp29rygBDnDPWmIn9Kdah8gXCK8WZLiZc"
+          "current_key": "AIzaSyDRndmJgN52jhlA4bR7PagSa3r5VBGo05w"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "500972294356-4c66s2ndbufk97cvicj5vnn08va4r1pi.apps.googleusercontent.com",
+              "client_id": "152494924252-1pdkh93l64a16v3648u14kv5qoat8kok.apps.googleusercontent.com",
               "client_type": 3
             },
             {
-              "client_id": "500972294356-97vuqlsphmmve3grclbol5g4iemms2gd.apps.googleusercontent.com",
+              "client_id": "152494924252-03tvcg8rfp69csnrb5d08bvlk2pom05u.apps.googleusercontent.com",
               "client_type": 2,
               "ios_info": {
-                "bundle_id": "com.capacitorjs.app.testapp"
+                "bundle_id": "com.outsystems.rd.naz"
               }
             }
           ]

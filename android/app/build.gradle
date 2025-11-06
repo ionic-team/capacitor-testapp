@@ -4,7 +4,7 @@ android {
     namespace "com.capacitorjs.app.testapp"
     compileSdk rootProject.ext.compileSdkVersion
     defaultConfig {
-        applicationId "com.capacitorjs.app.testapp"
+        applicationId "com.outsystems.rd.FirebaseAnalyticsSampleApp"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode 1
