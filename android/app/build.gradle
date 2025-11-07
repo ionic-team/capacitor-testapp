@@ -1,8 +1,8 @@
 apply plugin: 'com.android.application'
 
 android {
-    namespace "com.capacitorjs.app.testapp"
-    compileSdk rootProject.ext.compileSdkVersion
+    namespace = "com.capacitorjs.app.testapp"
+    compileSdk = rootProject.ext.compileSdkVersion
     defaultConfig {
         applicationId "com.outsystems.rd.FirebaseAnalyticsSampleApp"
         minSdkVersion rootProject.ext.minSdkVersion
