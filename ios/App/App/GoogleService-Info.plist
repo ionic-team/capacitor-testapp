@@ -3,21 +3,21 @@
 <plist version="1.0">
 <dict>
 	<key>CLIENT_ID</key>
-	<string>500972294356-97vuqlsphmmve3grclbol5g4iemms2gd.apps.googleusercontent.com</string>
+	<string>152494924252-56q6f70upc1qr9u0pke7fpd0el3nr0j7.apps.googleusercontent.com</string>
 	<key>REVERSED_CLIENT_ID</key>
-	<string>com.googleusercontent.apps.500972294356-97vuqlsphmmve3grclbol5g4iemms2gd</string>
+	<string>com.googleusercontent.apps.152494924252-56q6f70upc1qr9u0pke7fpd0el3nr0j7</string>
 	<key>API_KEY</key>
-	<string>AIzaSyAACu-4y0rFUcX7a9pQiffymVVX2HwKm8I</string>
+	<string>AIzaSyDn_q-ZieoPUc9dBlz_SGoMGrznc8KADtU</string>
 	<key>GCM_SENDER_ID</key>
-	<string>500972294356</string>
+	<string>152494924252</string>
 	<key>PLIST_VERSION</key>
 	<string>1</string>
 	<key>BUNDLE_ID</key>
-	<string>com.capacitorjs.app.testapp</string>
+	<string>com.outsystems.rd.FirebaseAnalyticsSampleApp</string>
 	<key>PROJECT_ID</key>
-	<string>capacitor-testapp</string>
+	<string>mobileecosystem-b80d4</string>
 	<key>STORAGE_BUCKET</key>
-	<string>capacitor-testapp.appspot.com</string>
+	<string>mobileecosystem-b80d4.appspot.com</string>
 	<key>IS_ADS_ENABLED</key>
 	<false></false>
 	<key>IS_ANALYTICS_ENABLED</key>
@@ -29,6 +29,6 @@
 	<key>IS_SIGNIN_ENABLED</key>
 	<true></true>
 	<key>GOOGLE_APP_ID</key>
-	<string>1:500972294356:ios:4f8cc8df56c918fdbeeb41</string>
+	<string>1:152494924252:ios:aa35c61141baabb2feaf19</string>
 </dict>
 </plist>
