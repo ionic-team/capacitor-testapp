@@ -23,6 +23,7 @@ import ScreenOrientation from './pages/ScreenOrientation';
 import SharePage from './pages/Share';
 import SplashScreenPage from './pages/SplashScreen';
 import StatusBarPage from './pages/StatusBar';
+import SystemBarsPage from './pages/SystemBars';
 import Preferences from './pages/Preferences';
 import TextZoom from './pages/TextZoom';
 import ToastPage from './pages/Toast';
@@ -264,6 +265,16 @@ const routes: Page[] = [
       </span>
     ),
     component: StatusBarPage,
+  },
+  {
+    title: 'System Bars',
+    url: '/system-bars',
+    icon: (
+      <span role="img" aria-label="vertical traffic light">
+        🚦
+      </span>
+    ),
+    component: SystemBarsPage,
   },
   {
     title: 'Preferences',
