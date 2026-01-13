@@ -12,7 +12,6 @@ import React from 'react';
 import { SystemBars, SystemBarsStyle, SystemBarType } from '@capacitor/core';
 
 const SystemBarsPage: React.FC = () => {
-
   const setSystemBarStyleDefault = async () => {
     SystemBars.setStyle({
       style: SystemBarsStyle.Default,
@@ -36,10 +35,10 @@ const SystemBarsPage: React.FC = () => {
   };
 
   const hideNavigationBar = async () => {
-  await SystemBars.hide({
-    bar: SystemBarType.NavigationBar
-  })
-}
+    await SystemBars.hide({
+      bar: SystemBarType.NavigationBar,
+    });
+  };
 
   return (
     <IonPage>
