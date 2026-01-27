@@ -26,6 +26,7 @@ import StatusBarPage from './pages/StatusBar';
 import Preferences from './pages/Preferences';
 import TextZoom from './pages/TextZoom';
 import ToastPage from './pages/Toast';
+import OtherOfficialPluginsPage from './pages/OtherOfficialPlugins';
 
 interface Page {
   readonly url: string;
@@ -294,6 +295,16 @@ const routes: Page[] = [
       </span>
     ),
     component: ToastPage,
+  },
+  {
+    title: 'Other Official Plugins',
+    url: '/other',
+    icon: (
+      <span role="img" aria-label="runner">
+        🏃
+      </span>
+    ),
+    component: OtherOfficialPluginsPage,
   },
 ];
 
