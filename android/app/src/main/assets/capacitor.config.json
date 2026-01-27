@@ -3,6 +3,14 @@
 	"appName": "capacitor-testapp",
 	"webDir": "dist",
 	"plugins": {
+		"BackgroundRunner": {
+			"label": "com.example.background.task",
+			"src": "background.js",
+			"event": "monitorLocation",
+			"repeat": true,
+			"interval": 2,
+			"autoStart": false
+		},
 		"CapacitorCookies": {
 			"enabled": true
 		},

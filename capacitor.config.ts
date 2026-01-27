@@ -1,3 +1,4 @@
+/// <reference types="@capacitor/background-runner" />
 /// <reference types="@capacitor/local-notifications" />
 /// <reference types="@capacitor/push-notifications" />
 /// <reference types="@capacitor/splash-screen" />
@@ -9,6 +10,14 @@ const config: CapacitorConfig = {
   appName: 'capacitor-testapp',
   webDir: 'dist',
   plugins: {
+    BackgroundRunner: {
+      label: "com.example.background.task",
+      src: "background.js",
+      event: "monitorLocation",
+      repeat: true,
+      interval: 2,
+      autoStart: false,
+    },
     CapacitorCookies: {
       enabled: true,
     },
