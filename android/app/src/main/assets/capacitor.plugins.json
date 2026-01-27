@@ -12,6 +12,14 @@
 		"classpath": "com.capacitorjs.plugins.applauncher.AppLauncherPlugin"
 	},
 	{
+		"pkg": "@capacitor/background-runner",
+		"classpath": "io.ionic.backgroundrunner.plugin.BackgroundRunnerPlugin"
+	},
+	{
+		"pkg": "@capacitor/barcode-scanner",
+		"classpath": "com.capacitorjs.barcodescanner.CapacitorBarcodeScannerPlugin"
+	},
+	{
 		"pkg": "@capacitor/browser",
 		"classpath": "com.capacitorjs.plugins.browser.BrowserPlugin"
 	},
@@ -36,12 +44,28 @@
 		"classpath": "com.capacitorjs.plugins.filesystem.FilesystemPlugin"
 	},
 	{
+		"pkg": "@capacitor/file-transfer",
+		"classpath": "com.capacitorjs.plugins.filetransfer.FileTransferPlugin"
+	},
+	{
+		"pkg": "@capacitor/file-viewer",
+		"classpath": "com.capacitorjs.plugins.fileviewer.FileViewerPlugin"
+	},
+	{
 		"pkg": "@capacitor/geolocation",
 		"classpath": "com.capacitorjs.plugins.geolocation.GeolocationPlugin"
 	},
 	{
+		"pkg": "@capacitor/google-maps",
+		"classpath": "com.capacitorjs.plugins.googlemaps.CapacitorGoogleMapsPlugin"
+	},
+	{
 		"pkg": "@capacitor/haptics",
 		"classpath": "com.capacitorjs.plugins.haptics.HapticsPlugin"
+	},
+	{
+		"pkg": "@capacitor/inappbrowser",
+		"classpath": "com.capacitorjs.osinappbrowser.InAppBrowserPlugin"
 	},
 	{
 		"pkg": "@capacitor/keyboard",
@@ -58,6 +82,10 @@
 	{
 		"pkg": "@capacitor/preferences",
 		"classpath": "com.capacitorjs.plugins.preferences.PreferencesPlugin"
+	},
+	{
+		"pkg": "@capacitor/privacy-screen",
+		"classpath": "com.capacitorjs.plugins.privacyscreen.PrivacyScreenPlugin"
 	},
 	{
 		"pkg": "@capacitor/push-notifications",

@@ -7,6 +7,11 @@ PODS:
     - Capacitor
   - CapacitorAppLauncher (8.0.0):
     - Capacitor
+  - CapacitorBackgroundRunner (3.0.0):
+    - Capacitor
+  - CapacitorBarcodeScanner (3.0.0):
+    - Capacitor
+    - OSBarcodeLib (= 2.0.1)
   - CapacitorBrowser (8.0.0):
     - Capacitor
   - CapacitorCamera (8.0.0):
@@ -18,14 +23,27 @@ PODS:
     - Capacitor
   - CapacitorDialog (8.0.0):
     - Capacitor
-  - CapacitorFilesystem (8.0.0):
+  - CapacitorFilesystem (8.1.0):
     - Capacitor
-    - IONFilesystemLib (~> 1.0.1)
+    - IONFilesystemLib (~> 1.1.0)
+  - CapacitorFileTransfer (2.0.3):
+    - Capacitor
+    - IONFileTransferLib (~> 1.0.1)
+  - CapacitorFileViewer (2.0.0):
+    - Capacitor
+    - IONFileViewerLib (~> 1.0.3)
   - CapacitorGeolocation (8.0.0):
     - Capacitor
     - IONGeolocationLib (= 2.0.0)
+  - CapacitorGoogleMaps (8.0.0):
+    - Capacitor
+    - Google-Maps-iOS-Utils (= 6.1.0)
+    - GoogleMaps (~> 9.4)
   - CapacitorHaptics (8.0.0):
     - Capacitor
+  - CapacitorInappbrowser (3.0.1):
+    - Capacitor
+    - OSInAppBrowserLib (~> 2.3.1)
   - CapacitorKeyboard (8.0.0):
     - Capacitor
   - CapacitorLocalNotifications (8.0.0):
@@ -33,6 +51,8 @@ PODS:
   - CapacitorNetwork (8.0.0):
     - Capacitor
   - CapacitorPreferences (8.0.0):
+    - Capacitor
+  - CapacitorPrivacyScreen (2.0.0):
     - Capacitor
   - CapacitorPushNotifications (8.0.0):
     - Capacitor
@@ -50,34 +70,39 @@ PODS:
     - Capacitor
   - CapacitorToast (8.0.0):
     - Capacitor
-  - Firebase/CoreOnly (12.6.0):
-    - FirebaseCore (~> 12.6.0)
-  - Firebase/Messaging (12.6.0):
+  - Firebase/CoreOnly (12.8.0):
+    - FirebaseCore (~> 12.8.0)
+  - Firebase/Messaging (12.8.0):
     - Firebase/CoreOnly
-    - FirebaseMessaging (~> 12.6.0)
-  - FirebaseCore (12.6.0):
-    - FirebaseCoreInternal (~> 12.6.0)
+    - FirebaseMessaging (~> 12.8.0)
+  - FirebaseCore (12.8.0):
+    - FirebaseCoreInternal (~> 12.8.0)
     - GoogleUtilities/Environment (~> 8.1)
     - GoogleUtilities/Logger (~> 8.1)
-  - FirebaseCoreInternal (12.6.0):
+  - FirebaseCoreInternal (12.8.0):
     - "GoogleUtilities/NSData+zlib (~> 8.1)"
-  - FirebaseInstallations (12.6.0):
-    - FirebaseCore (~> 12.6.0)
+  - FirebaseInstallations (12.8.0):
+    - FirebaseCore (~> 12.8.0)
     - GoogleUtilities/Environment (~> 8.1)
     - GoogleUtilities/UserDefaults (~> 8.1)
     - PromisesObjC (~> 2.4)
-  - FirebaseMessaging (12.6.0):
-    - FirebaseCore (~> 12.6.0)
-    - FirebaseInstallations (~> 12.6.0)
+  - FirebaseMessaging (12.8.0):
+    - FirebaseCore (~> 12.8.0)
+    - FirebaseInstallations (~> 12.8.0)
     - GoogleDataTransport (~> 10.1)
     - GoogleUtilities/AppDelegateSwizzler (~> 8.1)
     - GoogleUtilities/Environment (~> 8.1)
     - GoogleUtilities/Reachability (~> 8.1)
     - GoogleUtilities/UserDefaults (~> 8.1)
     - nanopb (~> 3.30910.0)
+  - Google-Maps-iOS-Utils (6.1.0):
+    - GoogleMaps (~> 9.0)
   - GoogleDataTransport (10.1.0):
     - nanopb (~> 3.30910.0)
     - PromisesObjC (~> 2.4)
+  - GoogleMaps (9.4.0):
+    - GoogleMaps/Maps (= 9.4.0)
+  - GoogleMaps/Maps (9.4.0)
   - GoogleUtilities/AppDelegateSwizzler (8.1.0):
     - GoogleUtilities/Environment
     - GoogleUtilities/Logger
@@ -102,13 +127,17 @@ PODS:
   - GoogleUtilities/UserDefaults (8.1.0):
     - GoogleUtilities/Logger
     - GoogleUtilities/Privacy
-  - IONFilesystemLib (1.0.1)
+  - IONFilesystemLib (1.1.0)
+  - IONFileTransferLib (1.0.1)
+  - IONFileViewerLib (1.0.3)
   - IONGeolocationLib (2.0.0)
   - nanopb (3.30910.0):
     - nanopb/decode (= 3.30910.0)
     - nanopb/encode (= 3.30910.0)
   - nanopb/decode (3.30910.0)
   - nanopb/encode (3.30910.0)
+  - OSBarcodeLib (2.0.1)
+  - OSInAppBrowserLib (2.3.1)
   - PromisesObjC (2.4.0)
 
 DEPENDENCIES:
@@ -116,6 +145,8 @@ DEPENDENCIES:
   - "CapacitorActionSheet (from `../../node_modules/@capacitor/action-sheet`)"
   - "CapacitorApp (from `../../node_modules/@capacitor/app`)"
   - "CapacitorAppLauncher (from `../../node_modules/@capacitor/app-launcher`)"
+  - "CapacitorBackgroundRunner (from `../../node_modules/@capacitor/background-runner`)"
+  - "CapacitorBarcodeScanner (from `../../node_modules/@capacitor/barcode-scanner`)"
   - "CapacitorBrowser (from `../../node_modules/@capacitor/browser`)"
   - "CapacitorCamera (from `../../node_modules/@capacitor/camera`)"
   - "CapacitorClipboard (from `../../node_modules/@capacitor/clipboard`)"
@@ -123,12 +154,17 @@ DEPENDENCIES:
   - "CapacitorDevice (from `../../node_modules/@capacitor/device`)"
   - "CapacitorDialog (from `../../node_modules/@capacitor/dialog`)"
   - "CapacitorFilesystem (from `../../node_modules/@capacitor/filesystem`)"
+  - "CapacitorFileTransfer (from `../../node_modules/@capacitor/file-transfer`)"
+  - "CapacitorFileViewer (from `../../node_modules/@capacitor/file-viewer`)"
   - "CapacitorGeolocation (from `../../node_modules/@capacitor/geolocation`)"
+  - "CapacitorGoogleMaps (from `../../node_modules/@capacitor/google-maps`)"
   - "CapacitorHaptics (from `../../node_modules/@capacitor/haptics`)"
+  - "CapacitorInappbrowser (from `../../node_modules/@capacitor/inappbrowser`)"
   - "CapacitorKeyboard (from `../../node_modules/@capacitor/keyboard`)"
   - "CapacitorLocalNotifications (from `../../node_modules/@capacitor/local-notifications`)"
   - "CapacitorNetwork (from `../../node_modules/@capacitor/network`)"
   - "CapacitorPreferences (from `../../node_modules/@capacitor/preferences`)"
+  - "CapacitorPrivacyScreen (from `../../node_modules/@capacitor/privacy-screen`)"
   - "CapacitorPushNotifications (from `../../node_modules/@capacitor/push-notifications`)"
   - "CapacitorScreenOrientation (from `../../node_modules/@capacitor/screen-orientation`)"
   - "CapacitorScreenReader (from `../../node_modules/@capacitor/screen-reader`)"
@@ -146,11 +182,17 @@ SPEC REPOS:
     - FirebaseCoreInternal
     - FirebaseInstallations
     - FirebaseMessaging
+    - Google-Maps-iOS-Utils
     - GoogleDataTransport
+    - GoogleMaps
     - GoogleUtilities
     - IONFilesystemLib
+    - IONFileTransferLib
+    - IONFileViewerLib
     - IONGeolocationLib
     - nanopb
+    - OSBarcodeLib
+    - OSInAppBrowserLib
     - PromisesObjC
 
 EXTERNAL SOURCES:
@@ -162,6 +204,10 @@ EXTERNAL SOURCES:
     :path: "../../node_modules/@capacitor/app"
   CapacitorAppLauncher:
     :path: "../../node_modules/@capacitor/app-launcher"
+  CapacitorBackgroundRunner:
+    :path: "../../node_modules/@capacitor/background-runner"
+  CapacitorBarcodeScanner:
+    :path: "../../node_modules/@capacitor/barcode-scanner"
   CapacitorBrowser:
     :path: "../../node_modules/@capacitor/browser"
   CapacitorCamera:
@@ -176,10 +222,18 @@ EXTERNAL SOURCES:
     :path: "../../node_modules/@capacitor/dialog"
   CapacitorFilesystem:
     :path: "../../node_modules/@capacitor/filesystem"
+  CapacitorFileTransfer:
+    :path: "../../node_modules/@capacitor/file-transfer"
+  CapacitorFileViewer:
+    :path: "../../node_modules/@capacitor/file-viewer"
   CapacitorGeolocation:
     :path: "../../node_modules/@capacitor/geolocation"
+  CapacitorGoogleMaps:
+    :path: "../../node_modules/@capacitor/google-maps"
   CapacitorHaptics:
     :path: "../../node_modules/@capacitor/haptics"
+  CapacitorInappbrowser:
+    :path: "../../node_modules/@capacitor/inappbrowser"
   CapacitorKeyboard:
     :path: "../../node_modules/@capacitor/keyboard"
   CapacitorLocalNotifications:
@@ -188,6 +242,8 @@ EXTERNAL SOURCES:
     :path: "../../node_modules/@capacitor/network"
   CapacitorPreferences:
     :path: "../../node_modules/@capacitor/preferences"
+  CapacitorPrivacyScreen:
+    :path: "../../node_modules/@capacitor/privacy-screen"
   CapacitorPushNotifications:
     :path: "../../node_modules/@capacitor/push-notifications"
   CapacitorScreenOrientation:
@@ -210,19 +266,26 @@ SPEC CHECKSUMS:
   CapacitorActionSheet: 23a61973f273680dc12ef506109d9397675e3fc3
   CapacitorApp: 3963a84197280757b84f126afd1520a85ae3b092
   CapacitorAppLauncher: 7f2330aa2d8a72a4767ab05af9df4bf68166ebf0
+  CapacitorBackgroundRunner: 42d96bda7db8add43a59330179c2931987ffbfd5
+  CapacitorBarcodeScanner: b56bf5972818c8ef6f7ca27e877dbfd7d1345ef0
   CapacitorBrowser: b7d7f05f840fe042e46f6528bb8db853e3058fb2
   CapacitorCamera: 592acb7ab9fb748e2d8571eb03af30ec4e1ace12
   CapacitorClipboard: 61832a3722adc61afed6e0191c8a0e11ba11674d
   CapacitorCordova: 5dc3912d25ef770a3fe0f431bb65c9fbfa2e92f9
   CapacitorDevice: 9a16fb36a19ff391bf75afbe3cf16f883b3b3aa0
   CapacitorDialog: 3721e40dd075f590328166c29b4e982dbeedeb56
-  CapacitorFilesystem: 2cb7c29536024668f333266a2177f8c10bbd9c98
+  CapacitorFilesystem: a957d4a4b6860844c4eba5bf441607a5166f92a7
+  CapacitorFileTransfer: d4c1787491128c91d0e96e3abe1bc45cc1c080da
+  CapacitorFileViewer: a3e6a26ae3e0d8e24af1b3959ebb4fc0d7e550b9
   CapacitorGeolocation: 8a405e707de9aff6ac9eca7f408966a370f7ca33
+  CapacitorGoogleMaps: 3ec0ff442bab555bcdd580bee273fc4cadf16229
   CapacitorHaptics: 2079d9fa04c5a71e18663b4722323c304c58245c
+  CapacitorInappbrowser: d1a281d9f96848fb80c85d5c1fab5772587a6bb3
   CapacitorKeyboard: d7868c079a4d5277a3deca27a10a488fcbbb8b69
   CapacitorLocalNotifications: 177cfbf8228d9bd82a147e094cb7984d7afb9e29
   CapacitorNetwork: 156f8096cbbce5337eb1769fcc0d6adc4b85d3f3
   CapacitorPreferences: 443fabe9670226200e595658a87ef0b1566716d4
+  CapacitorPrivacyScreen: 43843345f4d4be827664c78bb6693bef5ab1a229
   CapacitorPushNotifications: 722c1528eabbefd355f47e373a4c6235d01e85e9
   CapacitorScreenOrientation: d962f79e5bcbba4e01e9dc0cd872abf465fb943f
   CapacitorScreenReader: 9b1175cf9047e66cc3262e7e358442fa74511973
@@ -231,18 +294,24 @@ SPEC CHECKSUMS:
   CapacitorStatusBar: 312e2e67928dfe9514c4a8916a1fd610552f5f35
   CapacitorTextZoom: bceaf076f134e188f8fd36ff74ef18a7d2bdb160
   CapacitorToast: aefebcd4cead9f44a04ace80c66a7eb4031751e7
-  Firebase: a451a7b61536298fd5cbfe3a746fd40443a50679
-  FirebaseCore: 0e38ad5d62d980a47a64b8e9301ffa311457be04
-  FirebaseCoreInternal: 69bf1306a05b8ac43004f6cc1f804bb7b05b229e
-  FirebaseInstallations: 631b38da2e11a83daa4bfb482f79d286a5dfa7ad
-  FirebaseMessaging: a61bc42dcab3f7a346d94bbb54dab2c9435b18b2
+  Firebase: 9a58fdbc9d8655ed7b79a19cf9690bb007d3d46d
+  FirebaseCore: 0dbad74bda10b8fb9ca34ad8f375fb9dd3ebef7c
+  FirebaseCoreInternal: fe5fa466aeb314787093a7dce9f0beeaad5a2a21
+  FirebaseInstallations: 6a14ab3d694ebd9f839c48d330da5547e9ca9dc0
+  FirebaseMessaging: 7f42cfd10ec64181db4e01b305a613791c8e782c
+  Google-Maps-iOS-Utils: 0a484b05ed21d88c9f9ebbacb007956edd508a96
   GoogleDataTransport: aae35b7ea0c09004c3797d53c8c41f66f219d6a7
+  GoogleMaps: 0608099d4870cac8754bdba9b6953db543432438
   GoogleUtilities: 00c88b9a86066ef77f0da2fab05f65d7768ed8e1
-  IONFilesystemLib: 89258b8e3e85465da93127d25d7ce37f977e8a6f
+  IONFilesystemLib: 50b9a0f3052a9b40b9bedb43f328a8fe222f9f87
+  IONFileTransferLib: b268561ab0ba7f386eea228c4986b55ba0146ca9
+  IONFileViewerLib: 574758ebcaa4b1543669b1c9708f1970e1172b29
   IONGeolocationLib: a5e40b54edc2ee9902036eda5aaa41ddf07bb68d
   nanopb: fad817b59e0457d11a5dfbde799381cd727c1275
+  OSBarcodeLib: 57987d2eb1f916f701f4554e20e349b3cb83f023
+  OSInAppBrowserLib: bf7cdcc072394ae827f8cfe3f5f9c807691834c0
   PromisesObjC: f5707f49cb48b9636751c5b2e7d227e43fba9f47
 
-PODFILE CHECKSUM: e0490ba851f21ebb661b2309d2ae788818c752b4
+PODFILE CHECKSUM: c1528a4a39d14ff6e0c69c521bc25bc5976ec11d
 
 COCOAPODS: 1.16.2
