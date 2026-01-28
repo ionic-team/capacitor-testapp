@@ -209,6 +209,12 @@ const OtherOfficialPluginsPage: React.FC = () => {
               Open URL in WebView
             </IonButton>
           </IonItem>
+          <IonItem>
+            <IonLabel>Privacy Screen</IonLabel>
+            <IonButton expand="block" onClick={privacyScreenTest}>
+              Enable with Screenshot Prevention
+            </IonButton>
+          </IonItem>
         </IonList>
       </IonContent>
     </IonPage>
