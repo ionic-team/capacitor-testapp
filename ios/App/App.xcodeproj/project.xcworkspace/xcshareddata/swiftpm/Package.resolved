@@ -1,0 +1,87 @@
+{
+  "originHash" : "6fb3ebb5ab2e99a9be4ad0e29eb45644e8024d26bac9151cc55f5661e1b2f068",
+  "pins" : [
+    {
+      "identity" : "capacitor-swift-pm",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/ionic-team/capacitor-swift-pm.git",
+      "state" : {
+        "revision" : "596259033e94829dffc552a40e7129262122995e",
+        "version" : "8.0.0"
+      }
+    },
+    {
+      "identity" : "google-maps-ios-utils",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/googlemaps/google-maps-ios-utils.git",
+      "state" : {
+        "revision" : "22c6e764d14daaf5de2aa4a3700bc2e9dccae5ac",
+        "version" : "6.1.0"
+      }
+    },
+    {
+      "identity" : "ion-ios-filesystem",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/ionic-team/ion-ios-filesystem.git",
+      "state" : {
+        "revision" : "a1a664318a7dae56d3f4756172365b5312f0292a",
+        "version" : "1.1.0"
+      }
+    },
+    {
+      "identity" : "ion-ios-filetransfer",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/ionic-team/ion-ios-filetransfer.git",
+      "state" : {
+        "revision" : "e2639d755c1d3871124024a141a1fccaa01d467c",
+        "version" : "1.0.1"
+      }
+    },
+    {
+      "identity" : "ion-ios-fileviewer",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/ionic-team/ion-ios-fileviewer.git",
+      "state" : {
+        "revision" : "e00a7f5ede0da6054d36b9913495ad18e887f5ab",
+        "version" : "1.0.3"
+      }
+    },
+    {
+      "identity" : "ion-ios-geolocation",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/ionic-team/ion-ios-geolocation.git",
+      "state" : {
+        "revision" : "5b722138d4ddc81275e0405acfd812a497519970",
+        "version" : "2.0.0"
+      }
+    },
+    {
+      "identity" : "ios-maps-sdk",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/googlemaps/ios-maps-sdk.git",
+      "state" : {
+        "revision" : "02f8f144ef266da44d50a68d1562ca051bac27cc",
+        "version" : "9.4.0"
+      }
+    },
+    {
+      "identity" : "osbarcodelib-ios",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/OutSystems/OSBarcodeLib-iOS.git",
+      "state" : {
+        "revision" : "fa51b49cf43ee227b02b371db83c8cb2e2cf8b55",
+        "version" : "2.1.0"
+      }
+    },
+    {
+      "identity" : "osinappbrowserlib-ios",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/OutSystems/OSInAppBrowserLib-iOS.git",
+      "state" : {
+        "revision" : "02077543fe499b68dd2e636bb1c2a40521e67d6a",
+        "version" : "2.3.1"
+      }
+    }
+  ],
+  "version" : 3
+}
