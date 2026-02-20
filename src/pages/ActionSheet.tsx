@@ -7,30 +7,57 @@ import {
   IonMenuButton,
   IonTitle,
   IonToolbar,
+  IonToggle,
+  IonItem,
+  IonLabel,
+  isPlatform
 } from '@ionic/react';
-import React from 'react';
+import React, { useState } from 'react';
 import { ActionSheet, ActionSheetButtonStyle } from '@capacitor/action-sheet';
 
 const ActionSheetPage: React.FC = () => {
+  const [cancelable, setCancelable] = useState(true);
+
+  const isIOS = isPlatform('ios');
+
   const showActions = async () => {
-    let promptRet = await ActionSheet.showActions({
+    const result = await ActionSheet.showActions({
       title: 'Photo Options',
       message: 'Select an option to perform',
       options: [
-        {
-          title: 'Upload',
-        },
-        {
-          title: 'Share',
-        },
+        { title: 'Upload' },
+        { title: 'Share' },
         {
           title: 'Remove',
           style: ActionSheetButtonStyle.Destructive,
         },
       ],
+      cancelable: cancelable,
     });
-    console.log('You selected', promptRet);
+
+    console.log('Normal sheet:', result);
+    alert('Normal sheet: ' + JSON.stringify(result));
   };
+
+  const showActionsWithCancel = async () => {
+    const result = await ActionSheet.showActions({
+      title: 'Photo Options',
+      message: 'Select an option to perform',
+      options: [
+        { title: 'Upload' },
+        { title: 'Share' },
+        {
+          title: 'Cancel',
+          style: ActionSheetButtonStyle.Cancel,
+        },
+      ],
+      cancelable: cancelable,
+    });
+
+    console.log('Cancel sheet:', result);
+    alert('Cancel sheet: ' + JSON.stringify(result));
+  };
+
   return (
     <IonPage>
       <IonHeader>
@@ -41,10 +68,27 @@ const ActionSheetPage: React.FC = () => {
           <IonTitle>Action Sheet</IonTitle>
         </IonToolbar>
       </IonHeader>
+
       <IonContent>
+
+        {!isIOS && (
+          <IonItem>
+            <IonLabel>Cancelable</IonLabel>
+            <IonToggle
+              checked={cancelable}
+              onIonChange={(e) => setCancelable(e.detail.checked)}
+            />
+          </IonItem>
+        )}
+
         <IonButton expand="block" onClick={showActions}>
-          Show Actions
+          Show Actions (Destructive)
         </IonButton>
+
+        <IonButton expand="block" onClick={showActionsWithCancel}>
+          Show Actions (With Cancel)
+        </IonButton>
+
       </IonContent>
     </IonPage>
   );
