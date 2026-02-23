@@ -25,7 +25,7 @@
     ]
   },
   "dependencies": {
-    "@capacitor/action-sheet": "^8.0.0",
+    "@capacitor/action-sheet": "8.0.2-dev-2285-20260220T160338.0",
     "@capacitor/android": "^8.0.0",
     "@capacitor/app": "^8.0.0",
     "@capacitor/app-launcher": "^8.0.0",
