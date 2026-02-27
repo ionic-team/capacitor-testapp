@@ -23,6 +23,8 @@ import {
   CameraPluginPermissions,
   GalleryPhoto,
   GalleryImageOptions,
+  RecordVideoOptions,
+  MediaResult,
 } from '@capacitor/camera';
 import { Capacitor } from '@capacitor/core';
 
@@ -30,6 +32,7 @@ interface CameraPageState {
   filePath: string | null;
   metadata: string | null;
   photos: GalleryPhoto[] | null;
+  isVideo?: boolean;
 }
 
 class CameraPage extends React.Component<{}, CameraPageState> {
@@ -52,10 +55,54 @@ class CameraPage extends React.Component<{}, CameraPageState> {
         allowEditing: editing,
         webUseInput: source === CameraSource.Photos,
       };
+      var photo = await Camera.takePhoto(options);
+      this.setState({
+        filePath: photo.path ?? photo.webPath ?? null,
+        metadata: JSON.stringify(photo.exif, null, 2),
+        isVideo: false,
+      });
+    } catch (e) {
+      let message = 'Unknown error';
+      let code = '';
+
+      if (typeof e === 'object' && e !== null) {
+        const err = e as { message?: string; code?: string };
+
+        if (err.message) {
+          message = err.message;
+        }
+
+        if (err.code) {
+          code = err.code;
+        }
+      }
+      alert(
+        `Failed to get picture with error:\n${
+          code ? code + '\n' : ''
+        }${message}`,
+      );
+    }
+  };
+
+  addPhotoLegacy = async (
+    source: CameraSource,
+    save: boolean = false,
+    editing: boolean = false,
+  ) => {
+    try {
+      const options: ImageOptions = {
+        quality: 100,
+        resultType: CameraResultType.Uri,
+        source: source,
+        saveToGallery: save,
+        allowEditing: editing,
+        webUseInput: source === CameraSource.Photos,
+      };
       var photo = await Camera.getPhoto(options);
       this.setState({
         filePath: photo.path ?? photo.webPath ?? null,
         metadata: JSON.stringify(photo.exif, null, 2),
+        isVideo: false,
       });
     } catch (e) {
       alert(`Failed to get picture with error:\n'${e}'`);
@@ -72,6 +119,7 @@ class CameraPage extends React.Component<{}, CameraPageState> {
       console.log('photos result', photosResult);
       this.setState({
         photos: photosResult.photos,
+        isVideo: false,
       });
     } catch (e) {
       alert(`Failed to get picture with error:\n'${e}'`);
@@ -102,6 +150,65 @@ class CameraPage extends React.Component<{}, CameraPageState> {
     console.log('res', res);
   };
 
+  recordVideo = async (
+    save: boolean = false,
+    includeMetadata: boolean = false,
+  ) => {
+    try {
+      const options: RecordVideoOptions = {
+        saveToGallery: save,
+        includeMetadata: includeMetadata,
+      };
+
+      const result: MediaResult = await Camera.recordVideo(options);
+      this.setState({
+        filePath: result.path,
+        metadata: JSON.stringify(result, null, 2),
+        isVideo: true,
+      });
+    } catch (e) {
+      let message = 'Unknown error';
+      let code = '';
+
+      if (typeof e === 'object' && e !== null) {
+        const err = e as { message?: string; code?: string };
+
+        if (err.message) {
+          message = err.message;
+        }
+
+        if (err.code) {
+          code = err.code;
+        }
+      }
+      alert(`Failed to record video:\n${code ? code + '\n' : ''}${message}`);
+    }
+  };
+
+  playVideo = async () => {
+    if (!this.state.filePath) return;
+
+    try {
+      await Camera.playVideo({ videoURI: this.state.filePath });
+    } catch (e) {
+      let message = 'Unknown error';
+      let code = '';
+
+      if (typeof e === 'object' && e !== null) {
+        const err = e as { message?: string; code?: string };
+
+        if (err.message) {
+          message = err.message;
+        }
+
+        if (err.code) {
+          code = err.code;
+        }
+      }
+      alert(`Failed to play video:\n${code ? code + '\n' : ''}${message}`);
+    }
+  };
+
   render() {
     const photos = this.state.photos;
     return (
@@ -124,56 +231,92 @@ class CameraPage extends React.Component<{}, CameraPageState> {
                 expand="block"
                 onClick={() =>
                   this.requestPermissions({ permissions: ['camera'] })
-                }
-              >
+                }>
                 Request Camera Permissions
               </IonButton>
               <IonButton
                 expand="block"
                 onClick={() =>
                   this.requestPermissions({ permissions: ['photos'] })
-                }
-              >
+                }>
                 Request Photo Permissions
               </IonButton>
               <IonButton
                 expand="block"
-                onClick={() => this.requestPermissions()}
-              >
+                onClick={() => this.requestPermissions()}>
                 Request All Permissions
               </IonButton>
             </IonCardContent>
           </IonCard>
           <IonCard>
+            <IonHeader>
+              <IonTitle>New API</IonTitle>
+            </IonHeader>
             <IonCardContent>
               <IonButton
                 expand="block"
-                onClick={() => this.addPhoto(CameraSource.Camera)}
-              >
+                onClick={() => this.addPhoto(CameraSource.Camera)}>
+                Take Photo
+              </IonButton>
+              <IonButton
+                expand="block"
+                onClick={() => this.addPhoto(CameraSource.Camera, true)}>
+                Take Photo and Save
+              </IonButton>
+              <IonButton
+                expand="block"
+                onClick={() => this.addPhoto(CameraSource.Camera, false, true)}>
+                Take Photo and Edit
+              </IonButton>
+              <IonButton
+                expand="block"
+                onClick={() => this.recordVideo(false, true)}>
+                Record Video
+              </IonButton>
+              <IonButton
+                expand="block"
+                onClick={() => this.recordVideo(true, true)}>
+                Record Video and Save
+              </IonButton>
+              {this.state.isVideo && this.state.filePath && (
+                <IonButton
+                  expand="block"
+                  onClick={() => this.playVideo()}>
+                  Play Video (Native)
+                </IonButton>
+              )}
+            </IonCardContent>
+          </IonCard>
+          <IonCard>
+            <IonHeader>
+              <IonTitle>Legacy API</IonTitle>
+            </IonHeader>
+            <IonCardContent>
+              <IonButton
+                expand="block"
+                onClick={() => this.addPhotoLegacy(CameraSource.Camera)}>
                 Take Picture
               </IonButton>
               <IonButton
                 expand="block"
-                onClick={() => this.addPhoto(CameraSource.Camera, true)}
-              >
+                onClick={() => this.addPhotoLegacy(CameraSource.Camera, true)}>
                 Take Picture and Save
               </IonButton>
               <IonButton
                 expand="block"
-                onClick={() => this.addPhoto(CameraSource.Camera, false, true)}
-              >
+                onClick={() =>
+                  this.addPhotoLegacy(CameraSource.Camera, false, true)
+                }>
                 Take Picture and Edit
               </IonButton>
               <IonButton
                 expand="block"
-                onClick={() => this.addPhoto(CameraSource.Photos)}
-              >
+                onClick={() => this.addPhotoLegacy(CameraSource.Photos)}>
                 Choose Picture
               </IonButton>
               <IonButton
                 expand="block"
-                onClick={() => this.addPhoto(CameraSource.Prompt)}
-              >
+                onClick={() => this.addPhotoLegacy(CameraSource.Prompt)}>
                 Prompt
               </IonButton>
               <IonButton expand="block" onClick={() => this.pickPhotos()}>
@@ -184,14 +327,12 @@ class CameraPage extends React.Component<{}, CameraPageState> {
               </IonButton>
               <IonButton
                 expand="block"
-                onClick={() => this.pickLimitedLibraryPhotos()}
-              >
+                onClick={() => this.pickLimitedLibraryPhotos()}>
                 pickLimitedLibraryPhotos
               </IonButton>
               <IonButton
                 expand="block"
-                onClick={() => this.getLimitedLibraryPhotos()}
-              >
+                onClick={() => this.getLimitedLibraryPhotos()}>
                 getLimitedLibraryPhotos
               </IonButton>
             </IonCardContent>
@@ -209,10 +350,18 @@ class CameraPage extends React.Component<{}, CameraPageState> {
             <IonCard>
               <IonCardContent>
                 <div>
-                  <img
-                    src={Capacitor.convertFileSrc(this.state.filePath)}
-                    alt="Most Recent"
-                  />
+                  {this.state.isVideo ? (
+                    <video
+                      controls
+                      width="100%"
+                      src={Capacitor.convertFileSrc(this.state.filePath)}
+                    />
+                  ) : (
+                    <img
+                      src={Capacitor.convertFileSrc(this.state.filePath)}
+                      alt="Most Recent"
+                    />
+                  )}
                 </div>
                 <div>
                   <pre>{this.state.metadata}</pre>

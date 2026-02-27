@@ -30,7 +30,7 @@
     "@capacitor/app": "^8.0.0",
     "@capacitor/app-launcher": "^8.0.0",
     "@capacitor/browser": "^8.0.0",
-    "@capacitor/camera": "^8.0.0",
+    "@capacitor/camera": "file:/Users/ruimendes/Documents/Outsystems/Capacitor/capacitor-plugins/camera",
     "@capacitor/clipboard": "^8.0.0",
     "@capacitor/core": "^8.0.0",
     "@capacitor/device": "^8.0.0",

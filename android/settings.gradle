@@ -2,4 +2,8 @@ include ':app'
 include ':capacitor-cordova-android-plugins'
 project(':capacitor-cordova-android-plugins').projectDir = new File('./capacitor-cordova-android-plugins/')
 
+
+include ':gradle-project-test'
+project(':gradle-project-test').projectDir = new File('/Users/ruimendes/Documents/Outsystems/Native_Libs_Android/ion-android-camera')
+
 apply from: 'capacitor.settings.gradle'
