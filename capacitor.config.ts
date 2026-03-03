@@ -29,7 +29,7 @@ const config: CapacitorConfig = {
   experimental: {
     ios: {
       spm: {
-        swiftToolsVersion: 'asd'
+        swiftToolsVersion: '6.0-beta1'
       }
     }
   },
