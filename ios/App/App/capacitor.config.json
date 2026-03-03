@@ -23,6 +23,13 @@
 			]
 		}
 	},
+	"experimental": {
+		"ios": {
+			"spm": {
+				"swiftToolsVersion": "6.0"
+			}
+		}
+	},
 	"packageClassList": [
 		"ActionSheetPlugin",
 		"AppPlugin",

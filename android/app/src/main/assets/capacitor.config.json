@@ -22,5 +22,12 @@
 				"sound"
 			]
 		}
+	},
+	"experimental": {
+		"ios": {
+			"spm": {
+				"swiftToolsVersion": "6.0"
+			}
+		}
 	}
 }
