@@ -26,6 +26,13 @@ const config: CapacitorConfig = {
       presentationOptions: ["alert", "sound"]
     }
   },
+  experimental: {
+    ios: {
+      spm: {
+        swiftToolsVersion: '6'
+      }
+    }
+  },
 };
 
 export default config;
