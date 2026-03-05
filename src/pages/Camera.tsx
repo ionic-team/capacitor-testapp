@@ -25,6 +25,8 @@ import {
   GalleryImageOptions,
   RecordVideoOptions,
   MediaResult,
+  EditPhotoOptions,
+  EditURIPhotoOptions,
   GalleryOptions,
   MediaType,
 } from '@capacitor/camera';
@@ -35,12 +37,18 @@ interface CameraPageState {
   metadata: string | null;
   photos: GalleryPhoto[] | null;
   isVideo?: boolean;
+  photoBase64: string | null;
 }
 
 class CameraPage extends React.Component<{}, CameraPageState> {
   constructor(props: {}) {
     super(props);
-    this.state = { filePath: null, metadata: null, photos: null };
+    this.state = {
+      filePath: null,
+      metadata: null,
+      photos: null,
+      photoBase64: null,
+    };
   }
 
   addPhoto = async (
@@ -62,6 +70,7 @@ class CameraPage extends React.Component<{}, CameraPageState> {
         filePath: photo.path ?? photo.webPath ?? null,
         metadata: JSON.stringify(photo.exif, null, 2),
         isVideo: false,
+        photoBase64: null,
       });
     } catch (e) {
       let message = 'Unknown error';
@@ -94,7 +103,7 @@ class CameraPage extends React.Component<{}, CameraPageState> {
     try {
       const options: ImageOptions = {
         quality: 100,
-        resultType: CameraResultType.Uri,
+        resultType: CameraResultType.Base64,
         source: source,
         saveToGallery: save,
         allowEditing: editing,
@@ -102,9 +111,10 @@ class CameraPage extends React.Component<{}, CameraPageState> {
       };
       var photo = await Camera.getPhoto(options);
       this.setState({
-        filePath: photo.path ?? photo.webPath ?? null,
+        filePath: null,
         metadata: JSON.stringify(photo.exif, null, 2),
         isVideo: false,
+        photoBase64: photo.base64String ?? null,
       });
     } catch (e) {
       alert(`Failed to get picture with error:\n'${e}'`);
@@ -235,6 +245,79 @@ class CameraPage extends React.Component<{}, CameraPageState> {
     }
   };
 
+  editPhoto = async () => {
+    if (!this.state.photoBase64) {
+      alert('No photo available to edit. Please take a photo first.');
+      return;
+    }
+
+    try {
+      const options: EditPhotoOptions = {
+        base64: this.state.photoBase64,
+      };
+      const result = await Camera.editPhoto(options);
+      this.setState({
+        photoBase64: result.base64String ?? null,
+        metadata: 'Edited photo (base64)',
+      });
+      alert('Photo edited successfully!');
+    } catch (e) {
+      let message = 'Unknown error';
+      let code = '';
+
+      if (typeof e === 'object' && e !== null) {
+        const err = e as { message?: string; code?: string };
+
+        if (err.message) {
+          message = err.message;
+        }
+
+        if (err.code) {
+          code = err.code;
+        }
+      }
+      alert(`Failed to edit photo:\n${code ? code + '\n' : ''}${message}`);
+    }
+  };
+
+  editURIPhoto = async () => {
+    if (!this.state.filePath) {
+      alert('No photo URI available to edit. Please take a photo first.');
+      return;
+    }
+
+    try {
+      const options: EditURIPhotoOptions = {
+        uri: this.state.filePath,
+        saveToGallery: false,
+        includeMetadata: true,
+      };
+      const result: MediaResult = await Camera.editURIPhoto(options);
+      this.setState({
+        filePath: result.path,
+        metadata: JSON.stringify(result, null, 2),
+        isVideo: false,
+      });
+      alert('Photo edited successfully!');
+    } catch (e) {
+      let message = 'Unknown error';
+      let code = '';
+
+      if (typeof e === 'object' && e !== null) {
+        const err = e as { message?: string; code?: string };
+
+        if (err.message) {
+          message = err.message;
+        }
+
+        if (err.code) {
+          code = err.code;
+        }
+      }
+      alert("Failed to edit photo:\n${code ? code + '\n' : ''}${message}");
+    }
+  };
+
   render() {
     const photos = this.state.photos;
     return (
@@ -319,6 +402,16 @@ class CameraPage extends React.Component<{}, CameraPageState> {
                 onClick={() => this.chooseFromGallery(MediaType.all)}>
                 Choose From Gallery (All Media)
               </IonButton>
+              {!this.state.isVideo && this.state.photoBase64 && (
+                <IonButton expand="block" onClick={() => this.editPhoto()}>
+                  Edit Photo (Base64)
+                </IonButton>
+              )}
+              {!this.state.isVideo && this.state.filePath && (
+                <IonButton expand="block" onClick={() => this.editURIPhoto()}>
+                  Edit Photo (URI)
+                </IonButton>
+              )}
             </IonCardContent>
           </IonCard>
           <IonCard>
@@ -377,7 +470,9 @@ class CameraPage extends React.Component<{}, CameraPageState> {
             <IonRow>
               {photos?.map(photo => (
                 <IonCol size="6" key={photo.webPath}>
-                  {photo.format === 'jpg' || photo.format === 'jpeg' || photo.format === 'png' ? (
+                  {photo.format === 'jpg' ||
+                  photo.format === 'jpeg' ||
+                  photo.format === 'png' ? (
                     <IonImg src={photo.webPath}></IonImg>
                   ) : (
                     <video
@@ -390,22 +485,28 @@ class CameraPage extends React.Component<{}, CameraPageState> {
               ))}
             </IonRow>
           </IonGrid>
-          {this.state.filePath != null ? (
+          {this.state.filePath || this.state.photoBase64 ? (
             <IonCard>
               <IonCardContent>
                 <div>
-                  {this.state.isVideo ? (
+                  {this.state.isVideo && this.state.filePath ? (
                     <video
                       controls
                       width="100%"
                       src={Capacitor.convertFileSrc(this.state.filePath)}
                     />
-                  ) : (
+                  ) : this.state.photoBase64 ? (
+                    <img
+                      src={`data:image/jpeg;base64,${this.state.photoBase64}`}
+                      alt="Most Recent"
+                      style={{ width: '100%' }}
+                    />
+                  ) : this.state.filePath ? (
                     <img
                       src={Capacitor.convertFileSrc(this.state.filePath)}
                       alt="Most Recent"
                     />
-                  )}
+                  ) : null}
                 </div>
                 <div>
                   <pre>{this.state.metadata}</pre>
