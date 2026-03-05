@@ -25,6 +25,8 @@ import {
   GalleryImageOptions,
   RecordVideoOptions,
   MediaResult,
+  GalleryOptions,
+  MediaType,
 } from '@capacitor/camera';
 import { Capacitor } from '@capacitor/core';
 
@@ -109,7 +111,31 @@ class CameraPage extends React.Component<{}, CameraPageState> {
     }
   };
 
-  pickPhotos = async (limit: number = 0) => {
+  chooseFromGallery = async (
+    mediaType: MediaType = MediaType.picture,
+    allowMultipleSelection: boolean = true,
+    includeMetadata: boolean = true,
+    allowEdit: boolean = true,
+  ) => {
+    try {
+      const options: GalleryOptions = {
+        mediaType: mediaType,
+        allowMultipleSelection: allowMultipleSelection,
+        includeMetadata: includeMetadata,
+        allowEdit: allowEdit,
+      };
+      var photosResult = await Camera.chooseFromGallery(options);
+      console.log('photos result', photosResult.photos);
+      this.setState({
+        photos: photosResult.photos,
+        isVideo: false,
+      });
+    } catch (e) {
+      alert(`Failed to get picture with error:\n'${e}'`);
+    }
+  };
+
+  pickPhotosLegacy = async (limit: number = 0) => {
     try {
       const options: GalleryImageOptions = {
         quality: 100,
@@ -279,12 +305,20 @@ class CameraPage extends React.Component<{}, CameraPageState> {
                 Record Video and Save
               </IonButton>
               {this.state.isVideo && this.state.filePath && (
-                <IonButton
-                  expand="block"
-                  onClick={() => this.playVideo()}>
+                <IonButton expand="block" onClick={() => this.playVideo()}>
                   Play Video (Native)
                 </IonButton>
               )}
+              <IonButton
+                expand="block"
+                onClick={() => this.chooseFromGallery(MediaType.picture)}>
+                Choose From Gallery (Pictures)
+              </IonButton>
+              <IonButton
+                expand="block"
+                onClick={() => this.chooseFromGallery(MediaType.all)}>
+                Choose From Gallery (All Media)
+              </IonButton>
             </IonCardContent>
           </IonCard>
           <IonCard>
@@ -319,10 +353,12 @@ class CameraPage extends React.Component<{}, CameraPageState> {
                 onClick={() => this.addPhotoLegacy(CameraSource.Prompt)}>
                 Prompt
               </IonButton>
-              <IonButton expand="block" onClick={() => this.pickPhotos()}>
+              <IonButton expand="block" onClick={() => this.pickPhotosLegacy()}>
                 Pick Photos
               </IonButton>
-              <IonButton expand="block" onClick={() => this.pickPhotos(3)}>
+              <IonButton
+                expand="block"
+                onClick={() => this.pickPhotosLegacy(3)}>
                 Pick 3 Photos
               </IonButton>
               <IonButton
@@ -340,8 +376,16 @@ class CameraPage extends React.Component<{}, CameraPageState> {
           <IonGrid>
             <IonRow>
               {photos?.map(photo => (
-                <IonCol size="6">
-                  <IonImg src={photo.webPath}></IonImg>
+                <IonCol size="6" key={photo.webPath}>
+                  {photo.format === 'jpg' || photo.format === 'jpeg' || photo.format === 'png' ? (
+                    <IonImg src={photo.webPath}></IonImg>
+                  ) : (
+                    <video
+                      src={photo.webPath}
+                      controls
+                      style={{ width: '100%' }}
+                    />
+                  )}
                 </IonCol>
               ))}
             </IonRow>

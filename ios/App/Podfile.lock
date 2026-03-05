@@ -1,54 +1,54 @@
 PODS:
-  - Capacitor (8.0.2):
+  - Capacitor (8.1.0):
     - CapacitorCordova
-  - CapacitorActionSheet (8.0.0):
+  - CapacitorActionSheet (8.0.1):
     - Capacitor
-  - CapacitorApp (8.0.0):
+  - CapacitorApp (8.0.1):
     - Capacitor
-  - CapacitorAppLauncher (8.0.0):
+  - CapacitorAppLauncher (8.0.1):
     - Capacitor
-  - CapacitorBrowser (8.0.0):
+  - CapacitorBrowser (8.0.1):
     - Capacitor
   - CapacitorCamera (8.0.1):
     - Capacitor
-  - CapacitorClipboard (8.0.0):
+  - CapacitorClipboard (8.0.1):
     - Capacitor
-  - CapacitorCordova (8.0.2)
-  - CapacitorDevice (8.0.0):
+  - CapacitorCordova (8.1.0)
+  - CapacitorDevice (8.0.1):
     - Capacitor
-  - CapacitorDialog (8.0.0):
+  - CapacitorDialog (8.0.1):
     - Capacitor
-  - CapacitorFilesystem (8.1.0):
+  - CapacitorFilesystem (8.1.2):
     - Capacitor
-    - IONFilesystemLib (~> 1.1.0)
-  - CapacitorGeolocation (8.0.0):
+    - IONFilesystemLib (~> 1.1.1)
+  - CapacitorGeolocation (8.1.0):
     - Capacitor
     - IONGeolocationLib (= 2.0.0)
-  - CapacitorHaptics (8.0.0):
+  - CapacitorHaptics (8.0.1):
     - Capacitor
-  - CapacitorKeyboard (8.0.0):
+  - CapacitorKeyboard (8.0.1):
     - Capacitor
-  - CapacitorLocalNotifications (8.0.0):
+  - CapacitorLocalNotifications (8.0.1):
     - Capacitor
-  - CapacitorNetwork (8.0.0):
+  - CapacitorNetwork (8.0.1):
     - Capacitor
-  - CapacitorPreferences (8.0.0):
+  - CapacitorPreferences (8.0.1):
     - Capacitor
-  - CapacitorPushNotifications (8.0.0):
+  - CapacitorPushNotifications (8.0.1):
     - Capacitor
-  - CapacitorScreenOrientation (8.0.0):
+  - CapacitorScreenOrientation (8.0.1):
     - Capacitor
-  - CapacitorScreenReader (8.0.0):
+  - CapacitorScreenReader (8.0.1):
     - Capacitor
-  - CapacitorShare (8.0.0):
+  - CapacitorShare (8.0.1):
     - Capacitor
-  - CapacitorSplashScreen (8.0.0):
+  - CapacitorSplashScreen (8.0.1):
     - Capacitor
-  - CapacitorStatusBar (8.0.0):
+  - CapacitorStatusBar (8.0.1):
     - Capacitor
-  - CapacitorTextZoom (8.0.0):
+  - CapacitorTextZoom (8.0.1):
     - Capacitor
-  - CapacitorToast (8.0.0):
+  - CapacitorToast (8.0.1):
     - Capacitor
   - Firebase/CoreOnly (12.9.0):
     - FirebaseCore (~> 12.9.0)
@@ -117,7 +117,7 @@ DEPENDENCIES:
   - "CapacitorApp (from `../../node_modules/@capacitor/app`)"
   - "CapacitorAppLauncher (from `../../node_modules/@capacitor/app-launcher`)"
   - "CapacitorBrowser (from `../../node_modules/@capacitor/browser`)"
-  - CapacitorCamera (from `../../../capacitor-plugins/camera`)
+  - CapacitorCamera (from `../../../capacitor-camera`)
   - "CapacitorClipboard (from `../../node_modules/@capacitor/clipboard`)"
   - "CapacitorCordova (from `../../node_modules/@capacitor/ios`)"
   - "CapacitorDevice (from `../../node_modules/@capacitor/device`)"
@@ -165,7 +165,7 @@ EXTERNAL SOURCES:
   CapacitorBrowser:
     :path: "../../node_modules/@capacitor/browser"
   CapacitorCamera:
-    :path: "../../../capacitor-plugins/camera"
+    :path: "../../../capacitor-camera"
   CapacitorClipboard:
     :path: "../../node_modules/@capacitor/clipboard"
   CapacitorCordova:
@@ -206,31 +206,31 @@ EXTERNAL SOURCES:
     :path: "../../node_modules/@capacitor/toast"
 
 SPEC CHECKSUMS:
-  Capacitor: cfc1ce4a70dbc19fdc4e66e17808937088029752
-  CapacitorActionSheet: 5caa107329840f9fbf6e98b06a1a5b02421990d3
-  CapacitorApp: cfa0120a1f3a6f69d4d37d3041782aa5c5167d0b
-  CapacitorAppLauncher: a72c5bf90dccef44d3b7ff9fc01813afa38e455e
-  CapacitorBrowser: 7452c73a202716d9c9035e5dbe5c5d8d07737f22
+  Capacitor: 830fc6ff88e99bb5ba48350f02c01ab01ba3b2b8
+  CapacitorActionSheet: 11c9e4371b7bde94b0c84acf9ccdd2c6acda6194
+  CapacitorApp: fcd990168c3249d2c5a7ae94920a031d05789e73
+  CapacitorAppLauncher: fc7c313549920528d0f28493b60d20de679deba4
+  CapacitorBrowser: 6a7fed906d5f7cc58bc09d145bdb57c8243a235a
   CapacitorCamera: 71da609c24e9ebde9dd253019e52102573937a30
-  CapacitorClipboard: 9a0c0a654641f93482748efb659bf95c0382b65a
-  CapacitorCordova: 921bdb690ebe82421b24fce45552fd3dea2ae43a
-  CapacitorDevice: 56baac70d6493c42756676d521e99eea5cc83e71
-  CapacitorDialog: c4d52ac6a863f8093f9d815b19584c644bdfe98c
-  CapacitorFilesystem: 57c128a5ea9875aa7bb54eb7431e63d7721bedd4
-  CapacitorGeolocation: a8381371f7b460e6be569576557285e70f0c9d6c
-  CapacitorHaptics: 7a77ce744c4b516b3ffd7f8c96d3de574d77b898
-  CapacitorKeyboard: 0a2e7c0635ccf3db60abed14bd6f35147ce25942
-  CapacitorLocalNotifications: b0003a1b69c95badd88f9cb56b1965ace20eb346
-  CapacitorNetwork: e03b0c02b4a9d76e58c19e15e9e0c200929529b9
-  CapacitorPreferences: 83f13cc19660ca9649a4769ec255be93f8c2ff68
-  CapacitorPushNotifications: 49cd6c474cb03ee171494636693f6f06209469a0
-  CapacitorScreenOrientation: 82b7c0bcc6189e97269ec66c613d0cd4f1c1c004
-  CapacitorScreenReader: cdb0f08e44eac266cfb50d2afc2bf44d36618e44
-  CapacitorShare: 703a2744f755982f1a4950f5120bea9763d6dfea
-  CapacitorSplashScreen: 4b78177a21f0f73ccc1c78dd93b2a94854ac4b83
-  CapacitorStatusBar: c6fa2d404083e41d145ea56698707a6986d4428b
-  CapacitorTextZoom: 28c493db937d1f25e696b2db7c0fef5e3c5ba2bf
-  CapacitorToast: 6275c84283ac9c424a20554e71b8a6263f44554c
+  CapacitorClipboard: 1ba60616f1b2d3df52417000217ec810216bbbaf
+  CapacitorCordova: e8b76fd95fc1e157775abc484c59cc0de464095d
+  CapacitorDevice: ebd210e29ae690225291b8616e6cfaf419d2e866
+  CapacitorDialog: d43769d1245d315ffc931b2ca3d4eea76870798b
+  CapacitorFilesystem: 7d3e3df84be4f0d999a5d6baa23aeb30c2de6450
+  CapacitorGeolocation: a2009727714adfa58bf093300b15856aa59e4b7a
+  CapacitorHaptics: af524744f86b761c13306b4c88a0de6cd28e3062
+  CapacitorKeyboard: cbbe3df7194442bfd18ed4ac1d9ed0294ce579a9
+  CapacitorLocalNotifications: e5b78d679f9b6fb22a08bfc1b951fc3f8bd8da11
+  CapacitorNetwork: 7afc28ed4d9abe1d9801264fa485db32e4420546
+  CapacitorPreferences: 0fa33b3affebf12d96358b491ed7c2b39bec3270
+  CapacitorPushNotifications: 3f34fa7041f65ffb6d1aed24d7f3d5a8abf53db2
+  CapacitorScreenOrientation: 07503c9d633377427f1e122449b06b1dbc992d10
+  CapacitorScreenReader: 4faf73361fd8564c6a288050a585ec2dc2a16bc4
+  CapacitorShare: 8a565649d321a05a1ae8b525b2a9b4f2d92c70ce
+  CapacitorSplashScreen: 1281f7df4d9b4a72bccab8d03e6b2bbd17dff122
+  CapacitorStatusBar: 7fc9bb6737a29524034dfdc51ae1f1880d972b4d
+  CapacitorTextZoom: afbf3d1cb61547480e60b4d06979bc239afee747
+  CapacitorToast: 0432f40d66143ab56a322095e09740aa2c9a88a5
   Firebase: 065f2bb395062046623036d8e6dc857bc2521d56
   FirebaseCore: 428912f751178b06bef0a1793effeb4a5e09a9b8
   FirebaseCoreInternal: b321eafae5362113bc182956fafc9922cfc77b72
@@ -243,6 +243,6 @@ SPEC CHECKSUMS:
   nanopb: fad817b59e0457d11a5dfbde799381cd727c1275
   PromisesObjC: f5707f49cb48b9636751c5b2e7d227e43fba9f47
 
-PODFILE CHECKSUM: a46d55aa682d4f0c1581140965843afeaa9028f5
+PODFILE CHECKSUM: b49ced8e6228a0f22eeb59362e0574053de57408
 
 COCOAPODS: 1.16.2
