@@ -69,7 +69,7 @@ class CameraPage extends React.Component<{}, CameraPageState> {
       var photo = await Camera.takePhoto(options);
       this.setState({
         filePath: photo.path ?? photo.webPath ?? null,
-        metadata: JSON.stringify(photo.exif, null, 2),
+        metadata: null,
         isVideo: false,
         photoBase64: null,
       });

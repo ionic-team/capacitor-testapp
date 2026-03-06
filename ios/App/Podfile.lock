@@ -1,19 +1,19 @@
 PODS:
-  - Capacitor (8.1.0):
+  - Capacitor (8.2.0):
     - CapacitorCordova
-  - CapacitorActionSheet (8.0.1):
+  - CapacitorActionSheet (8.1.0):
     - Capacitor
   - CapacitorApp (8.0.1):
     - Capacitor
   - CapacitorAppLauncher (8.0.1):
     - Capacitor
-  - CapacitorBrowser (8.0.1):
+  - CapacitorBrowser (8.0.2):
     - Capacitor
   - CapacitorCamera (8.0.1):
     - Capacitor
   - CapacitorClipboard (8.0.1):
     - Capacitor
-  - CapacitorCordova (8.1.0)
+  - CapacitorCordova (8.2.0)
   - CapacitorDevice (8.0.1):
     - Capacitor
   - CapacitorDialog (8.0.1):
@@ -28,13 +28,13 @@ PODS:
     - Capacitor
   - CapacitorKeyboard (8.0.1):
     - Capacitor
-  - CapacitorLocalNotifications (8.0.1):
+  - CapacitorLocalNotifications (8.0.2):
     - Capacitor
   - CapacitorNetwork (8.0.1):
     - Capacitor
   - CapacitorPreferences (8.0.1):
     - Capacitor
-  - CapacitorPushNotifications (8.0.1):
+  - CapacitorPushNotifications (8.0.2):
     - Capacitor
   - CapacitorScreenOrientation (8.0.1):
     - Capacitor
@@ -206,24 +206,24 @@ EXTERNAL SOURCES:
     :path: "../../node_modules/@capacitor/toast"
 
 SPEC CHECKSUMS:
-  Capacitor: 830fc6ff88e99bb5ba48350f02c01ab01ba3b2b8
-  CapacitorActionSheet: 11c9e4371b7bde94b0c84acf9ccdd2c6acda6194
+  Capacitor: c04568d0798e8c9a481d70e8d3df1f7fe1966549
+  CapacitorActionSheet: 5b1f008e0267f7bf421a63330dd8ae63d6f9304e
   CapacitorApp: fcd990168c3249d2c5a7ae94920a031d05789e73
   CapacitorAppLauncher: fc7c313549920528d0f28493b60d20de679deba4
-  CapacitorBrowser: 6a7fed906d5f7cc58bc09d145bdb57c8243a235a
+  CapacitorBrowser: a9d79172878eea4b0cbfa7556bc9fa5338ca85fb
   CapacitorCamera: 71da609c24e9ebde9dd253019e52102573937a30
   CapacitorClipboard: 1ba60616f1b2d3df52417000217ec810216bbbaf
-  CapacitorCordova: e8b76fd95fc1e157775abc484c59cc0de464095d
+  CapacitorCordova: a9ac88d84a1f5280f33b349fe50fce1902683ac0
   CapacitorDevice: ebd210e29ae690225291b8616e6cfaf419d2e866
   CapacitorDialog: d43769d1245d315ffc931b2ca3d4eea76870798b
   CapacitorFilesystem: 7d3e3df84be4f0d999a5d6baa23aeb30c2de6450
   CapacitorGeolocation: a2009727714adfa58bf093300b15856aa59e4b7a
   CapacitorHaptics: af524744f86b761c13306b4c88a0de6cd28e3062
   CapacitorKeyboard: cbbe3df7194442bfd18ed4ac1d9ed0294ce579a9
-  CapacitorLocalNotifications: e5b78d679f9b6fb22a08bfc1b951fc3f8bd8da11
+  CapacitorLocalNotifications: adb0776e74524387e48b9b683690fdf79f274753
   CapacitorNetwork: 7afc28ed4d9abe1d9801264fa485db32e4420546
   CapacitorPreferences: 0fa33b3affebf12d96358b491ed7c2b39bec3270
-  CapacitorPushNotifications: 3f34fa7041f65ffb6d1aed24d7f3d5a8abf53db2
+  CapacitorPushNotifications: ea06743630efa295851de6867b72bd8894c02928
   CapacitorScreenOrientation: 07503c9d633377427f1e122449b06b1dbc992d10
   CapacitorScreenReader: 4faf73361fd8564c6a288050a585ec2dc2a16bc4
   CapacitorShare: 8a565649d321a05a1ae8b525b2a9b4f2d92c70ce
