@@ -10,7 +10,7 @@ import {
   IonToggle,
   IonItem,
   IonLabel,
-  isPlatform
+  isPlatform,
 } from '@ionic/react';
 import React, { useState } from 'react';
 import { ActionSheet, ActionSheetButtonStyle } from '@capacitor/action-sheet';
@@ -70,13 +70,12 @@ const ActionSheetPage: React.FC = () => {
       </IonHeader>
 
       <IonContent>
-
         {!isIOS && (
           <IonItem>
             <IonLabel>Cancelable</IonLabel>
             <IonToggle
               checked={cancelable}
-              onIonChange={(e) => setCancelable(e.detail.checked)}
+              onIonChange={e => setCancelable(e.detail.checked)}
             />
           </IonItem>
         )}
@@ -88,7 +87,6 @@ const ActionSheetPage: React.FC = () => {
         <IonButton expand="block" onClick={showActionsWithCancel}>
           Show Actions (With Cancel)
         </IonButton>
-
       </IonContent>
     </IonPage>
   );
