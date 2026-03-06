@@ -1,7 +1,7 @@
 PODS:
   - Capacitor (8.1.0):
     - CapacitorCordova
-  - CapacitorActionSheet (8.0.2-dev-2285-20260220T160338.0):
+  - CapacitorActionSheet (8.1.0):
     - Capacitor
   - CapacitorApp (8.0.1):
     - Capacitor
@@ -207,7 +207,7 @@ EXTERNAL SOURCES:
 
 SPEC CHECKSUMS:
   Capacitor: 47b825120c6b8b6d6f9f053e9350a8960d436710
-  CapacitorActionSheet: 88de9cf176f4cabf414b7916aed7f1b30df771f2
+  CapacitorActionSheet: beba4b3fc77fb7ef4a532ee07fa90180855041e0
   CapacitorApp: 942306cd1acf7774a00e89a3986af3a67c8cad7a
   CapacitorAppLauncher: 43949ccc5aaa5139a1ebe27a98c0a4d76c883fa7
   CapacitorBrowser: e72e572d5dbdbb854fda5950586a2451e981f2d6
