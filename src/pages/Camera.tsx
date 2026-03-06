@@ -24,6 +24,7 @@ import {
   GalleryPhoto,
   GalleryImageOptions,
   RecordVideoOptions,
+  PlayVideoOptions,
   MediaResult,
   EditPhotoOptions,
   EditURIPhotoOptions,
@@ -225,7 +226,10 @@ class CameraPage extends React.Component<{}, CameraPageState> {
     if (!this.state.filePath) return;
 
     try {
-      await Camera.playVideo({ videoURI: this.state.filePath });
+      const options: PlayVideoOptions = {
+        videoURI: this.state.filePath
+      };
+      await Camera.playVideo(options);
     } catch (e) {
       let message = 'Unknown error';
       let code = '';
