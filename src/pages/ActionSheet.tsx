@@ -10,15 +10,12 @@ import {
   IonToggle,
   IonItem,
   IonLabel,
-  isPlatform,
 } from '@ionic/react';
 import React, { useState } from 'react';
 import { ActionSheet, ActionSheetButtonStyle } from '@capacitor/action-sheet';
 
 const ActionSheetPage: React.FC = () => {
   const [cancelable, setCancelable] = useState(true);
-
-  const isIOS = isPlatform('ios');
 
   const showActions = async () => {
     const result = await ActionSheet.showActions({
@@ -70,15 +67,13 @@ const ActionSheetPage: React.FC = () => {
       </IonHeader>
 
       <IonContent>
-        {!isIOS && (
-          <IonItem>
-            <IonLabel>Cancelable</IonLabel>
-            <IonToggle
-              checked={cancelable}
-              onIonChange={e => setCancelable(e.detail.checked)}
-            />
-          </IonItem>
-        )}
+        <IonItem>
+          <IonLabel>Cancelable</IonLabel>
+          <IonToggle
+            checked={cancelable}
+            onIonChange={e => setCancelable(e.detail.checked)}
+          />
+        </IonItem>
 
         <IonButton expand="block" onClick={showActions}>
           Show Actions (Destructive)
