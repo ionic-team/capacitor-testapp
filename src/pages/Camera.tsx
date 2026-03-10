@@ -137,9 +137,14 @@ class CameraPage extends React.Component<{}, CameraPageState> {
       };
       var photosResult = await Camera.chooseFromGallery(options);
       console.log('photos result', photosResult.photos);
+      const video = photosResult.photos.find(photo =>
+        ['mp4'].includes(photo.format?.toLowerCase()),
+      );
+      const hasVideo = !!video;
       this.setState({
         photos: photosResult.photos,
-        isVideo: false,
+        isVideo: hasVideo,
+        filePath: video?.path ?? null,
       });
     } catch (e) {
       alert(`Failed to get picture with error:\n'${e}'`);
@@ -227,7 +232,7 @@ class CameraPage extends React.Component<{}, CameraPageState> {
 
     try {
       const options: PlayVideoOptions = {
-        videoURI: this.state.filePath
+        videoURI: this.state.filePath,
       };
       await Camera.playVideo(options);
     } catch (e) {
@@ -284,7 +289,7 @@ class CameraPage extends React.Component<{}, CameraPageState> {
     }
   };
 
-  editURIPhoto = async () => {
+  editURIPhoto = async (saveToGallery: boolean = false) => {
     if (!this.state.filePath) {
       alert('No photo URI available to edit. Please take a photo first.');
       return;
@@ -293,7 +298,7 @@ class CameraPage extends React.Component<{}, CameraPageState> {
     try {
       const options: EditURIPhotoOptions = {
         uri: this.state.filePath,
-        saveToGallery: false,
+        saveToGallery: saveToGallery,
         includeMetadata: true,
       };
       const result: MediaResult = await Camera.editURIPhoto(options);
@@ -411,10 +416,18 @@ class CameraPage extends React.Component<{}, CameraPageState> {
                   Edit Photo (Base64)
                 </IonButton>
               )}
+
               {!this.state.isVideo && this.state.filePath && (
-                <IonButton expand="block" onClick={() => this.editURIPhoto()}>
-                  Edit Photo (URI)
-                </IonButton>
+                <div>
+                  <IonButton expand="block" onClick={() => this.editURIPhoto()}>
+                    Edit Photo (URI)
+                  </IonButton>
+                  <IonButton
+                    expand="block"
+                    onClick={() => this.editURIPhoto(true)}>
+                    Edit Photo and Save (URI)
+                  </IonButton>
+                </div>
               )}
             </IonCardContent>
           </IonCard>
