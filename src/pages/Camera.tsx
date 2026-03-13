@@ -69,7 +69,7 @@ class CameraPage extends React.Component<{}, CameraPageState> {
       var photo = await Camera.takePhoto(options);
       this.setState({
         filePath: photo.path ?? photo.webPath ?? null,
-        metadata: null,
+        metadata: JSON.stringify(photo.exif, null, 2),
         isVideo: false,
         photoBase64: null,
       });
@@ -134,6 +134,7 @@ class CameraPage extends React.Component<{}, CameraPageState> {
         allowMultipleSelection: allowMultipleSelection,
         includeMetadata: includeMetadata,
         allowEdit: allowEdit,
+        limit: 2
       };
       var photosResult = await Camera.chooseFromGallery(options);
       console.log('photos result', photosResult.photos);
@@ -468,7 +469,7 @@ class CameraPage extends React.Component<{}, CameraPageState> {
               </IonButton>
               <IonButton
                 expand="block"
-                onClick={() => this.pickPhotosLegacy(3)}>
+                onClick={() => this.pickPhotosLegacy(10000)}>
                 Pick 3 Photos
               </IonButton>
               <IonButton
