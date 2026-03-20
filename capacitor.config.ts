@@ -1,6 +1,7 @@
 /// <reference types="@capacitor/local-notifications" />
 /// <reference types="@capacitor/push-notifications" />
 /// <reference types="@capacitor/splash-screen" />
+/// <reference types="@capacitor/app" />
 
 import { CapacitorConfig } from '@capacitor/cli';
 
@@ -23,8 +24,11 @@ const config: CapacitorConfig = {
       iconColor: '#CE0B7C',
     },
     PushNotifications: {
-      presentationOptions: ["alert", "sound"]
-    }
+      presentationOptions: ['alert', 'sound'],
+    },
+    App: {
+      disableBackButtonHandler: false,
+    },
   },
 };
 
