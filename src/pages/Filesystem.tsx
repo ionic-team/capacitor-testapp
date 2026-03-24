@@ -13,7 +13,12 @@ import {
   IonProgressBar,
 } from '@ionic/react';
 import React, { useState } from 'react';
-import { Filesystem, Directory, Encoding, ProgressStatus } from '@capacitor/filesystem';
+import {
+  Filesystem,
+  Directory,
+  Encoding,
+  ProgressStatus,
+} from '@capacitor/filesystem';
 
 interface myCallback {
   (path: string): void;

@@ -1,6 +1,11 @@
 import React, { useEffect } from 'react';
 import { Redirect, Route } from 'react-router-dom';
-import { IonApp, IonRouterOutlet, IonSplitPane, setupIonicReact } from '@ionic/react';
+import {
+  IonApp,
+  IonRouterOutlet,
+  IonSplitPane,
+  setupIonicReact,
+} from '@ionic/react';
 import { IonReactRouter } from '@ionic/react-router';
 import { SplashScreen } from '@capacitor/splash-screen';
 

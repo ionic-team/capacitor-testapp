@@ -29,35 +29,39 @@ const AppPage: React.FC = () => {
   let restoredResultHandler: PluginListenerHandle;
 
   useIonViewDidEnter(() => {
-    stateChangeHandler = App.addListener(
+    setListeners();
+
+    getLaunchUrl();
+  });
+
+  const setListeners = async () => {
+    stateChangeHandler = await App.addListener(
       'appStateChange',
       (state: AppState) => {
         console.log('App state changed', state);
       },
     );
 
-    pauseHandler = App.addListener('pause', async () => {
+    pauseHandler = await App.addListener('pause', async () => {
       console.log('App paused');
     });
 
-    resumeHandler = App.addListener('resume', () => {
+    resumeHandler = await App.addListener('resume', () => {
       console.log('App resumed');
     });
 
-    urlOpenHandler = App.addListener('appUrlOpen', (data: any) => {
+    urlOpenHandler = await App.addListener('appUrlOpen', (data: any) => {
       alert('APP URL OPEN: ' + data.url);
     });
 
-    restoredResultHandler = App.addListener(
+    restoredResultHandler = await App.addListener(
       'appRestoredResult',
       (data: any) => {
         alert('Got restored result');
         console.log('Restored result:', data);
       },
     );
-
-    getLaunchUrl();
-  });
+  };
 
   const getLaunchUrl = async () => {
     const ret = await App.getLaunchUrl();
@@ -171,6 +175,15 @@ const AppPage: React.FC = () => {
         </IonButton>
         <IonButton expand="block" onClick={getAppLanguageTag}>
           Get App Language Tag
+        </IonButton>
+        <IonButton expand="block" href="https://flems.io/#0=N4IgzgpgNhDGAuEAmIBcIB0ALeBbKIANCAGYCWMYaA2qAHYCGuEamO+RIsA9nYn6wA8WAIwA+ADp1BDAARYAThBIBeCSDJ8IfVAHpdWbswDEASS18A3GFhYIzFT1wZYDAA4NYZeNwUArMAx3NwxEMHhgyw9YAGsGAHMIRyMXd09vXwCgtxCwiJzLT3gyXhUGOiQFbjIkDE1+eCCEEroMADVTAFEAdUttJEt1STpZWQAVCHDUWQB5N21ZAEEABWWpQV0GYY3RMU5IGGbeKnQAJlQRADYQAF9CeiYWdAwAzh4LeCE5RWU1LhTXNEMv5AsFQpN8m49AYjBAAPwkKq4FRICAQNxQTQxIZjToAZTGGy2+2gcGKx1YAAZUJcAOy3e4gRjMVguMBUYjvBqsW4AXRuQA">
+        {/* If the link above ever expires, this is the HTML to test opening an intent for this app.
+        <h1>
+        <a href="intent://home#Intent;scheme=com.capacitorjs.app.testapp;package=com.capacitorjs.app.testapp;action=android.intent.action.VIEW;end;">
+          Test: Open APP
+        </a>
+        </h1> */}
+          Test Intents
         </IonButton>
         <p>
           <a href="tel:212-549-2543">Telephone Test</a>
