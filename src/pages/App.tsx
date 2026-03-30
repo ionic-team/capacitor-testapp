@@ -118,6 +118,11 @@ const AppPage: React.FC = () => {
     await AppLauncher.openUrl({ url: '' });
   };
 
+  const getAppLanguage = async () => {
+    const info = await App.getAppLanguage();
+    setAppInfoJson(JSON.stringify(info, null, 2));
+  };
+
   useIonViewDidLeave(() => {
     stateChangeHandler.remove();
     urlOpenHandler.remove();
