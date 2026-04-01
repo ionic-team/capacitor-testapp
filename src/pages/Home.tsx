@@ -50,7 +50,8 @@ const Home: React.FC = () => {
             style={{
               fontSize: '30px',
               fontFamily: 'monospace',
-            }}>
+            }}
+          >
             App Resolution: {dimensions.width} × {dimensions.height}
           </div>
           <h1>Counter</h1>
