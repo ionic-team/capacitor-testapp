@@ -12,6 +12,7 @@ import {
 } from '@ionic/react';
 import React, { useEffect, useState } from 'react';
 import LocalNotificationTest from '../components/LocalNotificationTest';
+import LocalNotificationsOptionsTest from '../components/LocalNotificationsOptionsTest';
 import NotificationChannelsTest from '../components/NotificationChannelsTest';
 
 import './LocalNotifications.css';
@@ -136,6 +137,8 @@ const LocalNotificationsPage: React.FC = () => {
       </IonHeader>
       <IonContent>
         <LocalNotificationTest permissions={hasPermission} />
+        <br />
+        <LocalNotificationsOptionsTest />
         <br />
         <NotificationChannelsTest notificationType="local" />
       </IonContent>
