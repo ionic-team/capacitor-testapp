@@ -118,6 +118,11 @@ const AppPage: React.FC = () => {
     await AppLauncher.openUrl({ url: '' });
   };
 
+  const getAppLanguage = async () => {
+    const info = await App.getAppLanguage();
+    setAppInfoJson(JSON.stringify(info, null, 2));
+  };
+
   useIonViewDidLeave(() => {
     stateChangeHandler.remove();
     urlOpenHandler.remove();
@@ -159,6 +164,9 @@ const AppPage: React.FC = () => {
         </IonButton>
         <IonButton expand="block" onClick={failCall}>
           Test Failing Call
+        </IonButton>
+        <IonButton expand="block" onClick={getAppLanguage}>
+          Get App Language
         </IonButton>
         <IonButton expand="block" href="https://flems.io/#0=N4IgzgpgNhDGAuEAmIBcIB0ALeBbKIANCAGYCWMYaA2qAHYCGuEamO+RIsA9nYn6wA8WAIwA+ADp1BDAARYAThBIBeCSDJ8IfVAHpdWbswDEASS18A3GFhYIzFT1wZYDAA4NYZeNwUArMAx3NwxEMHhgyw9YAGsGAHMIRyMXd09vXwCgtxCwiJzLT3gyXhUGOiQFbjIkDE1+eCCEEroMADVTAFEAdUttJEt1STpZWQAVCHDUWQB5N21ZAEEABWWpQV0GYY3RMU5IGGbeKnQAJlQRADYQAF9CeiYWdAwAzh4LeCE5RWU1LhTXNEMv5AsFQpN8m49AYjBAAPwkKq4FRICAQNxQTQxIZjToAZTGGy2+2gcGKx1YAAZUJcAOy3e4gRjMVguMBUYjvBqsW4AXRuQA">
         {/* If the link above ever expires, this is the HTML to test opening an intent for this app.

@@ -41,6 +41,8 @@ const HttpPage: React.FC = () => {
       sendRequestFetch();
     } else if (implementation === 'XHR') {
       sendRequestXHR();
+    } else if (implementation === 'CAPACITOR_FORMDATA') {
+      sendRequestCapacitorFormData();
     } else {
       sendRequestCapacitor();
     }
@@ -86,6 +88,24 @@ const HttpPage: React.FC = () => {
     } catch (err: any) {
       setResponse(err.message);
     }
+  };
+
+  const sendRequestCapacitorFormData = async () => {
+    const entries: { key: string; value: string; type: string }[] = [];
+    if (params.length > 0) {
+      const parsed = JSON.parse(params);
+      for (const [key, value] of Object.entries(parsed)) {
+        entries.push({ key, value: `${value}`, type: 'string' });
+      }
+    }
+    const response = await CapacitorHttp.request({
+      url,
+      method: requestType,
+      data: entries,
+      dataType: 'formData',
+      headers: JSON.parse(headers),
+    });
+    setResponse(JSON.stringify(response.data));
   };
 
   const sendRequestCapacitor = async () => {
@@ -152,6 +172,7 @@ const HttpPage: React.FC = () => {
           <IonSelectOption value="FETCH">Fetch</IonSelectOption>
           <IonSelectOption value="XHR">XMLHttpRequest</IonSelectOption>
           <IonSelectOption value="CAPACITOR">Capacitor</IonSelectOption>
+          <IonSelectOption value="CAPACITOR_FORMDATA">Capacitor (FormData)</IonSelectOption>
         </IonSelect>
         <IonButton expand="block" onClick={() => toggleParams()}>
           Toggle Params On/Off

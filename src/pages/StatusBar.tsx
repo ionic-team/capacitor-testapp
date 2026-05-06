@@ -9,24 +9,44 @@ import {
   IonTitle,
   IonToolbar,
   useIonViewDidEnter,
+  useIonViewDidLeave,
 } from '@ionic/react';
 import React, { useState } from 'react';
-import { Capacitor } from '@capacitor/core';
-import { StatusBar, Style } from '@capacitor/status-bar';
+import { Capacitor, PluginListenerHandle } from '@capacitor/core';
+import { StatusBar, StatusBarInfo, Style } from '@capacitor/status-bar';
 
 const StatusBarPage: React.FC = () => {
   const [statusbarInfoJson, setStatusbarInfoJson] = useState('');
   const [showButtons, setShowButtons] = useState(true);
+  let visibilityChangedHandler: PluginListenerHandle;
+  let overlayChangedHandler: PluginListenerHandle;
 
   useIonViewDidEnter(() => {
     if (Capacitor.isPluginAvailable('StatusBar')) {
       window.addEventListener('statusTap', function () {
         console.log('statusbar tapped');
       });
+      setListeners();
     } else {
       setShowButtons(false);
     }
   });
+
+  const setListeners = async () => {
+    visibilityChangedHandler = await StatusBar.addListener(
+      'statusBarVisibilityChanged',
+      (info: StatusBarInfo) => {
+        console.log('status bar visibility changed', info);
+      },
+    );
+
+    overlayChangedHandler = await StatusBar.addListener(
+      'statusBarOverlayChanged',
+      (info: StatusBarInfo) => {
+        console.log('status bar overlay changed', info);
+      },
+    );
+  };
 
   const changeStatusBar = async () => {
     StatusBar.setStyle({
@@ -82,6 +102,11 @@ const StatusBarPage: React.FC = () => {
     console.log('Got statusbar info', info);
     setStatusbarInfoJson(JSON.stringify(info, null, 2));
   };
+
+  useIonViewDidLeave(() => {
+    visibilityChangedHandler.remove();
+    overlayChangedHandler.remove();
+  });
 
   return (
     <IonPage>
