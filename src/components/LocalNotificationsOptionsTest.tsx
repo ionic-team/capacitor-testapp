@@ -58,7 +58,7 @@ export default function LocalNotificationsOptionsTest() {
         </div>
       )}
       <IonList>
-        <IonListHeader>Schedule with options (iOS 15+)</IonListHeader>
+        <IonListHeader>Schedule with options</IonListHeader>
         <IonItem>
           <IonLabel position="stacked">Relevance Score (0.0 – 1.0)</IonLabel>
           <IonInput
