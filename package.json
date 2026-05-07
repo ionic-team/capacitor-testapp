@@ -40,7 +40,7 @@
     "@capacitor/haptics": "^8.0.0",
     "@capacitor/ios": "^8.2.0",
     "@capacitor/keyboard": "^8.0.0",
-    "@capacitor/local-notifications": "8.0.3-dev-2521-20260507T112139.0",
+    "@capacitor/local-notifications": "^8.0.0",
     "@capacitor/motion": "^8.0.0",
     "@capacitor/network": "^8.0.0",
     "@capacitor/preferences": "^8.0.0",
