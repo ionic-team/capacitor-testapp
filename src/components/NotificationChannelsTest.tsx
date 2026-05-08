@@ -65,7 +65,7 @@ export default function NotificationChannelsTest({ notificationType }: Props) {
     try {
       if (notificationType === 'push') {
         const channel: PushNotificationChannel = {
-          ...newChannel,
+          ...(newChannel as PushNotificationChannel),
           id: newChannel.name,
         };
 
