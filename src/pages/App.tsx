@@ -17,16 +17,38 @@ import {
   ExceptionCode,
   PluginListenerHandle,
 } from '@capacitor/core';
-import { App, AppState } from '@capacitor/app';
+import { App, AppState, EdgeGestureListenerEvent } from '@capacitor/app';
 import { AppLauncher } from '@capacitor/app-launcher';
+
+function sortedStringify(obj: unknown, indent: number = 2): string {
+  return JSON.stringify(
+    obj,
+    (key: string, value: unknown) => {
+      if (value && typeof value === 'object' && !Array.isArray(value)) {
+        return Object.keys(value as object)
+          .sort()
+          .reduce<Record<string, unknown>>((acc, k) => {
+            acc[k] = (value as Record<string, unknown>)[k];
+            return acc;
+          }, {});
+      }
+      return value;
+    },
+    indent,
+  );
+}
 
 const AppPage: React.FC = () => {
   const [appInfoJson, setAppInfoJson] = useState('');
+  const [gestureInfoJson, setGestureInfoJson] = useState('');
+  const [edgeHandlingEnabled, setEdgeHandlingEnabled] =
+    useState<boolean>(false);
   let stateChangeHandler: PluginListenerHandle;
   let pauseHandler: PluginListenerHandle;
   let resumeHandler: PluginListenerHandle;
   let urlOpenHandler: PluginListenerHandle;
   let restoredResultHandler: PluginListenerHandle;
+  let edgeGestureHandler: PluginListenerHandle;
 
   useIonViewDidEnter(() => {
     setListeners();
@@ -59,6 +81,14 @@ const AppPage: React.FC = () => {
       (data: any) => {
         alert('Got restored result');
         console.log('Restored result:', data);
+      },
+    );
+
+    edgeGestureHandler = await App.addListener(
+      'edgeGesture',
+      (data: EdgeGestureListenerEvent) => {
+        console.log('gesture info', data);
+        setGestureInfoJson(sortedStringify(data, 2));
       },
     );
   };
@@ -123,12 +153,18 @@ const AppPage: React.FC = () => {
     setAppInfoJson(JSON.stringify(info, null, 2));
   };
 
+  const toggleEdgeGestureHandlers = async () => {
+    await App.toggleEdgeGestureHandler({ enabled: !edgeHandlingEnabled });
+    setEdgeHandlingEnabled(!edgeHandlingEnabled);
+  };
+
   useIonViewDidLeave(() => {
     stateChangeHandler.remove();
     urlOpenHandler.remove();
     restoredResultHandler.remove();
     pauseHandler.remove();
     resumeHandler.remove();
+    edgeGestureHandler.remove();
   });
 
   return (
@@ -168,8 +204,10 @@ const AppPage: React.FC = () => {
         <IonButton expand="block" onClick={getAppLanguage}>
           Get App Language
         </IonButton>
-        <IonButton expand="block" href="https://flems.io/#0=N4IgzgpgNhDGAuEAmIBcIB0ALeBbKIANCAGYCWMYaA2qAHYCGuEamO+RIsA9nYn6wA8WAIwA+ADp1BDAARYAThBIBeCSDJ8IfVAHpdWbswDEASS18A3GFhYIzFT1wZYDAA4NYZeNwUArMAx3NwxEMHhgyw9YAGsGAHMIRyMXd09vXwCgtxCwiJzLT3gyXhUGOiQFbjIkDE1+eCCEEroMADVTAFEAdUttJEt1STpZWQAVCHDUWQB5N21ZAEEABWWpQV0GYY3RMU5IGGbeKnQAJlQRADYQAF9CeiYWdAwAzh4LeCE5RWU1LhTXNEMv5AsFQpN8m49AYjBAAPwkKq4FRICAQNxQTQxIZjToAZTGGy2+2gcGKx1YAAZUJcAOy3e4gRjMVguMBUYjvBqsW4AXRuQA">
-        {/* If the link above ever expires, this is the HTML to test opening an intent for this app.
+        <IonButton
+          expand="block"
+          href="https://flems.io/#0=N4IgzgpgNhDGAuEAmIBcIB0ALeBbKIANCAGYCWMYaA2qAHYCGuEamO+RIsA9nYn6wA8WAIwA+ADp1BDAARYAThBIBeCSDJ8IfVAHpdWbswDEASS18A3GFhYIzFT1wZYDAA4NYZeNwUArMAx3NwxEMHhgyw9YAGsGAHMIRyMXd09vXwCgtxCwiJzLT3gyXhUGOiQFbjIkDE1+eCCEEroMADVTAFEAdUttJEt1STpZWQAVCHDUWQB5N21ZAEEABWWpQV0GYY3RMU5IGGbeKnQAJlQRADYQAF9CeiYWdAwAzh4LeCE5RWU1LhTXNEMv5AsFQpN8m49AYjBAAPwkKq4FRICAQNxQTQxIZjToAZTGGy2+2gcGKx1YAAZUJcAOy3e4gRjMVguMBUYjvBqsW4AXRuQA">
+          {/* If the link above ever expires, this is the HTML to test opening an intent for this app.
         <h1>
         <a href="intent://home#Intent;scheme=com.capacitorjs.app.testapp;package=com.capacitorjs.app.testapp;action=android.intent.action.VIEW;end;">
           Test: Open APP
@@ -177,19 +215,24 @@ const AppPage: React.FC = () => {
         </h1> */}
           Test Intents
         </IonButton>
+        <IonButton expand="block" onClick={toggleEdgeGestureHandlers}>
+          Toggle `edgeGesture` Listener
+        </IonButton>
         <p>
           <a href="tel:212-549-2543">Telephone Test</a>
           <a href="mailto:name@email.com">Email Test</a>
           <a
             href="https://capacitorjs.com/"
             target="_blank"
-            rel="noopener noreferrer"
-          >
+            rel="noopener noreferrer">
             Read more
           </a>
         </p>
         <div>
           <pre>{appInfoJson}</pre>
+        </div>
+        <div>
+          <pre>{gestureInfoJson}</pre>
         </div>
       </IonContent>
     </IonPage>
