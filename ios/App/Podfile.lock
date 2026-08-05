@@ -8,23 +8,24 @@ PODS:
     - Capacitor
   - CapacitorBrowser (9.0.0-alpha.2):
     - Capacitor
-  - CapacitorCamera (8.0.0-beta.0):
+  - CapacitorCamera (8.2.3-next.1):
     - Capacitor
+    - IONCameraLib (~> 1.0.5)
   - CapacitorClipboard (9.0.0-alpha.2):
     - Capacitor
   - CapacitorDevice (9.0.0-alpha.2):
     - Capacitor
   - CapacitorDialog (9.0.0-alpha.2):
     - Capacitor
-  - CapacitorFilesystem (8.0.0-next.4):
+  - CapacitorFilesystem (8.2.0-next.2):
     - Capacitor
-    - IONFilesystemLib (~> 1.0.1)
-  - CapacitorGeolocation (8.0.0-next.7):
+    - IONFilesystemLib (~> 1.1.1)
+  - CapacitorGeolocation (9.0.0-next.1):
     - Capacitor
-    - IONGeolocationLib (= 2.0.0)
-  - CapacitorHaptics (8.0.0-next.3):
+    - IONGeolocationLib (= 2.1.0)
+  - CapacitorHaptics (9.0.0-next.1):
     - Capacitor
-  - CapacitorKeyboard (8.0.0-next.4):
+  - CapacitorKeyboard (9.0.0-next.1):
     - Capacitor
   - CapacitorLocalNotifications (9.0.0-alpha.2):
     - Capacitor
@@ -48,32 +49,32 @@ PODS:
     - Capacitor
   - CapacitorToast (9.0.0-alpha.2):
     - Capacitor
-  - Firebase/CoreOnly (12.16.0):
-    - FirebaseCore (~> 12.16.0)
-  - Firebase/Messaging (12.16.0):
+  - Firebase/CoreOnly (12.17.0):
+    - FirebaseCore (~> 12.17.0)
+  - Firebase/Messaging (12.17.0):
     - Firebase/CoreOnly
-    - FirebaseMessaging (~> 12.16.0)
-  - FirebaseCore (12.16.0):
-    - FirebaseCoreInternal (~> 12.16.0)
+    - FirebaseMessaging (~> 12.17.0)
+  - FirebaseCore (12.17.0):
+    - FirebaseCoreInternal (~> 12.17.0)
     - GoogleUtilities/Environment (~> 8.1)
     - GoogleUtilities/Logger (~> 8.1)
-  - FirebaseCoreInternal (12.16.0):
+  - FirebaseCoreInternal (12.17.0):
     - "GoogleUtilities/NSData+zlib (~> 8.1)"
-  - FirebaseInstallations (12.16.0):
-    - FirebaseCore (~> 12.16.0)
+  - FirebaseInstallations (12.17.0):
+    - FirebaseCore (~> 12.17.0)
     - GoogleUtilities/Environment (~> 8.1)
     - GoogleUtilities/UserDefaults (~> 8.1)
     - PromisesObjC (~> 2.4)
-  - FirebaseMessaging (12.16.0):
-    - FirebaseCore (~> 12.16.0)
-    - FirebaseInstallations (~> 12.16.0)
+  - FirebaseMessaging (12.17.0):
+    - FirebaseCore (~> 12.17.0)
+    - FirebaseInstallations (~> 12.17.0)
     - GoogleDataTransport (~> 10.1)
     - GoogleUtilities/AppDelegateSwizzler (~> 8.1)
     - GoogleUtilities/Environment (~> 8.1)
     - GoogleUtilities/Reachability (~> 8.1)
     - GoogleUtilities/UserDefaults (~> 8.1)
     - nanopb (~> 3.30910.0)
-  - GoogleDataTransport (10.1.0):
+  - GoogleDataTransport (10.1.1):
     - nanopb (~> 3.30910.0)
     - PromisesObjC (~> 2.4)
   - GoogleUtilities/AppDelegateSwizzler (8.1.2):
@@ -100,8 +101,9 @@ PODS:
   - GoogleUtilities/UserDefaults (8.1.2):
     - GoogleUtilities/Logger
     - GoogleUtilities/Privacy
-  - IONFilesystemLib (1.0.1)
-  - IONGeolocationLib (2.0.0)
+  - IONCameraLib (1.0.5)
+  - IONFilesystemLib (1.1.2)
+  - IONGeolocationLib (2.1.0)
   - nanopb (3.30910.0):
     - nanopb/decode (= 3.30910.0)
     - nanopb/encode (= 3.30910.0)
@@ -145,6 +147,7 @@ SPEC REPOS:
     - FirebaseMessaging
     - GoogleDataTransport
     - GoogleUtilities
+    - IONCameraLib
     - IONFilesystemLib
     - IONGeolocationLib
     - nanopb
@@ -206,14 +209,14 @@ SPEC CHECKSUMS:
   CapacitorApp: 1d870da64e84d2e7bba00c28a12ccf0208a17ee3
   CapacitorAppLauncher: d7628875f58e79e85e64889dc87c42ccd8c1f87e
   CapacitorBrowser: abf32618412fd687508e084dfe1dce3538daf44a
-  CapacitorCamera: d5e4a95eb4504cf5df16daa46f705377938c670f
+  CapacitorCamera: bdc1274d9005b34c3c53df7ed36807b01cbb9864
   CapacitorClipboard: 9b205a52986d7b7b4e56259614731ba0ed26e605
   CapacitorDevice: 8fdef537e25cb1e1c73398bb17153faede53e381
   CapacitorDialog: 1aa07d886aa7b09f026e36fc275d9cf1ae8015da
-  CapacitorFilesystem: eb0cee773e4bbedd96b32ea06f91d58100e0e421
-  CapacitorGeolocation: 6f28c36ff88e7567fddbf7f1f52b5a57f4f2c291
-  CapacitorHaptics: 9027c8bf0edfd107911a9d39b28bd96671739f54
-  CapacitorKeyboard: 3706fefb194f3cff6328117aea15b273d0498f24
+  CapacitorFilesystem: 2db3f502b79169311645242c7463cd0e3f00fa6e
+  CapacitorGeolocation: 8ff59c2beec0775675eb09e471a00b0b1cf07497
+  CapacitorHaptics: cf461bf71051a548bb99107554563ab05c4f3a06
+  CapacitorKeyboard: 222ced64b88632400503c87e0b188952f3ce8265
   CapacitorLocalNotifications: 5b42ddf01f39df88059f9c762fe5f0f21da31cd6
   CapacitorNetwork: 89b3c55ee908298cff4f792556a82191c402edde
   CapacitorPreferences: 38a026631b7112488b9425386fc94b78fb41b1d4
@@ -225,15 +228,16 @@ SPEC CHECKSUMS:
   CapacitorStatusBar: 838088db4185b93e8168e69e3b1dcf1f093a305f
   CapacitorTextZoom: 4dc32ee321434a59260a99d321ec1829ff116b4a
   CapacitorToast: 1f9331aaed9f48790e63c7911d6a051610e0b151
-  Firebase: 17acd6b5a2cf74fd1f2a78c1d4deeb63e2ff9b86
-  FirebaseCore: 551d22e19313c75007905c2b03d122a9b3fa7ddc
-  FirebaseCoreInternal: 289ac2e89edd981ee41b9da43d3dee590c0c5bfe
-  FirebaseInstallations: 86ea57d5b481b936392cd2d5bbd59fca116a5c71
-  FirebaseMessaging: 1dc072d46263cba717df2ca88063bef84011cf84
-  GoogleDataTransport: aae35b7ea0c09004c3797d53c8c41f66f219d6a7
+  Firebase: e8400c058702940d53f31fc0653e4e7a06332326
+  FirebaseCore: 52d4512296984a44a8c8870c6494870fc7aeee2f
+  FirebaseCoreInternal: 3b310521b34a51ce3a6c605e4618b9aef8f6c112
+  FirebaseInstallations: bd8e80f51d4c8bdc6c872011dede0b800c5b49ea
+  FirebaseMessaging: 313d69fe6529c8846813d1660b65d7d38bc16954
+  GoogleDataTransport: a24e58982ab3ba2f64d79613e027fe7f57e88539
   GoogleUtilities: 766ace00c6b10d8148408f329d10c4f051931850
-  IONFilesystemLib: 89258b8e3e85465da93127d25d7ce37f977e8a6f
-  IONGeolocationLib: a5e40b54edc2ee9902036eda5aaa41ddf07bb68d
+  IONCameraLib: ecbd8ef0077d481df429cee267bbeb1a7b9bddd0
+  IONFilesystemLib: 21a63377696b2d8fab5632ecfb7d2ac67bddb68a
+  IONGeolocationLib: 6a7b6f76063fb1b01cfb14fae7d0f526e3c9b271
   nanopb: fad817b59e0457d11a5dfbde799381cd727c1275
   PromisesObjC: 752c3227f599e3467650e47ea36f433eeb10c273
 
