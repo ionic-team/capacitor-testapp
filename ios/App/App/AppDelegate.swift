@@ -2,7 +2,7 @@ import UIKit
 import Capacitor
 import Firebase
 
-@UIApplicationMain
+@main
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
   var window: UIWindow?
