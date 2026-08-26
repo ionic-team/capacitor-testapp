@@ -3,19 +3,20 @@ import {
   LocalNotifications,
   LocalNotificationSchema,
   PendingResult,
+  ScheduleOn,
 } from '@capacitor/local-notifications';
 import {
   IonButton,
   IonItem,
-  IonItemSliding,
   IonItemOption,
   IonItemOptions,
+  IonItemSliding,
   IonLabel,
   IonList,
   IonListHeader,
 } from '@ionic/react';
 import cx from 'classnames';
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 
 interface Props {
   permissions: PermissionState;
@@ -265,6 +266,36 @@ export default function LocalNotificationTest({ permissions }: Props) {
     getPendingNotifications();
   };
 
+  const scheduleOnWithStartDate = async () => {
+    const startDate = new Date();
+    startDate.setMinutes(startDate.getMinutes() + 5);
+    console.log("start date", startDate.toISOString());
+    const notifications: LocalNotificationSchema[] = [
+      {
+        ...{
+          id: 222,
+          title: 'Get 10% off!',
+          body: 'Swipe now to learn more',
+          sound: 'beep.aiff',
+          attachments: [{ id: 'face', url: 'res:///assets/ionitron.png' }],
+          actionTypeId: 'OPEN_PRODUCT',
+          extra: {
+            productId: 'PRODUCT-1',
+          },
+        },
+        schedule: {
+          at: startDate,
+          on: { second: 60 }
+        },
+      },
+    ];
+
+    const result = await LocalNotifications.schedule({ notifications });
+    console.log('schedule result:', result);
+
+    getPendingNotifications();
+  };
+
   const cancelOne = async () => {
     await LocalNotifications.cancel({ notifications: [{ id: 222 }] });
   };
@@ -401,6 +432,9 @@ export default function LocalNotificationTest({ permissions }: Props) {
         </IonButton>
         <IonButton expand="block" onClick={scheduleOnWithoutSeconds}>
           Schedule just one (without seconds)
+        </IonButton>
+        <IonButton expand="block" onClick={scheduleOnWithStartDate}>
+          Schedule every minute, starting in 5 minutes
         </IonButton>
         <IonButton expand="block" onClick={cancelOne}>
           Cancel just one
