@@ -22,6 +22,7 @@ import {
 const SharePage: React.FC = () => {
   const [showButtons, setShowButtons] = useState(true);
   const [photos, setPhotos] = useState<string[]>([]);
+  const [shareResult, setShareResult] = useState<string>('');
 
   useIonViewDidEnter(() => {
     checkSupported();
@@ -41,8 +42,10 @@ const SharePage: React.FC = () => {
         dialogTitle: 'Share with buddies',
       });
       console.log('Share return', shareRet);
+      setShareResult(`✅ Success! App chosen: ${shareRet.activityType || '(none)'}`);
     } catch (err) {
       console.log('err', err);
+      setShareResult(`❌ Error: ${err}`);
     }
   };
 
@@ -52,8 +55,10 @@ const SharePage: React.FC = () => {
         text: 'Really awesome thing you need to see right meow',
       });
       console.log('Share return', shareRet);
+      setShareResult(`✅ Success! App chosen: ${shareRet.activityType || '(none)'}`);
     } catch (err) {
       console.log('err', err);
+      setShareResult(`❌ Error: ${err}`);
     }
   };
 
@@ -63,8 +68,10 @@ const SharePage: React.FC = () => {
         url: 'http://ionicframework.com/',
       });
       console.log('Share return', shareRet);
+      setShareResult(`✅ Success! App chosen: ${shareRet.activityType || '(none)'}`);
     } catch (err) {
       console.log('err', err);
+      setShareResult(`❌ Error: ${err}`);
     }
   };
 
@@ -74,8 +81,10 @@ const SharePage: React.FC = () => {
         url: 'https://ichef.bbci.co.uk/news/800/cpsprodpb/150EA/production/_107005268_gettyimages-611696954.jpg',
       });
       console.log('Share return', shareRet);
+      setShareResult(`✅ Success! App chosen: ${shareRet.activityType || '(none)'}`);
     } catch (err) {
       console.log('err', err);
+      setShareResult(`❌ Error: ${err}`);
     }
   };
 
@@ -95,16 +104,24 @@ const SharePage: React.FC = () => {
         url: photo.path,
       });
       console.log('Share return', shareRet);
+      setShareResult(`✅ Success! App chosen: ${shareRet.activityType || '(none)'}`);
     } catch (err) {
       console.log('err', err);
+      setShareResult(`❌ Error: ${err}`);
     }
   };
 
   const showSharingLocalImages = async () => {
-    let shareRet = await Share.share({
-      files: photos,
-    });
-    console.log('Share return', shareRet);
+    try {
+      let shareRet = await Share.share({
+        files: photos,
+      });
+      console.log('Share return', shareRet);
+      setShareResult(`✅ Success! App chosen: ${shareRet.activityType || '(none)'}`);
+    } catch (err) {
+      console.log('err', err);
+      setShareResult(`❌ Error: ${err}`);
+    }
   };
 
   return (
@@ -118,6 +135,22 @@ const SharePage: React.FC = () => {
         </IonToolbar>
       </IonHeader>
       <IonContent>
+        {shareResult && (
+          <div style={{
+            padding: '16px',
+            margin: '16px',
+            backgroundColor: shareResult.includes('❌') ? '#ffebee' : '#e8f5e9',
+            borderRadius: '8px',
+            border: `2px solid ${shareResult.includes('❌') ? '#f44336' : '#4caf50'}`,
+            color: shareResult.includes('❌') ? '#c62828' : '#2e7d32',
+            fontSize: '16px',
+            fontWeight: 'bold',
+            textAlign: 'center',
+            marginBottom: '24px'
+          }}>
+            {shareResult}
+          </div>
+        )}
         {showButtons ? (
           [
             <IonButton expand="block" onClick={showSharing}>
