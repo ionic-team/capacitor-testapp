@@ -47,7 +47,7 @@
     "@capacitor/push-notifications": "next",
     "@capacitor/screen-orientation": "next",
     "@capacitor/screen-reader": "next",
-    "@capacitor/share": "next",
+    "@capacitor/share": "8.0.2-dev-2592-20260907T172304.0",
     "@capacitor/splash-screen": "next",
     "@capacitor/status-bar": "next",
     "@capacitor/text-zoom": "next",
