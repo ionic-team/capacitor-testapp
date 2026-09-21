@@ -42,7 +42,7 @@ const SharePage: React.FC = () => {
         dialogTitle: 'Share with buddies',
       });
       console.log('Share return', shareRet);
-      setShareResult(`✅ Success! App chosen: ${shareRet.activityType || '(none)'}`);
+      setShareResult(`✅ Success! App chosen was: ${shareRet.activityType || '(none)'}`);
     } catch (err) {
       console.log('err', err);
       setShareResult(`❌ Error: ${err}`);
@@ -55,7 +55,7 @@ const SharePage: React.FC = () => {
         text: 'Really awesome thing you need to see right meow',
       });
       console.log('Share return', shareRet);
-      setShareResult(`✅ Success! App chosen: ${shareRet.activityType || '(none)'}`);
+      setShareResult(`✅ Success! App chosen was: ${shareRet.activityType || '(none)'}`);
     } catch (err) {
       console.log('err', err);
       setShareResult(`❌ Error: ${err}`);
@@ -68,7 +68,7 @@ const SharePage: React.FC = () => {
         url: 'http://ionicframework.com/',
       });
       console.log('Share return', shareRet);
-      setShareResult(`✅ Success! App chosen: ${shareRet.activityType || '(none)'}`);
+      setShareResult(`✅ Success! App chosen was: ${shareRet.activityType || '(none)'}`);
     } catch (err) {
       console.log('err', err);
       setShareResult(`❌ Error: ${err}`);
