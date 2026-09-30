@@ -121,7 +121,7 @@ export default function NotificationChannelsTest({ notificationType }: Props) {
         </IonButton>
         <IonButton
           expand="block"
-          onClick={e => {
+          onClick={() => {
             setShowModal(true);
           }}
         >
@@ -202,7 +202,7 @@ function NewChannelModal({ show, dismiss, createChannel }: ModalProps) {
             });
           }}
         >
-          {({ values, errors, isValid, handleSubmit, setFieldValue }) => (
+          {({ values, isValid, handleSubmit, setFieldValue }) => (
             <form onSubmit={handleSubmit}>
               <IonList>
                 <IonItemDivider>Required</IonItemDivider>

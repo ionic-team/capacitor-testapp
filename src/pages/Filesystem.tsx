@@ -37,7 +37,7 @@ const FilesystemPage: React.FC = () => {
 
   const mkdir = async () => {
     try {
-      let ret = await Filesystem.mkdir({
+      const ret = await Filesystem.mkdir({
         path: 'secrets',
         directory: Directory.Documents,
         recursive: false,
@@ -50,7 +50,7 @@ const FilesystemPage: React.FC = () => {
 
   const rmdir = async () => {
     try {
-      let ret = await Filesystem.rmdir({
+      const ret = await Filesystem.rmdir({
         path: 'secrets',
         directory: Directory.Documents,
       });
@@ -62,7 +62,7 @@ const FilesystemPage: React.FC = () => {
 
   const readdir = async () => {
     try {
-      let ret = await Filesystem.readdir({
+      const ret = await Filesystem.readdir({
         path: 'secrets',
         directory: Directory.Documents,
       });
@@ -87,7 +87,7 @@ const FilesystemPage: React.FC = () => {
   };
 
   const fileRead = async () => {
-    let contents = await Filesystem.readFile({
+    const contents = await Filesystem.readFile({
       path: 'secrets/text.txt',
       directory: Directory.Documents,
       encoding: Encoding.UTF8,
@@ -115,7 +115,7 @@ const FilesystemPage: React.FC = () => {
 
   const stat = async () => {
     try {
-      let ret = await Filesystem.stat({
+      const ret = await Filesystem.stat({
         path: 'secrets/text.txt',
         directory: Directory.Documents,
       });
@@ -127,7 +127,7 @@ const FilesystemPage: React.FC = () => {
 
   const getUri = async () => {
     try {
-      let ret = await Filesystem.getUri({
+      const ret = await Filesystem.getUri({
         path: 'text.txt',
         directory: Directory.Data,
       });
@@ -146,11 +146,11 @@ const FilesystemPage: React.FC = () => {
         encoding: Encoding.UTF8,
       });
       console.log('wrote file', result);
-      let stat = await Filesystem.stat({
+      const stat = await Filesystem.stat({
         path: 'text.txt',
         directory: Directory.Data,
       });
-      let data = await Filesystem.readFile({
+      const data = await Filesystem.readFile({
         path: stat.uri,
       });
       console.log('Stat 1', stat);
@@ -204,11 +204,11 @@ const FilesystemPage: React.FC = () => {
 
   const mkdirUrl = async () => {
     try {
-      let uriResult = await Filesystem.getUri({
+      const uriResult = await Filesystem.getUri({
         path: 'myfolder',
         directory: Directory.Cache,
       });
-      let ret = await Filesystem.mkdir({
+      const ret = await Filesystem.mkdir({
         path: uriResult.uri,
         recursive: false,
       });
@@ -220,11 +220,11 @@ const FilesystemPage: React.FC = () => {
 
   const rmdirUrl = async () => {
     try {
-      let uriResult = await Filesystem.getUri({
+      const uriResult = await Filesystem.getUri({
         path: 'myfolder',
         directory: Directory.Cache,
       });
-      let ret = await Filesystem.rmdir({
+      const ret = await Filesystem.rmdir({
         path: uriResult.uri,
       });
       console.log('Removed dir', ret);
@@ -235,11 +235,11 @@ const FilesystemPage: React.FC = () => {
 
   const readdirUrl = async () => {
     try {
-      let uriResult = await Filesystem.getUri({
+      const uriResult = await Filesystem.getUri({
         path: 'myfolder',
         directory: Directory.Cache,
       });
-      let ret = await Filesystem.readdir({
+      const ret = await Filesystem.readdir({
         path: uriResult.uri,
       });
       console.log('Read dir', ret);
@@ -250,7 +250,7 @@ const FilesystemPage: React.FC = () => {
 
   const fileWriteUrl = async () => {
     try {
-      let uriResult = await Filesystem.getUri({
+      const uriResult = await Filesystem.getUri({
         path: 'myfolder/myfile.txt',
         directory: Directory.Cache,
       });
@@ -266,11 +266,11 @@ const FilesystemPage: React.FC = () => {
   };
 
   const fileReadUrl = async () => {
-    let uriResult = await Filesystem.getUri({
+    const uriResult = await Filesystem.getUri({
       path: 'myfolder/myfile.txt',
       directory: Directory.Cache,
     });
-    let contents = await Filesystem.readFile({
+    const contents = await Filesystem.readFile({
       path: uriResult.uri,
       encoding: Encoding.UTF8,
     });
@@ -278,7 +278,7 @@ const FilesystemPage: React.FC = () => {
   };
 
   const fileAppendUrl = async () => {
-    let uriResult = await Filesystem.getUri({
+    const uriResult = await Filesystem.getUri({
       path: 'myfolder/myfile.txt',
       directory: Directory.Cache,
     });
@@ -291,7 +291,7 @@ const FilesystemPage: React.FC = () => {
   };
 
   const fileDeleteUrl = async () => {
-    let uriResult = await Filesystem.getUri({
+    const uriResult = await Filesystem.getUri({
       path: 'myfolder/myfile.txt',
       directory: Directory.Cache,
     });
@@ -303,11 +303,11 @@ const FilesystemPage: React.FC = () => {
 
   const statUrl = async () => {
     try {
-      let uriResult = await Filesystem.getUri({
+      const uriResult = await Filesystem.getUri({
         path: 'myfolder/myfile.txt',
         directory: Directory.Cache,
       });
-      let ret = await Filesystem.stat({
+      const ret = await Filesystem.stat({
         path: uriResult.uri,
       });
       console.log('STAT', ret);
@@ -321,7 +321,7 @@ const FilesystemPage: React.FC = () => {
     console.log('Rename a file into a directory');
     await writeAll('fa');
     await mkdirAll('da');
-    let uriResult = await Filesystem.getUri({
+    const uriResult = await Filesystem.getUri({
       path: 'fa',
       directory: Directory.Data,
     });
@@ -340,7 +340,7 @@ const FilesystemPage: React.FC = () => {
     console.log('Copy a file into a directory');
     await writeAll('fa');
     await mkdirAll('da');
-    let uriResult = await Filesystem.getUri({
+    const uriResult = await Filesystem.getUri({
       path: 'fa',
       directory: Directory.Data,
     });
@@ -357,7 +357,7 @@ const FilesystemPage: React.FC = () => {
   // Helper function to run the provided promise-returning function on a single item or array of items
   const doAll = async (item: string | string[], callback: myCallback) => {
     item = Array.isArray(item) ? item : [item];
-    for (let i of item) {
+    for (const i of item) {
       await callback(i);
     }
   };

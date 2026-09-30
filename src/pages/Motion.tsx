@@ -27,7 +27,7 @@ const MotionPage: React.FC = () => {
     if (Capacitor.isPluginAvailable('Motion')) {
       if (
         DeviceOrientationEvent !== undefined &&
-        // @ts-ignore
+        // @ts-expect-error iOS-only API, missing from the DOM types
         typeof DeviceOrientationEvent.requestPermission === 'function'
       ) {
         setShowPermButton(true);
@@ -63,14 +63,14 @@ const MotionPage: React.FC = () => {
 
   const requestPermission = async () => {
     try {
-      // @ts-ignore
+      // @ts-expect-error iOS-only API, missing from the DOM types
       const result = await DeviceMotionEvent.requestPermission();
       if (result === 'granted') {
         setShowPermButton(false);
       } else {
         alert(`don't have permissions to listen`);
       }
-    } catch (e) {
+    } catch {
       alert('error requesting permssion');
     }
   };
