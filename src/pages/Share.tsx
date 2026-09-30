@@ -35,14 +35,16 @@ const SharePage: React.FC = () => {
 
   const showSharing = async () => {
     try {
-      let shareRet = await Share.share({
+      const shareRet = await Share.share({
         title: 'See cool stuff',
         text: 'Really awesome thing you need to see right meow',
         url: 'http://ionicframework.com/',
         dialogTitle: 'Share with buddies',
       });
       console.log('Share return', shareRet);
-      setShareResult(`✅ Success! App chosen was: ${shareRet.activityType || '(none)'}`);
+      setShareResult(
+        `✅ Success! App chosen was: ${shareRet.activityType || '(none)'}`,
+      );
     } catch (err) {
       console.log('err', err);
       setShareResult(`❌ Error: ${err}`);
@@ -51,11 +53,13 @@ const SharePage: React.FC = () => {
 
   const showSharingTextOnly = async () => {
     try {
-      let shareRet = await Share.share({
+      const shareRet = await Share.share({
         text: 'Really awesome thing you need to see right meow',
       });
       console.log('Share return', shareRet);
-      setShareResult(`✅ Success! App chosen was: ${shareRet.activityType || '(none)'}`);
+      setShareResult(
+        `✅ Success! App chosen was: ${shareRet.activityType || '(none)'}`,
+      );
     } catch (err) {
       console.log('err', err);
       setShareResult(`❌ Error: ${err}`);
@@ -64,11 +68,13 @@ const SharePage: React.FC = () => {
 
   const showSharingUrlOnly = async () => {
     try {
-      let shareRet = await Share.share({
+      const shareRet = await Share.share({
         url: 'http://ionicframework.com/',
       });
       console.log('Share return', shareRet);
-      setShareResult(`✅ Success! App chosen was: ${shareRet.activityType || '(none)'}`);
+      setShareResult(
+        `✅ Success! App chosen was: ${shareRet.activityType || '(none)'}`,
+      );
     } catch (err) {
       console.log('err', err);
       setShareResult(`❌ Error: ${err}`);
@@ -77,11 +83,13 @@ const SharePage: React.FC = () => {
 
   const showSharingRemoteImage = async () => {
     try {
-      let shareRet = await Share.share({
+      const shareRet = await Share.share({
         url: 'https://ichef.bbci.co.uk/news/800/cpsprodpb/150EA/production/_107005268_gettyimages-611696954.jpg',
       });
       console.log('Share return', shareRet);
-      setShareResult(`✅ Success! App chosen: ${shareRet.activityType || '(none)'}`);
+      setShareResult(
+        `✅ Success! App chosen: ${shareRet.activityType || '(none)'}`,
+      );
     } catch (err) {
       console.log('err', err);
       setShareResult(`❌ Error: ${err}`);
@@ -97,14 +105,16 @@ const SharePage: React.FC = () => {
         saveToGallery: false,
         allowEditing: false,
       };
-      var photo = await Camera.getPhoto(options);
+      const photo = await Camera.getPhoto(options);
       const newPhotos = [photo.path!, ...photos];
       setPhotos(newPhotos);
-      let shareRet = await Share.share({
+      const shareRet = await Share.share({
         url: photo.path,
       });
       console.log('Share return', shareRet);
-      setShareResult(`✅ Success! App chosen: ${shareRet.activityType || '(none)'}`);
+      setShareResult(
+        `✅ Success! App chosen: ${shareRet.activityType || '(none)'}`,
+      );
     } catch (err) {
       console.log('err', err);
       setShareResult(`❌ Error: ${err}`);
@@ -113,11 +123,13 @@ const SharePage: React.FC = () => {
 
   const showSharingLocalImages = async () => {
     try {
-      let shareRet = await Share.share({
+      const shareRet = await Share.share({
         files: photos,
       });
       console.log('Share return', shareRet);
-      setShareResult(`✅ Success! App chosen: ${shareRet.activityType || '(none)'}`);
+      setShareResult(
+        `✅ Success! App chosen: ${shareRet.activityType || '(none)'}`,
+      );
     } catch (err) {
       console.log('err', err);
       setShareResult(`❌ Error: ${err}`);
@@ -136,18 +148,24 @@ const SharePage: React.FC = () => {
       </IonHeader>
       <IonContent>
         {shareResult && (
-          <div style={{
-            padding: '16px',
-            margin: '16px',
-            backgroundColor: shareResult.includes('❌') ? '#ffebee' : '#e8f5e9',
-            borderRadius: '8px',
-            border: `2px solid ${shareResult.includes('❌') ? '#f44336' : '#4caf50'}`,
-            color: shareResult.includes('❌') ? '#c62828' : '#2e7d32',
-            fontSize: '16px',
-            fontWeight: 'bold',
-            textAlign: 'center',
-            marginBottom: '24px'
-          }}>
+          <div
+            style={{
+              padding: '16px',
+              margin: '16px',
+              backgroundColor: shareResult.includes('❌')
+                ? '#ffebee'
+                : '#e8f5e9',
+              borderRadius: '8px',
+              border: `2px solid ${
+                shareResult.includes('❌') ? '#f44336' : '#4caf50'
+              }`,
+              color: shareResult.includes('❌') ? '#c62828' : '#2e7d32',
+              fontSize: '16px',
+              fontWeight: 'bold',
+              textAlign: 'center',
+              marginBottom: '24px',
+            }}
+          >
             {shareResult}
           </div>
         )}

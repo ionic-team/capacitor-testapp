@@ -85,7 +85,7 @@ const StatusBarPage: React.FC = () => {
   const setBackgroundColor = async () => {
     const bits = [0, 0, 0];
     const randomColor = bits
-      .map(b => {
+      .map(() => {
         const v = Math.floor(Math.random() * 0xff).toString(16);
         if (v.length < 2) {
           return '0' + v;
