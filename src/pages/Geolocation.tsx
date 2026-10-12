@@ -32,7 +32,7 @@ interface GeolocationPageState {
   currentLocation: LocationInterface | null;
 }
 
-class GeolocationPage extends React.Component<{}, GeolocationPageState> {
+class GeolocationPage extends React.Component<object, GeolocationPageState> {
   watchId: string = '';
 
   constructor() {
@@ -74,7 +74,7 @@ class GeolocationPage extends React.Component<{}, GeolocationPageState> {
   startWatch = async () => {
     this.watchId = await Geolocation.watchPosition(
       this.options,
-      (position, err) => {
+      (position, _err) => {
         this.setState({
           currentLocation: {
             timestamp: position?.timestamp,

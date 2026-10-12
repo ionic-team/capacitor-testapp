@@ -14,7 +14,7 @@ import { Dialog } from '@capacitor/dialog';
 
 const DialogPage: React.FC = () => {
   const showAlert = async () => {
-    let alertRet = await Dialog.alert({
+    const alertRet = await Dialog.alert({
       title: 'Stop',
       message: 'this is an error',
       buttonTitle: 'Okay!',
@@ -22,7 +22,7 @@ const DialogPage: React.FC = () => {
     console.log('Alert ret', alertRet);
   };
   const showConfirm = async () => {
-    let confirmRet = await Dialog.confirm({
+    const confirmRet = await Dialog.confirm({
       title: 'Confirm',
       message: "Are you sure you'd like to press the red button?",
       okButtonTitle: 'Ok?',
@@ -31,7 +31,7 @@ const DialogPage: React.FC = () => {
     console.log('Confirm ret', confirmRet);
   };
   const showPrompt = async () => {
-    let promptRet = await Dialog.prompt({
+    const promptRet = await Dialog.prompt({
       title: 'Hello',
       message: "What's your name?",
     });
@@ -41,11 +41,11 @@ const DialogPage: React.FC = () => {
     alert('This is a browser alert');
   };
   const nativeConfirm = async () => {
-    var yes = window.confirm('Do it?');
+    const yes = window.confirm('Do it?');
     console.log('Confirm result', yes);
   };
   const nativePrompt = async () => {
-    var val = prompt('Enter name');
+    const val = prompt('Enter name');
     console.log('Val:', val);
   };
 

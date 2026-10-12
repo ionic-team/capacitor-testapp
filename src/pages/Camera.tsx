@@ -32,8 +32,8 @@ interface CameraPageState {
   photos: GalleryPhoto[] | null;
 }
 
-class CameraPage extends React.Component<{}, CameraPageState> {
-  constructor(props: {}) {
+class CameraPage extends React.Component<object, CameraPageState> {
+  constructor(props: object) {
     super(props);
     this.state = { filePath: null, metadata: null, photos: null };
   }
@@ -52,7 +52,7 @@ class CameraPage extends React.Component<{}, CameraPageState> {
         allowEditing: editing,
         webUseInput: source === CameraSource.Photos,
       };
-      var photo = await Camera.getPhoto(options);
+      const photo = await Camera.getPhoto(options);
       this.setState({
         filePath: photo.path ?? photo.webPath ?? null,
         metadata: JSON.stringify(photo.exif, null, 2),
@@ -68,7 +68,7 @@ class CameraPage extends React.Component<{}, CameraPageState> {
         quality: 100,
         limit,
       };
-      var photosResult = await Camera.pickImages(options);
+      const photosResult = await Camera.pickImages(options);
       console.log('photos result', photosResult);
       this.setState({
         photos: photosResult.photos,

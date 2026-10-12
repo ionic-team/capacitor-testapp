@@ -172,7 +172,9 @@ const HttpPage: React.FC = () => {
           <IonSelectOption value="FETCH">Fetch</IonSelectOption>
           <IonSelectOption value="XHR">XMLHttpRequest</IonSelectOption>
           <IonSelectOption value="CAPACITOR">Capacitor</IonSelectOption>
-          <IonSelectOption value="CAPACITOR_FORMDATA">Capacitor (FormData)</IonSelectOption>
+          <IonSelectOption value="CAPACITOR_FORMDATA">
+            Capacitor (FormData)
+          </IonSelectOption>
         </IonSelect>
         <IonButton expand="block" onClick={() => toggleParams()}>
           Toggle Params On/Off

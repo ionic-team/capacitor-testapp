@@ -1,4 +1,7 @@
-import { LocalNotifications, LocalNotificationSchema } from '@capacitor/local-notifications';
+import {
+  LocalNotifications,
+  LocalNotificationSchema,
+} from '@capacitor/local-notifications';
 import {
   IonButton,
   IonInput,
@@ -67,7 +70,9 @@ export default function LocalNotificationsOptionsTest() {
             max="1"
             step="0.1"
             value={relevanceScore}
-            onIonChange={e => setRelevanceScore(parseFloat(e.detail.value ?? '0.5'))}
+            onIonChange={e =>
+              setRelevanceScore(parseFloat(e.detail.value ?? '0.5'))
+            }
           />
         </IonItem>
         <IonItem>
@@ -79,7 +84,9 @@ export default function LocalNotificationsOptionsTest() {
             <IonSelectOption value="active">active</IonSelectOption>
             <IonSelectOption value="critical">critical</IonSelectOption>
             <IonSelectOption value="passive">passive</IonSelectOption>
-            <IonSelectOption value="timeSensitive">timeSensitive</IonSelectOption>
+            <IonSelectOption value="timeSensitive">
+              timeSensitive
+            </IonSelectOption>
           </IonSelect>
         </IonItem>
       </IonList>
